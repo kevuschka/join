@@ -5,7 +5,7 @@
 }
 
 html {
-    transition: all 125ms ease-in-out;
+    scroll-behavior: smooth;
 }
 
 .flex {
