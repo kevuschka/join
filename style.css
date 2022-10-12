@@ -1,0 +1,41 @@
+*, *:before, *:after {
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+html {
+    transition: all 125ms ease-in-out;
+}
+
+.flex {
+    display: flex;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.cursor-p {
+    cursor: pointer;
+}
+
+.cursor-d {
+    cursor: default;
+}
+
+.d-none {
+    display: none;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
