@@ -5,17 +5,17 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
-function selectNavItem(n) {
-    unselectAllNAvItems();
+function markNavItem(n) {
+    unmarkAllNAvItems();
     selectedNavItem = n;
     document.getElementById(`${n}`).classList.add('selected-nav-item');  
 }
 
-function selectPreviewsNavItem() {
+function markPreviewsNavItem() {
     document.getElementById(`${n}`).classList.add('selected-nav-item'); 
 }
 
 
-function unselectAllNAvItems() {
+function unmarkAllNAvItems() {
     for (let i = 1; i < 5; i++) document.getElementById(`${i}`).classList.remove('selected-nav-item');
 }
