@@ -5,16 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task</title>
+    <link rel="stylesheet" href="add_task.css">
+    <!-- CSS Loaded on every page -->
     <link rel="stylesheet" href="font.css">
     <link rel="stylesheet" href="style.css">
+    <!-- JS Loaded on every page -->
+    <script src="script.js"></script>
     <script src="js/nav_template.js"></script>
+    <script src="js/header_template.js"></script>
+    <script src="js/popup.js"></script>
 </head>
-<body>
-    <div class="page flex" id="page">
+<body onload="renderNav();renderHeader();renderPopups()">
+    <div class="page flex relative" id="page">
         <div class="nav flex column" id="nav"></div>
-        <div class="wrapper flex column" id="wrapper">
-            <div class="header" id="header"></div>
-            <div class="content-container"></div>
+        <div class="wrapper flex column relative" id="wrapper">
+            <div class="popUp" id="popUp"></div>
+            <div class="header flex" id="header"></div>
+            <div class="content-container" id="content-container"></div>
         </div>
     </div>
 </body>

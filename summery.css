@@ -6,6 +6,13 @@
 
 html {
     scroll-behavior: smooth;
+    font-family: 'Inter';
+    font-size: 12px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
 }
 
 .flex {

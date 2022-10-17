@@ -5,10 +5,10 @@ function renderNav() {
 }
 
 function renderNavContent() {
-    return `<img src="assets/img/logo-big.png">
+    return `<img class="logo-img absolute" src="assets/img/logo-big.png">
             <div class="nav-selection flex column" id="nav-selection">
                 <div class="nav-main-selection flex column" id="nav-main-selection"></div>
-                <div class="nav-item nav-legal-notice flex" onclick="">
+                <div class="nav-item nav-legal-notice flex" onclick="renderLegalnotice()">
                     <img src="assets/img/legal-notice.png">
                     <p>Legal notice</p>
                 </div>

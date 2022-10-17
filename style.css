@@ -6,6 +6,13 @@
 
 html {
     scroll-behavior: smooth;
+    font-family: 'Inter';
+    font-size: 12px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
 }
 
 .flex {
@@ -61,14 +68,17 @@ p {
     height: 100%;
     width: 187px;
     align-items: center;
-    padding: 50px 0px 66px 0px;
+    padding: 29vh 0px 66px 0px;
     background-color: #2A3647;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     color: white;
 }
 
-.nav > img {
+.logo-img{
     width: 70px;
+    top: 45px;
+    left: auto;
+    right: auto;
 }
 
 .wrapper {
@@ -79,7 +89,7 @@ p {
 .nav-selection {
     height: 100%;
     width: 100%;
-    padding-top: 12vh;
+    /* padding-top: 12vh; */
     justify-content: space-between;
 }
 
@@ -122,4 +132,69 @@ p {
 
 .nav-legal-notice img {
     width: 14px;
+}
+
+
+/* ########## HEADER ########## */
+.header {
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 36px 20px 100px;
+    gap: 34px;
+    height: 67px;
+    font-size: 16px;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-right-corner {
+    justify-content: center;
+    align-items: center;
+    gap: 26px;
+    width: 106px;
+}
+
+.help-img {
+    width: 20px;
+    height: 20px;
+}
+
+.nav-profil-container {
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.nav-profil {
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+/* ########## POPUP - LOGOUT HEADER PROFIL ########## */
+
+.logout-popup-container {
+    top: 67px;
+    width: 100%;
+    padding: 0 45px 0 0;
+}
+
+.logout-spacer {
+    width: 100%;
+    background-color: transparent;
+}
+
+.logout {
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 40px;
+    padding: 10px;
+    color: white;
+    background-color: #2A3647;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 0px 10px 10px;
 }
