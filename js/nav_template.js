@@ -1,4 +1,4 @@
-function renderNav() {
+function renderNav(n) {
     let navbar = document.getElementById('nav');
     navbar.innerHTML = renderNavContent();  
     renderMainNavItems();
@@ -24,29 +24,29 @@ function renderMainNavItems() {
 }
 
 function renderNavItemSummery() {
-    return `<div class="nav-item nav-summary flex" onclick="">
+    return `<a href="" class="nav-item nav-summary flex" id="1" onclick="">
                 <img src="assets/img/summary-nav-icon.png">
                 <p>Summary</p>
-            </div>`;
+            </a>`;
 }
 
 function renderNavItemBoard() {
-    return `<div class="nav-item nav-board flex" onclick="">
+    return `<a href="" class="nav-item nav-board flex" id="2" onclick="">
                 <img src="assets/img/board-nav-icon.png">
                 <p>Board</p>
-            </div>`;
+            </a>`;
 }
 
 function renderNavItemAddTask() {
-    return `<div class="nav-item nav-add-task flex" onclick="">
+    return `<a href="" class="nav-item nav-add-task flex" id="3" onclick="">
                 <img src="assets/img/add-task-nav-icon.png">
                 <p>Add Task</p>
-            </div>`;
+            </a>`;
 }
 
 function renderNavItemContacts() {
-    return ` <div class="nav-item nav-contacts flex" onclick="">
+    return ` <a href=" " class="nav-item nav-contacts flex" id="4" onclick="">
                 <img src="assets/img/contacts-nav-icon.png">
                 <p>Contacts</p>
-            </div>`;
+            </a>`;
 }

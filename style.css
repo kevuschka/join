@@ -51,6 +51,10 @@ p {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* colors:
     blue/gray nav-background: #2A3647
     nav-background selected:  #091931
@@ -108,6 +112,7 @@ p {
     height: 46px;
     gap: 15px;
     cursor: pointer;
+    color: white;
 }
 
 .nav-summary  img {
@@ -132,6 +137,10 @@ p {
 
 .nav-legal-notice img {
     width: 14px;
+}
+
+.selected-nav-item {
+    background-color: #091931;
 }
 
 
@@ -159,14 +168,14 @@ p {
     height: 20px;
 }
 
-.nav-profil-container {
+.header-profil-container {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     border: 2px solid black;
 }
 
-.nav-profil {
+.header-profil {
     border-radius: 50%;
     border: 2px solid white;
     width: 40px;
