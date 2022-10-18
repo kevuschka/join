@@ -1,27 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
-    <!-- CSS Loaded on every page -->
-    <link rel="stylesheet" href="font.css">
-    <link rel="stylesheet" href="style.css">
-    <!-- JS Loaded on every page -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Noto+Sans&family=Open+Sans:wght@600&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans:wght@600&family=Poppins:wght@700&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+
+   
+
+    <link rel="stylesheet" href="log_in.css">
     <script src="script.js"></script>
-    <script src="js/nav_template.js"></script>
-    <script src="js/header_template.js"></script>
-    <script src="js/popup.js"></script>
+    <title>LogInToJoin</title>
 </head>
-<body onload="renderNav();renderHeader();renderPopups()">
-    <div class="page flex relative" id="page">
-        <div class="nav flex column" id="nav"></div>
-        <div class="wrapper flex column relative" id="wrapper">
-            <div class="popUp" id="popUp"></div>
-            <div class="header flex" id="header"></div>
-            <div class="content-container" id="content-container"></div>
+
+<body>
+    <img class="joinLogo" src="assets/img/logo-big2.png">
+
+    <div class="signContainer">
+        <span class="signText">Not a Join user?</span>
+        <a class="decoNone" href="signUp.html"><div class="signButton">Sign up</div></a>
+    </div>
+
+    <div class="logPool">
+
+        <div class="logContainer">
+
+            <div class="logPool1">
+                <span class="logText">Log in</span>
+                <img class="underline" src="assets/img/underline.png">
+                <input class="input" type="text" placeholder="Email">
+                <img class="case" src="assets/img/add-contact-email-icon.png">
+                <input class="input" type="text" placeholder="Password">
+                <img class="lock" src="assets/img/login-password-icon.png">
+
+                <div class="checkPool">
+
+                    <div class="checkContainer">
+                    <input class="inputCheck" type="checkbox" placeholder="Password">
+                    <span class="checkText">Remember me</span>
+                    </div>
+
+                    <a class="forgotText" href="">Forgot my password</a>
+                </div>
+
+                <div class="buttonContainer">
+                    <div class="signButton1">Log in</div>
+                    <div class="signButton2"><span>Guest Log in</span></div>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 </body>
+
 </html>
