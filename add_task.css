@@ -39,3 +39,33 @@ html {
 .absolute {
     position: absolute;
 }
+
+
+h1 {
+    font-size: 61px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.content-container{
+    padding: 82px 123px
+}
+
+.content-container-child {
+    display: flex;
+    min-height: 350px;
+}
+
+.add_task_column_left {
+    width: 50%;
+    margin-top: 41px;
+    border-right: 1px solid #D1D1D1;
+}
+
+.add_task_column_right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 41px;
+}
