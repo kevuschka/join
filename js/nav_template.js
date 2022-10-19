@@ -24,7 +24,7 @@ function renderMainNavItems() {
 }
 
 function renderNavItemSummery() {
-    return `<a href="summery.html" class="nav-item nav-summary flex" id="1" onclick="">
+    return `<a href="summary.html" class="nav-item nav-summary flex" id="1" onclick="">
                 <img src="assets/img/summary-nav-icon.png">
                 <p>Summary</p>
             </a>`;
