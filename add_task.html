@@ -23,14 +23,32 @@
             <div class="header flex" id="header"></div>
             <div class="content-container" id="content-container">
                 <h1>Add Task</h1>
-                <div class="content-container-child">
-                    <div class="add_task_column_left">
-                        <span>Title</span>
+                <form class="content-container-child flex">
+                    <div class="add-task-column-left add-task-column flex column">
+                        <div class="add-task-column-left-child flex column">
+                            <span class=>Title</span>
+                            <input type="text" id="title" class="add-task-input margin-bottom-24" placeholder="Enter a title">
+                        </div>
+                        <div class="add-task-column-left-child flex column">
+                            <span class=>Description</span>
+                            <textarea name="description" id="description" placeholder="Enter a description" class="add-task-textarea margin-bottom-24"></textarea>
+                        </div>
+                        <div class="add-task-column-left-child flex column">
+                            <span class=>Category</span>
+                            <input type="text" id="category" class="add-task-input margin-bottom-24" placeholder="Enter a title">
+                        </div>
+                        <div class="add-task-column-left-child flex column">
+                            <span class=>Assigned to</span>
+                            <input type="text" id="assigned-to" class="add-task-input" placeholder="Enter a title">
+                        </div>
                     </div>
-                    <div class="add_task_column_right">
-                        <span>Next</span>
+                    <div class="add-task-column-right add-task-column">
+                        <div class="add-task-column-right-child w-100 flex column">
+                            <span class=>Due Date</span>
+                            <input type="text" id="date" class="add-task-input" placeholder="Enter a title">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
