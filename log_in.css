@@ -8,11 +8,11 @@ body {
 
 
 
-.signContainer .logPool {
-    -webkit-animation: fadeInFromNone 0.5s ease-out;
-    -moz-animation: fadeInFromNone 0.5s ease-out;
-    -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out;
+.signContainer, .logPool {
+    -webkit-animation: fadeInFromNone 0.7s ease-out;
+    -moz-animation: fadeInFromNone 0.7s ease-out;
+    -o-animation: fadeInFromNone 0.7s ease-out;
+    animation: fadeInFromNone 0.7s ease-out;
 }
 
 @keyframes fadeInFromNone {
@@ -43,7 +43,7 @@ body {
     position: absolute;
     left: 50px;
     top: 45px;
-    animation: mysez 1s 1;
+    animation: mysez 1s ease-in-out;
     animation-direction: normal;
     z-index: 1;
 }
@@ -69,10 +69,10 @@ body {
     right: 120px;
     align-items: center;
 
-    -webkit-animation: fadeInFromNone 0.5s ease-out;
+    /* -webkit-animation: fadeInFromNone 0.5s ease-out;
     -moz-animation: fadeInFromNone 0.5s ease-out;
     -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out;
+    animation: fadeInFromNone 0.5s ease-out; */
 }
 
 .signButton {
@@ -148,10 +148,10 @@ body {
     align-items:center;
     margin-top: 124px;
 
-    -webkit-animation: fadeInFromNone 0.5s ease-out;
+    /* -webkit-animation: fadeInFromNone 0.5s ease-out;
     -moz-animation: fadeInFromNone 0.5s ease-out;
     -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out;
+    animation: fadeInFromNone 0.5s ease-out; */
 }
 
 .logContainer {
