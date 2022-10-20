@@ -35,17 +35,25 @@
                         </div>
                         <div class="add-task-column-left-child flex column">
                             <span class=>Category</span>
-                            <input type="text" id="category" class="add-task-input margin-bottom-24" placeholder="Enter a title">
+                            <select id="category" class="add-task-select margin-bottom-24 cursor-p">
+                                <option value="option1">Option 1</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
                         </div>
                         <div class="add-task-column-left-child flex column">
                             <span class=>Assigned to</span>
-                            <input type="text" id="assigned-to" class="add-task-input" placeholder="Enter a title">
+                            <select id="assigned-to" class="add-task-select cursor-p">
+                                <option value="option1">Option 1</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
                         </div>
                     </div>
                     <div class="add-task-column-right add-task-column">
                         <div class="add-task-column-right-child w-100 flex column">
                             <span class=>Due Date</span>
-                            <input type="text" id="date" class="add-task-input" placeholder="Enter a title">
+                            <input type="date" class="add-task-input margin-bottom-24" min="2022-10-01" max="2030-12-31">
                         </div>
                     </div>
                 </form>
