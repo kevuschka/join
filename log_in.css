@@ -39,10 +39,10 @@ body {
 
 
 .joinLogo {
-    width: 8%;
+    width: 70px;
     position: absolute;
     left: 50px;
-    top: 50px;
+    top: 45px;
     animation: mysez 1s 1;
     animation-direction: normal;
     z-index: 1;
@@ -57,7 +57,7 @@ body {
     100% {
       
       left: 50px;
-      top: 50px;
+      top: 45px;
     }
 }
 

@@ -10,7 +10,7 @@ function renderHeaderLogoutPopup() {
                 <div class="logout flex column cursor-p" onclick="closeLogoutHeaderPopup()">
                     <a href="help.html" class="header-menu-item header-menu-resp d-none">Help</a>
                     <a href="legal_notice.html" class="header-menu-item header-menu-resp d-none">Legal notice</a>
-                    <a href="sign_up.html" class="header-menu-item">Log out</a>
+                    <a href="index.html" class="header-menu-item">Log out</a>
                 </div>
             </div>`;
 }
