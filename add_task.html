@@ -46,11 +46,13 @@
                         </div>
                         <div class="add-task-column-left-child flex column">
                             <span class=>Assigned to</span>
-                            <select id="assigned-to" class="add-task-select cursor-p">
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                            </select>
+                            <div class="dropdown-container">
+                                <div class="dropdown" onclick="changeVisibilityDropdown('contacts-dropdown')">
+                                    <span>Select contacts to assign</span>
+                                    <img src="./assets/img/vector_2.png">
+                                </div>
+                                <div class="dropdown-content d-none" id="contacts-dropdown"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="add-task-column-right add-task-column">

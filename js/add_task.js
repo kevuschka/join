@@ -1,12 +1,14 @@
-let dropdownCategories = ['Option 1', 'Option 2', 'Option 3']
-let dropdownContacts = ['Hans', 'Jürgen', 'Franz']
+let dropdownCategories = ['Option 1', 'Option 2']
+let dropdownContacts = ['Hans', 'Jürgen']
 
 
 function renderAddTask() {
     renderCategoryDropdown();
-   // renderContactsDropdown();
+    //renderContactsDropdown();
 }
 
+
+///////////////////////// CATEGORY DROPDOWN FUNCTIONS ////////////////////////////////////
 
 function renderCategoryDropdown() {
     let id = 'category-dropdown';
@@ -39,16 +41,6 @@ function createNewCategory() {
 }
 
 
-function changeVisibilityDropdown(dropdownID) {
-    let dropdown = document.getElementById(dropdownID);
-    if (dropdown.classList.contains('d-none')) {
-        dropdown.classList.remove('d-none');
-    } else {
-        dropdown.classList.add('d-none');
-    }
-}
-
-
 function selectCategory(categoryName) {
     changeCategoryDropdownText(categoryName)
     //TODO
@@ -58,4 +50,18 @@ function selectCategory(categoryName) {
 function changeCategoryDropdownText(categoryName) {
     let dropdown = document.getElementById('dropdown-text-category');
     dropdown.innerHTML = `${categoryName}`;
+}
+
+
+
+
+///////////////////////// BASIC FUNCTIONALITY ////////////////////////////////////
+
+function changeVisibilityDropdown(dropdownID) {
+    let dropdown = document.getElementById(dropdownID);
+    if (dropdown.classList.contains('d-none')) {
+        dropdown.classList.remove('d-none');
+    } else {
+        dropdown.classList.add('d-none');
+    }
 }
