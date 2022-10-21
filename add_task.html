@@ -14,8 +14,9 @@
     <script src="js/nav_template.js"></script>
     <script src="js/header_template.js"></script>
     <script src="js/popup.js"></script>
+    <script src="./js/add_task.js"></script>
 </head>
-<body onload="renderNav();renderHeader();renderPopups();markNavItem(3)">
+<body onload="renderNav();renderHeader();renderPopups();markNavItem(3);renderAddTask()">
     <div class="page flex relative" id="page">
         <div class="nav flex column" id="nav"></div>
         <div class="wrapper flex column relative" id="wrapper">
@@ -35,11 +36,13 @@
                         </div>
                         <div class="add-task-column-left-child flex column">
                             <span class=>Category</span>
-                            <select id="category" class="add-task-select margin-bottom-24 cursor-p">
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                            </select>
+                            <div class="dropdown-container margin-bottom-24">
+                                <div class="dropdown" onclick="changeVisibilityDropdown('category-dropdown')">
+                                    <span id="dropdown-text-category">Select task category</span>
+                                    <img src="./assets/img/vector_2.png">
+                                </div>
+                                <div class="dropdown-content d-none" id="category-dropdown"></div>
+                            </div>
                         </div>
                         <div class="add-task-column-left-child flex column">
                             <span class=>Assigned to</span>
