@@ -14,8 +14,9 @@
     <script src="js/nav_template.js"></script>
     <script src="js/header_template.js"></script>
     <script src="js/popup.js"></script>
+    <script src="./js/add_task.js"></script>
 </head>
-<body onload="renderNav();renderHeader();renderPopups();markNavItem(3)">
+<body onload="renderNav();renderHeader();renderPopups();markNavItem(3);renderAddTask()">
     <div class="page flex relative" id="page">
         <div class="nav flex column" id="nav"></div>
         <div class="wrapper flex column relative" id="wrapper">
@@ -35,17 +36,29 @@
                         </div>
                         <div class="add-task-column-left-child flex column">
                             <span class=>Category</span>
-                            <input type="text" id="category" class="add-task-input margin-bottom-24" placeholder="Enter a title">
+                            <div class="dropdown-container margin-bottom-24">
+                                <div class="dropdown" onclick="changeVisibilityDropdown('category-dropdown')">
+                                    <span id="dropdown-text-category">Select task category</span>
+                                    <img src="./assets/img/vector_2.png">
+                                </div>
+                                <div class="dropdown-content d-none" id="category-dropdown"></div>
+                            </div>
                         </div>
                         <div class="add-task-column-left-child flex column">
                             <span class=>Assigned to</span>
-                            <input type="text" id="assigned-to" class="add-task-input" placeholder="Enter a title">
+                            <div class="dropdown-container">
+                                <div class="dropdown" onclick="changeVisibilityDropdown('contacts-dropdown')">
+                                    <span>Select contacts to assign</span>
+                                    <img src="./assets/img/vector_2.png">
+                                </div>
+                                <div class="dropdown-content d-none" id="contacts-dropdown"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="add-task-column-right add-task-column">
                         <div class="add-task-column-right-child w-100 flex column">
                             <span class=>Due Date</span>
-                            <input type="text" id="date" class="add-task-input" placeholder="Enter a title">
+                            <input type="date" class="add-task-input margin-bottom-24" min="2022-10-01" max="2030-12-31">
                         </div>
                     </div>
                 </form>

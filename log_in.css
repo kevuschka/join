@@ -8,11 +8,11 @@ body {
 
 
 
-.signContainer .logPool {
-    -webkit-animation: fadeInFromNone 0.5s ease-out;
-    -moz-animation: fadeInFromNone 0.5s ease-out;
-    -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out;
+.signContainer, .logPool {
+    -webkit-animation: fadeInFromNone 0.7s ease-out;
+    -moz-animation: fadeInFromNone 0.7s ease-out;
+    -o-animation: fadeInFromNone 0.7s ease-out;
+    animation: fadeInFromNone 0.7s ease-out;
 }
 
 @keyframes fadeInFromNone {
@@ -39,12 +39,17 @@ body {
 
 
 .joinLogo {
-    width: 8%;
+    width: 70px;
     position: absolute;
     left: 50px;
+<<<<<<< HEAD
     top: 50px;
     
     animation: joinLogo 1s 1;
+=======
+    top: 45px;
+    animation: mysez 1s ease-in-out;
+>>>>>>> 80e84de037f4969cc75ae0934a1a2a46321e1fdd
     animation-direction: normal;
     z-index: 1;
 }
@@ -70,7 +75,7 @@ body {
     100% {
       
       left: 50px;
-      top: 50px;
+      top: 45px;
     }
 }
 
@@ -94,10 +99,10 @@ body {
     right: 120px;
     align-items: center;
 
-    -webkit-animation: fadeInFromNone 0.5s ease-out;
+    /* -webkit-animation: fadeInFromNone 0.5s ease-out;
     -moz-animation: fadeInFromNone 0.5s ease-out;
     -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out;
+    animation: fadeInFromNone 0.5s ease-out; */
 }
 
 .signButton {
@@ -177,10 +182,10 @@ body {
     align-items:center;
     margin-top: 124px;
 
-    -webkit-animation: fadeInFromNone 0.5s ease-out;
+    /* -webkit-animation: fadeInFromNone 0.5s ease-out;
     -moz-animation: fadeInFromNone 0.5s ease-out;
     -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out;
+    animation: fadeInFromNone 0.5s ease-out; */
 }
 
 .logContainer {

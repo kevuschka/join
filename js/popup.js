@@ -7,8 +7,10 @@ function renderPopups() {
 function renderHeaderLogoutPopup() {
     return `<div class="logout-popup-container absolute flex d-none" id="logout-popup-container">
                 <div class="logout-spacer"></div>
-                <div class="logout flex cursor-p" onclick="closeLogoutHeaderPopup()">
-                    <p>Log out</p>
+                <div class="logout flex column cursor-p" onclick="closeLogoutHeaderPopup()">
+                    <a href="help.html" class="header-menu-item header-menu-resp d-none">Help</a>
+                    <a href="legal_notice.html" class="header-menu-item header-menu-resp d-none">Legal notice</a>
+                    <a href="index.html" class="header-menu-item">Log out</a>
                 </div>
             </div>`;
 }
