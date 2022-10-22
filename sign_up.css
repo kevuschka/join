@@ -24,7 +24,7 @@ body {
 
 .logContainer {
     width: 600px;
-    height: 67%;
+    height: 530px;
     background-color: #FFFFFF;
     border-radius: 30px;
     position: relative;
@@ -34,7 +34,8 @@ body {
 }
 
 .logText {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
     font-size: 80px;
     margin-top: 34px;
 }
@@ -74,19 +75,19 @@ body {
 .lock {
     position: absolute;
     right: 23%;
-    top: 75%;
+    top: 68.6%;
     }
 
     .case {
         position: absolute;
         right: 23%;
-        top: 59.5%;
+        top: 53%;
     }
 
     .name {
         position: absolute;
         right: 23%;
-        top: 43%;
+        top: 36.6%;
     }
 
     .signButton {
@@ -134,17 +135,17 @@ body {
 }
 
 .name {
-    top: 34.5%;
+    top: 30.5%;
     right: 12%;
 }
 
 .case {
-    top: 51%;
+    top: 47%;
     right: 12%;
 }
 
 .lock {
-    top: 67%;
+    top: 62.4%;
     right: 12%;
 }
 
@@ -169,7 +170,7 @@ body {
     @media(max-width: 350px) {
         .logContainer {
             width: 310px;
-            height: 60%;
+            height: 468px;
         }
 
 .underline {
@@ -181,17 +182,17 @@ body {
 }
 
 .name {
-    top: 34.8%;
+    top: 31.5%;
     right: 11%;
 }
 
 .case {
-    top: 53.5%;
+    top: 50%;
     right: 11.9%;
 }
 
 .lock {
-    top: 70.8%;
+    top: 67.4%;
     right: 12%;
 }
 

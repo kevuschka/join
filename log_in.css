@@ -42,13 +42,31 @@ body {
     width: 70px;
     position: absolute;
     left: 50px;
+<<<<<<< HEAD
+    top: 50px;
+    
+    animation: joinLogo 1s 1;
+=======
     top: 45px;
     animation: mysez 1s ease-in-out;
+>>>>>>> 80e84de037f4969cc75ae0934a1a2a46321e1fdd
     animation-direction: normal;
     z-index: 1;
 }
 
-@keyframes mysez{
+.joinLogo2 {
+    width: 8%;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+
+    animation: joinLogo2 1s 1;
+    animation-direction: normal;
+    z-index: 1;
+    display: none;
+}
+
+@keyframes joinLogo{
     0% {
       width: 200px;
       left: 50%;
@@ -61,6 +79,18 @@ body {
     }
 }
 
+@keyframes joinLogo2{
+    0% {
+      width: 200px;
+      left: 50%;
+      top: 40vh;
+    }
+    100% {
+      
+      left: 50px;
+      top: 50px;
+    }
+}
 
 .signContainer {
     display: flex;
@@ -136,6 +166,10 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
+.animationContainer {
+
+}
+
 .decoNone {
     text-decoration: none;
 }
@@ -156,7 +190,7 @@ body {
 
 .logContainer {
     width: 600px;
-    height: 60%;
+    height: 455px;
 background-color: #FFFFFF;
 border-radius: 30px;
 position: relative;
@@ -188,13 +222,13 @@ position: relative;
 .case {
     position: absolute;
     right: 23%;
-    top: 38%;
+    top: 38.7%;
 }
 
 .lock {
 position: absolute;
 right: 23%;
-    top: 55%;
+top: 56.6%;
 }
 
 .inputCheck {
@@ -229,6 +263,11 @@ font-family: 'Noto Sans', sans-serif;
     display: flex;
     margin-top: 25px;
 }
+
+.d-none {
+    display: none;
+}
+
 
 @media(max-width: 740px) {
     .joinLogo {
@@ -279,13 +318,75 @@ font-family: 'Noto Sans', sans-serif;
             @media(max-width: 350px) {
                 .joinLogo {
                     width: 70px;
+                    z-index: 3;
+                }
+
+                @keyframes joinLogo{
+                    0% {
+                      width: 200px;
+                      left: 25%;
+                      top: 40vh;
+                      opacity: 0;
+                    }
+
+                    25% {
+                        opacity: 0;
+                    }
+
+                    50% {
+                        opacity: 1;
+                    }
+
+                    100% {
+                      
+                      left: 50px;
+                      top: 50px;
+                    }
+                }
+
+               .joinLogo2 {
+                    width: 70px;
+                    display: unset;
+                    opacity: 0;
+                   z-index: 3;
+                }
+
+
+                @keyframes joinLogo2{
+                    0% {
+                      width: 150px;
+                      left: 25%;
+                      top: 40vh;
+                      opacity: 1;
+                      z-index: 5;
+                    }
+
+                    25% {
+                        opacity: 1;
+                        z-index: 5;
+                    }
+
+                    50% {
+                        opacity: 0;
+                    }
+
+                    75% {
+                        opacity: 0;
+                    }
+
+                    100% {
+                      
+                      left: 50px;
+                      top: 50px;
+                      opacity: 0;
+                      display:none;
+                    }
                 }
 
             
-            
                 .logContainer {
                     width: 300px;
-                    height: 70%;
+                    height: 523px;
                 }
 
                 .logPool {
@@ -320,12 +421,12 @@ font-family: 'Noto Sans', sans-serif;
 
                 .lock {
                     right: 12%;
-                    top: 47.5%;
+                    top: 44.5%;
                 }
 
                 .case {
                 right: 12%;
-                top: 32.5%;
+                top: 29%;
                 }
 
                 .signButton1 {
@@ -347,33 +448,38 @@ font-family: 'Noto Sans', sans-serif;
                 flex-direction: column;
                 }
 
-                body {
-                -webkit-animation: intro 0s ease-out;
+                .logPool {
+                    margin-top: unset;
+                    padding-top: 124px;
+                }
+
+                .animationContainer {
+            -webkit-animation: intro 0s ease-out;
             -moz-animation: intro 0s ease-out;
             -o-animation: intro 0s ease-out;
             animation: intro 2s ease-out;
-
-            z-index: 2;
+            background-color: #2A3647;
+            z-index: 0;
             height: 100vh;
                 }
 
                 @keyframes intro {
                     0% {
-                        
-                        opacity: 0;
-                        
+                        background-color: #2A3647;
+                        opacity: 1;
                     }
                 
                     20% {
                         display: block;
-                        opacity: 0;
+                        opacity: 1;
                         
                     }
                 
                     50% {
                         display: block;
-                        opacity: 0;
-                        background-color: #2A3647;
+                        opacity: 1;
+                       
+                        
        
                     }
                 
@@ -383,46 +489,8 @@ font-family: 'Noto Sans', sans-serif;
                         
                     }
                 }
-
-                }
-
-    
-                /** {
-                    -webkit-animation: intro 0s ease-out;
-                -moz-animation: intro 0s ease-out;
-                -o-animation: intro 0s ease-out;
-                animation: intro 2s ease-out;
-    
-              
-                    }
-    
-                    @keyframes intro {
-                        0% {
-                            
-                            opacity: 0;
-                            
-                        }
-                    
-                        20% {
-                            display: block;
-                            opacity: 0;
-                            
-                        }
-                    
-                        50% {
-                            display: block;
-                            opacity: 0;
-                            background-color: #2A3647;
-                        }
-                    
-                        100% {
-                            display: block;
-                            opacity: 1;
-                            
-                        }
-                    }*/
-    
-                    
-        
-    
+            }
             
+
+    
+             
