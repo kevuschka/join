@@ -4,7 +4,7 @@ let dropdownContacts = ['Hans', 'Jürgen']
 
 function renderAddTask() {
     renderCategoryDropdown();
-    //renderContactsDropdown();
+    renderContactsDropdown();
 }
 
 
@@ -17,8 +17,7 @@ function renderCategoryDropdown() {
     for (let i = 0; i < dropdownCategories.length; i++) {
         let category = dropdownCategories[i];
         dropdown.innerHTML += templateDropdownCategories(category);
-    }
-    
+    }  
 }
 
 
@@ -43,7 +42,7 @@ function createNewCategory() {
 
 function selectCategory(categoryName) {
     changeCategoryDropdownText(categoryName)
-    //TODO
+    addCategoryToNewTask()
 }
 
 
@@ -52,7 +51,49 @@ function changeCategoryDropdownText(categoryName) {
     dropdown.innerHTML = `${categoryName}`;
 }
 
+function addCategoryToNewTask() {
+    //TODO
+}
 
+
+///////////////////////// CONTACTS DROPDOWN FUNCTIONS ////////////////////////////////////
+
+function renderContactsDropdown() {
+    let id = 'contacts-dropdown';
+    let dropdown = document.getElementById(id);
+    dropdown.innerHTML = templateContactsYou();
+    for (let i = 0; i < dropdownContacts.length; i++) {
+        let checkboxID = 'checkbox' + i;
+        let contact = dropdownContacts[i];
+        dropdown.innerHTML += templateDropdownContacts(contact, checkboxID);
+    }
+    //dropdown.innerHTML += templateDropwdownInviteNewContact();  
+}
+
+
+function templateContactsYou() {
+    return /*html*/ `
+        <label for="checkbox-you" class="dropdown-content-child">    
+                <span>You</span>
+                <input name="checkbox" id="checkbox-you" type="checkbox">
+        </label>
+    `;
+}
+
+
+function templateDropdownContacts(contact, checkboxID) {
+    return /*html*/ `
+        <label for="${checkboxID}" class="dropdown-content-child">    
+                <span>${contact}</span>
+                <input name="checkbox" id="${checkboxID}" type="checkbox">
+        </label>
+    `;
+}
+
+
+function templateDropwdownInviteNewContact() {
+    //TODO
+}
 
 
 ///////////////////////// BASIC FUNCTIONALITY ////////////////////////////////////

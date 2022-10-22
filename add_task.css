@@ -134,8 +134,11 @@ h1 {
     display: flex;
     align-items: center;
     padding: 8px 16px;
+    justify-content: space-between;
+    cursor: pointer;
 }
 
 .dropdown-content-child:hover {
     background-color: #D1D1D1;
 }
+
