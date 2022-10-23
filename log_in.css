@@ -44,7 +44,7 @@ body {
     left: 50px;
     top: 50px;
     
-    animation: joinLogo 1s 1;
+    animation: joinLogo 1s ease-in-out;
     animation-direction: normal;
     z-index: 1;
 }
@@ -55,7 +55,7 @@ body {
     left: 50px;
     top: 50px;
 
-    animation: joinLogo2 1s 1;
+    animation: joinLogo2 1s ease-in-out;
     animation-direction: normal;
     z-index: 1;
     display: none;
