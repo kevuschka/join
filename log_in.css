@@ -42,14 +42,9 @@ body {
     width: 70px;
     position: absolute;
     left: 50px;
-<<<<<<< HEAD
     top: 50px;
     
     animation: joinLogo 1s 1;
-=======
-    top: 45px;
-    animation: mysez 1s ease-in-out;
->>>>>>> 80e84de037f4969cc75ae0934a1a2a46321e1fdd
     animation-direction: normal;
     z-index: 1;
 }
