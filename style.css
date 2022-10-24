@@ -61,6 +61,10 @@ a {
     nav-background selected:  #091931
     button hover lightblue: #29ABE2
     lightgray background: #F6F7F8
+    orange category: #FF7A00
+    contact blue: #0190E0
+    contact pink: #EE00D6
+    contact green: #02CF2F
 */
 
 .top-page {
@@ -86,7 +90,7 @@ a {
     background-color: #2A3647;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     color: white;
-    z-index: 0;
+    z-index: 1;
 }
 
 .logo-img{
@@ -99,6 +103,7 @@ a {
 .wrapper {
     width: 100%;
     height: 100%;
+    overflow-y: auto;
 }
 
 .nav-selection {
@@ -165,6 +170,7 @@ a {
     font-size: 16px;
     z-index: 1;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
 }
 
 .header-right-corner {
@@ -248,7 +254,7 @@ a {
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    padding-bottom: 32px;
+    /* padding-bottom: 32px; */
 }
 
 /* ########## RESPONSIVE ########## */
@@ -267,8 +273,9 @@ a {
     .nav {
         flex-direction: row;
         width: 100%;
-        height: 86px;
-        min-height: 50px;
+        height: 100%;
+        max-height: 95px;
+        min-height: 95px;
         padding: 0;
     }
 
@@ -298,7 +305,7 @@ a {
         gap: 9px; 
         width: 82px;
         height: 100%;        
-        padding: 5px 5px 13px 5px;
+        padding: 5px 5px 21px 5px;
     }
 
     .nav-item p {
@@ -398,10 +405,16 @@ a {
 @media screen and (max-width: 400px) {
     .nav {
         padding: 0 10px 0 10px;
+        max-height: 80px;
+        min-height: 80px;
     }
 
     .nav-main-selection {
         justify-content: space-between;
+    }
+
+    .nav-item {
+        padding: 5px 5px 15px 5px;
     }
 
     .nav-item p {
@@ -412,7 +425,8 @@ a {
 @media screen and (max-width: 300px) {
     .nav {
         padding: 0px 5px 0px 5px;
-        height: 68px;
+        max-height: 58px;
+        min-height: 56px;
     }
 
     .nav-item {

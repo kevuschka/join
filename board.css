@@ -99,10 +99,11 @@
 }
 
 .board-column {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     height: 100%;
     max-width: 397px;
     width: 100%;
+    gap: 20px;
 }
 
 .board-column-header {
@@ -121,6 +122,110 @@
     width: 24px;
     height: 24px;
 }
+
+
+/* ########## TICKET  */
+.ticket-container {
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 18px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-height: 400px;
+    gap: 15px;
+}
+
+.ticket-category-container {
+    width: 100%;
+    color: white;
+}
+
+.ticket-category {
+    padding: 4px 25px;
+    background-color: #FF7A00;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.ticket-description-container {
+    gap: 12px;
+    width: 100%;
+    height: 100%;
+}
+
+.ticket-description-title {
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ticket-description {
+    font-size: 16px;
+    color: rgba(0,0,0,0.4);
+    line-height: 120%;
+    width: 100%;
+    height: 100%;
+}
+
+.process-bar-container {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 22px;
+}
+
+.process-bar {
+    width: 100%;
+    max-width: 600px;
+    background-color: rgb(246, 246, 246);
+    height: 8px;
+}
+
+.process-state {
+    min-width: 55px;
+}
+
+.ticket-footer-container {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px 0 0;
+}
+
+.ticket-contact {
+    padding: 10px 8px;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #FFFFFF;
+    margin: 0px -6px 0px 0px;
+}
+
+#board-contact-0 {
+    background-color: #0190E0;
+}
+
+#board-contact-1 {
+    background-color: #EE00D6;
+}
+
+#board-contact-2 {
+    background-color: #02CF2F;
+}
+
+.state-img {
+    width: 16px;
+}
+
+
 
 
 /* ########## RESPONSIVE ########## */
@@ -178,7 +283,7 @@
 
 @media screen and (max-width: 800px) {
     .board-wrapper {
-        padding: 67px 30px;
+        padding: 67px 30px 0;
     }
 
     .board-header {
@@ -240,6 +345,7 @@
 
     .board-content {
         flex-direction: column;
+        gap: 30px;
     }
 
     .board-column {
@@ -262,7 +368,7 @@
 
 @media screen and (max-width: 300px) {
     .board-wrapper {
-        padding: 67px 10px;
+        padding: 67px 10px 0px;
     }
 
     .board-header-left {
