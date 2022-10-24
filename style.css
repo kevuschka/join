@@ -267,7 +267,7 @@ a {
     .nav {
         flex-direction: row;
         width: 100%;
-        height: 67px;
+        height: 86px;
         min-height: 50px;
         padding: 0;
     }
@@ -298,39 +298,43 @@ a {
         gap: 9px; 
         width: 82px;
         height: 100%;        
-        padding: 5px 5px 7px 5px;
+        padding: 5px 5px 13px 5px;
+    }
+
+    .nav-item p {
+        font-size: 15px;
     }
 
     .nav-summary img {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
     }
 
     .nav-board img {
-        width: 30px;
-        height: 26px;
-    }
-
-    .nav-add-task img {
-        width: 24px;
-        height: 23px;
-    }
-
-    .nav-contacts img {
-        width: 30px;
+        width: 31px;
         height: 31px;
     }
 
-    .nav-board {
-        gap: 7px;
+    .nav-add-task img {
+        width: 30px;
+        height: 29px;
     }
 
-    .nav-contacts {
+    .nav-contacts img {
+        width: 35px;
+        height: 37px;
+    }
+
+    .nav-board {
         gap: 6px;
     }
 
     .nav-add-task {
         gap: 10px;
+    }
+
+    .nav-contacts {
+        gap: 6px;
     }
 
     .nav-legal-notice {
@@ -399,23 +403,25 @@ a {
     .nav-main-selection {
         justify-content: space-between;
     }
-}
 
-
-@media screen and (max-width: 460px) {
-    
+    .nav-item p {
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 300px) {
     .nav {
         padding: 0px 5px 0px 5px;
-        height: 61px;
+        height: 68px;
     }
 
     .nav-item {
-        font-size: 9px;
         width: 70px;
         padding: 5px 5px 7px 5px;
+    }
+
+    .nav-item p {
+        font-size: 10px;
     }
 
     .nav-summary img {
