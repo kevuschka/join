@@ -16,6 +16,13 @@ function deleteUser(name) {
     await backend.deleteItem('users');
 }
 
+function addClasslist(id, classe) {
+    document.getElementById(id).classList.add(classe);
+}
+
+function removeClasslist(id, classe) {
+    document.getElementById(id).classList.remove(classe);
+}
 
 let selectedNavItem = 0;
 

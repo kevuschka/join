@@ -1,2 +1,224 @@
+.board-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 60px 50px;
+    background-color: #F6F7F8;
+}
+
+.board-container {
+    width: 100%;
+    height: 100%;
+}
+
+.board-header {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.board-header p {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.board-header-right {
+    justify-content: space-between;
+    align-items: center;
+    max-width: 370px;
+    width: 100%;
+    height: 38px;
+}
+
+.board-header-search-container {
+    align-items: center;
+    width: 220px;
+    height: 100%;
+    border: 1px solid gray;
+    padding: 0 8px;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.board-header-search-input-container {
+    width: 100%;
+    height: 70%;
+    border-right: 1px solid lightgray;
+}
+
+.board-header-search-input {
+    width: 100%;
+    height: 100%;
+    cursor: text;
+}
+
+.board-search-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+}
+
+.board-header-addTask-button {
+    align-items: center;
+    justify-content: space-between;
+    width: 103px;
+    height: 100%;
+    background-color: #2A3647;
+    color: white;
+    padding: 7px;
+    border-radius: 7px;
+}
+
+.board-header-addTask-button:hover {
+    animation: addTaskButtonColor 125ms ease-in-out;
+    background-color: #29ABE2;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes addTaskButtonColor {
+    0% {
+        background-color: #2A3647;
+        box-shadow: 0;
+    } 100% {
+        background-color: #29ABE2;
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.board-header-addTask-button p {
+    font-size: 16px;
+}
+
+.board-white-plus-image {
+    width: 12px;
+    height: 12px;
+}
+
+.board-content {
+    justify-content: space-between;
+    padding-top: 60px;
+    gap: 30px;
+}
+
+.board-column {
+    background-color: aquamarine;
+    height: 100%;
+    max-width: 397px;
+    width: 100%;
+}
+
+.board-column-header {
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #2A3647;
+    padding: 0 5px;
+}
+
+.board-column-header-plus {
+    border: 1px solid #2A3647;
+    border-radius: 7px;
+    padding: 4px;
+    width: 24px;
+    height: 24px;
+}
 
 
+/* ########## RESPONSIVE ########## */
+
+@media screen and (max-width: 1200px) {
+    .board-content {
+        gap: 20px;
+    }
+    .board-column-header p {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .board-column-header p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1010px) {
+    .board-wrapper {
+        padding: 40px 20px;
+    }
+
+    .board-header > p {
+        font-size: 40px;
+    }
+
+    .board-header-right {
+        height: 32px;
+    }
+
+    .board-content {
+        padding-top: 40px;
+    }
+
+    .board-column-header-plus {
+        padding: 3px;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .board-column-header p {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .board-content {
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .board-wrapper {
+        padding: 67px 30px;
+    }
+
+    .board-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .board-header-left {
+        flex-direction: column;
+        width: 100%;
+        padding-bottom: 30px;
+    }
+
+    .board-header-left .header-title-resp {
+        display: block;
+        font-size: 16px;
+        font-weight: normal;
+        padding: 30px 0px;
+    }
+
+    .board-header-left .board-header-addTask-button-resp {
+        display: block;
+        width: 34px;
+        height: 34px;
+        background-color:#2A3647;
+        border-radius: 7px;
+        padding: 5px;
+    }
+
+    .board-header-left .header-title-resp-plus {
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .board-header-right .board-header-addTask-button {
+        display: none;
+    }
+
+    .board-content {
+        flex-direction: column;
+    }
+}
