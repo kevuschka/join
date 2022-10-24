@@ -7,14 +7,14 @@ async function init() {
     users = JSON.parse(backend.getItem('users')) || [];
 }
 // ADD
-async function addUser() {
-    users.push('John);
-    await backend.setItem('users', JSON.stringify(users));
-}
+// async function addUser() {
+//     users.push('John);
+//     await backend.setItem('users', JSON.stringify(users));
+// }
 // DELETE
-function deleteUser(name) {
-    await backend.deleteItem('users');
-}
+// function deleteUser(name) {
+//     await backend.deleteItem('users');
+// }
 
 function addClasslist(id, classe) {
     document.getElementById(id).classList.add(classe);
