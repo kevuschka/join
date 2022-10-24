@@ -1,7 +1,23 @@
+// ########## ALLES ZUM BACKEND ##########
 setURL('http://developerakademie.com/smallest_backend_ever');
 
-let selectedNavItem = 0;
+//LOAD
+async function init() {
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('users')) || [];
+}
+// ADD
+async function addUser() {
+    users.push('John);
+    await backend.setItem('users', JSON.stringify(users));
+}
+// DELETE
+function deleteUser(name) {
+    await backend.deleteItem('users');
+}
 
+
+let selectedNavItem = 0;
 
 function doNotClose(event) {
     event.stopPropagation();
