@@ -70,18 +70,11 @@ h1 {
 
 .add-task-column-left {
     border-right: 1px solid #D1D1D1;
+    padding-right: 48px;
 }
 
 .add-task-column-right {
-    align-items: flex-end;  
-}
-
-.add-task-column-right-child {
     padding-left: 48px;
-}
-
-.add-task-column-left-child {
-    padding-right: 48px;
 }
 
 .add-task-input {
@@ -89,7 +82,7 @@ h1 {
     margin-top: 8px;
     outline: none;
     border: 1px solid #D1D1D1;  
-    border-radius: 10px;
+    border-radius: 9px;
     height: 40px;
     font-size: 16px;
     padding: 8px 16px;
@@ -101,7 +94,7 @@ h1 {
     margin-top: 8px;
     height: 108px;
     border: 1px solid #D1D1D1;
-    border-radius: 10px;
+    border-radius: 9px;
     font-size: 16px;
     outline: none;
     font-family: 'inter';
@@ -119,7 +112,7 @@ h1 {
 .dropdown-container {
     margin-top: 8px;
     border: 1px solid #D1D1D1;
-    border-radius: 10px;
+    border-radius: 9px;
     font-size: 16px;
     
 }
@@ -143,3 +136,31 @@ h1 {
     background-color: #D1D1D1;
 }
 
+.add-task-prio-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.prio-btn {
+    border-radius: 9px;
+    cursor: pointer;
+    padding: 10px 18px;
+    font-size: 16px;
+    width: 124px;
+    border: 1px solid #D1D1D1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prio-btn img {
+    margin-left: 8px;
+    width: 18px;
+}
+
+.prio-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.25);
+}

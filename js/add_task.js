@@ -1,12 +1,30 @@
 let dropdownCategories = ['Option 1', 'Option 2']
 let dropdownContacts = ['Hans', 'Jürgen']
+let priorities = [
+    {
+        'name': 'Urgent',
+        'image': './assets/img/red.png',
+        'color': '#FF3D00'
+    },
+    {
+        'name': 'Medium',
+        'image': './assets/img/orange.png',
+        'color': '#FFA800'
+    },
+    {
+        'name': 'Low',
+        'image': './assets/img/green.png',
+        'color': '#7AE229'
+    }
+]
+
 
 
 function renderAddTask() {
     renderAddTaskContainer()
     renderCategoryDropdown();
     renderContactsDropdown();
-    renderPrio
+    renderPrioritySelection();
 }
 
 
@@ -19,7 +37,7 @@ function renderAddTaskContainer() {
 function templateAddTask() {
     return /*html*/ `
         <h1>Add Task</h1>
-        <form class="content-container-child flex">
+        <div class="content-container-child flex">
             <div class="add-task-column-left add-task-column flex column">
                 <div class="add-task-column-left-child flex column">
                     <span class=>Title</span>
@@ -52,12 +70,16 @@ function templateAddTask() {
                 </div>
             </div>
             <div class="add-task-column-right add-task-column">
-                <div class="add-task-column-right-child w-100 flex column">
-                    <span class=>Due Date</span>
-                    <input type="date" class="add-task-input margin-bottom-24" min="2022-10-01" max="2030-12-31">
+                <div class="w-100 flex column">
+                    <span>Due Date</span>
+                    <input type="date" id="due-date" class="add-task-input margin-bottom-24" min="2022-10-01" max="2030-12-31">
+                </div>
+                <div class="w-100 flex column">
+                    <span>Prio</span>
+                    <div class="add-task-prio-container" id="prio-container"></div>
                 </div>
             </div>
-        </form>
+        </div>
     `;
 }
 
@@ -147,6 +169,41 @@ function templateDropdownContacts(contact, checkboxID) {
 
 function templateDropwdownInviteNewContact() {
     //TODO
+}
+
+
+///////////////////////// PIORITY SELECTION FUNCTIONS ////////////////////////////////////
+
+function renderPrioritySelection() {
+    let container = document.getElementById('prio-container');
+    for (let i = 0; i < priorities.length; i++) {
+        container.innerHTML += templatePrioritySelection(i);
+    }
+}
+
+
+function templatePrioritySelection(i) {
+    return /*html*/ `
+         <button class="prio-btn" id="prio-btn-${i}" onclick="selectPrio(${i})">
+            ${priorities[i]['name']}
+            <img src="${priorities[i]['image']}">
+        </button>
+    `;
+}
+
+
+function selectPrio(i) {
+    colorPrioBtn(i)
+}
+
+function colorPrioBtn(i) {
+    let id = 'prio-btn-' + i;
+    let button = document.getElementById(id);
+    if (!button.hasAttribute('style')) {
+        button.style.backgroundColor = `${priorities[i]['color']}`;
+    } else {
+        button.style.backgroundColor = '';
+    }
 }
 
 
