@@ -37,7 +37,7 @@ function renderAddTaskContainer() {
 function templateAddTask() {
     return /*html*/ `
         <h1>Add Task</h1>
-        <div class="content-container-child flex">
+        <form onsubmit="addToTodo(); return false" class="content-container-child flex">
             <div class="add-task-column-left add-task-column flex column">
                 <div class="add-task-column-left-child flex column">
                     <span class=>Title</span>
@@ -79,7 +79,7 @@ function templateAddTask() {
                     <div class="add-task-prio-container" id="prio-container"></div>
                 </div>
             </div>
-        </div>
+        </form>
     `;
 }
 
@@ -240,7 +240,14 @@ function removeStyleAttributesBtn(button) {
 }
 
 
-///////////////////////// BASIC FUNCTIONALITY ////////////////////////////////////
+///////////////////////// CREATE TASK ////////////////////////////////////
+
+function addToTodo() {
+    //TODO
+}
+
+
+///////////////////////// GENERAL FUNCTIONS////////////////////////////////////
 
 function changeVisibilityDropdown(dropdownID) {
     let dropdown = document.getElementById(dropdownID);
