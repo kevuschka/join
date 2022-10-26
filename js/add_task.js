@@ -186,7 +186,7 @@ function templatePrioritySelection(i) {
     return /*html*/ `
          <button class="prio-btn" id="prio-btn-${i}" onclick="selectPrio(${i})">
             ${priorities[i]['name']}
-            <img id="prio-img-${i}" src="${priorities[i]['image']}">
+            <img src="${priorities[i]['image']}">
         </button>
     `;
 }
@@ -202,11 +202,10 @@ function changeSelectedPrioBtn(i) {
     let id = 'prio-btn-' + i;
     let button = document.getElementById(id);
     if (!button.hasAttribute('style')) {
-        changePrioImageColor(i);
+        changePrioImageToWhite(button, i);
         changePrioBtnColors(button, i);
     } else {
-        changePrioImageColor(i);
-        button.removeAttribute('style');
+        removeStyleAttributesBtn(button)
     }
 }
 
@@ -215,32 +214,29 @@ function resetOtherPrioBtns(i) {
     for (let j = 0; j < priorities.length; j++) {
         let id = 'prio-btn-' + j;
         let button = document.getElementById(id); 
-        //in order to not delete the color of the Button which was currently clicked
         //i is the clicked button
-        //only gets executed for the button which was aktive until the moment the button i was clicked
+        //only gets executed for the button which was selected right before button i was clicked
         if (j != i && button.hasAttribute('style')) {
-            button.removeAttribute('style');
-            changePrioImageColor(j)
+            removeStyleAttributesBtn(button)
         }
     }
 }
 
 
-function changePrioImageColor(i) {
-    let id = 'prio-img-' + i;
-    let image = document.getElementById(id);
-    if (!image.classList.contains('prio-img-white')) {
-        image.classList.add('prio-img-white');
-    } else {
-        image.classList.remove('prio-img-white');
-    }
-    
+function changePrioImageToWhite(button, i) {
+    button.lastElementChild.style.filter = 'brightness(0) invert(1)'   
 }
 
 
 function changePrioBtnColors(button, i) {
     button.style.backgroundColor = `${priorities[i]['color']}`;
     button.style.color = 'white';
+}
+
+
+function removeStyleAttributesBtn(button) {
+    button.removeAttribute('style');
+    button.lastElementChild.removeAttribute('style');
 }
 
 
