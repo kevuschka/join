@@ -193,17 +193,44 @@ function templatePrioritySelection(i) {
 
 
 function selectPrio(i) {
-    colorPrioBtn(i)
+    changeSelectedPrioBtn(i);
+    resetOtherPrioBtns(i);
 }
 
-function colorPrioBtn(i) {
+
+function changeSelectedPrioBtn(i) {
     let id = 'prio-btn-' + i;
     let button = document.getElementById(id);
     if (!button.hasAttribute('style')) {
-        button.style.backgroundColor = `${priorities[i]['color']}`;
+        changePrioImageToWhite(button, i);
+        changePrioBtnColors(button, i);
     } else {
-        button.style.backgroundColor = '';
+        button.removeAttribute('style');
     }
+}
+
+
+function resetOtherPrioBtns(i) {
+    for (let j = 0; j < priorities.length; j++) {
+        let id = 'prio-btn-' + j;
+        let button = document.getElementById(id); 
+        //in order to not delete the color of the Button which was currently clicked
+        //i is the clicked button
+        if (j != i && button.hasAttribute('style')) {
+            button.removeAttribute('style');
+        }
+    }
+}
+
+
+function changePrioImageToWhite(button, i) {
+    //TODO
+}
+
+
+function changePrioBtnColors(button, i) {
+    button.style.backgroundColor = `${priorities[i]['color']}`;
+    button.style.color = 'white';
 }
 
 
