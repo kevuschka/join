@@ -37,10 +37,14 @@ function markNavItem(n) {
 }
 
 function markPreviewsNavItem() {
-    document.getElementById(`${n}`).classList.add('selected-nav-item'); 
+    document.getElementById(`${selectedNavItem}`).classList.add('selected-nav-item'); 
 }
 
 
 function unmarkAllNAvItems() {
     for (let i = 1; i < 5; i++) document.getElementById(`${i}`).classList.remove('selected-nav-item');
+}
+
+function renderResponsiveHeaderTitle() {
+    document.getElementById('content-container').innerHTML = `<p class="header-title-resp d-none cursor-d">Kanban Project Management Tool</p>`;
 }

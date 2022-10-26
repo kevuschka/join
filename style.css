@@ -362,6 +362,15 @@ a {
         display: none;
     }
 
+    .header-title-resp {
+        display: block;
+        font-size: 16px;
+        font-weight: normal;
+        margin-top: 99px;
+        margin-left: 30px;
+        padding-bottom: 16px;
+    }
+
     .logo-img-resp {
         display: block;
         top: 17px;
@@ -461,5 +470,13 @@ a {
     .nav-contacts {
         gap: 7px;
     }
+
+    .header-title-resp {
+        margin-top: 92px;
+        margin-left: 10px;
+        padding-bottom: 16px;
+        font-size: 14px;
+    }
+
 }
 
