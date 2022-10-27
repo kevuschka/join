@@ -164,8 +164,9 @@ function renderBoardContent() {
     content = '';
     for (let i = 0; i < boardColumns.length; i++) {
         content.innerHTML += renderTemplateBoardColumn(i);
-        renderTickets(i);
+        renderBoardColumnContent(i);
     }
+    renderTemplateOnholdTicketTarget();
 }
 
 
@@ -192,6 +193,33 @@ function renderBoardColumnContent(n) {
 }
 
 
+function renderTemplateTicket(n,j) {
+    return `<div class="ticket-container flex column cursor-p">
+                <div class="ticket-category-container flex">
+                    <p class="ticket-category">${boardColumns[n][j]['category']}</p>
+                </div>
+                <div class="ticket-description-container flex column">
+                    <p class="ticket-description-title">${boardColumns[n][j]['title']}</p>
+                    <div class="ticket-description">
+                        ${boardColumns[n][j]['description']}
+                    </div>
+                </div>
+                <div class="process-bar-container flex" id="process-bar-container-${n}-${j}">
+                    <div class="process-bar"></div>
+                    <div class="process-state">${boardColumns[n][j]['progress']}/${boardColumns[n][j]['subtasks']} Done</div>
+                </div>
+                <div class="ticket-footer-container flex">
+                    <div class="ticket-contacts-container flex" id="ticket-contacts-container-${n}-${j}">
+                        <div class="ticket-contact" id="board-contact-${n}-${j}">SM</div>
+                        <div class="ticket-contact" id="board-contact-1">MV</div>
+                        <div class="ticket-contact" id="board-contact-2">EF</div>
+                    </div>
+                    <img class="state-img" src="assets/img/green.png">
+                </div>
+            </div>`;
+}
+
+
 function renderTemplateOnholdTicketTarget() {
     let content;
     for (let i = 1; i < boardColumns.length; i++) {
@@ -200,17 +228,22 @@ function renderTemplateOnholdTicketTarget() {
     }
 }
 
+
 function renderTemplateOnholdTicketResponsive(content) {
     content.innerHTML += `<div class="onhold-container onhold-container-first w-100"></div>`;
 }
 
 
-function pressAction() {
-    if(hold) {
-
-    }
-}
-
+// let task = [{
+//     'category': '',
+//     'title': 'Website redesign',
+//     'description': "Modify the contents of the main website. Adjust the UI to the company's brand design.",
+//     'progress': 0,
+//     'subtasks': 2,
+//     'team': [],
+//     'prior': 'assets/img/green.png',
+//     'board': 0
+// }]
 
 // function renderTickets(i) {
 //     renderTemplateTickets(i);
@@ -226,52 +259,11 @@ function pressAction() {
 //     }
 // }
 
-function renderTemplateTickets(i) {
-    let content = documnet.getElementById(`board-column-${i}`)
-        if(boardColumns[i].length > 0) {
-            for (let j = 0; j < boardColumns[i].length; j++) {
-                content.innerHTML += renderTemplateTicket(i,j);
-            }
-        }        
+// function renderTemplateTickets(i) {
+//     let content = documnet.getElementById(`board-column-${i}`)
+//         if(boardColumns[i].length > 0) {
+//             for (let j = 0; j < boardColumns[i].length; j++) {
+//                 content.innerHTML += renderTemplateTicket(i,j);
+//             }
+//         }        
 }
-
-function renderTemplateTicket(i,j) {
-    return `<div class="ticket-container flex column cursor-p">
-                <div class="ticket-category-container flex">
-                    <p class="ticket-category">${boardColumns[i][j]['category']}</p>
-                </div>
-                <div class="ticket-description-container flex column">
-                    <p class="ticket-description-title">${boardColumns[i][j]['title']}</p>
-                    <div class="ticket-description">
-                        ${boardColumns[i][j]['description']}
-                    </div>
-                </div>
-                <div class="process-bar-container flex">
-                    <div class="process-bar"></div>
-                    <div class="process-state">0/2 Done</div>
-                </div>
-                <div class="ticket-footer-container flex">
-                    <div class="ticket-contacts-container flex">
-                        <div class="ticket-contact" id="board-contact-0">SM</div>
-                        <div class="ticket-contact" id="board-contact-1">MV</div>
-                        <div class="ticket-contact" id="board-contact-2">EF</div>
-                    </div>
-                    <img class="state-img" src="assets/img/green.png">
-                </div>
-            </div>`;
-}
-
-function renderTicketCategory() {
-
-}
-
-// let task = [{
-//     'category': '',
-//     'title': 'Website redesign',
-//     'description': "Modify the contents of the main website. Adjust the UI to the company's brand design.",
-//     'process': 0,
-//     'subtasks': 2,
-//     'team': [],
-//     'prior': 'assets/img/green.png',
-//     'board': 0
-// }]
