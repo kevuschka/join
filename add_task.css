@@ -197,3 +197,22 @@ h1 {
     align-items: center;
     color: #D1D1D1;
 }
+
+#subtask-list-container {
+    margin-top: 12px;
+    font-size: 12px;
+    padding-left: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.subtask-list-entry {
+    align-items: center;
+}
+
+.subtask-checkbox {
+    margin-right: 8px;
+    height: 12px;
+}

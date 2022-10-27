@@ -78,17 +78,18 @@ function templateAddTask() {
                     <span>Prio</span>
                     <div class="add-task-prio-container margin-bottom-24" id="prio-container"></div>
                 </div>
-                <div class="w-100 flex column">
+                <div class="w-100 flex column margin-bottom-24">
                     <span>Subtasks</span>
-                    <div class="w-100 subtask-input-container margin-bottom-24">    
-                        <input type="text" id="subtask-input" class="w-100" placeholder="Add new subtask">
+                    <div class="w-100 subtask-input-container">    
+                        <input type="text" id="subtask-input" class="w-100" placeholder="Add new subtask" maxlength="50">
                         <img src="./assets/img/add_task_plus_icon.png" id="subtask-add-icon" class="icon-subtask" onclick="changeVisibilitySubtasks()">
                         <div class="flex d-none" id="subtask-accept-delete-section">
-                            <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="changeVisibilitySubtasks()">
+                            <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="clearSubtaskInput()">
                             |
-                            <img src="./assets/img/add_task_check.png" class="icon-subtask" onclick="changeVisibilitySubtasks()">
+                            <img src="./assets/img/add_task_check.png" class="icon-subtask" onclick="addSubtask()">
                         </div>
                     </div>
+                    <ul class="flex column" id="subtask-list-container"></ul>
                 </div>
             </div>
         </form>
@@ -260,6 +261,35 @@ function changeVisibilitySubtasks() {
 }
 
 
+function clearSubtaskInput() {
+    changeVisibilitySubtasks();
+    let input = document.getElementById('subtask-input');
+    clearInput(input);
+}
+
+
+function addSubtask() {
+    changeVisibilitySubtasks();
+    let input = document.getElementById('subtask-input');
+    let task = input.value;
+    addTaskToSubtaskList(task);
+    clearInput(input)
+}
+
+
+function addTaskToSubtaskList(task) {
+    let container = document.getElementById('subtask-list-container');
+    container.innerHTML += templateSubtaskList(task);
+}
+
+
+function templateSubtaskList(task) {
+    return /*html*/ `
+        <li class="subtask-list-entry flex"><input class="subtask-checkbox" type="checkbox">${task}</li>
+    `;
+}
+
+
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
 function addToTodo() {
@@ -276,4 +306,9 @@ function changeVisibility(id) {
     } else {
         dropdown.classList.add('d-none');
     }
+}
+
+
+function clearInput(id) {
+    id.value = '';
 }
