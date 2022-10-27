@@ -387,6 +387,13 @@
         border-radius: 9px;
         border: 1px solid black;
     }
+
+    .noTask {
+        border: 1px dotted gray;
+        color: gray;
+        background-color: lightgray;
+        padding: 5px 0;
+    }
 }
 
 @media screen and (max-width: 300px) {
