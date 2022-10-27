@@ -224,14 +224,22 @@ ul {
     font-size: 16px;
 }
 
-.clear-btn {
-    border-color: #2A3647;
+.add-task-btn:hover {
+    border-color: #29ABE2;
+}
+
+.clear-btn:hover {
+    color: #29ABE2;
 }
 
 .accept-btn {
     background-color: #2A3647;
     color: white;
     font-weight: bold;
+}
+
+.accept-btn:hover {
+    background-color: #29ABE2;
 }
 
 .add-task-btn img {
