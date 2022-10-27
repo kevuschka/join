@@ -50,7 +50,7 @@ function templateAddTask() {
                 <div class="add-task-column-left-child flex column">
                     <span class=>Category</span>
                     <div class="dropdown-container margin-bottom-24">
-                        <div class="dropdown" onclick="changeVisibilityDropdown('category-dropdown')">
+                        <div class="dropdown" onclick="changeVisibility('category-dropdown')">
                             <span id="dropdown-text-category">Select task category</span>
                             <img src="./assets/img/vector_2.png">
                         </div>
@@ -60,7 +60,7 @@ function templateAddTask() {
                 <div class="add-task-column-left-child flex column">
                     <span class=>Assigned to</span>
                     <div class="dropdown-container">
-                        <div class="dropdown" onclick="changeVisibilityDropdown('contacts-dropdown')">
+                        <div class="dropdown" onclick="changeVisibility('contacts-dropdown')">
                             <span>Select contacts to assign</span>
                             <img src="./assets/img/vector_2.png">
                         </div>
@@ -76,7 +76,19 @@ function templateAddTask() {
                 </div>
                 <div class="w-100 flex column">
                     <span>Prio</span>
-                    <div class="add-task-prio-container" id="prio-container"></div>
+                    <div class="add-task-prio-container margin-bottom-24" id="prio-container"></div>
+                </div>
+                <div class="w-100 flex column">
+                    <span>Subtasks</span>
+                    <div class="w-100 subtask-input-container margin-bottom-24">    
+                        <input type="text" id="subtask-input" class="w-100" placeholder="Add new subtask">
+                        <img src="./assets/img/add_task_plus_icon.png" id="subtask-add-icon" class="icon-subtask" onclick="changeVisibilitySubtasks()">
+                        <div class="flex d-none" id="subtask-accept-delete-section">
+                            <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="changeVisibilitySubtasks()">
+                            |
+                            <img src="./assets/img/add_task_check.png" class="icon-subtask" onclick="changeVisibilitySubtasks()">
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -99,14 +111,14 @@ function renderCategoryDropdown() {
 
 function templateDropdownNewCategory() {
     return /*html*/ `
-        <span class="dropdown-content-child" onclick="changeVisibilityDropdown('category-dropdown'); createNewCategory()">New category</span>
+        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); createNewCategory()">New category</span>
     `;
 }
 
 
 function templateDropdownCategories(category, categoryID) {
     return /*html*/ `
-        <span class="dropdown-content-child" id="${categoryID}" onclick="changeVisibilityDropdown('category-dropdown'); selectCategory('${category}')">${category}</span>
+        <span class="dropdown-content-child" id="${categoryID}" onclick="changeVisibility('category-dropdown'); selectCategory('${category}')">${category}</span>
     `;
 }
 
@@ -240,6 +252,14 @@ function removeStyleAttributesBtn(button) {
 }
 
 
+///////////////////////// SUBTASK FUNCTIONS ////////////////////////////////////
+
+function changeVisibilitySubtasks() {
+    changeVisibility('subtask-add-icon');
+    changeVisibility('subtask-accept-delete-section');
+}
+
+
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
 function addToTodo() {
@@ -249,8 +269,8 @@ function addToTodo() {
 
 ///////////////////////// GENERAL FUNCTIONS////////////////////////////////////
 
-function changeVisibilityDropdown(dropdownID) {
-    let dropdown = document.getElementById(dropdownID);
+function changeVisibility(id) {
+    let dropdown = document.getElementById(id);
     if (dropdown.classList.contains('d-none')) {
         dropdown.classList.remove('d-none');
     } else {

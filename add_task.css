@@ -164,3 +164,36 @@ h1 {
     transform: scale(1.1);
     box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.25);
 }
+
+.subtask-input-container {
+    display: flex;
+    margin-top: 8px;
+    outline: none;
+    border: 1px solid #D1D1D1;  
+    border-radius: 9px;
+    height: 40px;
+    align-items: center;
+}
+
+#subtask-input {
+    display: flex;
+    outline: none;
+    border: 1px solid #d1d1d100;  
+    border-radius: 9px;
+    height: 38px;
+    font-size: 16px;
+    padding: 8px 0 8px 16px;
+    width: 95%;
+}
+
+.icon-subtask {
+    height: 18px;
+    object-fit: contain;
+    margin: 0 9px;
+    cursor: pointer;
+}
+
+#subtask-accept-delete-section {
+    align-items: center;
+    color: #D1D1D1;
+}
