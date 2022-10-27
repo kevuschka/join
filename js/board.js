@@ -2,6 +2,25 @@ let title;
 let description;
 let state;
 
+let priorities = [
+    {
+        'name': 'Urgent',
+        'image': './assets/img/red-prio.svg',
+        'color': '#FF3D00'
+    },
+    {
+        'name': 'Medium',
+        'image': './assets/img/orange-prio.svg',
+        'color': '#FFA800'
+    },
+    {
+        'name': 'Low',
+        'image': './assets/img/green-prio.svg',
+        'color': '#7AE229'
+    }
+]
+
+
 let category = [{
     'name': 'design',
     'color': '#FF7A00'
@@ -33,7 +52,7 @@ let task = [{
     'process': 0,
     'subtasks': 2,
     'team': [],
-    'prior': 'assets/img/green.png',
+    'prior': [],
     'board': 0
 }]
 
@@ -61,7 +80,11 @@ let todo = [
                 'phone': '+49 0123 456 78 9'
             }
         ],
-        'prior': 'assets/img/green.png',
+        'prior': [{
+            'name': 'Low',
+            'image': './assets/img/green-prio.svg',
+            'color': '#7AE229'
+        }],
         'board': 0
     }
 ]
@@ -184,54 +207,110 @@ function renderTemplateBoardColumn(i) {
 function renderBoardColumnContent(n) {
     let content = documnet.getElementById(`board-column-${n}`);
     content.innerHTML = '';
-    if(n > 0) renderTemplateOnholdTicketResponsive(content);
     if(boardColumns[n].length > 0) {
-    for (let j = 0; j < boardColumns[n].length; j++) {
-        content.innerHTML += renderTemplateTicket(n,j);
-    }
+        if(n > 0) renderTemplateOnholdTicketResponsive(content);
+        for (let j = 0; j < boardColumns[n].length; j++) {
+            content.innerHTML += renderTemplateTicket(n,j);
+            renderTicketContent(n,j);
+        }
     } else content.innerHTML = `<p class="noTask cursor-d w-100 d-none">${boardColumnTitle[n]}</p>`;
-}
-
-
-function renderTemplateTicket(n,j) {
-    return `<div class="ticket-container flex column cursor-p">
-                <div class="ticket-category-container flex">
-                    <p class="ticket-category">${boardColumns[n][j]['category']}</p>
-                </div>
-                <div class="ticket-description-container flex column">
-                    <p class="ticket-description-title">${boardColumns[n][j]['title']}</p>
-                    <div class="ticket-description">
-                        ${boardColumns[n][j]['description']}
-                    </div>
-                </div>
-                <div class="process-bar-container flex" id="process-bar-container-${n}-${j}">
-                    <div class="process-bar"></div>
-                    <div class="process-state">${boardColumns[n][j]['progress']}/${boardColumns[n][j]['subtasks']} Done</div>
-                </div>
-                <div class="ticket-footer-container flex">
-                    <div class="ticket-contacts-container flex" id="ticket-contacts-container-${n}-${j}">
-                        <div class="ticket-contact" id="board-contact-${n}-${j}">SM</div>
-                        <div class="ticket-contact" id="board-contact-1">MV</div>
-                        <div class="ticket-contact" id="board-contact-2">EF</div>
-                    </div>
-                    <img class="state-img" src="assets/img/green.png">
-                </div>
-            </div>`;
-}
-
-
-function renderTemplateOnholdTicketTarget() {
-    let content;
-    for (let i = 1; i < boardColumns.length; i++) {
-        content = document.getElementById(`board-column-${i}`);
-        content.innerHTML += `<div class="onhold-container onhold-container-last w-100"></div>`;
-    }
 }
 
 
 function renderTemplateOnholdTicketResponsive(content) {
     content.innerHTML += `<div class="onhold-container onhold-container-first w-100"></div>`;
 }
+
+
+function renderTemplateTicket(n,j) {
+    return `<div class="ticket-container flex column cursor-p" id="ticket-container-${n}-${j}"></div>`;
+}
+
+// ==========================>>
+function renderTicketContent(n, j) {
+    renderTemplateTicketCategory(n,j);
+    renderTemplateTicketDescription(n,j);
+    renderTemplateTicketProgressbar(n,j);
+    renderTemplateTicketFooter(n,j);
+    renderTicketTeam(n,j);
+}
+
+
+function renderTemplateTicketCategory(n,j) {
+    let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
+    ticketContent.innerHTML += `
+        <div class="ticket-category-container flex">
+            <p class="ticket-category">${boardColumns[n][j]['category']}</p>
+        </div>`;
+}
+
+
+function renderTemplateTicketDescription(n,j) {
+    let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
+    ticketContent.innerHTML += `
+        <div class="ticket-description-container flex column">
+            <p class="ticket-description-title">${boardColumns[n][j]['title']}</p>
+            <div class="ticket-description">
+                ${boardColumns[n][j]['description']}
+            </div>
+        </div>`;
+}
+
+
+function renderTemplateTicketProgressbar(n,j) {
+    if(boardColumns[n][j]['progress'] > 1) { 
+        let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
+        ticketContent.innerHTML += `
+            <div class="process-bar-container flex" id="process-bar-container-${n}-${j}">
+                <div class="process-bar"></div>
+                <div class="process-state">${boardColumns[n][j]['progress']}/${boardColumns[n][j]['subtasks']} Done</div>
+            </div>`;
+    }
+}
+
+
+function renderTemplateTicketFooter(n,j) {
+    let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
+    ticketContent.innerHTML += `
+        <div class="ticket-footer-container flex">
+            <div class="ticket-contacts-container flex" id="ticket-contacts-container-${n}-${j}"></div>
+            <img class="state-img" src="${boardColumns[n][j][prior]['image']}">
+        </div>`;
+}
+// <<===============================
+
+// TICKET TEAM
+function renderTicketTeam(n,j) {
+    let content = document.getElementById(`ticket-contacts-container-${n}-${j}`);
+    for (let i = 0; i < boardColumns[n][j]['team'].length; i++)
+        content.innerHTML += `<div class="ticket-contact" id="board-contact-${n}-${j}">${nameLetters(n,j,i)}</div>`;
+}
+
+
+function nameLetters(column, ticket, teamMember) {
+    let name = boardColumns[column][index][team][teamMember];
+    let firstLetter = name.charAt(0);  
+    let index = name.indexOf(' '); 
+    let secondLetter = name.charAt(index+1);
+    return firstLetter + secondLetter;
+}
+
+
+function renderTemplateOnholdTicketTarget() {
+    let content;
+    for (let i = 1; i < boardColumns.length; i++) {
+        if(boardColumns[i].length > 0) {       //So when the column is empty, there will be only the empty sign, no addition signs
+            content = document.getElementById(`board-column-${i}`);
+            content.innerHTML += `<div class="onhold-container onhold-container-last w-100"></div>`;
+        }
+    }
+}
+
+
+
+
+
+
 
 
 // let task = [{
@@ -241,7 +320,7 @@ function renderTemplateOnholdTicketResponsive(content) {
 //     'progress': 0,
 //     'subtasks': 2,
 //     'team': [],
-//     'prior': 'assets/img/green.png',
+//     'prior': [],
 //     'board': 0
 // }]
 
@@ -266,4 +345,3 @@ function renderTemplateOnholdTicketResponsive(content) {
 //                 content.innerHTML += renderTemplateTicket(i,j);
 //             }
 //         }        
-}
