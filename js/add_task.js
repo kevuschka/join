@@ -92,6 +92,7 @@ function templateAddTask() {
                     <ul class="flex column" id="subtask-list-container"></ul>
                 </div>
             </div>
+            <div></div>
         </form>
     `;
 }
@@ -269,11 +270,18 @@ function clearSubtaskInput() {
 
 
 function addSubtask() {
-    changeVisibilitySubtasks();
     let input = document.getElementById('subtask-input');
     let task = input.value;
-    addTaskToSubtaskList(task);
-    clearInput(input)
+    if (!inputFieldIsEmpty(task)) {
+        changeVisibilitySubtasks();
+        addTaskToSubtaskList(task);
+        clearInput(input)
+    }
+}
+
+
+function inputFieldIsEmpty(input) {
+    return input == '';
 }
 
 
