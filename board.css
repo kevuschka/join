@@ -135,6 +135,17 @@
     width: 100%;
     max-height: 400px;
     gap: 15px;
+    transition: all 125ms ease-in-out;
+}
+
+.board-tickets {
+    gap: 16px;
+    padding-bottom: 20px;
+}
+
+.board-tickets .ticket-container:active {
+    box-shadow: 0.5px 2px 4px 3px rgb(0 0 0 / 5%);
+    transform: rotate(2.5deg);
 }
 
 .ticket-category-container {
@@ -144,7 +155,6 @@
 
 .ticket-category {
     padding: 4px 25px;
-    background-color: #FF7A00;
     border-radius: 8px;
     font-weight: 400;
     font-size: 16px;
@@ -209,10 +219,39 @@
     margin: 0px -6px 0px 0px;
 }
 
+.contact-placeholder {
+    background-color: #2A3647;
+    color: white;
+}
+
 .state-img {
     width: 16px;
 }
 
+.noTask {
+    display: none;
+}
+
+.onhold-container-last {
+    display: block;
+}
+
+.onhold-container-first {
+    display: none;
+}
+
+.highlight-area {
+    background-color: transparent;
+    border: 2px dotted #919191;
+    border-radius: 10px;
+    height: 200px;
+    transition: all 125ms ease-in-out;
+}
+
+.ticket-highlight {
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.9);
+    transform: rotate(2.5deg);
+} 
 
 
 
@@ -376,11 +415,35 @@
         border: 1px solid black;
     }
 
+    .onhold-container-first {
+        display: block;
+        transition: all 125ms ease-in-out;
+    }
+
+    .onhold-container-last {
+        display: none;
+        transition: all 125ms ease-in-out;
+    }
+
+    .emptyColumn {
+        height: 40px;
+        width: 100%;
+    }
+
     .noTask {
-        border: 1px dotted gray;
-        color: gray;
-        background-color: lightgray;
-        padding: 5px 0;
+        display: block;
+        text-align: center;
+        border: 1px dotted #919191;
+        color: #919191;
+        background-color:#d1d1d1;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 8px;
+        height: 100%;
+    }
+
+    .highlight-area {
+        height: 50px;
     }
 }
 
