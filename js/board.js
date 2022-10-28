@@ -194,7 +194,7 @@ function renderTemplateBoardColumn(i) {
                     <p>${boardColumnTitle[i]}</p>
                     <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
                 </div>
-                <div class="board-tickets w-100 flex column" id="board-column-${i}" ondrop="drop(${i})" ondragover="allowDrop(event)"></div>
+                <div class="board-tickets w-100 flex column" id="board-column-${i}" ondrop="drop(${i})" ondragover="allowDrop(event);highlightAreas(${i})" ondragleave="removeHighlightAreas(${i})"></div>
             </div>`;
 }
 
@@ -347,19 +347,32 @@ function renderOnholdTicketTargetResponsive(i) {
 function drop(column) {
     if (currentElement['board'] != column) {
         boardColumns[currentElement['board']].splice(currentElementTicket,1);
-        if(window.innerWidth > 800) boardColumns[column].push(currentElement);
-        else boardColumns[column].unshift(currentElement);
+        if(window.innerWidth > 800) pushNewElement(column);
+        else unshiftNewElement(column);
         currentElement = '';
-        boardColumns[column][boardColumns[column].length-1]['board'] = column;  
     }
     renderBoardContent();
 }
 
+
+function pushNewElement(column) {
+    boardColumns[column].push(currentElement);
+    boardColumns[column][boardColumns[column].length-1]['board'] = column; 
+}
+
+
+function unshiftNewElement(column) {
+    boardColumns[column].unshift(currentElement);
+    boardColumns[column][0]['board'] = column; 
+}
 ////////////////// HIGHLIGHTING //////////////////////////
-function highlightAllAreas(i) {
+function highlightAllAreas(i,column,ticket) {
     if(i != currentElement['board']) {
         document.getElementById(`onhold-container-column-${i}-last`).classList.add('highlight-area');
         document.getElementById(`onhold-container-column-${i}-first`).classList.add('highlight-area');
+        let myDiv = document.getElementById(`ticket-container-${column}-${ticket}`);
+        let getHeight = myDiv.offsetHeight;
+        document.getElementById(`onhold-container-column-${i}-last`).style.height = `${getHeight}px`;
     }
 }
 
@@ -372,16 +385,18 @@ function highlightAllAreas(i) {
 // }
 
 
-// function highlightAreas(i) {
-//     document.getElementById(`onhold-container-column-${i}-last`).classList.add('highlight-area');
-//     document.getElementById(`onhold-container-column-${i}-first`).classList.add('highlight-area');
-// }
+function highlightAreas(i) {
+    if(i != currentElement['board']) {
+        document.getElementById(`onhold-container-column-${i}-last`).classList.add('highlight-area-more');
+        document.getElementById(`onhold-container-column-${i}-first`).classList.add('highlight-area-more');
+    }
+}
 
 
-// function removeHighlightAreas(i) {
-//     document.getElementById(`onhold-container-column-${i}-last`).classList.remove('highlight-area');
-//     document.getElementById(`onhold-container-column-${i}-first`).classList.remove('highlight-area');
-// }
+function removeHighlightAreas(i) {
+    document.getElementById(`onhold-container-column-${i}-last`).classList.remove('highlight-area-more');
+    document.getElementById(`onhold-container-column-${i}-first`).classList.remove('highlight-area-more');
+}
 
 
 function highlightTicket(column, ticket) {
@@ -396,7 +411,7 @@ function removeHighlightTicket(column, ticket) {
 
 function startDragging(column, ticket) {
     currentElement = boardColumns[column][ticket];
-    for (let i = 0; i < boardColumns.length; i++) highlightAllAreas(i);
+    for (let i = 0; i < boardColumns.length; i++) highlightAllAreas(i,column,ticket);
     currentElementTicket = ticket;
     // renderOnholdTicketTarget(column);
     // currentDraggedElement['column'] = column;

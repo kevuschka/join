@@ -236,6 +236,7 @@
     display: block;
 }
 
+
 .onhold-container-first {
     display: none;
 }
@@ -244,9 +245,14 @@
     background-color: transparent;
     border: 2px dotted #919191;
     border-radius: 10px;
-    height: 200px;
     transition: all 125ms ease-in-out;
 }
+
+.highlight-area-more {
+    border: 2px dotted #898989;
+    background-color: rgb(226, 226, 226);
+}
+
 
 .ticket-highlight {
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.9);
