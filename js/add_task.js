@@ -95,9 +95,9 @@ function templateAddTask() {
                 </div>
             </div>
             <div class="flex create-task-btn-container">
-                <button class="flex add-task-btn clear-btn">
+                <button class="flex add-task-btn clear-btn" onmouseover="clearImageToLightBlue()" onmouseout="clearImageToDarkBlue()">
                     Clear
-                    <img src="./assets/img/clear-x-icon.png">
+                    <img id="clear-image" src="./assets/img/clear-x-icon.png">
                 </button>
                 <button class="flex add-task-btn accept-btn">
                     Create Task
@@ -306,6 +306,20 @@ function templateSubtaskList(task) {
     return /*html*/ `
         <li class="subtask-list-entry flex"><input class="subtask-checkbox" type="checkbox">${task}</li>
     `;
+}
+
+
+///////////////////////// BOTTOM BUTTONS SECTION ////////////////////////////////////
+
+function clearImageToLightBlue() {
+    let img = document.getElementById('clear-image');
+    img.src = './assets/img/blue-cancel-icon.png'
+}
+
+
+function clearImageToDarkBlue() {
+    let img = document.getElementById('clear-image');
+    img.src = './assets/img/clear-x-icon.png'
 }
 
 
