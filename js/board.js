@@ -181,7 +181,7 @@ function renderBoardContent() {
     for (let i = 0; i < boardColumns.length; i++) {
         content.innerHTML += renderTemplateBoardColumn(i);
         /*if(boardColumns[i].length > 0)*/  renderOnholdTicketTargetResponsive(i);
-        // else renderBoardColumnIsEmptySign(i)            Muss ich noch lösen !!!!!!!!!
+        // else renderBoardColumnIsEmptySign(i)     Muss ich noch lösen!!Beachte, wenn L.183 nicht ausgeführt wird, gibt es Probs in der Console
         renderBoardColumnContent(i);
     }
     renderOnholdTicketTarget();
@@ -317,11 +317,13 @@ function renderTemplateOnholdTicketResponsive(content, column) {
     content.innerHTML += `<div class="onhold-container-first w-100" id="onhold-container-column-${column}-first"></div>`;
 }
 
+
 function renderBoardColumnIsEmptySign(n) {
     content = document.getElementById(`board-column-${n}`);
     content.innerHTML = `<p class="noTask cursor-d w-100">${emptyBoardColumn[n]}</p>`;
     emptyBoardColumnProperties(n);
 }
+
 
 function emptyBoardColumnProperties(n) {
     document.getElementById(`board-column-${n}`).classList.add('emptyColumn');
@@ -342,8 +344,14 @@ function renderOnholdTicketTargetResponsive(i) {
     content.innerHTML = `<div class="onhold-container-first w-100" id="onhold-container-column-${i}-first"></div>`;
 }
 
-
 ////////////////// DRAGGING AND DROP /////////////////////
+function startDragging(column, ticket) {
+    currentElement = boardColumns[column][ticket];
+    for (let i = 0; i < boardColumns.length; i++) highlightAllAreas(i,column,ticket);
+    currentElementTicket = ticket;
+}
+
+
 function drop(column) {
     if (currentElement['board'] != column) {
         boardColumns[currentElement['board']].splice(currentElementTicket,1);
@@ -365,7 +373,8 @@ function unshiftNewElement(column) {
     boardColumns[column].unshift(currentElement);
     boardColumns[column][0]['board'] = column; 
 }
-////////////////// HIGHLIGHTING //////////////////////////
+
+////////////////// AREA & TICKET - HIGHLIGHTING //////////////////////////
 function highlightAllAreas(i,column,ticket) {
     if(i != currentElement['board']) {
         document.getElementById(`onhold-container-column-${i}-last`).classList.add('highlight-area');
@@ -409,17 +418,3 @@ function removeHighlightTicket(column, ticket) {
 }
 
 
-function startDragging(column, ticket) {
-    currentElement = boardColumns[column][ticket];
-    for (let i = 0; i < boardColumns.length; i++) highlightAllAreas(i,column,ticket);
-    currentElementTicket = ticket;
-    // renderOnholdTicketTarget(column);
-    // currentDraggedElement['column'] = column;
-    
-    // console.log('column: ', currentDraggedElement['column']);
-    // console.log('ticket: ', currentDraggedElement['ticket']);
-    // for (let i = (column+1); i < boardColumns.length; i++) {
-    //     document.getElementById(`onhold-container-column-${column}-last`).classList.add('onhold-container');
-    // } 
-    // if (column < 3 && boardColumns[column] > 0) document.getElementById(`onhold-container-column-${column+1}-first`).classList.add('onhold-container');
-}

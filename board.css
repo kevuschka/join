@@ -243,13 +243,13 @@
 
 .highlight-area {
     background-color: transparent;
-    border: 2px dotted #919191;
-    border-radius: 10px;
-    transition: all 125ms ease-in-out;
+    border: 2px dotted #d9d8d8;
+    border-radius: 20px;
+    transition: all 225ms ease-in-out;
 }
 
 .highlight-area-more {
-    border: 2px dotted #898989;
+    border: 2px dotted #d2d1d1;
     background-color: rgb(226, 226, 226);
 }
 
@@ -432,7 +432,7 @@
     }
 
     .emptyColumn {
-        height: 40px;
+        height: 60px;
         width: 100%;
     }
 
@@ -450,6 +450,15 @@
 
     .highlight-area {
         height: 50px;
+        animation: openDragArea 125ms ease-in-out
+    }
+
+    @keyframes openDragArea {
+        from {
+            height: 0px;
+        } to {
+            height: 50px;
+        }
     }
 }
 
