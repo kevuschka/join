@@ -58,10 +58,11 @@ let task = [{
 
 let todo = [
     {
-        'category': [{'name': 'design','color': '#FF7A00'}],
+        'category': {'name': 'design','color': '#FF7A00'},
         'title': 'Website redesign',
         'description': "Modify the contents of the main website. Adjust the UI to the company's brand design.",
-        'process': '0/2',
+        'progress': 0,
+        'subtasks': 2,
         'team': [
             {
                 'name': 'Simon Meyer',
@@ -80,11 +81,11 @@ let todo = [
                 'phone': '+49 0123 456 78 9'
             }
         ],
-        'prior': [{
+        'prior': {
             'name': 'Low',
-            'image': './assets/img/green-prio.svg',
+            'image': 'assets/img/green.png',
             'color': '#7AE229'
-        }],
+        },
         'board': 0
     }
 ]
@@ -97,6 +98,13 @@ let done = []
 let boardColumns = [todo, progress, feedback, done];
 let boardColumnTitle = ['To do', 'In progress', 'Awaiting Feedback', 'Done'];
 let emptyBoardColumn = ['No task to do', 'Nothing in progess', 'No Feedback awaiting', 'Nothing here'];
+
+
+function test() {
+    templateBoard();
+    renderBoardContent();
+}
+
 
 function templateBoard() {
     renderResponsiveHeaderTitle();
@@ -122,61 +130,7 @@ function templateBoard() {
                                     </div>
                                 </div>
                             </div>
-                            <div class="board-content flex" id="board-content">
-                                <div class="board-column flex column">
-                                    <div class="board-column-header flex cursor-p">
-                                        <p>To do</p>
-                                        <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
-                                    </div>
-                                    <div class="board-tickets flex column" id="board-0">
-                                        <div class="ticket-container flex column cursor-p">
-                                            <div class="ticket-category-container flex">
-                                                <p class="ticket-category">Design</p>
-                                            </div>
-                                            <div class="ticket-description-container flex column">
-                                                <p class="ticket-description-title">Website redesign</p>
-                                                <div class="ticket-description">
-                                                    Modify the contents of the main website. Adjust the
-                                                    UI to the company's brand design.
-                                                </div>
-                                            </div>
-                                            <div class="process-bar-container flex">
-                                                <div class="process-bar"></div>
-                                                <div class="process-state">0/2 Done</div>
-                                            </div>
-                                            <div class="ticket-footer-container flex">
-                                                <div class="ticket-contacts-container flex">
-                                                    <div class="ticket-contact" id="board-contact-0">SM</div>
-                                                    <div class="ticket-contact" id="board-contact-1">MV</div>
-                                                    <div class="ticket-contact" id="board-contact-2">EF</div>
-                                                </div>
-                                                <img class="state-img" src="assets/img/green.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="board-column flex column">
-                                    <div class="board-column-header flex cursor-p">
-                                        <p>In progress</p>
-                                        <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
-                                    </div>
-                                    <div class="board-tickets flex column" id="board-1"></div>
-                                </div>
-                                <div class="board-column flex column">
-                                    <div class="board-column-header flex cursor-p">
-                                        <p>Awaiting Feedback</p>
-                                        <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
-                                    </div>
-                                    <div class="board-tickets flex column" id="board-2"></div>
-                                </div>
-                                <div class="board-column flex column">
-                                    <div class="board-column-header flex cursor-p">
-                                        <p>Done</p>
-                                        <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
-                                    </div>
-                                    <div class="board-tickets flex column" id="board-3"></div>
-                                </div>
-                            </div>
+                            <div class="board-content flex" id="board-content"></div>
                         </div>
                     </div>`;
 }
@@ -184,19 +138,18 @@ function templateBoard() {
 
 function renderBoardContent() {
     let content = document.getElementById('board-content');
-    content = '';
+    content.innerHTML = '';
     for (let i = 0; i < boardColumns.length; i++) {
         content.innerHTML += renderTemplateBoardColumn(i);
         renderBoardColumnContent(i);
     }
-    renderTemplateOnholdTicketTarget();
 }
 
 
 function renderTemplateBoardColumn(i) {
     return `<div class="board-column flex column">
                 <div class="board-column-header flex cursor-p">
-                    <p>${boardTitle[i]}</p>
+                    <p>${boardColumnTitle[i]}</p>
                     <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
                 </div>
                 <div class="board-tickets flex column" id="board-column-${i}"></div>
@@ -205,7 +158,7 @@ function renderTemplateBoardColumn(i) {
 
 
 function renderBoardColumnContent(n) {
-    let content = documnet.getElementById(`board-column-${n}`);
+    let content = document.getElementById(`board-column-${n}`);
     content.innerHTML = '';
     if(boardColumns[n].length > 0) {
         if(n > 0) renderTemplateOnholdTicketResponsive(content);
@@ -240,7 +193,7 @@ function renderTemplateTicketCategory(n,j) {
     let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
     ticketContent.innerHTML += `
         <div class="ticket-category-container flex">
-            <p class="ticket-category">${boardColumns[n][j]['category']}</p>
+            <p class="ticket-category">${boardColumns[n][j]['category']['name']}</p>
         </div>`;
 }
 
@@ -274,7 +227,7 @@ function renderTemplateTicketFooter(n,j) {
     ticketContent.innerHTML += `
         <div class="ticket-footer-container flex">
             <div class="ticket-contacts-container flex" id="ticket-contacts-container-${n}-${j}"></div>
-            <img class="state-img" src="${boardColumns[n][j][prior]['image']}">
+            <img class="state-img" src="${boardColumns[n][j]['prior']['image']}">
         </div>`;
 }
 // <<===============================
@@ -282,26 +235,35 @@ function renderTemplateTicketFooter(n,j) {
 // TICKET TEAM
 function renderTicketTeam(n,j) {
     let content = document.getElementById(`ticket-contacts-container-${n}-${j}`);
-    for (let i = 0; i < boardColumns[n][j]['team'].length; i++)
-        content.innerHTML += `<div class="ticket-contact" id="board-contact-${n}-${j}">${nameLetters(n,j,i)}</div>`;
+    for (let i = 0; i < boardColumns[n][j]['team'].length; i++) {
+        content.innerHTML += `<div class="ticket-contact" id="board-contact-${n}-${j}-${i}">${getnameLetters(n,j,i)}</div>`;
+        coloringTicketMembers(n,j,i);
+    }
 }
 
 
-function nameLetters(column, ticket, teamMember) {
-    let name = boardColumns[column][index][team][teamMember];
-    let firstLetter = name.charAt(0);  
+function coloringTicketMembers(column, ticket, teamMember) {
+    document.getElementById(`board-contact-${column}-${ticket}-${teamMember}`).style.backgroundColor = `${boardColumns[column][ticket]['team'][teamMember]['color']}`;
+}
+
+
+function getnameLetters(column, ticket, teamMember) {
+    let name = boardColumns[column][ticket]['team'][teamMember]['name'];
+    let firstLetter = name.toString().charAt(0);  
     let index = name.indexOf(' '); 
-    let secondLetter = name.charAt(index+1);
+    let secondLetter = name.toString().charAt(index+1);
     return firstLetter + secondLetter;
 }
 
 
-function renderTemplateOnholdTicketTarget() {
+function renderOnholdTicketTarget(k) {
     let content;
-    for (let i = 1; i < boardColumns.length; i++) {
-        if(boardColumns[i].length > 0) {       //So when the column is empty, there will be only the empty sign, no addition signs
-            content = document.getElementById(`board-column-${i}`);
-            content.innerHTML += `<div class="onhold-container onhold-container-last w-100"></div>`;
+    if(k < 3) {
+        for (let i = (k+1); i < boardColumns.length; i++) {
+            if(boardColumns[i].length > 0) {       //So when the column is empty, there will be only the empty sign, no addition signs
+                content = document.getElementById(`board-column-${i}`);
+                content.innerHTML += `<div class="onhold-container onhold-container-last w-100"></div>`;
+            }
         }
     }
 }
