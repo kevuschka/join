@@ -13,6 +13,7 @@ html {
 body {
     padding: 0;
     margin: 0;
+    background-color: #F6F7F8;
 }
 
 .flex {
@@ -45,4 +46,788 @@ body {
 
 .absolute {
     position: absolute;
+}
+
+.summary-pool {
+    margin-left: 198px;
+}
+
+.header-summary {
+    display:flex;
+    align-items: center;
+    margin-top: 93px;
+}
+
+.header-text1 {
+    font-size: 83px;
+    margin-right: 40px;
+    font-weight: bold;
+}
+
+.header-text2 {
+    font-size: 30px;
+    margin-left: 20px;
+    color: #444E5D;
+}
+
+.task_info_box1 {
+    width: 165px;
+    height: 165px;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    transition: transform 0.1s ease-out;
+    transform-origin: 2% 0%;
+}
+
+.task_info_box1:hover {
+    background-color: #2A3647;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.05);
+   
+    /*animation: hoverEffekt 0.2s ease-out;*/ 
+}
+
+
+.task_info_box2 {
+    width: 165px;
+    height: 165px;
+    margin-left: 45px;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    transition: transform 0.1s ease-out;
+    transform-origin: 2% 0%;
+}
+
+.task_info_box2:hover {
+    background-color: #2A3647;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.05);
+   
+}
+
+.task_info_box3 {
+    width: 165px;
+    height: 165px;
+    margin-left: 45px;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    transition: transform 0.1s ease-out;
+    transform-origin: 2% 0%;
+}
+
+.task_info_box3:hover {
+    background-color: #2A3647;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.task_info_box3:hover {
+    background-color: #2A3647;
+    color: white;
+    cursor: pointer;
+}
+
+.task-info-container {
+    display: flex;
+    margin-top: 66px;
+}
+
+.task-info-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 21px;
+    text-align: center;
+    height: 100%;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.task-info-count {
+    font-size: 52px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+.priority-container {
+    display: flex;
+    align-items: center;
+    margin-left: 70px;
+}
+
+.priority-text-pool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.priority-pool {
+    width: 588px;
+    background-color: #FFFFFF;
+    height: 165px;
+    border-radius: 24px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.1s ease-out;
+    transform-origin: 2% 0%;
+}
+
+.priority-pool:hover {
+    background-color: #2A3647;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.priority-pool:hover .date {
+   color: white;
+}
+   
+
+.priority-count {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+.priority-text {
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.verticalLineGrey {
+    margin-left: 106px;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 74px;
+}
+
+.date {
+    font-size: 19px;
+    font-family: 'Poppins', sans-serif;
+    color: #2A3647;
+    font-weight: bold;
+}
+
+
+.deadline {
+    font-family: 'Poppins', sans-serif;
+}
+
+.flex {
+    display: flex;
+}
+
+.greet-container {
+    display: flex;
+    margin-left: 40px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.greet {
+    font-size: 48px;
+    font-family: 'Poppins', sans-serif;
+    color: #2A3647;
+}
+
+.greet2 {
+    font-size: 48px;
+    font-family: 'Poppins', sans-serif;
+    color: #2A3647;
+    margin-left: 50px;
+}
+
+.user {
+    font-size: 74px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #29ABE2;
+}
+
+.user2 {
+    font-size: 74px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #29ABE2;
+    margin-left: 50px;
+
+}
+
+.doAndDone {
+    display: flex;
+    margin-top: 40px;
+}
+
+.toDo {
+    width: 270px;
+    height: 165px;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+
+    transition: transform 0.1s ease-out;
+    transform-origin: 2% 0%;
+}
+
+.toDo:hover {
+    background-color: #2A3647;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.toDo:hover .toDoImage {
+    filter: invert(1);
+    mix-blend-mode: hard-light;
+    filter: contrast(2.5) invert(1);
+}
+
+.done {
+    width: 270px;
+    height: 165px;
+    margin-left: 45px;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+
+    transition: transform 0.1s ease-out;
+    transform-origin: 2% 0%;
+}
+
+.done:hover {
+    background-color: #2A3647;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.done:hover .doneImage {
+    filter: invert(1);
+    mix-blend-mode: hard-light;
+    filter: contrast(2.5) invert(1);
+}
+
+
+
+.toDoImage {
+    width: 61px;
+    height: 61px;
+    margin-left: 72px;
+}
+
+.doneImage {
+    width: 61px;
+    height: 61px;
+    margin-left: 72px;
+}
+
+.to-do-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 21px;
+    text-align: center;
+    height: 100%;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 18px;
+}
+
+.animationContainer {
+
+}
+
+.greet-container2 {
+    display: none;
+}
+
+.linehorizontal {
+    display: none;
+}
+
+
+@media(max-width: 1180px) {
+
+    .greet-container {
+        display: none;
+    }
+
+.content-container {
+    
+        -webkit-animation: fadeInFromNone 0.7s ease-out;
+        -moz-animation: fadeInFromNone 0.7s ease-out;
+        -o-animation: fadeInFromNone 0.7s ease-out;
+        animation: fadeInFromNone 0.7s ease-out;
+        z-index: 1
+}
+    
+        @keyframes fadeInFromNone {
+            0% {
+                display: none;
+                opacity: 0;
+            }
+        
+            20% {
+                display: block;
+                opacity: 0;
+            }
+        
+            50% {
+                display: block;
+                opacity: 0;
+            }
+            75% {
+                display: block;
+                opacity: 0;
+            }
+        
+            100% {
+                display: block;
+                opacity: 1;
+            }
+        }
+
+
+
+
+   .greet-container2 {
+    -webkit-animation: introGreet 0.6s ease-out;
+    -moz-animation: introGreet 0.6s ease-out;
+    -o-animation: introGreet 0.6s ease-out;
+    animation: introGreet 0.6s ease-out;
+    display: unset;
+    display: flex;
+    margin-left: 40px;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+   position: absolute;
+   top: 50%;
+    left: 25%;
+   z-index: 2;
+   }
+
+        @keyframes introGreet {
+            0% {
+                display: block;
+                opacity: 1;
+               
+            }
+            20% {
+                display: block;
+                opacity: 1;
+                
+            }
+            40% {
+                display: block;
+                opacity: 1;
+               
+            }
+            50% {
+                display: block;
+                opacity: 1;
+              
+            }
+            75% {
+                opacity: 1;
+                display: block;
+                opacity: 1;
+            }
+            90% {
+               
+                opacity: 1;
+            }
+            100% {
+              
+                display: block;
+               opacity: 0;
+            }
+    }
+
+    .animationContainer {
+        -webkit-animation: intro 2s ease-in-out;
+        -moz-animation: intro 2s ease-in-out;
+        -o-animation: intro 2s ease-in-out;
+        animation: intro 2s ease-in-out;
+        
+       z-index: 1;
+        height: 100vh;
+            }
+
+            @keyframes intro {
+                0% {
+                    display: block;
+                    
+                    z-index:3;
+                    
+                }
+                50% {
+                    display: block;
+                    opacity: 1;
+                    
+                }
+                100% {
+                   
+                    display: block;
+                   opacity: 1;
+                }
+        }
+
+}
+
+
+@media(max-width: 1180px) {
+
+    .summary-pool {
+        margin-left: 65px;
+    }
+
+}
+
+@media(max-width: 1000px) {
+
+    .summary-pool {
+        margin-left: 65px;
+    }
+}
+
+    @media(max-width: 850px) {
+
+        .summary-pool {
+            margin-left: 22px;
+        }
+        
+        .greet2 {
+           
+            margin-left: 90px;
+        }
+
+        .greet-container2 {
+            left: 4%;
+        }
+}
+
+
+@media(max-width: 800px) {
+
+.linehorizontal {
+    display: unset;
+}
+
+
+    .summary-pool {
+        margin-left: 110px;
+    }
+
+    .header-summary {
+        align-items: flex-start;
+        margin-top: 93px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .verticalLine {
+        display: none;
+    }
+
+    .header-text2 {
+        margin-top: 20px;
+        margin-left: unset;
+    }
+
+    .linehorizontal {
+        margin-top: 20px;
+    }
+}
+
+
+@media(max-width: 720px) {
+    .summary-pool {
+        margin-left: 34px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+@media(max-width: 650px) {
+    .summary-pool {
+        margin-left: 34px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .task_info_box1 {
+        width: 130px;
+        height: 130px;
+        margin-left: 20px;
+    }
+
+    .task_info_box2 {
+        width: 130px;
+        height: 130px;
+        margin-left: 20px;
+    }
+
+    .task_info_box3 {
+        width: 130px;
+        height: 130px;
+    }
+
+    .priority-container {
+        margin-left: 40px;
+    }
+
+
+    .verticalLineGrey {
+        margin-left: 56px;
+    }
+
+    .date-container {
+       margin-left: 38px;
+    }
+
+    .priority-pool {
+        width: 457px;
+    }
+
+    .priority-count {
+        font-size: 52px;
+    }
+
+    .toDo {
+        width: 208px;
+    }
+
+
+    .done {
+        width: 208px;
+    }
+
+    .toDoImage {
+        margin-left: 34px;
+    }
+
+    .doneImage {
+        margin-left: 34px;
+    }
+
+    .task-info-container {
+        margin-left: -18px;
+    }
+
+    .header-text1 {
+        font-size: 64px;
+    }
+
+    .header-text2 {
+        font-size: 24px;
+    }
+
+}
+
+
+
+@media(max-width: 520px) {
+    .task_info_box1 {
+        width: 100px;
+        height: 100px;
+        margin-left: 20px;
+    }
+
+    .task_info_box2 {
+        width: 100px;
+        height: 100px;
+        margin-left: 12px;
+    }
+    .task_info_box3 {
+        width: 100px;
+        height: 100px;
+        margin-left: 11px;
+    }
+
+    .task-info-count {
+        font-size: 35px;
+    }
+
+    .summary-pool {
+        margin-left: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .task-info-text {
+        font-size: 12px;
+    }
+
+    .priority-text {
+        font-size: 12px;
+    }
+
+    .verticalLineGrey {
+        margin-left: 24px;
+        height: 66px;
+        width: 4px;
+    }
+
+    .date {
+        font-size: 14px;
+    }
+
+    .priority-pool {
+        width: 325px;
+        height: 120px;
+    }
+
+    .priority-count {
+        font-size: 36px;
+    }
+
+    .date-container {
+    margin-left: 20px;
+}
+
+.date-container {
+    margin-left: 20px;
+}
+
+.priority-Icon {
+    width: 45px;
+}
+
+.to-do-text {
+    font-size: 15px;
+    margin-left: 11px;
+}
+
+.toDo {
+    width: 155px;
+    height: 120px;
+}
+
+.done {
+    width: 154px;
+    height: 120px;
+    margin-left: 15px;
+}
+
+.toDoImage {
+    width: 42px;
+    height: 42px;
+    margin-left: 28px;
+}
+
+.doneImage {
+    width: 42px;
+    height: 42px;
+    margin-left: 28px;
+}
+
+.user {
+    font-size: 45px;
+}
+
+.greet {
+    font-size: 39px;
+}
+
+.greet-container2 {
+    top: 50%;
+    left: 0%;
+}
+
+.task_info_box1:hover {
+    background-color:unset;
+   color: unset;
+   background-color: #FFFFFF;
+    transform: unset;
+}
+
+.task_info_box2:hover {
+    background-color:unset;
+   color: unset;
+   background-color: #FFFFFF;
+    transform: unset;
+}
+
+.task_info_box3:hover {
+    background-color:unset;
+   color: unset;
+   background-color: #FFFFFF;
+    transform: unset;
+}
+
+.priority-pool:hover {
+    background-color: #FFFFFF;
+    
+    color: unset;
+    transform: unset;
+}
+
+.priority-pool:hover .date {
+    color: unset;
+    color: #2A3647;
+ }
+
+ .toDo:hover {
+    background-color: unset;
+    background-color: #FFFFFF;
+    color: unset;
+    cursor: pointer;
+    transform: unset;
+}
+
+.done:hover {
+    background-color: unset;
+    background-color: #FFFFFF;
+    color: unset;
+    cursor: pointer;
+    transform: unset;
+}
+
+.toDo:hover .toDoImage {
+    filter: unset;
+    mix-blend-mode:unset;
+    filter: unset;
+}
+
+.done:hover .doneImage {
+    filter: unset;
+    mix-blend-mode:unset;
+    filter: unset;
+}
+
+.greet-container2 {
+    left: -10%;
+    width: 98%;
+}
+
+.user2 {
+    font-size: 49px;
+}
+
+.greet2 {
+    font-size: 34px;
+    margin-left: 81px;
+}
+
+.greet-container2 {
+    left: -18%;
+}
+
 }

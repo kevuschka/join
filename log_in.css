@@ -30,6 +30,10 @@ body {
         display: block;
         opacity: 0;
     }
+    75% {
+        display: block;
+        opacity: 0;
+    }
 
     100% {
         display: block;
@@ -43,6 +47,7 @@ body {
     position: absolute;
     left: 50px;
     top: 50px;
+    
     
     animation: joinLogo 1s ease-in-out;
     animation-direction: normal;
@@ -66,9 +71,14 @@ body {
       width: 200px;
       left: 50%;
       top: 40vh;
+      
+    }
+    50% {
+        width: 200px;
+        left: 50%;
+        top: 40vh;
     }
     100% {
-      
       left: 50px;
       top: 45px;
     }
@@ -80,10 +90,15 @@ body {
       left: 50%;
       top: 40vh;
     }
+    50% {
+        width: 200px;
+        left: 50%;
+        top: 40vh;
+    }
     100% {
       
       left: 50px;
-      top: 50px;
+      top: 45px;
     }
 }
 
@@ -176,11 +191,6 @@ body {
     justify-content:center;
     align-items:center;
     margin-top: 124px;
-
-    /* -webkit-animation: fadeInFromNone 0.5s ease-out;
-    -moz-animation: fadeInFromNone 0.5s ease-out;
-    -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out; */
 }
 
 .logContainer {
@@ -205,6 +215,7 @@ position: relative;
 .logText {
     font-family: 'Poppins', sans-serif;
     font-size: 80px;
+    font-weight:bold;
 }
 
 .input {
@@ -217,13 +228,13 @@ position: relative;
 .case {
     position: absolute;
     right: 23%;
-    top: 38.7%;
+    top: 32%;
 }
 
 .lock {
 position: absolute;
 right: 23%;
-top: 56.6%;
+top: 48.6%;
 }
 
 .inputCheck {
@@ -307,8 +318,9 @@ font-family: 'Noto Sans', sans-serif;
             .logContainer {
                 width: 320px;
             }
-        
-            }
+        }
+
+
 
             @media(max-width: 350px) {
                 .joinLogo {
@@ -318,22 +330,27 @@ font-family: 'Noto Sans', sans-serif;
 
                 @keyframes joinLogo{
                     0% {
-                      width: 200px;
+                      width: 150px;
                       left: 25%;
                       top: 40vh;
                       opacity: 0;
+                      z-index: 3;
                     }
-
                     25% {
                         opacity: 0;
                     }
-
                     50% {
-                        opacity: 1;
-                    }
+                        width: 150px;
+                        left: 25%;
+                        top: 40vh;
 
+                        opacity: 0;
+                    }
+                    78% {
+                        opacity: 0;
+                    }
                     100% {
-                      
+                        opacity: 1;
                       left: 50px;
                       top: 50px;
                     }
@@ -344,8 +361,8 @@ font-family: 'Noto Sans', sans-serif;
                     display: unset;
                     opacity: 0;
                    z-index: 3;
+                   
                 }
-
 
                 @keyframes joinLogo2{
                     0% {
@@ -355,20 +372,21 @@ font-family: 'Noto Sans', sans-serif;
                       opacity: 1;
                       z-index: 5;
                     }
-
                     25% {
                         opacity: 1;
-                        z-index: 5;
+                       
                     }
 
                     50% {
-                        opacity: 0;
-                    }
+                        width: 150px;
+                        left: 25%;
+                        top: 40vh;
 
+                        opacity: 1;
+                    }
                     75% {
-                        opacity: 0;
+                        opacity: 1;
                     }
-
                     100% {
                       
                       left: 50px;
@@ -378,14 +396,13 @@ font-family: 'Noto Sans', sans-serif;
                     }
                 }
 
-            
                 .logContainer {
                     width: 300px;
                     height: 523px;
                 }
 
                 .logPool {
-                    height: 86.8vh !important;
+                   
                 }
 
                 .logText {
@@ -416,12 +433,12 @@ font-family: 'Noto Sans', sans-serif;
 
                 .lock {
                     right: 12%;
-                    top: 44.5%;
+                    top: 40%;
                 }
 
                 .case {
                 right: 12%;
-                top: 29%;
+                top: 25.5%;
                 }
 
                 .signButton1 {
@@ -446,46 +463,54 @@ font-family: 'Noto Sans', sans-serif;
                 .logPool {
                     margin-top: unset;
                     padding-top: 124px;
+                    height: 100vh
                 }
+            
 
                 .animationContainer {
-            -webkit-animation: intro 0s ease-out;
-            -moz-animation: intro 0s ease-out;
-            -o-animation: intro 0s ease-out;
-            animation: intro 2s ease-out;
-            background-color: #2A3647;
-            z-index: 0;
+            -webkit-animation: intro 2s ease-in-out;
+            -moz-animation: intro 2s ease-in-out;
+            -o-animation: intro 2s ease-in-out;
+            animation: intro 2s ease-in-out;
+            
+           
             height: 100vh;
                 }
 
                 @keyframes intro {
                     0% {
-                        background-color: #2A3647;
+                        display: block;
                         opacity: 1;
+                        background-color: #2A3647;
                     }
-                
                     20% {
                         display: block;
                         opacity: 1;
-                        
+                        background-color: #2A3647;
                     }
-                
+                    40% {
+                        display: block;
+                        opacity: 1;
+                        background-color: #2A3647;
+                    }
                     50% {
                         display: block;
                         opacity: 1;
-                       
-                        
-       
+                        background-color: #2A3647;
                     }
-                
-                    100% {
+                    75% {
+                        opacity: 1;
                         display: block;
                         opacity: 1;
-                        
                     }
-                }
+                    90% {
+                        background-color: #2A3647;
+                        opacity: 1;
+                    }
+                    100% {
+                        background-color: #2A3647;
+                        display: block;
+                       opacity: 1;
+                    }
             }
-            
-
-    
-             
+        }
