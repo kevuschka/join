@@ -450,6 +450,7 @@
 
     .highlight-area {
         height: 50px;
+        border-radius: 15px;
         animation: openDragArea 125ms ease-in-out
     }
 
