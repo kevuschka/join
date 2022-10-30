@@ -21,6 +21,7 @@ let priorities = [
 
 
 function renderAddTask() {
+    renderResponsiveHeaderTitle();
     renderAddTaskContainer()
     renderCategoryDropdown();
     renderContactsDropdown();
@@ -30,7 +31,7 @@ function renderAddTask() {
 
 function renderAddTaskContainer() {
     let container = document.getElementById('content-container');
-    container.innerHTML = templateAddTask();
+    container.innerHTML += templateAddTask();
 }
 
 
