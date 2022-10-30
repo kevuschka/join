@@ -61,7 +61,7 @@ let createdTask = {
     'title': 'Website redesign',
     'description': "Modify the contents of the main website. Adjust the UI to the company's brand design.",
     'progress': 0,
-    'subtasks': 2,
+    'subtasks': 1,
     'team': [
         {
             'name': 'Simon Meyer',
@@ -180,8 +180,8 @@ function renderBoardContent() {
     content.innerHTML = '';
     for (let i = 0; i < boardColumns.length; i++) {
         content.innerHTML += renderTemplateBoardColumn(i);
-        /*if(boardColumns[i].length > 0)*/  renderOnholdTicketTargetResponsive(i);
-        // else renderBoardColumnIsEmptySign(i)     Muss ich noch lösen!!Beachte, wenn L.183 nicht ausgeführt wird, gibt es Probs in der Console
+        if(window.innerWidth > 800 || boardColumns[i].length > 0) renderOnholdTicketTargetResponsive(i);
+        else renderBoardColumnIsEmptySign(i);
         renderBoardColumnContent(i);
     }
     renderOnholdTicketTarget();
@@ -378,7 +378,8 @@ function unshiftNewElement(column) {
 function highlightAllAreas(i,column,ticket) {
     if(i != currentElement['board']) {
         document.getElementById(`onhold-container-column-${i}-last`).classList.add('highlight-area');
-        document.getElementById(`onhold-container-column-${i}-first`).classList.add('highlight-area');
+        if(window.innerWidth > 800 || boardColumns[i].length > 0)
+            document.getElementById(`onhold-container-column-${i}-first`).classList.add('highlight-area');
         let myDiv = document.getElementById(`ticket-container-${column}-${ticket}`);
         let getHeight = myDiv.offsetHeight;
         document.getElementById(`onhold-container-column-${i}-last`).style.height = `${getHeight}px`;
@@ -397,14 +398,16 @@ function highlightAllAreas(i,column,ticket) {
 function highlightAreas(i) {
     if(i != currentElement['board']) {
         document.getElementById(`onhold-container-column-${i}-last`).classList.add('highlight-area-more');
-        document.getElementById(`onhold-container-column-${i}-first`).classList.add('highlight-area-more');
+        if(window.innerWidth > 800 || boardColumns[i].length > 0)
+            document.getElementById(`onhold-container-column-${i}-first`).classList.add('highlight-area-more');
     }
 }
 
 
 function removeHighlightAreas(i) {
     document.getElementById(`onhold-container-column-${i}-last`).classList.remove('highlight-area-more');
-    document.getElementById(`onhold-container-column-${i}-first`).classList.remove('highlight-area-more');
+    if(window.innerWidth > 800 || boardColumns[i].length > 0)
+        document.getElementById(`onhold-container-column-${i}-first`).classList.remove('highlight-area-more');
 }
 
 
@@ -416,5 +419,8 @@ function highlightTicket(column, ticket) {
 function removeHighlightTicket(column, ticket) {
     document.getElementById(`ticket-container-${column}-${ticket}`).classList.remove('ticket-highlight');
 }
+
+
+
 
 
