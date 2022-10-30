@@ -261,6 +261,15 @@
 
 
 /* ########## RESPONSIVE ########## */
+@media screen and (max-width: 1300px) {
+    .board-wrapper {
+        padding: 30px;
+    }
+
+    .board-content {
+        padding-top: 30px;
+    }
+}
 
 @media screen and (max-width: 1200px) {
     .board-content {
