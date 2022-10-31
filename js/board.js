@@ -192,11 +192,14 @@ function renderTemplateBoardColumn(i) {
     return `<div class="board-column flex column">
                 <div class="board-column-header flex cursor-p">
                     <p>${boardColumnTitle[i]}</p>
-                    <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
+                    <div class="board-column-header-plus flex">+</div>
                 </div>
                 <div class="board-tickets w-100 flex column" id="board-column-${i}" ondrop="drop(${i})" ondragover="allowDrop(event);highlightAreas(${i})" ondragleave="removeHighlightAreas(${i})"></div>
             </div>`;
 }
+
+//<img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
+
 
 
 function renderBoardColumnContent(n) {
@@ -240,9 +243,9 @@ function renderTemplateTicketDescription(n,j) {
     ticketContent.innerHTML += `
         <div class="ticket-description-container flex column">
             <p class="ticket-description-title">${boardColumns[n][j]['title']}</p>
-            <div class="ticket-description">
-                ${boardColumns[n][j]['description']}
-            </div>
+                <div class="ticket-description" id="ticket-description-${n}-${j}">
+                    ${boardColumns[n][j]['description']}
+                </div>
         </div>`;
 }
 
