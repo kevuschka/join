@@ -5,7 +5,7 @@
  */
 function renderSummary() {
     document.getElementById('task-count1').innerHTML = `${todo.length}`;
-    document.getElementById('task-count2').innerHTML = `${progress.length}`;
+    document.getElementById('task-count2').innerHTML = `${inProgress.length}`;
     document.getElementById('task-count3').innerHTML = `${feedback.length}`;
 
     document.getElementById('task-info-count').innerHTML = `${todo.length}`;
