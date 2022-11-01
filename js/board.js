@@ -396,6 +396,18 @@ function highlightAllAreas(i,column,ticket) {
         let getHeight = myDiv.offsetHeight;
         document.getElementById(`onhold-container-column-${i}-last`).style.height = `${getHeight}px`;
     }
+    removeAllHighlightAreas(i);
+}
+
+
+function removeAllHighlightAreas(i) {
+    setTimeout( () => {
+        if(i != currentElement['board']) {
+            document.getElementById(`onhold-container-column-${i}-last`).classList.add('no-highlight-area');
+            if(window.innerWidth > 800 || boardColumns[i].length > 0)
+                document.getElementById(`onhold-container-column-${i}-first`).classList.add('no-highlight-area');
+        }
+    }, 600)
 }
 
 

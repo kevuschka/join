@@ -62,7 +62,7 @@ function renderSearchbarPopup() {
     return `<div class="board-header-search-popup-full absolute w-100 d-none" id="board-header-search-input-popup-full" onclick="closeBoardSearchInput()">
                 <div class="board-header-search-popup-container w-100 absolute flex">
                     <div class="board-header-search-popup-spacer-left"></div>
-                    <input class="board-header-search-input-popup h-100" id="board-header-search-input-popup" type="text" placeholder="..." onkeydown="" focus autofocus onclick="doNotClose(event)">
+                    <input class="board-header-search-input-popup h-100" id="board-header-search-input-popup" type="text" placeholder="Find Task" onkeydown="" focus autofocus onclick="doNotClose(event)">
                     <div class="board-header-search-popup-spacer-right"></div>
                 </input>
             </div>`;

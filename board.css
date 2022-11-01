@@ -316,12 +316,16 @@
     background-color: transparent;
     border: 2px dotted #d9d8d8;
     border-radius: 30px;
-    transition: all 225ms ease-in-out;
+    /* transition: all 225ms ease-in-out; */
+}
+
+.no-highlight-area {
+    border: none;
 }
 
 .highlight-area-more {
     border: 2px dotted #d2d1d1;
-    background-color: rgb(226, 226, 226);
+    /* background-color: rgb(226, 226, 226); */
 }
 
 
