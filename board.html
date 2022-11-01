@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
     <link rel="stylesheet" href="board.css">
+    <script src="js/board.js"></script>
     <!-- CSS Loaded on every page -->
     <link rel="stylesheet" href="font.css">
     <link rel="stylesheet" href="style.css">
@@ -16,96 +17,14 @@
     <script src="js/header_template.js"></script>
     <script src="js/popup.js"></script>
 </head>
-<body onload="renderNav();renderHeader();renderPopups();markNavItem(2)">
+<body onload="renderNav();renderHeader();renderPopups();markNavItem(2);addTast();test()">
     <div class="top-page relative">
         <div class="page flex" id="page">
             <div class="nav flex column" id="nav"></div>
             <div class="popUp" id="popUp"></div>
             <div class="wrapper flex column relative" id="wrapper">
-                <!-- <div class="popUp" id="popUp"></div> -->
                 <div class="header flex" id="header"></div>
-                <div class="content-container" id="content-container">
-                    <div class="board-wrapper">
-                        <div class="board-container flex column">
-                            <div class="board-header flex">
-                                <div class="board-header-left flex">
-                                    <p class="header-title-resp d-none">Kanban Project Management Tool</p>
-                                    <div class="header-title-resp-plus flex">
-                                        <p>Board</p>
-                                        <img class="board-header-addTask-button-resp cursor-p d-none" src="assets/img/board-add-task-icon.png">
-                                    </div>
-                                </div>
-                                <div class="board-header-right flex">
-                                    <div class="board-header-search-container flex">
-                                        <div class="board-header-search-input-container">
-                                            <div class="board-header-search-input"></div>
-                                        </div>
-                                        <img class="board-search-icon cursor-p" src="assets/img/search-icon.png">
-                                    </div>
-                                    <div class="board-header-addTask-button flex cursor-p">
-                                        <p>Add task</p>
-                                        <img class="board-white-plus-image" src="assets/img/board-add-task-icon.png">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="board-content flex">
-                                <div class="board-column flex column">
-                                    <div class="board-column-header flex cursor-p">
-                                        <p>To do</p>
-                                        <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
-                                    </div>
-                                    <div class="board-tickets flex column" id="board_1">
-                                        <div class="ticket-container flex column cursor-p">
-                                            <div class="ticket-category-container flex">
-                                                <p class="ticket-category">Design</p>
-                                            </div>
-                                            <div class="ticket-description-container flex column">
-                                                <p class="ticket-description-title">Website redesign</p>
-                                                <div class="ticket-description">
-                                                    Modify the contents of the main website. Adjust the
-                                                    UI to the company's brand design.
-                                                </div>
-                                            </div>
-                                            <div class="process-bar-container flex">
-                                                <div class="process-bar"></div>
-                                                <div class="process-state">0/2 Done</div>
-                                            </div>
-                                            <div class="ticket-footer-container flex">
-                                                <div class="ticket-contacts-container flex">
-                                                    <div class="ticket-contact" id="board-contact-0">SM</div>
-                                                    <div class="ticket-contact" id="board-contact-1">MV</div>
-                                                    <div class="ticket-contact" id="board-contact-2">EF</div>
-                                                </div>
-                                                <img class="state-img" src="assets/img/green.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="board-column flex column">
-                                    <div class="board-column-header flex cursor-p">
-                                        <p>In progress</p>
-                                        <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
-                                    </div>
-                                    <div class="board-tickets flex column" id="board_2"></div>
-                                </div>
-                                <div class="board-column flex column">
-                                    <div class="board-column-header flex cursor-p">
-                                        <p>Awaiting Feedback</p>
-                                        <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
-                                    </div>
-                                    <div class="board-tickets flex column" id="board_3"></div>
-                                </div>
-                                <div class="board-column flex column">
-                                    <div class="board-column-header flex cursor-p">
-                                        <p>Done</p>
-                                        <img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
-                                    </div>
-                                    <div class="board-tickets flex column" id="board_4"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="content-container" id="content-container"></div>
             </div>
         </div>
     </div>

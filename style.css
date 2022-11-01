@@ -9,6 +9,7 @@ html {
     font-family: 'Inter';
     font-size: 12px;
     overflow-x: hidden;
+    background-color: #F6F7F8;
 }
 
 body {
@@ -22,6 +23,10 @@ body {
 
 .w-100 {
     width: 100%;
+}
+
+.h-100 {
+    height: 100%;
 }
 
 .column {
@@ -84,7 +89,7 @@ a {
 .nav {
     min-height: 100vh;
     height: 100%;
-    width: 187px;
+    min-width: 170px;
     align-items: center;
     padding: 29vh 0px 66px 0px;
     background-color: #2A3647;
@@ -103,7 +108,8 @@ a {
 .wrapper {
     width: 100%;
     height: 100%;
-    overflow-y: auto;
+    overflow-y:auto;
+    transition: all 125ms ease-in-out;
 }
 
 .nav-selection {
@@ -123,7 +129,7 @@ a {
 .nav-item {
     justify-content: flex-start;
     align-items: center;
-    padding: 0px 15px 0px 35px;
+    padding: 0px 15px 0px 40px;
     width: 100%;
     height: 46px;
     gap: 15px;
@@ -253,12 +259,14 @@ a {
     background-color: #F6F7F8;
     width: 100%;
     height: 100%;
-    overflow-y: auto;
-    /* padding-bottom: 32px; */
+    overflow-y:scroll;
 }
 
 /* ########## RESPONSIVE ########## */
 @media screen and (max-width: 1000px) {
+    .nav {
+        min-width: 141px;
+    }
     .nav-item {
         padding-left: 25px;
     }
@@ -362,6 +370,15 @@ a {
         display: none;
     }
 
+    .header-title-resp {
+        display: block;
+        font-size: 16px;
+        font-weight: normal;
+        margin-top: 99px;
+        margin-left: 30px;
+        padding-bottom: 16px;
+    }
+
     .logo-img-resp {
         display: block;
         top: 17px;
@@ -461,5 +478,13 @@ a {
     .nav-contacts {
         gap: 7px;
     }
+
+    .header-title-resp {
+        margin-top: 92px;
+        margin-left: 10px;
+        padding-bottom: 16px;
+        font-size: 14px;
+    }
+
 }
 

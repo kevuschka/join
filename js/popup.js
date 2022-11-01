@@ -4,6 +4,7 @@
 function renderPopups() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
+    container.innerHTML += renderSearchbarPopup();
 }
 
 /**Logout-Popup (Header profile onclick) */
@@ -54,4 +55,21 @@ function slideOut() {
         addClasslist('header-menu-container-full',`d-none`);
         removeClasslist('header-menu-container-full', `header-menu-popup-slideOut`); 
     }, 125);
+}
+
+
+function renderSearchbarPopup() {
+    return `<div class="board-header-search-popup-full absolute w-100 d-none" id="board-header-search-input-popup-full" onclick="closeBoardSearchInput()">
+                <div class="board-header-search-popup-container w-100 absolute flex">
+                    <div class="board-header-search-popup-spacer-left"></div>
+                    <input class="board-header-search-input-popup h-100" id="board-header-search-input-popup" type="text" placeholder="Find Task" onkeydown="" focus autofocus onclick="doNotClose(event)">
+                    <div class="board-header-search-popup-spacer-right"></div>
+                </input>
+            </div>`;
+}
+
+function closeBoardSearchInput() {
+    document.getElementById('board-header-search-input-popup').value = '';
+    document.getElementById(`board-header-search-input-popup-full`).classList.add('d-none');
+    document.getElementById(`board-header-search-container`).classList.remove('d-none');
 }

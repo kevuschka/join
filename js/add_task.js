@@ -21,6 +21,7 @@ let priorities = [
 
 
 function renderAddTask() {
+    renderResponsiveHeaderTitle();
     renderAddTaskContainer()
     renderCategoryDropdown();
     renderContactsDropdown();
@@ -30,54 +31,79 @@ function renderAddTask() {
 
 function renderAddTaskContainer() {
     let container = document.getElementById('content-container');
-    container.innerHTML = templateAddTask();
+    container.innerHTML += templateAddTask();
 }
 
 
 function templateAddTask() {
     return /*html*/ `
         <h1>Add Task</h1>
-        <form onsubmit="addToTodo(); return false" class="content-container-child flex">
-            <div class="add-task-column-left add-task-column flex column">
-                <div class="add-task-column-left-child flex column">
-                    <span class=>Title</span>
-                    <input type="text" id="title" class="add-task-input margin-bottom-24" placeholder="Enter a title">
-                </div>
-                <div class="add-task-column-left-child flex column">
-                    <span class=>Description</span>
-                    <textarea name="description" id="description" placeholder="Enter a description" class="add-task-textarea margin-bottom-24"></textarea>
-                </div>
-                <div class="add-task-column-left-child flex column">
-                    <span class=>Category</span>
-                    <div class="dropdown-container margin-bottom-24">
-                        <div class="dropdown" onclick="changeVisibilityDropdown('category-dropdown')">
-                            <span id="dropdown-text-category">Select task category</span>
-                            <img src="./assets/img/vector_2.png">
+        <form onsubmit="return false">
+            <div class="flex margin-bottom-24">
+                <div class="add-task-column-left add-task-column flex column">
+                    <div class="add-task-column-left-child flex column">
+                        <span class=>Title</span>
+                        <input type="text" id="title" class="add-task-input margin-bottom-24" placeholder="Enter a title">
+                    </div>
+                    <div class="add-task-column-left-child flex column">
+                        <span class=>Description</span>
+                        <textarea name="description" id="description" placeholder="Enter a description" class="add-task-textarea margin-bottom-24"></textarea>
+                    </div>
+                    <div class="add-task-column-left-child flex column">
+                        <span class=>Category</span>
+                        <div class="dropdown-container margin-bottom-24">
+                            <div class="dropdown" onclick="changeVisibility('category-dropdown')">
+                                <span id="dropdown-text-category">Select task category</span>
+                                <img src="./assets/img/vector_2.png">
+                            </div>
+                            <div class="dropdown-content d-none" id="category-dropdown"></div>
                         </div>
-                        <div class="dropdown-content d-none" id="category-dropdown"></div>
+                    </div>
+                    <div class="add-task-column-left-child flex column">
+                        <span class=>Assigned to</span>
+                        <div class="dropdown-container">
+                            <div class="dropdown" onclick="changeVisibility('contacts-dropdown')">
+                                <span>Select contacts to assign</span>
+                                <img src="./assets/img/vector_2.png">
+                            </div>
+                            <div class="dropdown-content d-none" id="contacts-dropdown">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="add-task-column-left-child flex column">
-                    <span class=>Assigned to</span>
-                    <div class="dropdown-container">
-                        <div class="dropdown" onclick="changeVisibilityDropdown('contacts-dropdown')">
-                            <span>Select contacts to assign</span>
-                            <img src="./assets/img/vector_2.png">
+                <div class="add-task-column-right add-task-column">
+                    <div class="w-100 flex column">
+                        <span>Due Date</span>
+                        <input type="date" id="due-date" class="add-task-input margin-bottom-24" min="2022-10-01" max="2030-12-31">
+                    </div>
+                    <div class="w-100 flex column">
+                        <span>Prio</span>
+                        <div class="add-task-prio-container margin-bottom-24" id="prio-container"></div>
+                    </div>
+                    <div class="w-100 flex column margin-bottom-24">
+                        <span>Subtasks</span>
+                        <div class="w-100 subtask-input-container">    
+                            <input type="text" id="subtask-input" class="w-100" placeholder="Add new subtask" maxlength="50">
+                            <img src="./assets/img/add_task_plus_icon.png" id="subtask-add-icon" class="icon-subtask" onclick="changeVisibilitySubtasks()">
+                            <div class="flex d-none" id="subtask-accept-delete-section">
+                                <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="clearSubtaskInput()">
+                                |
+                                <img src="./assets/img/add_task_check.png" class="icon-subtask" onclick="addSubtask()">
+                            </div>
                         </div>
-                        <div class="dropdown-content d-none" id="contacts-dropdown">
-                        </div>
+                        <ul class="flex column" id="subtask-list-container"></ul>
                     </div>
                 </div>
             </div>
-            <div class="add-task-column-right add-task-column">
-                <div class="w-100 flex column">
-                    <span>Due Date</span>
-                    <input type="date" id="due-date" class="add-task-input margin-bottom-24" min="2022-10-01" max="2030-12-31">
-                </div>
-                <div class="w-100 flex column">
-                    <span>Prio</span>
-                    <div class="add-task-prio-container" id="prio-container"></div>
-                </div>
+            <div class="flex create-task-btn-container">
+                <button class="flex add-task-btn clear-btn" onmouseover="clearImageToLightBlue()" onmouseout="clearImageToDarkBlue()">
+                    Clear
+                    <img id="clear-image" src="./assets/img/clear-x-icon.png">
+                </button>
+                <button class="flex add-task-btn accept-btn">
+                    Create Task
+                    <img src="./assets/img/check-small.png">
+                </button>
             </div>
         </form>
     `;
@@ -99,14 +125,14 @@ function renderCategoryDropdown() {
 
 function templateDropdownNewCategory() {
     return /*html*/ `
-        <span class="dropdown-content-child" onclick="changeVisibilityDropdown('category-dropdown'); createNewCategory()">New category</span>
+        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); createNewCategory()">New category</span>
     `;
 }
 
 
 function templateDropdownCategories(category, categoryID) {
     return /*html*/ `
-        <span class="dropdown-content-child" id="${categoryID}" onclick="changeVisibilityDropdown('category-dropdown'); selectCategory('${category}')">${category}</span>
+        <span class="dropdown-content-child" id="${categoryID}" onclick="changeVisibility('category-dropdown'); selectCategory('${category}')">${category}</span>
     `;
 }
 
@@ -240,6 +266,64 @@ function removeStyleAttributesBtn(button) {
 }
 
 
+///////////////////////// SUBTASK FUNCTIONS ////////////////////////////////////
+
+function changeVisibilitySubtasks() {
+    changeVisibility('subtask-add-icon');
+    changeVisibility('subtask-accept-delete-section');
+}
+
+
+function clearSubtaskInput() {
+    changeVisibilitySubtasks();
+    let input = document.getElementById('subtask-input');
+    clearInput(input);
+}
+
+
+function addSubtask() {
+    let input = document.getElementById('subtask-input');
+    let task = input.value;
+    if (!inputFieldIsEmpty(task)) {
+        changeVisibilitySubtasks();
+        addTaskToSubtaskList(task);
+        clearInput(input)
+    }
+}
+
+
+function inputFieldIsEmpty(input) {
+    return input == '';
+}
+
+
+function addTaskToSubtaskList(task) {
+    let container = document.getElementById('subtask-list-container');
+    container.innerHTML += templateSubtaskList(task);
+}
+
+
+function templateSubtaskList(task) {
+    return /*html*/ `
+        <li class="subtask-list-entry flex"><input class="subtask-checkbox" type="checkbox">${task}</li>
+    `;
+}
+
+
+///////////////////////// BOTTOM BUTTONS SECTION ////////////////////////////////////
+
+function clearImageToLightBlue() {
+    let img = document.getElementById('clear-image');
+    img.src = './assets/img/blue-cancel-icon.png'
+}
+
+
+function clearImageToDarkBlue() {
+    let img = document.getElementById('clear-image');
+    img.src = './assets/img/clear-x-icon.png'
+}
+
+
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
 function addToTodo() {
@@ -249,11 +333,16 @@ function addToTodo() {
 
 ///////////////////////// GENERAL FUNCTIONS////////////////////////////////////
 
-function changeVisibilityDropdown(dropdownID) {
-    let dropdown = document.getElementById(dropdownID);
+function changeVisibility(id) {
+    let dropdown = document.getElementById(id);
     if (dropdown.classList.contains('d-none')) {
         dropdown.classList.remove('d-none');
     } else {
         dropdown.classList.add('d-none');
     }
+}
+
+
+function clearInput(id) {
+    id.value = '';
 }
