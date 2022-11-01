@@ -337,11 +337,13 @@
 
 
 /* ########## RESPONSIVE ########## */
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1600px) {
     .board-wrapper {
         padding: 30px;
     }
+}
 
+@media screen and (max-width: 1300px) {
     .board-content {
         padding-top: 30px;
     }
@@ -350,15 +352,6 @@
         top: 118px;
         padding: 0 45px 0 200px;
     }
-
-    /* .board-header-search-popup-spacer-left {
-        max-width: 702px;
-    }
-
-    .board-header-search-popup-spacer-right {
-        max-width: 166px;
-    } */
-
 }
 
 @media screen and (max-width: 1200px) {
