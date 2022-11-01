@@ -157,11 +157,13 @@ function templateBoard() {
                                     <img class="board-header-addTask-button-resp cursor-p d-none" src="assets/img/board-add-task-icon.png">
                                 </div>
                                 <div class="board-header-right flex">
-                                    <div class="board-header-search-container flex">
-                                        <div class="board-header-search-input-container">
-                                            <div class="board-header-search-input"></div>
+                                    <div class="board-header-search-wrapper flex">
+                                        <div class="board-header-search-container flex" id="board-header-search-container" onclick="showInput()">
+                                            <div class="board-header-search-input-container flex">
+                                                <div class="board-header-search-input w-100"></div>
+                                            </div>
+                                            <img class="board-search-icon cursor-p" src="assets/img/search-icon.png">
                                         </div>
-                                        <img class="board-search-icon cursor-p" src="assets/img/search-icon.png">
                                     </div>
                                     <div class="board-header-addTask-button flex cursor-p">
                                         <p>Add task</p>
@@ -172,6 +174,13 @@ function templateBoard() {
                             <div class="board-content flex" id="board-content"></div>
                         </div>
                     </div>`;
+}
+
+
+
+function showInput() {
+    document.getElementById(`board-header-search-container`).classList.add('d-none');
+    document.getElementById(`board-header-search-input-popup-full`).classList.remove('d-none');
 }
 
 

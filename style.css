@@ -89,7 +89,7 @@ a {
 .nav {
     min-height: 100vh;
     height: 100%;
-    width: 187px;
+    min-width: 170px;
     align-items: center;
     padding: 29vh 0px 66px 0px;
     background-color: #2A3647;
@@ -129,7 +129,7 @@ a {
 .nav-item {
     justify-content: flex-start;
     align-items: center;
-    padding: 0px 15px 0px 35px;
+    padding: 0px 15px 0px 40px;
     width: 100%;
     height: 46px;
     gap: 15px;
@@ -259,11 +259,14 @@ a {
     background-color: #F6F7F8;
     width: 100%;
     height: 100%;
-    overflow-y:auto;
+    overflow-y:scroll;
 }
 
 /* ########## RESPONSIVE ########## */
 @media screen and (max-width: 1000px) {
+    .nav {
+        min-width: 141px;
+    }
     .nav-item {
         padding-left: 25px;
     }
