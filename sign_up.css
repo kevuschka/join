@@ -66,28 +66,35 @@ body {
 }
 
 .input {
-    margin-top: 40px;
-    width: 61%;
+  
+        width: 102%;
+        height: 37px;
+        border-radius: 6px;
+    }
+
+.input-relative {
+    position: relative;
+    width: 69%;
     height: 37px;
-    border-radius: 6px;
+    margin-top: 40px;
 }
 
 .lock {
     position: absolute;
-    right: 23%;
-    top: 65.6%;
+    right: 4%;
+    top: 20%;
     }
 
     .case {
         position: absolute;
-        right: 23%;
-        top: 51.4%;
+        right: 4%;
+        top: 20%;
     }
 
     .name {
         position: absolute;
-        right: 23%;
-        top: 36%;
+        right: 4%;
+        top: 20%;
     }
 
     .signButton {
@@ -135,22 +142,22 @@ body {
 }
 
 .name {
-    top: 30.5%;
-    right: 12%;
+    top: 19.5%;
+    right: 6%;
 }
 
 .case {
-    top: 45.2%;
-    right: 12%;
+    top: 19.5%;
+    right: 6%;
 }
 
 .lock {
-    top: 59.4%;
-    right: 12%;
+    top: 19.5%;
+    right: 6%;
 }
 
 .input {
-    width: 84%;
+    width: 100%;
 }
 
 .signButton {
@@ -182,22 +189,27 @@ body {
 }
 
 .name {
-    top: 31.5%;
-    right: 11%;
+    top: 18.5%;
+    right: 7%;
 }
 
 .case {
-    top: 48%;
-    right: 11.9%;
+    top: 18.5%;
+    right: 7%;
 }
 
 .lock {
-    top: 64.4%;
-    right: 12%;
+    top: 18.5%;
+    right: 7%;
 }
 
 .input {
-    width: 87%;
+    width: 100%;
+}
+
+.input-relative {
+    width: 85%;
+    
 }
 
 .signButton {

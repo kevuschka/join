@@ -1,5 +1,5 @@
 *, *:before, *:after {
-    -webkit-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box; 
     box-sizing: border-box;
 }
@@ -59,13 +59,13 @@ body {
 }
 
 .header-text1 {
-    font-size: 83px;
+    font-size: 48px;
     margin-right: 40px;
     font-weight: bold;
 }
 
 .header-text2 {
-    font-size: 30px;
+    font-size: 24px;
     margin-left: 20px;
     color: #444E5D;
 }

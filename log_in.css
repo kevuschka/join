@@ -69,13 +69,13 @@ body {
 @keyframes joinLogo{
     0% {
       width: 200px;
-      left: 50%;
+      left: 40%;
       top: 40vh;
       
     }
     50% {
         width: 200px;
-        left: 50%;
+        left: 40%;
         top: 40vh;
     }
     100% {
@@ -113,6 +113,11 @@ body {
     -moz-animation: fadeInFromNone 0.5s ease-out;
     -o-animation: fadeInFromNone 0.5s ease-out;
     animation: fadeInFromNone 0.5s ease-out; */
+}
+
+.signContainer2 {
+    display: none;
+   
 }
 
 .signButton {
@@ -185,12 +190,13 @@ body {
 }
 
 .logPool {
-    background-color:#F6F7F8;
+    background-color: #F6F7F8;
     height: 82.8vh;
     display: flex;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
     margin-top: 124px;
+    flex-direction: column;
 }
 
 .logContainer {
@@ -219,22 +225,21 @@ position: relative;
 }
 
 .input {
-    margin-top: 40px;
-    width: 61%;
+    width: 97%;
     height: 37px;
     border-radius: 6px;
 }
 
 .case {
     position: absolute;
-    right: 23%;
-    top: 32%;
+    right: 8%;
+    top: 27%;
 }
 
 .lock {
-position: absolute;
-right: 23%;
-top: 48.6%;
+    position: absolute;
+    right: 8%;
+    top: 27%;
 }
 
 .inputCheck {
@@ -274,6 +279,13 @@ font-family: 'Noto Sans', sans-serif;
     display: none;
 }
 
+.input-relative {
+    position: relative;
+    width: 62%;
+    height: 37px;
+    margin-top: 40px;
+}
+
 
 @media(max-width: 740px) {
     .joinLogo {
@@ -286,7 +298,6 @@ font-family: 'Noto Sans', sans-serif;
 
     .signContainer {
         right: 68px !important;
-
     }
 }
 
@@ -300,15 +311,44 @@ font-family: 'Noto Sans', sans-serif;
         }
 
         .signContainer {
+        display: none;
+        }
+        
+
+        .signContainer2 {
+            display: unset;
+            width: 100%;
             display: flex;
+            align-items: center;
             justify-content: center;
-            position: absolute;
-            width: 80%;
-            top: 89%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            padding-top: 90px;
         }
+
+        .underline {
+            width: 130px;
+            height: 4px;
         }
+
+        @keyframes joinLogo{
+            0% {
+              width: 200px;
+              left: 30%;
+              top: 40vh;
+              
+            }
+            50% {
+                width: 200px;
+                left: 30%;
+                top: 40vh;
+            }
+            100% {
+              left: 50px;
+              top: 45px;
+            }
+        
+}
+
+
 
         @media(max-width: 390px) {
             .joinLogo {
@@ -432,13 +472,13 @@ font-family: 'Noto Sans', sans-serif;
                 }
 
                 .lock {
-                    right: 12%;
-                    top: 40%;
+                    right: 20%;
+                    top: 26.5%;
                 }
 
                 .case {
-                right: 12%;
-                top: 25.5%;
+                    right: 20%;
+                    top: 26.5%;
                 }
 
                 .signButton1 {
@@ -512,5 +552,6 @@ font-family: 'Noto Sans', sans-serif;
                         display: block;
                        opacity: 1;
                     }
+            }
             }
         }
