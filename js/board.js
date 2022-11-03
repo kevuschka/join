@@ -45,7 +45,7 @@ let contacts = [{
 }];
 
 
-let task = [{
+let task = {
     'category': '',
     'title': '',
     'description': '',
@@ -54,7 +54,7 @@ let task = [{
     'team': [],
     'prior': '',
     'board': 0
-}];
+};
 
 let createdTask = {
     'category': {'name': 'Design','color': '#FF7A00'},
