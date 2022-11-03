@@ -33,7 +33,7 @@ let contacts = [{
     'name': 'Simon Meyer',
     'color': '#0190E0',
     'email': 'simon.meyer@gmail.com',
-    'phone': '+49 0123 456 78 9'
+    'phone': '+490123456789'
 },{
     'name': 'Maximilian Vogel',
     'color': '#EE00D6',
@@ -45,6 +45,14 @@ let contacts = [{
     'email': 'Eva.Fischer@gmail.com',
     'phone': '+49 0123 456 78 9'
 }];
+
+
+let newContact = {
+    'name': '',
+    'color': '',
+    'email': '',
+    'phone': ''
+}
 
 
 // let createdTask = {
