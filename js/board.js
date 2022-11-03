@@ -115,7 +115,6 @@ function templateBoard() {
 }
 
 
-
 function showInput() {
     document.getElementById(`board-header-search-container`).classList.add('d-none');
     document.getElementById(`board-header-search-input-popup-full`).classList.remove('d-none');
@@ -163,6 +162,12 @@ function renderBoardColumnContent(n) {
 
 ////////////////// TICKET /////////////////////
 // >>===============================> =======================================> ==============================================> =======================================>
+/**
+ * This is the description of this function 
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column
+ * @returns the ticket template
+ */
 function renderTemplateTicket(n,j) {
     return `<div class="ticket-container flex column cursor-p" id="ticket-container-${n}-${j}" draggable="true" ondragstart="startDragging(${n}, ${j})" onmousedown="highlightTicket(${n},${j})" onmouseup="removeHighlightTicket(${n},${j})"></div>`;
 }
