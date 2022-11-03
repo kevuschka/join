@@ -187,10 +187,10 @@ function clearSubtaskInput() {
 
 function addSubtask() {
     let input = document.getElementById('subtask-input');
-    let task = input.value;
-    if (!inputFieldIsEmpty(task)) {
+    let subtask = input.value;
+    if (!inputFieldIsEmpty(subtask)) {
         changeVisibilitySubtasks();
-        addTaskToSubtaskList(task);
+        addTaskToSubtaskList(subtask);
         clearInput(input)
     }
 }
