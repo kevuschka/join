@@ -5,6 +5,47 @@ let feedback = [];
 let done = [];
 let boardColumns = [todo, inProgress, feedback, done];
 
+let priorities = [
+    {
+        'name': 'Urgent',
+        'image': './assets/img/red-prio.svg',
+        'color': '#FF3D00'
+    },
+    {
+        'name': 'Medium',
+        'image': './assets/img/orange-prio.svg',
+        'color': '#FFA800'
+    },
+    {
+        'name': 'Low',
+        'image': './assets/img/green-prio.svg',
+        'color': '#7AE229'
+    }
+]
+
+let category = [{
+    'name': 'design',
+    'color': '#FF7A00'
+}];
+
+
+let contacts = [{
+    'name': 'Simon Meyer',
+    'color': '#0190E0',
+    'email': 'simon.meyer@gmail.com',
+    'phone': '+49 0123 456 78 9'
+},{
+    'name': 'Maximilian Vogel',
+    'color': '#EE00D6',
+    'email': 'maximilian.vogel@gmail.com',
+    'phone': '+49 0123 456 78 9'
+},{
+    'name': 'Eva Fischer',
+    'color': '#02CF2F',
+    'email': 'Eva.Fischer@gmail.com',
+    'phone': '+49 0123 456 78 9'
+}];
+
 
 // ########## ALLES ZUM BACKEND ##########
 setURL('http://developerakademie.com/smallest_backend_ever');
