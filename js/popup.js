@@ -86,65 +86,112 @@ function taskFilter() {
     let input = document.getElementById('board-header-search-input-popup');
     let inputComparison = input.value.toLowerCase();
     document.getElementById('board-header-search-results-popup').classList.add('d-none');
-    if(input.value.length > 0) {
-        filterTicketTitles(inputComparison, resultsContainer, 0);
-        filterTicketDescription(inputComparison, resultsContainer, 1)
+    if(input.value.length > 0) filterTicketTitles(inputComparison, resultsContainer, 0);
+}
+
+
+function filterTicketTitles(inputComparison, resultsContainer, n) {
+    let TeamMemberHere = false;
+    for (let i = 0; i < boardColumns.length; i++) {
+        if(boardColumns[i].length > 0) {
+            for (let j = 0; j < boardColumns[i].length; j++) {
+                let ticketTitle = boardColumns[i][j]['title'].toLowerCase();
+                let ticketDescription = boardColumns[i][j]['description'].toLowerCase();
+                TeamMemberHere = isTeamMemberHere(i, j, inputComparison);
+                if(ticketTitle.includes(inputComparison) || ticketDescription.includes(inputComparison) || TeamMemberHere) renderSearchResult(i, j, n, resultsContainer)
+            }
+        }
     }
 }
 
 
-// function searchLoop() {
+function isTeamMemberHere(i,j, inputComparison) {
+    let isHere = false;
+    let member;
+    for (let m = 0; m < boardColumns[i][j]['team'].length; m++) {
+        member = (boardColumns[i][j]['team'][m]['name'].toLowerCase());
+        if(member.includes(inputComparison)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+function renderSearchResult(i, j, n, resultsContainer) {
+    resultsContainer.innerHTML += returnTemplateSearchResult(i, j, n);
+    searchResultTeamNames(i, j);
+    document.getElementById(`search-result-ticket-category-${i}-${j}-${n}`).style.backgroundColor = `${boardColumns[i][j]['category']['color']}`;
+    document.getElementById('board-header-search-results-popup').classList.remove('d-none');
+    document.getElementById(`search-result-${i}-${j}-${n}`).classList.add('bold');
+}
+
+
+function returnTemplateSearchResult(i, j, n) {
+    return `<a class="search-result flex w-100" href="#ticket-container-${i}-${j}">
+                <div class="search-result-p-container w-100 flex column">
+                    <p class="search-result-p w-100" id="search-result-${i}-${j}-0">${boardColumns[i][j]['title']}</p>
+                    <p class="search-result-p" id="search-result-${i}-${j}-1">${boardColumns[i][j]['description']}</p>
+                    <div class="ticket-contacts-container flex" id="search-result-contacts-container-${i}-${j}-2"></div>
+                </div>
+                <div class="search-result-ticket-category-point" id="search-result-ticket-category-${i}-${j}-${n}"></div>
+            </a>`;
+}
+
+
+function searchResultTeamNames(i,j) {
+    let content = document.getElementById(`search-result-contacts-container-${i}-${j}-2`);
+    for (let k = 0; k < boardColumns[i][j]['team'].length; k++) {
+        content.innerHTML += `<div class="search-result-ticket-contact" id="board-contact-${i}-${j}-${k}-2">${getNameLetters(i, j, k)}</div>`;
+    }
+}
+
+
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// function filterTicketTitles(inputComparison, resultsContainer, n) {
 //     for (let i = 0; i < boardColumns.length; i++) {
 //         if(boardColumns[i].length > 0) {
 //             for (let j = 0; j < boardColumns[i].length; j++) {
-//                 return [i,j];
+//                 let ticketTitle = boardColumns[i][j]['title'].toLowerCase();
+//                 if(ticketTitle.includes(inputComparison)) {
+//                     resultsContainer.innerHTML += returnTemplateSearchResult(i, j, 'title', n);
+//                     document.getElementById(`search-result-ticket-category-${i}-${j}-${n}`).style.backgroundColor = `${boardColumns[i][j]['category']['color']}`;
+//                     document.getElementById('board-header-search-results-popup').classList.remove('d-none');
+//                     document.getElementById(`search-result-${i}-${j}-${n}`).classList.add('bold');
+//                 }
 //             }
 //         }
 //     }
 // }
 
 
-function filterTicketTitles(inputComparison, resultsContainer, n) {
-    for (let i = 0; i < boardColumns.length; i++) {
-        if(boardColumns[i].length > 0) {
-            for (let j = 0; j < boardColumns[i].length; j++) {
-                let ticketTitle = boardColumns[i][j]['title'].toLowerCase();
-                if(ticketTitle.includes(inputComparison)) {
-                    resultsContainer.innerHTML += returnTemplateSearchResult(i, j, 'title', n);
-                    document.getElementById(`search-result-ticket-category-${i}-${j}-${n}`).style.backgroundColor = `${boardColumns[i][j]['category']['color']}`;
-                    document.getElementById('board-header-search-results-popup').classList.remove('d-none');
-                    document.getElementById(`search-result-${i}-${j}-${n}`).classList.add('bold');
-                }
-            }
-        }
-    }
-}
+// function filterTicketDescription(inputComparison, resultsContainer, n) {
+//     for (let i = 0; i < boardColumns.length; i++) {
+//         if(boardColumns[i].length > 0) {
+//             for (let j = 0; j < boardColumns[i].length; j++) {
+//                 let ticketDescription = boardColumns[i][j]['description'].toLowerCase();
+//                 if(ticketDescription.includes(inputComparison)) {
+//                     resultsContainer.innerHTML += returnTemplateSearchResult(i, j, 'description', n);
+//                     document.getElementById(`search-result-ticket-category-${i}-${j}-${n}`).style.backgroundColor = `${boardColumns[i][j]['category']['color']}`;
+//                     document.getElementById('board-header-search-results-popup').classList.remove('d-none');
+//                     document.getElementById(`search-result-${i}-${j}-${n}`).classList.add('italic');
+//                 }
+//             }
+//         }
+//     }
+// }
 
 
-function filterTicketDescription(inputComparison, resultsContainer, n) {
-    for (let i = 0; i < boardColumns.length; i++) {
-        if(boardColumns[i].length > 0) {
-            for (let j = 0; j < boardColumns[i].length; j++) {
-                let ticketDescription = boardColumns[i][j]['description'].toLowerCase();
-                if(ticketDescription.includes(inputComparison)) {
-                    resultsContainer.innerHTML += returnTemplateSearchResult(i, j, 'description', n);
-                    document.getElementById(`search-result-ticket-category-${i}-${j}-${n}`).style.backgroundColor = `${boardColumns[i][j]['category']['color']}`;
-                    document.getElementById('board-header-search-results-popup').classList.remove('d-none');
-                    document.getElementById(`search-result-${i}-${j}-${n}`).classList.add('italic');
-                }
-            }
-        }
-    }
-}
+// function returnTemplateSearchResult(i, j, name, n) {
+//     return `<a class="search-result flex w-100" href="#ticket-container-${i}-${j}">
+//                 <p class="search-result-p" id="search-result-${i}-${j}-${n}">${boardColumns[i][j][name]}</p>
+//                 <div class="search-result-ticket-category-point" id="search-result-ticket-category-${i}-${j}-${n}"></div>
+//             </a>`;
+// }//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-function returnTemplateSearchResult(i, j, name, n) {
-    return `<a class="search-result flex w-100" href="#ticket-container-${i}-${j}">
-                <p class="search-result-p" id="search-result-${i}-${j}-${n}">${boardColumns[i][j][name]}</p>
-                <div class="search-result-ticket-category-container flex">
+/* <div class="search-result-ticket-category-container flex">
                     <p class="search-result-ticket-category" id="search-result-ticket-category-${i}-${j}-${n}">${boardColumns[i][j]['category']['name']}</p>
-                </div>
-            </a>`;
-}
-
-
+                </div> */
