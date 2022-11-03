@@ -1,13 +1,4 @@
-let dropdownCategories = [
-    {
-    'name': 'design',
-    'color': '#FF7A00'
-    },
-    {
-    'name': 'Development',
-    'color': '#FF7A00'
-    },
-]
+
 let dropdownContacts = ['Hans', 'Jürgen'];
 
 async function renderAddTask() {
@@ -24,7 +15,7 @@ function renderCategoryDropdown() {
     let id = 'category-dropdown';
     let dropdown = document.getElementById(id);
     dropdown.innerHTML = templateDropdownNewCategory();
-    for (let i = 0; i < dropdownCategories.length; i++) {
+    for (let i = 0; i < category.length; i++) {
         dropdown.innerHTML += templateDropdownCategories(i);
     }  
 }
@@ -39,7 +30,7 @@ function templateDropdownNewCategory() {
 
 function templateDropdownCategories(i) {
     return /*html*/ `
-        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); selectCategory('${i}')">${dropdownCategories[i]['name']}</span>
+        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); selectCategory('${i}')">${category[i]['name']}</span>
     `;
 }
 
@@ -50,7 +41,7 @@ function createNewCategory() {
 
 
 function selectCategory(i) {
-    changeCategoryDropdownText(dropdownCategories[i]['name'])
+    changeCategoryDropdownText(category[i]['name'])
     addCategoryToTask(i)
 }
 
@@ -61,7 +52,7 @@ function changeCategoryDropdownText(categoryName) {
 }
 
 function addCategoryToTask(i) {
-    task['category'] = dropdownCategories[i]['name'];
+    task['category'] = category[i]['name'];
 }
 
 
@@ -71,10 +62,8 @@ function renderContactsDropdown() {
     let id = 'contacts-dropdown';
     let dropdown = document.getElementById(id);
     dropdown.innerHTML = templateContactsYou();
-    for (let i = 0; i < dropdownContacts.length; i++) {
-        let checkboxID = 'checkbox' + i;
-        let contact = dropdownContacts[i];
-        dropdown.innerHTML += templateDropdownContacts(contact, checkboxID);
+    for (let i = 0; i < contacts.length; i++) {
+        dropdown.innerHTML += templateDropdownContacts(i);
     }
     //dropdown.innerHTML += templateDropwdownInviteNewContact();  
 }
@@ -84,17 +73,17 @@ function templateContactsYou() {
     return /*html*/ `
         <label for="checkbox-you" class="dropdown-content-child">    
                 <span>You</span>
-                <input name="checkbox" id="checkbox-you" type="checkbox">
+                <input value="you" name="checkbox" id="checkbox-you" type="checkbox">
         </label>
     `;
 }
 
 
-function templateDropdownContacts(contact, checkboxID) {
+function templateDropdownContacts(i) {
     return /*html*/ `
-        <label for="${checkboxID}" class="dropdown-content-child">    
-                <span>${contact}</span>
-                <input name="checkbox" id="${checkboxID}" type="checkbox">
+        <label for="checkbox + ${i}" class="dropdown-content-child">    
+                <span>${contacts[i]['name']}</span>
+                <input value="${i}" name="checkbox" id="checkbox + ${i}" type="checkbox">
         </label>
     `;
 }
@@ -104,6 +93,8 @@ function templateDropwdownInviteNewContact() {
     //TODO
 }
 
+
+///SHOW FIRST LETTERS PICTURE TODO
 
 ///////////////////////// PIORITY SELECTION FUNCTIONS ////////////////////////////////////
 
@@ -128,6 +119,7 @@ function templatePrioritySelection(i) {
 function selectPrio(i) {
     changeSelectedPrioBtn(i);
     resetOtherPrioBtns(i);
+    addPrioBtnToTask(i);
 }
 
 
@@ -170,6 +162,11 @@ function changePrioBtnColors(button, i) {
 function removeStyleAttributesBtn(button) {
     button.removeAttribute('style');
     button.lastElementChild.removeAttribute('style');
+}
+
+
+function addPrioBtnToTask(i) {
+    task['prior'] = priorities[i]
 }
 
 
