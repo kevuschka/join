@@ -1,22 +1,14 @@
-let dropdownCategories = ['Option 1', 'Option 2'];
-let dropdownContacts = ['Hans', 'Jürgen'];
-let priorities = [
+let dropdownCategories = [
     {
-        'name': 'Urgent',
-        'image': './assets/img/red-prio.svg',
-        'color': '#FF3D00'
+    'name': 'design',
+    'color': '#FF7A00'
     },
     {
-        'name': 'Medium',
-        'image': './assets/img/orange-prio.svg',
-        'color': '#FFA800'
+    'name': 'Development',
+    'color': '#FF7A00'
     },
-    {
-        'name': 'Low',
-        'image': './assets/img/green-prio.svg',
-        'color': '#7AE229'
-    }
 ]
+let dropdownContacts = ['Hans', 'Jürgen'];
 
 async function renderAddTask() {
     renderCategoryDropdown();
@@ -33,8 +25,7 @@ function renderCategoryDropdown() {
     let dropdown = document.getElementById(id);
     dropdown.innerHTML = templateDropdownNewCategory();
     for (let i = 0; i < dropdownCategories.length; i++) {
-        let category = dropdownCategories[i];
-        dropdown.innerHTML += templateDropdownCategories(category);
+        dropdown.innerHTML += templateDropdownCategories(i);
     }  
 }
 
@@ -46,9 +37,9 @@ function templateDropdownNewCategory() {
 }
 
 
-function templateDropdownCategories(category, categoryID) {
+function templateDropdownCategories(i) {
     return /*html*/ `
-        <span class="dropdown-content-child" id="${categoryID}" onclick="changeVisibility('category-dropdown'); selectCategory('${category}')">${category}</span>
+        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); selectCategory('${i}')">${dropdownCategories[i]['name']}</span>
     `;
 }
 
@@ -58,9 +49,9 @@ function createNewCategory() {
 }
 
 
-function selectCategory(categoryName) {
-    changeCategoryDropdownText(categoryName)
-    addCategoryToNewTask()
+function selectCategory(i) {
+    changeCategoryDropdownText(dropdownCategories[i]['name'])
+    addCategoryToTask(i)
 }
 
 
@@ -69,8 +60,8 @@ function changeCategoryDropdownText(categoryName) {
     dropdown.innerHTML = `${categoryName}`;
 }
 
-function addCategoryToNewTask() {
-    //TODO
+function addCategoryToTask(i) {
+    task['category'] = dropdownCategories[i]['name'];
 }
 
 
@@ -250,6 +241,11 @@ function clearImageToLightBlue() {
 function clearImageToDarkBlue() {
     let img = document.getElementById('clear-image');
     img.src = './assets/img/clear-x-icon.png'
+}
+
+
+function clearAddTask() {
+    clearVariableTask()
 }
 
 

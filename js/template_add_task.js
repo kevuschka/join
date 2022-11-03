@@ -1,8 +1,10 @@
 async function initAddTask() {
     await renderResponsiveHeaderTitle(); //in script.js
-    await includeHTML()
+    await includeHTML();
+    clearTask();
     renderAddTask();  //in add_task.js
 }
+
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -16,4 +18,18 @@ async function includeHTML() {
             element.innerHTML += 'Page not found';
         }
     }
+}
+
+//basic task structure
+function clearTask() {
+    task = { 
+        'category': '',
+        'title': '',
+        'description': '',
+        'process': 0,
+        'subtasks': 0,
+        'team': [],
+        'prior': '',
+        'board': 0
+    };
 }
