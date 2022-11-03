@@ -124,8 +124,8 @@ let todo = [];
 let inProgress = [];
 let feedback = [];
 let done = [];
-
 let boardColumns = [todo, inProgress, feedback, done];
+
 let boardColumnTitle = ['To do', 'In progress', 'Awaiting Feedback', 'Done'];
 let emptyBoardColumn = ['No task to do', 'Nothing in progess', 'No Feedback awaiting', 'Nothing here'];
 let currentElementTicket;
@@ -222,7 +222,9 @@ function renderBoardColumnContent(n) {
     }
 }
 
+
 ////////////////// TICKET /////////////////////
+// >>===============================> =======================================> ==============================================> =======================================>
 function renderTemplateTicket(n,j) {
     return `<div class="ticket-container flex column cursor-p" id="ticket-container-${n}-${j}" draggable="true" ondragstart="startDragging(${n}, ${j})" onmousedown="highlightTicket(${n},${j})" onmouseup="removeHighlightTicket(${n},${j})"></div>`;
 }
