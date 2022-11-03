@@ -30,6 +30,7 @@ function clearTask() {
         'subtasks': 0,
         'team': [],
         'prior': '',
-        'board': 0
+        'board': 0,
+        'due-date': '',
     };
 }
