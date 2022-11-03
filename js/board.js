@@ -60,7 +60,8 @@ let createdTask2 = {
         'image': './assets/img/red-prio.svg',
         'color': '#FF3D00'
     },
-    'board': 0
+    'board': 0,
+    'due-date': ''
 };
 
 

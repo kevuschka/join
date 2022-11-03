@@ -13,7 +13,7 @@ function renderSummary() {
 
     
 
-    if (task[0]['prior']=='assets/img/green.png') {
-        document.getElementById('priority-Icon').src = 'assets/img/summary-arrow-up-icon.png';
-    }      
+    // if (task[0]['prior']=='assets/img/green.png') {
+    //     document.getElementById('priority-Icon').src = 'assets/img/summary-arrow-up-icon.png';
+    // }      
 }
