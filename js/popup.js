@@ -95,10 +95,11 @@ function filterTicketTitles(inputComparison, resultsContainer, n) {
     for (let i = 0; i < boardColumns.length; i++) {
         if(boardColumns[i].length > 0) {
             for (let j = 0; j < boardColumns[i].length; j++) {
+                let ticketCategory = boardColumns[i][j]['category']['name'].toLowerCase();
                 let ticketTitle = boardColumns[i][j]['title'].toLowerCase();
                 let ticketDescription = boardColumns[i][j]['description'].toLowerCase();
                 TeamMemberHere = isTeamMemberHere(i, j, inputComparison);
-                if(ticketTitle.includes(inputComparison) || ticketDescription.includes(inputComparison) || TeamMemberHere) renderSearchResult(i, j, n, resultsContainer)
+                if(ticketCategory.includes(inputComparison) || ticketTitle.includes(inputComparison) || ticketDescription.includes(inputComparison) || TeamMemberHere) renderSearchResult(i, j, n, resultsContainer)
             }
         }
     }
