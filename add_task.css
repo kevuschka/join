@@ -228,10 +228,11 @@ ul {
     cursor: pointer;
     background-color: white;
     font-size: 16px;
+    border: 1px solid #2A3647;
 }
 
 .add-task-btn:hover {
-    border-color: #29ABE2;
+    border: 1px solid #29ABE2;
 }
 
 .clear-btn:hover {
