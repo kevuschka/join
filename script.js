@@ -1,3 +1,11 @@
+let task;
+let todo = [];
+let inProgress = [];
+let feedback = [];
+let done = [];
+let boardColumns = [todo, inProgress, feedback, done];
+
+
 // ########## ALLES ZUM BACKEND ##########
 setURL('http://developerakademie.com/smallest_backend_ever');
 

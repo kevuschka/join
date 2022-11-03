@@ -45,17 +45,6 @@ let contacts = [{
 }];
 
 
-let task = {
-    'category': '',
-    'title': '',
-    'description': '',
-    'process': 0,
-    'subtasks': 0,
-    'team': [],
-    'prior': '',
-    'board': 0
-};
-
 let createdTask = {
     'category': {'name': 'Design','color': '#FF7A00'},
     'title': 'Website redesign',
@@ -82,6 +71,7 @@ let createdTask = {
     },
     'board': 0
 };
+
 
 let createdTask2 = {
     'category': {'name': 'Media','color': '#29ABE2'},
@@ -120,11 +110,6 @@ let createdTask2 = {
     'board': 0
 };
 
-let todo = [];
-let inProgress = [];
-let feedback = [];
-let done = [];
-let boardColumns = [todo, inProgress, feedback, done];
 
 let boardColumnTitle = ['To do', 'In progress', 'Awaiting Feedback', 'Done'];
 let emptyBoardColumn = ['No task to do', 'Nothing in progess', 'No Feedback awaiting', 'Nothing here'];
@@ -132,7 +117,6 @@ let currentElementTicket;
 let currentElementColumn;
 
 let currentElement;
-let currentOndragArea;
 
 function addTast() {
     todo.push(createdTask); // beide JSON dürfen vom Namen nicht gleich sein! sonst haben sie den selben Pointer
