@@ -48,14 +48,9 @@ body {
     position: absolute;
 }
 
-.summary-pool {
-    margin-left: 198px;
-}
-
 .header-summary {
     display:flex;
     align-items: center;
-    margin-top: 93px;
 }
 
 .header-text1 {
@@ -345,7 +340,9 @@ body {
 }
 
 .animationContainer {
-
+    width: 100%;
+    min-height: 100%;
+    padding: 60px 100px;
 }
 
 .greet-container2 {
@@ -354,6 +351,12 @@ body {
 
 .linehorizontal {
     display: none;
+}
+
+@media screen and (max-width: 1600px) {
+    .animationContainer {
+        padding: 30px 100px;
+    }
 }
 
 
@@ -462,7 +465,6 @@ body {
         animation: intro 2s ease-in-out;
         
        z-index: 1;
-        height: 100vh;
             }
 
             @keyframes intro {
@@ -486,27 +488,14 @@ body {
 
 }
 
-
-@media(max-width: 1180px) {
-
-    .summary-pool {
-        margin-left: 65px;
-    }
-
-}
-
-@media(max-width: 1000px) {
-
-    .summary-pool {
-        margin-left: 65px;
+@media screen and (max-width: 1010px) {
+    .animationContainer {
+        padding: 40px 20px;
     }
 }
+
 
     @media(max-width: 850px) {
-
-        .summary-pool {
-            margin-left: 22px;
-        }
         
         .greet2 {
            
@@ -520,19 +509,20 @@ body {
 
 
 @media(max-width: 800px) {
+.animationContainer {
+    padding: 0 30px 130px;
+}
+
+.header-text1 {
+    font-size: 42px;
+}
 
 .linehorizontal {
     display: unset;
 }
 
-
-    .summary-pool {
-        margin-left: 110px;
-    }
-
     .header-summary {
         align-items: flex-start;
-        margin-top: 93px;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -555,7 +545,6 @@ body {
 
 @media(max-width: 720px) {
     .summary-pool {
-        margin-left: 34px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -565,7 +554,6 @@ body {
 
 @media(max-width: 650px) {
     .summary-pool {
-        margin-left: 34px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -630,10 +618,6 @@ body {
         margin-left: -18px;
     }
 
-    .header-text1 {
-        font-size: 64px;
-    }
-
     .header-text2 {
         font-size: 24px;
     }
@@ -665,7 +649,6 @@ body {
     }
 
     .summary-pool {
-        margin-left: 4px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -829,5 +812,10 @@ body {
 .greet-container2 {
     left: -18%;
 }
+}
 
+@media screen and (max-width: 300px) {
+    .animationContainer {
+        padding: 0 10px 90px;
+    }
 }

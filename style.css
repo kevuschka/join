@@ -271,6 +271,12 @@ a {
 }
 
 /* ########## RESPONSIVE ########## */
+@media screen and (max-width: 1010px) {
+    .header {
+        padding-left: 20px;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .nav {
         min-width: 141px;
