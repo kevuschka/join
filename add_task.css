@@ -310,6 +310,10 @@ ul {
 }
 
 @media (max-width: 800px) {
+    h1 {
+        font-size: 42px;
+    }
+    
     form {
         padding: 0px 30px;
     }
