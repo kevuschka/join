@@ -81,6 +81,7 @@ function test() {
     renderResponsiveHeaderTitle();
     templateBoard();
     renderBoardContent();
+    document.getElementById('content-container').innerHTML += renderBoardSearchbarPopup();
 }
 
 
@@ -143,13 +144,9 @@ function renderTemplateBoardColumn(i) {
             </div>`;
 }
 
-//<img class="board-column-header-plus" src="assets/img/plus-icon-big.png">
-
-
 
 function renderBoardColumnContent(n) {
     let content = document.getElementById(`board-column-${n}`);
-    //removeEmptyBoardColumnProperties(n);
     if(boardColumns[n].length > 0) {
         for (let j = 0; j < boardColumns[n].length; j++) {
             content.innerHTML += renderTemplateTicket(n,j);
@@ -162,7 +159,7 @@ function renderBoardColumnContent(n) {
 ////////////////// TICKET /////////////////////
 // >>===============================> =======================================> ==============================================> =======================================>
 /**
- * This is the description of this function 
+ * That is a template function which returns the ticket-container, where the ticket details will be rendered inside
  * @param {number} n - n is the column number starting at 0
  * @param {number} j - j is the row or the ticket-number in that column
  * @returns the ticket template
@@ -386,7 +383,7 @@ function renderSearchResult(i, j, n, resultsContainer) {
 
 
 function returnTemplateSearchResult(i, j, n) {
-    return `<a class="search-result flex w-100" href="#ticket-container-${i}-${j}">
+    return `<a class="search-result flex w-100" href="#ticket-container-${i}-${j}" onclick="closeBoardSearchbarPopup()">
                 <div class="search-result-p-container w-100 flex column">
                     <p class="search-result-p w-100 bold" id="search-result-${i}-${j}-0">${boardColumns[i][j]['title']}</p>
                     <p class="search-result-p" id="search-result-${i}-${j}-1">${boardColumns[i][j]['description']}</p>

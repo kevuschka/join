@@ -4,7 +4,7 @@
 function renderPopups() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
-    container.innerHTML += renderBoardSearchbarPopup();
+    // container.innerHTML += renderBoardSearchbarPopup();
 }
 
 /**Logout-Popup (Header profile onclick) */
@@ -63,7 +63,7 @@ function slideOut() {
  * @returns - a fullscreen transparent (absolute) div
  */
 function renderBoardSearchbarPopup() {
-    return `<div class="board-header-search-popup-full fixed w-100 d-none" id="board-header-search-input-popup-full" onclick="closeBoardSearchbarPopup()"></div>`;
+    return `<div class="board-header-search-popup-full absolute w-100 d-none" id="board-header-search-input-popup-full" onclick="closeBoardSearchbarPopup()"></div>`;
 }
 
 
