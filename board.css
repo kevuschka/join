@@ -509,7 +509,7 @@
 
 @media screen and (max-width: 800px) {
     .board-wrapper {
-        padding: 68px 30px 130px;
+        padding: 0 30px 130px;
     }
 
     .board-header {
@@ -644,7 +644,7 @@
 @media screen and (max-width: 300px) {
 
     .board-wrapper {
-        padding: 68px 10px 90px;
+        padding: 0 10px 90px;
     }
 
     .board-header-left {
