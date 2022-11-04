@@ -65,6 +65,18 @@ body {
     color: #444E5D;
 }
 
+.summary-pool {
+    gap: 65px;
+}
+
+.pool-infos, .task-info-container, .doAndDone {
+    gap: 44px;
+}
+
+.task-info-container, .priority-pool, .doAndDone {
+    height: 183px;
+}
+
 .task_info_box1 {
     width: 165px;
     height: 165px;
@@ -87,7 +99,6 @@ body {
 .task_info_box2 {
     width: 165px;
     height: 165px;
-    margin-left: 45px;
     border-radius: 24px;
     background-color: #FFFFFF;
     transition: transform 0.1s ease-out;
@@ -105,7 +116,6 @@ body {
 .task_info_box3 {
     width: 165px;
     height: 165px;
-    margin-left: 45px;
     border-radius: 24px;
     background-color: #FFFFFF;
     transition: transform 0.1s ease-out;
@@ -126,8 +136,7 @@ body {
 }
 
 .task-info-container {
-    display: flex;
-    margin-top: 66px;
+    justify-content: space-between;
 }
 
 .task-info-text {
@@ -161,12 +170,11 @@ body {
 }
 
 .priority-pool {
-    width: 588px;
+    /* width: 588px; */
     background-color: #FFFFFF;
-    height: 165px;
+    /* height: 165px; */
     border-radius: 24px;
-    margin-top: 40px;
-    display: flex;
+    /* margin-top: 40px; */
     align-items: center;
     transition: transform 0.1s ease-out;
     transform-origin: 2% 0%;
@@ -201,6 +209,8 @@ body {
 
 .date-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     margin-left: 74px;
 }
@@ -223,9 +233,9 @@ body {
 
 .greet-container {
     display: flex;
-    margin-left: 40px;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .greet {
@@ -258,17 +268,21 @@ body {
 }
 
 .doAndDone {
-    display: flex;
-    margin-top: 40px;
+    justify-content: space-between;
+}
+
+.todo, .done {
+    height: 100%;
 }
 
 .toDo {
-    width: 270px;
-    height: 165px;
+    /* width: 270px; */
+    /* height: 165px; */
     border-radius: 24px;
     background-color: #FFFFFF;
     display: flex;
     align-items: center;
+    justify-content: center;
 
     transition: transform 0.1s ease-out;
     transform-origin: 2% 0%;
@@ -288,14 +302,14 @@ body {
 }
 
 .done {
-    width: 270px;
+    /* width: 270px; */
     height: 165px;
-    margin-left: 45px;
+    /* margin-left: 45px; */
     border-radius: 24px;
     background-color: #FFFFFF;
     display: flex;
     align-items: center;
-
+    justify-content: center;
     transition: transform 0.1s ease-out;
     transform-origin: 2% 0%;
 }
@@ -313,18 +327,16 @@ body {
     filter: contrast(2.5) invert(1);
 }
 
-
-
 .toDoImage {
     width: 61px;
     height: 61px;
-    margin-left: 72px;
+    /* margin-left: 72px; */
 }
 
 .doneImage {
     width: 61px;
     height: 61px;
-    margin-left: 72px;
+    /* margin-left: 72px; */
 }
 
 .to-do-text {
@@ -340,7 +352,6 @@ body {
 }
 
 .animationContainer {
-    width: 100%;
     min-height: 100%;
     padding: 60px 100px;
 }
@@ -357,10 +368,31 @@ body {
     .animationContainer {
         padding: 30px 100px;
     }
+
+    .pool-infos, .task-info-container, .doAndDone {
+        gap: 27px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .animationContainer {
+        padding: 30px 30px 30px 100px;
+    }
+
+    .greet {
+        font-size: 32px;
+    }
+
+    .user {
+        font-size: 50px;
+    }
 }
 
 
-@media(max-width: 1180px) {
+@media screen and (max-width: 1180px) {
+    .pool-info-container {
+        justify-content: center;
+    }
 
     .greet-container {
         display: none;
@@ -523,7 +555,6 @@ body {
 
     .header-summary {
         align-items: flex-start;
-        width: 100%;
         display: flex;
         flex-direction: column;
     }
@@ -560,20 +591,20 @@ body {
     }
 
     .task_info_box1 {
-        width: 130px;
-        height: 130px;
-        margin-left: 20px;
+        /* width: 130px;
+        height: 130px; */
+        /* margin-left: 20px; */
     }
 
     .task_info_box2 {
-        width: 130px;
-        height: 130px;
-        margin-left: 20px;
+        /* width: 130px;
+        height: 130px; */
+        /* margin-left: 20px; */
     }
 
     .task_info_box3 {
-        width: 130px;
-        height: 130px;
+        /* width: 130px;
+        height: 130px; */
     }
 
     .priority-container {
@@ -590,7 +621,7 @@ body {
     }
 
     .priority-pool {
-        width: 457px;
+        /* width: 457px; */
     }
 
     .priority-count {
@@ -607,11 +638,11 @@ body {
     }
 
     .toDoImage {
-        margin-left: 34px;
+        /* margin-left: 34px; */
     }
 
     .doneImage {
-        margin-left: 34px;
+        /* margin-left: 34px; */
     }
 
     .task-info-container {
@@ -628,20 +659,20 @@ body {
 
 @media(max-width: 520px) {
     .task_info_box1 {
-        width: 100px;
-        height: 100px;
-        margin-left: 20px;
+        /* width: 100px;
+        height: 100px; */
+        /* margin-left: 20px; */
     }
 
     .task_info_box2 {
-        width: 100px;
-        height: 100px;
-        margin-left: 12px;
+        /* width: 100px;
+        height: 100px; */
+        /* margin-left: 12px; */
     }
     .task_info_box3 {
-        width: 100px;
-        height: 100px;
-        margin-left: 11px;
+        /* width: 100px;
+        height: 100px; */
+        /* margin-left: 11px; */
     }
 
     .task-info-count {
@@ -673,8 +704,8 @@ body {
     }
 
     .priority-pool {
-        width: 325px;
-        height: 120px;
+        /* width: 325px;
+        height: 120px; */
     }
 
     .priority-count {
@@ -706,19 +737,19 @@ body {
 .done {
     width: 154px;
     height: 120px;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 
 .toDoImage {
     width: 42px;
     height: 42px;
-    margin-left: 28px;
+    /* margin-left: 28px; */
 }
 
 .doneImage {
     width: 42px;
     height: 42px;
-    margin-left: 28px;
+    /* margin-left: 28px; */
 }
 
 .user {
