@@ -84,27 +84,31 @@ function test() {
 
 
 function templateBoard() {
-    renderResponsiveHeaderTitle();
     let content = document.getElementById('content-container');
+    content.innerHTML += renderBoardSearchbarPopup();
     content.innerHTML += `
                     <div class="board-wrapper">
                         <div class="board-container flex column">
                             <div class="board-header flex">
                                 <div class="board-header-left flex">
-                                    <p>Board</p>
+                                    <p class="bold">Board</p>
                                     <img class="board-header-addTask-button-resp cursor-p d-none" src="assets/img/board-add-task-icon.png">
                                 </div>
                                 <div class="board-header-right flex">
-                                    <div class="board-header-search-wrapper flex">
+                                    <div class="board-header-search-wrapper relative flex">
                                         <div class="board-header-search-container flex" id="board-header-search-container" onclick="showInput()">
                                             <div class="board-header-search-input-container flex">
                                                 <div class="board-header-search-input w-100"></div>
                                             </div>
                                             <img class="board-search-icon cursor-p" src="assets/img/search-icon.png">
                                         </div>
+                                        <div class="board-header-search-input-and-results-popup w-100 h-100 flex column d-none" id="board-header-search-input-and-results-popup">
+                                            <input class="board-header-search-input-popup h-100 w-100" id="board-header-search-input-popup" type="text" placeholder="Find Task" onkeyup="taskFilter()" focus autofocus onclick="doNotClose(event)">
+                                            <div class="board-header-search-results-popup absolute flex column d-none" id="board-header-search-results-popup"></div>
+                                        </div>
                                     </div>
                                     <div class="board-header-addTask-button flex cursor-p">
-                                        <p>Add task</p>
+                                        <p class="bold">Add task</p>
                                         <img class="board-white-plus-image" src="assets/img/board-add-task-icon.png">
                                     </div>
                                 </div>
@@ -115,9 +119,77 @@ function templateBoard() {
 }
 
 
+////////////////// SEARCHBAR /////////////////////
 function showInput() {
     document.getElementById(`board-header-search-container`).classList.add('d-none');
+    document.getElementById('board-header-search-input-and-results-popup').classList.remove('d-none');
     document.getElementById(`board-header-search-input-popup-full`).classList.remove('d-none');
+}
+
+
+function taskFilter() {
+    let resultsContainer = document.getElementById('board-header-search-results-popup');
+    resultsContainer.innerHTML = '';
+    let input = document.getElementById('board-header-search-input-popup');
+    let inputComparison = input.value.toLowerCase();
+    document.getElementById('board-header-search-results-popup').classList.add('d-none');
+    if(input.value.length > 0) filterTicketTitles(inputComparison, resultsContainer, 0);
+}
+
+
+function filterTicketTitles(inputComparison, resultsContainer, n) {
+    let TeamMemberHere = false;
+    for (let i = 0; i < boardColumns.length; i++) {
+        if(boardColumns[i].length > 0) {
+            for (let j = 0; j < boardColumns[i].length; j++) {
+                let ticketCategory = boardColumns[i][j]['category']['name'].toLowerCase();
+                let ticketTitle = boardColumns[i][j]['title'].toLowerCase();
+                let ticketDescription = boardColumns[i][j]['description'].toLowerCase();
+                TeamMemberHere = isTeamMemberHere(i, j, inputComparison);
+                if(ticketCategory.includes(inputComparison) || ticketTitle.includes(inputComparison) || ticketDescription.includes(inputComparison) || TeamMemberHere) renderSearchResult(i, j, n, resultsContainer)
+            }
+        }
+    }
+}
+
+
+function isTeamMemberHere(i,j, inputComparison) {
+    let isHere = false;
+    let member;
+    for (let m = 0; m < boardColumns[i][j]['team'].length; m++) {
+        member = (boardColumns[i][j]['team'][m]['name'].toLowerCase());
+        if(member.includes(inputComparison)) return true;
+    }
+    return false;
+}
+
+
+function renderSearchResult(i, j, n, resultsContainer) {
+    resultsContainer.innerHTML += returnTemplateSearchResult(i, j, n);
+    searchResultTeamNames(i, j);
+    document.getElementById(`search-result-ticket-category-${i}-${j}-${n}`).style.backgroundColor = `${boardColumns[i][j]['category']['color']}`;
+    document.getElementById('board-header-search-results-popup').classList.remove('d-none');
+    document.getElementById(`search-result-${i}-${j}-${n}`).classList.add('bold');
+}
+
+
+function returnTemplateSearchResult(i, j, n) {
+    return `<a class="search-result flex w-100" href="#ticket-container-${i}-${j}">
+                <div class="search-result-p-container w-100 flex column">
+                    <p class="search-result-p w-100 bold" id="search-result-${i}-${j}-0">${boardColumns[i][j]['title']}</p>
+                    <p class="search-result-p" id="search-result-${i}-${j}-1">${boardColumns[i][j]['description']}</p>
+                    <div class="ticket-contacts-container flex" id="search-result-contacts-container-${i}-${j}-2"></div>
+                </div>
+                <div class="search-result-ticket-category-point" id="search-result-ticket-category-${i}-${j}-${n}"></div>
+            </a>`;
+}
+
+
+function searchResultTeamNames(i,j) {
+    let content = document.getElementById(`search-result-contacts-container-${i}-${j}-2`);
+    for (let k = 0; k < boardColumns[i][j]['team'].length; k++) {
+        content.innerHTML += `<div class="search-result-ticket-contact" id="board-contact-${i}-${j}-${k}-2">${getNameLetters(i, j, k)}</div>`;
+    }
 }
 
 
@@ -354,15 +426,6 @@ function removeAllHighlightAreas(i) {
         }
     }, 600)
 }
-
-
-// function removeHighlighting(i) {
-//     for (let i = 0; i < boardColumns.length; i++) {
-//         document.getElementById(`onhold-container-column-${i}-last`).classList.remove('highlight-area');
-//         document.getElementById(`onhold-container-column-${i}-first`).classList.remove('highlight-area');
-//     }
-// }
-
 
 function highlightAreas(i) {
     if(i != currentElement['board']) {
