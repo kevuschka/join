@@ -4,8 +4,7 @@ let dropdownContacts = ['Hans', 'Jürgen'];
 async function renderAddTask() {
     renderCategoryDropdown();
     renderContactsDropdown();
-    renderPrioritySelection(); 
-    //eventlistenerSubtaskInput();
+    renderPrioritySelection();
 }
 
 
@@ -172,14 +171,15 @@ function addPrioBtnToTask(i) {
 
 ///////////////////////// SUBTASK FUNCTIONS ////////////////////////////////////
 
-function changeVisibilitySubtasks() {
-    changeVisibility('subtask-add-icon');
-    changeVisibility('subtask-accept-delete-section');
+function changeVisibilitySubtask() {
+    changeVisibility('subtask-placeholder-input-ctn');
+    changeVisibility('subtask-input-ctn');
+    focusOnInput('subtask-input');
 }
 
 
 function clearSubtaskInput() {
-    changeVisibilitySubtasks();
+    changeVisibilitySubtask();
     let input = document.getElementById('subtask-input');
     clearInput(input);
 }
@@ -189,8 +189,9 @@ function addSubtask() {
     let input = document.getElementById('subtask-input');
     let subtask = input.value;
     if (!inputFieldIsEmpty(subtask)) {
-        changeVisibilitySubtasks();
+        changeVisibilitySubtask();
         addTaskToSubtaskList(subtask);
+        addSubtaskToTask(subtask);
         clearInput(input)
     }
 }
@@ -214,18 +215,11 @@ function templateSubtaskList(task) {
 }
 
 
-//in order to change the buttons by clicking on the input field
-function eventlistenerSubtaskInput() {
-    let subtaskInput = document.getElementById('subtask-input');
-    while (true) {
-        subtaskInput.addEventListener('focus', function() { 
-            changeVisibilitySubtasks();
-        });
-        subtaskInput.addEventListener('blur', function() { 
-            changeVisibilitySubtasks();
-        });
-    }
+function addSubtaskToTask(subtask) {
+    task['subtasksArray'].push(subtask);
+    task['subtasks']++;
 }
+
 
 ///////////////////////// BOTTOM BUTTONS SECTION ////////////////////////////////////
 
@@ -262,6 +256,11 @@ function changeVisibility(id) {
     } else {
         dropdown.classList.add('d-none');
     }
+}
+
+
+function focusOnInput(id) {
+    document.getElementById(id).focus();
 }
 
 

@@ -28,6 +28,7 @@ function clearTask() {
         'description': '',
         'process': 0,
         'subtasks': 0,
+        'subtasksArray': [],
         'team': [],
         'prior': '',
         'board': 0,

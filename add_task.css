@@ -177,7 +177,7 @@ form {
     align-items: center;
 }
 
-#subtask-input {
+.subtask-input {
     display: flex;
     outline: none;
     border: 1px solid #d1d1d100;  
