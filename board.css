@@ -197,22 +197,12 @@
     color: white;
     padding: 7px;
     border-radius: 7px;
+    transition: background-color 125ms ease-in-out;
 }
 
 .board-header-addTask-button:hover {
-    animation: addTaskButtonColor 125ms ease-in-out;
     background-color: #29ABE2;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes addTaskButtonColor {
-    0% {
-        background-color: #2A3647;
-        box-shadow: 0;
-    } 100% {
-        background-color: #29ABE2;
-        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-    }
 }
 
 .board-header-addTask-button p {

@@ -167,6 +167,7 @@ a {
 
 
 /* ########## HEADER ########## */
+
 .header {
     justify-content: space-between;
     align-items: center;
@@ -206,7 +207,8 @@ a {
     object-fit: cover;
 }
 
-/* ########## POPUP - LOGOUT HEADER PROFIL ########## */
+
+/* ########## POPUP - HEADER PROFIL MENU ########## */
 
 .header-menu-container-full {
     top: 0;
@@ -387,6 +389,7 @@ a {
         width: 30px;
     }
 
+    /* HEADER MENU POPUP*/
     .header-menu-container-full {
         transform: translateX(140px);
         transition: transform 125ms ease-in-out;

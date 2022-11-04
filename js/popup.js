@@ -57,7 +57,7 @@ function slideOut() {
     }, 125);
 }
 
-//////////////////// SEARCHBAR - FULLSCREEN POPUP AND CLOSING /////////////////////
+//////////////////// BOARD: SEARCHBAR - FULLSCREEN POPUP AND CLOSING /////////////////////
 /**
  *  That is a fullscreen transparent popup for the searchbar in section "Board", to close the searchbar-input, when clicking on the screen area
  * @returns - a fullscreen transparent (absolute) div
