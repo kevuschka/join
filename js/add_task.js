@@ -242,7 +242,7 @@ function clearAddTask() {
 
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
-function addTaskToTodo() {
+function createTask() {
      addInputValuesToTask('title');
      addInputValuesToTask('description');
      addInputValuesToTask('due-date');
