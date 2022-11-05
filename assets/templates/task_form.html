@@ -12,12 +12,23 @@
             </div>
             <div class="add-task-column-left-child flex column">
                 <span class=>Category</span>
-                <div class="dropdown-container margin-bottom-24">
-                    <div class="dropdown" onclick="changeVisibility('category-dropdown')">
-                        <span id="dropdown-text-category">Select task category</span>
-                        <img src="./assets/img/vector_2.png">
+                <div class="margin-bottom-24">
+                    <div class="dropdown-container">
+                        <div class="dropdown" id="category-dropdown-field" onclick="changeVisibility('category-dropdown')">
+                            <div id="dropdown-text-category" class="flex category-dropdown-field-text">Select task category</div>
+                            <img src="./assets/img/vector_2.png">
+                        </div>
+                        <div class="dropdown-content d-none" id="category-dropdown"></div>
+                        <div class="w-100 new-category-input-container d-none" id="new-category-input-ctn">  <!--displays when new category gets clicked-->   
+                            <input type="text" id="new-category-input" class="w-100 subtask-input" maxlength="50">
+                            <div class="flex">
+                                <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="changeVisibilityCategory(), removeClassFromSelectedColor()">
+                                |
+                                <img src="./assets/img/add_task_check.png" class="icon-subtask" onclick="addNewCategory()">
+                            </div>
+                        </div>
                     </div>
-                    <div class="dropdown-content d-none" id="category-dropdown"></div>
+                    <div id="category-color-selection-ctn" class="flex d-none"></div>
                 </div>
             </div>
             <div class="add-task-column-left-child flex column">
