@@ -242,8 +242,22 @@ function clearAddTask() {
 
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
-function addToTodo() {
-    //TODO
+function addTaskToTodo() {
+     addInputValuesToTask('title');
+     addInputValuesToTask('description');
+     addInputValuesToTask('due-date');
+     pushTaskToTodo();
+     initAddTask();
+}
+
+
+function addInputValuesToTask(identifier) {
+    task[identifier] = document.getElementById(identifier).value;
+}
+
+
+function pushTaskToTodo() {
+    todo.push(task);
 }
 
 
