@@ -1,10 +1,10 @@
-<div class="form">       
+<form onsubmit="addTaskToTodo(); return false">       
     <h1>Add Task</h1>
     <div class="flex margin-bottom-24 add-task-form-child">
         <div class="add-task-column-left add-task-column flex column">
             <div class="add-task-column-left-child flex column">
                 <span class=>Title</span>
-                <input type="text" id="title" class="add-task-input margin-bottom-24" placeholder="Enter a title">
+                <input type="text" id="title" required class="add-task-input margin-bottom-24" placeholder="Enter a title">
             </div>
             <div class="add-task-column-left-child flex column">
                 <span class=>Description</span>
@@ -60,13 +60,13 @@
         </div>
     </div>
     <div class="flex create-task-btn-container">
-        <button onclick="initAddTask()" class="flex add-task-btn clear-btn" onmouseover="clearImageToLightBlue()" onmouseout="clearImageToDarkBlue()">
+        <button type="button" onclick="initAddTask()" class="flex add-task-btn clear-btn" onmouseover="clearImageToLightBlue()" onmouseout="clearImageToDarkBlue()">
             Clear
             <img id="clear-image" src="./assets/img/clear-x-icon.png">
         </button>
-        <button onclick="addTaskToTodo()" class="flex add-task-btn accept-btn">
+        <button class="flex add-task-btn accept-btn">
             Create Task
             <img src="./assets/img/check-small.png">
         </button>
     </div>
-</div>
+</form>

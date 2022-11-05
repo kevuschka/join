@@ -107,7 +107,7 @@ function renderPrioritySelection() {
 
 function templatePrioritySelection(i) {
     return /*html*/ `
-         <button class="prio-btn" id="prio-btn-${i}" onclick="selectPrio(${i})">
+         <button type="button" class="prio-btn" id="prio-btn-${i}" onclick="selectPrio(${i})">
             ${priorities[i]['name']}
             <img src="${priorities[i]['image']}">
         </button>

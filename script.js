@@ -24,7 +24,7 @@ let priorities = [
 ]
 
 let category = [{
-    'name': 'design',
+    'name': 'Design',
     'color': '#FF7A00'
 }];
 
