@@ -1,11 +1,11 @@
-
+let categoryObject;
 let dropdownContacts = ['Hans', 'Jürgen'];
 
 async function renderAddTask() {
     renderCategoryDropdown();
+    renderCategoryColorSelection();
     renderContactsDropdown();
-    renderPrioritySelection(); 
-    //eventlistenerSubtaskInput();
+    renderPrioritySelection();
 }
 
 
@@ -23,36 +23,160 @@ function renderCategoryDropdown() {
 
 function templateDropdownNewCategory() {
     return /*html*/ `
-        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); createNewCategory()">New category</span>
+        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); changeVisibilityCategory(); focusOnInput('new-category-input'); createNewCategoryObject()">New category</span>
     `;
 }
 
 
 function templateDropdownCategories(i) {
     return /*html*/ `
-        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); selectCategory('${i}')">${category[i]['name']}</span>
+        <div class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); selectCategory('${i}')">
+            ${category[i]['name']}
+            <div class="category-colors" style="background-color: ${category[i]['color']}"></div>
+        </div>
     `;
 }
 
 
-function createNewCategory() {
-    //TODO
+function renderCategoryColorSelection() {
+    let container = document.getElementById('category-color-selection-ctn');
+    container.innerHTML = '';
+    for (let i = 0; i < categoryColors.length; i++) {
+        container.innerHTML += templateCategoryColors(i);
+    }
+}
+
+
+function templateCategoryColors(i) {
+    return /*html*/ `
+        <div onclick="changeColorSelected(${i})" id="category-color-${i}" class="category-colors category-colors-selection-section" style="background-color: ${categoryColors[i]}"></div>
+    `;
+}
+
+
+function changeColorSelected(i) {
+    changeClassOfClickedElem(i);
+    changeColorInCategoryObject(i);
+    removeClassOfPriorClickedElem(i);
+}
+
+
+function changeClassOfClickedElem(i) {
+    let elem = document.getElementById('category-color-' + i)
+    if (elem.classList.contains('category-colors-selected')) {
+        elem.classList.remove('category-colors-selected');
+    } else {
+        elem.classList.add('category-colors-selected');
+    }
+}
+
+//if color is already in the categoryObject, the click should remove the color; else add the color
+function changeColorInCategoryObject(i) {
+    if (categoryObject['color'] == categoryColors[i]) {
+        categoryObject['color'] = '';
+    } else {
+        categoryObject['color'] = categoryColors[i];
+    }
+}
+
+//if before there was another color selected before selecting this one; the prior one should loose its class
+function removeClassOfPriorClickedElem(i) {
+    for (let j = 0; j < categoryColors.length; j++) {
+        let color = document.getElementById('category-color-' + j)
+        // i!=j because otherwise you would instantly remove the class from the element you just selected
+        //is only true for the element which was clicked before the current selection
+        if (i != j && color.classList.contains('category-colors-selected')) { 
+            color.classList.remove('category-colors-selected');
+        }
+    } 
+}
+
+
+function removeClassFromSelectedColor() {
+    for (let j = 0; j < categoryColors.length; j++) {
+        let color = document.getElementById('category-color-' + j)
+        if (color.classList.contains('category-colors-selected')) { 
+            color.classList.remove('category-colors-selected');
+        }
+    } 
+}
+
+
+function changeVisibilityCategory() {
+    clearCategoryInput();
+    changeVisibility('category-dropdown-field');
+    changeVisibility('new-category-input-ctn');
+    changeVisibility('category-color-selection-ctn');
+}
+
+
+function addNewCategory() {
+    if (BothValuesAreEntered()) {
+        addCategoryNameToCategoryObject()
+        pushCategoryObjectToCategoryArray()
+        renderCategoryDropdown();
+        changeVisibilityCategory();
+        selectCategory(category.length - 1);
+    } else {
+        alert("Please select a color and type in a category name!")
+    }
+}
+
+//checks if both values of the categoryObject are filled
+function BothValuesAreEntered() {
+    let categoryInput = document.getElementById('new-category-input').value;
+    if (categoryInput != '' && categoryObject['color'] != '') {
+        return true
+    }
+}
+
+
+function addCategoryNameToCategoryObject() {
+    categoryObject['name'] = document.getElementById('new-category-input').value;
+}
+
+
+function pushCategoryObjectToCategoryArray() {
+    category.push(categoryObject);
+}
+
+
+function createNewCategoryObject() {
+    categoryObject = {
+        'name': '',
+        'color': ''
+    };
+}
+
+
+function clearCategoryInput() {
+    let input = document.getElementById('new-category-input');
+    if (input.value != '') {
+        clearInput(input);
+    }
 }
 
 
 function selectCategory(i) {
-    changeCategoryDropdownText(category[i]['name'])
+    changeCategoryDropdownText(i)
     addCategoryToTask(i)
 }
 
-
-function changeCategoryDropdownText(categoryName) {
+function changeCategoryDropdownText(i) {
     let dropdown = document.getElementById('dropdown-text-category');
-    dropdown.innerHTML = `${categoryName}`;
+    dropdown.innerHTML = templateSelectedCategoryinDropdownField(i);
+}
+
+
+function templateSelectedCategoryinDropdownField(i) {
+    return /*html*/ `
+            ${category[i]['name']}
+            <div class="category-colors" style="background-color: ${category[i]['color']}"></div>
+    `;
 }
 
 function addCategoryToTask(i) {
-    task['category'] = category[i]['name'];
+    task['category'] = category[i];
 }
 
 
@@ -108,7 +232,7 @@ function renderPrioritySelection() {
 
 function templatePrioritySelection(i) {
     return /*html*/ `
-         <button class="prio-btn" id="prio-btn-${i}" onclick="selectPrio(${i})">
+         <button type="button" class="prio-btn" id="prio-btn-${i}" onclick="selectPrio(${i})">
             ${priorities[i]['name']}
             <img src="${priorities[i]['image']}">
         </button>
@@ -172,14 +296,15 @@ function addPrioBtnToTask(i) {
 
 ///////////////////////// SUBTASK FUNCTIONS ////////////////////////////////////
 
-function changeVisibilitySubtasks() {
-    changeVisibility('subtask-add-icon');
-    changeVisibility('subtask-accept-delete-section');
+function changeVisibilitySubtask() {
+    changeVisibility('subtask-placeholder-input-ctn');
+    changeVisibility('subtask-input-ctn');
+    focusOnInput('subtask-input');
 }
 
 
 function clearSubtaskInput() {
-    changeVisibilitySubtasks();
+    changeVisibilitySubtask();
     let input = document.getElementById('subtask-input');
     clearInput(input);
 }
@@ -189,8 +314,9 @@ function addSubtask() {
     let input = document.getElementById('subtask-input');
     let subtask = input.value;
     if (!inputFieldIsEmpty(subtask)) {
-        changeVisibilitySubtasks();
+        changeVisibilitySubtask();
         addTaskToSubtaskList(subtask);
+        addSubtaskToTask(subtask);
         clearInput(input)
     }
 }
@@ -214,18 +340,11 @@ function templateSubtaskList(task) {
 }
 
 
-//in order to change the buttons by clicking on the input field
-function eventlistenerSubtaskInput() {
-    let subtaskInput = document.getElementById('subtask-input');
-    while (true) {
-        subtaskInput.addEventListener('focus', function() { 
-            changeVisibilitySubtasks();
-        });
-        subtaskInput.addEventListener('blur', function() { 
-            changeVisibilitySubtasks();
-        });
-    }
+function addSubtaskToTask(subtask) {
+    task['subtasksArray'].push(subtask);
+    task['subtasks']++;
 }
+
 
 ///////////////////////// BOTTOM BUTTONS SECTION ////////////////////////////////////
 
@@ -248,8 +367,22 @@ function clearAddTask() {
 
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
-function addToTodo() {
-    //TODO
+function createTask() {
+     addInputValuesToTask('title');
+     addInputValuesToTask('description');
+     addInputValuesToTask('due-date');
+     pushTaskToTodo();
+     initAddTask();
+}
+
+
+function addInputValuesToTask(identifier) {
+    task[identifier] = document.getElementById(identifier).value;
+}
+
+
+function pushTaskToTodo() {
+    todo.push(task);
 }
 
 
@@ -262,6 +395,11 @@ function changeVisibility(id) {
     } else {
         dropdown.classList.add('d-none');
     }
+}
+
+
+function focusOnInput(id) {
+    document.getElementById(id).focus();
 }
 
 

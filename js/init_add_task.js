@@ -23,11 +23,12 @@ async function includeHTML() {
 //basic task structure
 function clearTask() {
     task = { 
-        'category': '',
+        'category': [],
         'title': '',
         'description': '',
         'process': 0,
         'subtasks': 0,
+        'subtasksArray': [],
         'team': [],
         'prior': '',
         'board': 0,
