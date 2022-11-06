@@ -73,6 +73,10 @@ body {
     gap: 44px;
 }
 
+.pool-infos {
+    width: 110rem;
+}
+
 .task-info-container, .priority-pool, .doAndDone {
     height: 183px;
 }
@@ -248,7 +252,7 @@ body {
     font-size: 48px;
     font-family: 'Poppins', sans-serif;
     color: #2A3647;
-    margin-left: 50px;
+    /* margin-left: 50px; */
 }
 
 .user {
@@ -263,7 +267,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     color: #29ABE2;
-    margin-left: 50px;
+    /* margin-left: 50px; */
 
 }
 
@@ -366,7 +370,7 @@ body {
 
 @media screen and (max-width: 1600px) {
     .animationContainer {
-        padding: 30px 100px;
+        padding: 30px 70px 30px 100px;
     }
 
     .pool-infos, .task-info-container, .doAndDone {
@@ -376,7 +380,11 @@ body {
 
 @media screen and (max-width: 1400px) {
     .animationContainer {
-        padding: 30px 30px 30px 100px;
+        padding: 30px 0px 30px 100px;
+    }
+
+    .task-info-text {
+        font-size: 18px;
     }
 
     .greet {
@@ -390,8 +398,16 @@ body {
 
 
 @media screen and (max-width: 1180px) {
+    .animationContainer {
+        padding: 30px 70px 30px 100px;
+    }
+
     .pool-info-container {
         justify-content: center;
+    }
+
+    .task-info-text {
+        font-size: 21px;
     }
 
     .greet-container {
@@ -531,7 +547,7 @@ body {
         
         .greet2 {
            
-            margin-left: 90px;
+            /* margin-left: 90px; */
         }
 
         .greet-container2 {
@@ -542,7 +558,12 @@ body {
 
 @media(max-width: 800px) {
 .animationContainer {
-    padding: 0 30px 130px;
+    padding: 0 30px;
+    min-height: 0;
+}
+
+.task-info-text {
+    font-size: 16px;
 }
 
 .header-text1 {
@@ -570,6 +591,14 @@ body {
 
     .linehorizontal {
         margin-top: 20px;
+    }
+
+    .pool-infos {
+        width: 45rem;
+    }
+
+    .task-info-container, .priority-pool, .doAndDone {
+        height: 130px;
     }
 }
 
@@ -608,16 +637,16 @@ body {
     }
 
     .priority-container {
-        margin-left: 40px;
+        /* margin-left: 40px; */
     }
 
 
     .verticalLineGrey {
-        margin-left: 56px;
+        /* margin-left: 56px; */
     }
 
     .date-container {
-       margin-left: 38px;
+       /* margin-left: 38px; */
     }
 
     .priority-pool {
@@ -646,7 +675,7 @@ body {
     }
 
     .task-info-container {
-        margin-left: -18px;
+        /* margin-left: -18px; */
     }
 
     .header-text2 {
@@ -673,6 +702,14 @@ body {
         /* width: 100px;
         height: 100px; */
         /* margin-left: 11px; */
+    }
+
+    .task-info-container, .priority-pool, .doAndDone {
+        height: 112px;
+    }
+
+    .pool-infos, .task-info-container, .doAndDone {
+        gap: 15px;
     }
 
     .task-info-count {
@@ -837,7 +874,7 @@ body {
 
 .greet2 {
     font-size: 34px;
-    margin-left: 81px;
+    /* margin-left: 81px; */
 }
 
 .greet-container2 {
@@ -845,8 +882,76 @@ body {
 }
 }
 
+@media screen and (max-width: 400px) {
+    .task-info-container, .priority-pool, .doAndDone {
+        height: 90px;
+    }
+}
+
 @media screen and (max-width: 300px) {
     .animationContainer {
         padding: 0 10px 90px;
+    }
+}
+
+
+/* ########## MAX-HEIGHT ########## */
+@media screen and (max-height: 700px) and (max-width: 1600px) {
+    .pool-infos {
+        width: 72rem;
+    }
+
+    .task-info-container, .priority-pool, .doAndDone {
+        height: 130px;
+    }
+}
+
+@media screen and (max-height: 720px) and (max-width: 1400px) {
+
+    .task-info-text {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-height: 720px) and (max-width: 1180px) {
+    .pool-infos {
+        width: 50rem;
+    }
+}
+
+
+@media screen and (max-height: 720px) and (max-width: 1110px) {
+    .summary-pool {
+        gap: 45px;
+    }
+}
+
+@media screen and (max-height: 720px) and (max-width: 800px) {
+    .summary-pool {
+        gap: 22px;
+    }
+
+    .animationContainer {
+        padding: 0 30px 105px;
+    }
+}
+
+@media screen and (max-height: 720px) and (max-width: 500px) {
+    .pool-infos, .task-info-container, .doAndDone {
+        gap: 9px;
+    }
+
+    .task-info-container, .priority-pool, .doAndDone {
+        height: 93px;
+    }
+
+    .task-info-text {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-height: 720px) and (max-width: 400px) {
+    .task-info-text {
+        font-size: 10px;
     }
 }
