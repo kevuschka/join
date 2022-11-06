@@ -866,4 +866,8 @@ body {
     .task-info-text {
         font-size: 10px;
     }
+
+    .priority-container {
+        margin-left: 35px;
+    }
 }
