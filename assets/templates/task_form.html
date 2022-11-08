@@ -1,4 +1,4 @@
-<form onsubmit="createTask(); return false">       
+<form id="myform" onsubmit="createTask(); return false">       
     <h1>Add Task</h1>
     <div class="flex margin-bottom-24 add-task-form-child">
         <div class="add-task-column-left add-task-column flex column">
@@ -75,9 +75,15 @@
             Clear
             <img id="clear-image" src="./assets/img/clear-x-icon.png">
         </button>
-        <button class="flex add-task-btn accept-btn">
+        <button class="flex add-task-btn create-btn">
             Create Task
             <img src="./assets/img/check-small.png">
         </button>
     </div>
+    <button form="myform" value="update" class="create-btn-responsive">
+        Create
+        <img src="./assets/img/check-small.png">
+    </button>
 </form>
+
+
