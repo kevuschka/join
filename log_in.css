@@ -128,13 +128,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 7px;
     color: white;
     cursor: pointer;
+    transition: background-color 125ms, color 125ms, border 125ms, box-shadow 125ms ease-in-out;
    }
 
    .signButton:hover {
-    background-color: rgb(22, 138, 247);
+    background-color: #29ABE2;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
    }
 
    .signButton1, .signButton2 {
@@ -145,10 +147,9 @@ body {
     color: white;
     padding: 7px;
     border-radius: 7px;
-    transition: background-color 125ms ease-in-out;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 125ms, color 125ms, border 125ms ease-in-out;
+    transition: background-color 125ms, color 125ms, border 125ms, box-shadow 125ms ease-in-out;
     font-size: 17px;
     height: 100%;
    }

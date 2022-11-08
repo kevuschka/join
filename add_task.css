@@ -261,6 +261,7 @@ ul {
     background-color: white;
     font-size: 16px;
     border: 1px solid #2A3647;
+    transition: background-color 125ms, color 125ms, border 125ms, box-shadow 125ms ease-in-out;
 }
 
 .transparent-submit-btn {
@@ -281,7 +282,9 @@ ul {
 }
 
 .clear-btn:hover {
-    color: #29ABE2;
+    color: #29ABE2; 
+    border:#29ABE2 1px solid;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .accept-btn {
@@ -292,6 +295,7 @@ ul {
 
 .accept-btn:hover {
     background-color: #29ABE2;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .add-task-btn img {
@@ -302,6 +306,7 @@ ul {
 
 .create-task-btn-container {
     justify-content: flex-end;
+    display: flex;
 }
 
 
@@ -383,6 +388,7 @@ ul {
 
     .create-task-btn-container {
         margin-bottom: 24px;
+        display: none;
     }
 
     .add-task-prio-container {

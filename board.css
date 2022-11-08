@@ -197,7 +197,7 @@
     color: white;
     padding: 7px;
     border-radius: 7px;
-    transition: background-color 125ms ease-in-out;
+    transition: background-color 125ms, color 125ms, border 125ms, box-shadow 125ms ease-in-out;
 }
 
 .board-header-addTask-button:hover {
@@ -390,7 +390,6 @@
 
 .highlight-area-more {
     border: 2px dotted #d2d1d1;
-    /* background-color: rgb(226, 226, 226); */
 }
 
 
