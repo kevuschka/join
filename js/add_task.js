@@ -407,9 +407,3 @@ function focusOnInput(id) {
 function clearInput(id) {
     id.value = '';
 }
-
-
-window.onresize = function() {
-    if (window.location.pathname.includes('add_task.html') && (window.innerWidth < 801)) document.getElementById('header-profil-container').classList.add('d-none');
-    else document.getElementById('header-profil-container').classList.remove('d-none');
-}
