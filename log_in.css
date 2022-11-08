@@ -333,7 +333,7 @@ font-family: 'Noto Sans', sans-serif;
 
     @media(max-width: 530px) {
         .logPool {
-            margin-top: 105px;
+            margin-top: 140px;
             justify-content: space-evenly;
         }
 
@@ -383,7 +383,62 @@ font-family: 'Noto Sans', sans-serif;
               left: 50px;
               top: 45px;
             }
-        
+        }
+            
+            .checkPool {
+                flex-direction: column-reverse;
+                gap: 20px;
+            }
+
+            .buttonContainer {
+                flex-direction: column;
+                align-items: center;
+                gap: 14px;
+                height: 110px;
+            }
+            
+            .signButton1, .signButton2 {
+                width: 170px;
+                font-size: 14px;
+            }
+
+            .logText {
+                font-size: 45px;
+            }
+
+            .underline {
+                width: 92px;
+            }
+
+    @media screen and (max-height: 815px) {
+        .logContainer {
+            padding: 8px 30px 16px 30px;
+        }
+    
+        .logPool1 {
+            gap: 13px;
+        }
+    
+        .logo-and-underline {
+            gap: 4px;
+        }
+    
+        .input-and-check-and-btns {
+            gap: 20px;
+        }
+    
+        .inputs {
+            gap: 20px;
+        }
+    
+        .check-and-btns {
+            gap: 20px;
+        }
+    
+        .checkPool {
+            gap: 12px;
+        }
+    }
 }
 
 
@@ -489,9 +544,7 @@ font-family: 'Noto Sans', sans-serif;
                 }
 
                 .checkPool {
-                    flex-direction: column-reverse;
                     width: 100%;
-                    gap: 20px;
                 }
 
                 .input-and-check-and-btns {
@@ -519,13 +572,6 @@ font-family: 'Noto Sans', sans-serif;
 
                 .signContainer {
                     margin-top: 39px;
-                }
-
-                .buttonContainer {
-                    flex-direction: column;
-                    gap: 14px;
-                    align-items: center;
-                    height: 110px;
                 }
 
                 .logPool {
@@ -581,5 +627,7 @@ font-family: 'Noto Sans', sans-serif;
                        opacity: 1;
                     }
             }
-            }
-        }
+    }
+    
+
+    
