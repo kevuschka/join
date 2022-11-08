@@ -4,7 +4,7 @@
 function renderPopups() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
-    // container.innerHTML += renderBoardSearchbarPopup();
+    container.innerHTML += renderTemplateTicketInfoPopup();
 }
 
 /**Logout-Popup (Header profile onclick) */
@@ -74,6 +74,22 @@ function closeBoardSearchbarPopup() {
     document.getElementById('board-header-search-results-popup').classList.add('d-none');
     document.getElementById(`board-header-search-input-popup-full`).classList.add('d-none');
     document.getElementById(`board-header-search-container`).classList.remove('d-none');
+}
+
+
+//////////////////// BOARD: TICKET ONCLICK POPUP /////////////////////
+function renderTemplateTicketInfoPopup() {
+    return `<div class="board-ticket-info-popup-full flex absolute w-100 d-none" id="board-ticket-info-popup-full" onclick=""></div>`;
+}
+
+
+function renderTicketInfoPopupContainer(column, ticket) {
+    let content = document.getElementById('board-ticket-info-popup-full');
+    content.innerHTML = `
+        <div class="ticketPopupContainer">
+        
+        </div>
+    `;
 }
 
 

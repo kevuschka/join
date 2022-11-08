@@ -87,7 +87,6 @@ function test() {
 
 function templateBoard() {
     let content = document.getElementById('content-container');
-    content.innerHTML += renderBoardSearchbarPopup();
     content.innerHTML += `
         <div class="board-wrapper">
             <div class="board-container flex column">
