@@ -406,13 +406,3 @@ function focusOnInput(id) {
 function clearInput(id) {
     id.value = '';
 }
-
-// window.onresize = function() {
-//     if(window.location.pathname.includes('add_task.html') && (window.innerWidth < 801)) {
-//         document.getElementById('header-right-corner').classList.add('d-none');
-//         document.getElementById('header-right-corner-add-task').classList.remove('d-none');
-//     } else {
-//         document.getElementById('header-right-corner').classList.remove('d-none');
-//         document.getElementById('header-right-corner-add-task').classList.add('d-none');
-//     }
-// }
