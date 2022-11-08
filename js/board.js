@@ -164,7 +164,7 @@ function renderBoardColumnContent(n) {
  * @returns the ticket template
  */
 function renderTemplateTicket(n,j) {
-    return `<div class="ticket-container flex column cursor-p" id="ticket-container-${n}-${j}" draggable="true" ondragstart="startDragging(${n}, ${j})" onmousedown="highlightTicket(${n},${j})" onmouseup="removeHighlightTicket(${n},${j})"></div>`;
+    return `<div class="ticket-container flex column cursor-p" id="ticket-container-${n}-${j}" draggable="true" ondragstart="startDragging(${n}, ${j})" onmousedown="highlightTicket(${n},${j})" onmouseup="removeHighlightTicket(${n},${j})" onclick="renderTicketInfoPopupContainer(${n}, ${j})"></div>`;
 }
 
 
@@ -362,7 +362,6 @@ function filterTicketTitles(inputComparison, resultsContainer, n) {
 
 
 function isTeamMemberHere(i,j, inputComparison) {
-    let isHere = false;
     let member;
     for (let m = 0; m < boardColumns[i][j]['team'].length; m++) {
         member = (boardColumns[i][j]['team'][m]['name'].toLowerCase());

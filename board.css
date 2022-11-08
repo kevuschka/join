@@ -398,6 +398,102 @@
     transform: rotate(2.5deg);
 } 
 
+/* ########## TICKET INFO POPUP ########## */
+.board-ticket-info-popup-full {
+    z-index: 3;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.ticket-info-popup-container {
+    width: 40%;
+    height: 80%;
+    font-size: 20px;
+    padding: 40px;
+    z-index: 3;
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
+}
+
+.ticket-info-popup-wrapper {
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.ticket-info-popup-category > p {
+    border-radius: 5px;
+    color: white;
+    padding: 4px 28px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.ticket-info-popup-title > p {
+    font-size: 50px;
+    font-weight: bold;
+    color: #2A3647;
+}
+
+.ticket-info-popup-date-and-prio-and-assignedTo {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.ticket-info-popup-date > p {
+    font-weight: bold;
+}
+
+.ticket-info-popup-prio {
+    gap: 15px;
+    align-items: center;
+}
+
+.ticket-info-popup-prio > p {
+    font-weight: bolder;
+}
+
+.ticket-info-popup-prio-wrapper {
+    color: white;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 16px;
+    border-radius: 8px;
+    font-weight: 300;
+}
+
+.ticket-info-popup-wrapper img {
+    width: 14px;
+    height: 10px;
+    margin-top: 1px;
+}
+
+.ticket-info-popup-assignedTo {
+    gap: 15px;
+}
+
+.ticket-info-popup-assignedTo > p {
+    font-weight: bold;
+}
+
+.ticket-info-popup-member {
+    align-items: center;
+    gap: 20px;
+}
+
+.ticket-info-popup-member-circle {
+    font-size: 12px;
+    width: 29px;
+    height: 29px;
+    padding: 3px;
+}
+
 
 
 /* ########## RESPONSIVE ########## */
