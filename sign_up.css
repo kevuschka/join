@@ -34,9 +34,8 @@ body {
 }
 
 .logText {
-    font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    font-size: 80px;
+    font-size: 60px;
     margin-top: 34px;
 }
 
@@ -66,10 +65,13 @@ body {
 }
 
 .input {
-  
         width: 102%;
         height: 37px;
         border-radius: 6px;
+        padding: 0 0 0 12px;
+        border: 1px solid lightgray;
+        font-size: 15px;
+        outline: none;
     }
 
 .input-relative {
@@ -104,16 +106,19 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 10px;
+        border-radius: 7px;
         color: white;
         cursor: pointer;
         margin-top: 33px;
-        font-family: 'Poppins', sans-serif;
-    font-weight: bold;
+        font-weight: bold;
+        transition: background-color 125ms ease-in-out;
+        padding: 7px;
+        font-size: 18px;
        }
 
        .signButton:hover {
-        background-color: rgb(22, 138, 247);
+        background-color: #29ABE2;
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
        }
 
        .decoNone {
