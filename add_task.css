@@ -297,14 +297,23 @@ ul {
 }
 
 .create-btn-responsive {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #2A3647;
     border-radius: 9px;
-    padding: 10px 18px;
+    padding: 10px 10px;
+    gap: 10px;
     cursor: pointer;
     font-size: 16px;
     border: 1px solid #2A3647;
     color: white;
     font-weight: bold;
+}
+
+.create-btn-responsive img {
+    height: 20px;
+    object-fit: contain;
 }
 
 
