@@ -1,7 +1,6 @@
 function renderHeader() {
     let content = document.getElementById('header');
     content.innerHTML = renderTemplateHader();
-    whenItsAddtask();
 }
 
 function renderTemplateHader() {
@@ -16,9 +15,4 @@ function renderTemplateHader() {
 
 function whenItsAddtask() {
     if(window.location.pathname.includes('add_task.html') && (window.innerWidth < 801)) document.getElementById('header-profil-container').classList.add('d-none');
-}
-
-window.onresize = function() {
-    if (window.location.pathname.includes('add_task.html') && (window.innerWidth < 801)) document.getElementById('header-profil-container').classList.add('d-none');
-    else document.getElementById('header-profil-container').classList.remove('d-none');
 }
