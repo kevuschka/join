@@ -83,6 +83,15 @@ form {
     padding-left: 48px;
 }
 
+.input-container {
+    display: flex;
+    outline: none;
+    border-radius: 9px;
+    height: 40px;
+    align-items: center;
+    background-color: white;
+}
+
 .add-task-input {
     display: flex;
     margin-top: 8px;
@@ -148,15 +157,6 @@ form {
     background-color: #D1D1D1;
 }
 
-.new-category-input-container {
-    display: flex;
-    outline: none;
-    border: 1px solid transparent;
-    border-radius: 9px;
-    height: 40px;
-    align-items: center;
-}
-
 #category-color-selection-ctn {
     margin-top: 10px;
 }
@@ -209,14 +209,8 @@ form {
 }
 
 .subtask-input-container {
-    display: flex;
     margin-top: 8px;
-    outline: none;
-    border: 1px solid #D1D1D1;  
-    border-radius: 9px;
-    height: 40px;
-    align-items: center;
-    background-color: white;
+    border: 1px solid #D1D1D1;    
 }
 
 .subtask-input {

@@ -19,7 +19,7 @@
                             <img src="./assets/img/vector_2.png">
                         </div>
                         <div class="dropdown-content d-none" id="category-dropdown"></div>
-                        <div class="w-100 new-category-input-container d-none" id="new-category-input-ctn">  <!--displays when new category gets clicked-->   
+                        <div class="w-100 input-container d-none" id="new-category-input-ctn">  <!--displays when new category gets clicked-->   
                             <input type="text" id="new-category-input" class="w-100 subtask-input" maxlength="50">
                             <div class="flex">
                                 <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="changeVisibilityCategory(), removeClassFromSelectedColor()">
@@ -34,11 +34,19 @@
             <div class="add-task-column-left-child flex column">
                 <span class=>Assigned to</span>
                 <div class="dropdown-container">
-                    <div class="dropdown" onclick="changeVisibility('contacts-dropdown')">
+                    <div class="dropdown" id="contacts-dropdown-ctn" onclick="changeVisibility('contacts-dropdown')">
                         <span>Select contacts to assign</span>
                         <img src="./assets/img/vector_2.png">
                     </div>
                     <div class="dropdown-content d-none" id="contacts-dropdown">
+                    </div>
+                    <div class="input-container d-none" id="invite-contact-ctn">
+                        <input class="w-100 subtask-input" id="input-invite-contact" type="text" placeholder="Contact email">
+                        <div class="flex">
+                            <img src="./assets/img/add_task_cancel.png" class="icon-subtask">
+                            |
+                            <img src="./assets/img/add_task_check.png" class="icon-subtask">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -54,11 +62,11 @@
             </div>
             <div class="w-100 flex column margin-bottom-24">
                 <span>Subtasks</span>
-                <div class="w-100 subtask-input-container" id="subtask-placeholder-input-ctn" onclick="changeVisibilitySubtask()"> <!--displays if subtask is not clicked-->   
+                <div class="w-100 input-container subtask-input-container" id="subtask-placeholder-input-ctn" onclick="changeVisibilitySubtask(), focusOnInput('subtask-input')"> <!--displayed if subtask is not clicked-->   
                     <input type="text" class="w-100 subtask-input" placeholder="Add new subtask">
                     <img src="./assets/img/add_task_plus_icon.png" id="subtask-add-icon" class="icon-subtask">
                 </div>
-                <div class="w-100 subtask-input-container d-none" id="subtask-input-ctn">  <!--displays if subtask is clicked-->   
+                <div class="w-100 subtask-input-container input-container d-none" id="subtask-input-ctn">  <!--displays if subtask is clicked-->   
                     <input type="text" id="subtask-input" class="w-100 subtask-input" maxlength="50">
                     <div class="flex">
                         <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="clearSubtaskInput()">

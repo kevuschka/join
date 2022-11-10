@@ -47,6 +47,11 @@ let contacts = [{
     'color': '#02CF2F',
     'email': 'Eva.Fischer@gmail.com',
     'phone': '+49 0123 456 78 9'
+},{
+    'name': 'Hans Maier',
+    'color': '#0038FF',
+    'email': 'Hans.Maier@gmail.com',
+    'phone': '+49 0123 456 78 9'
 }];
 
 
