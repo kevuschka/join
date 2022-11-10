@@ -452,4 +452,3 @@ function removeHighlightTicket(column, ticket) {
 
 
 
-

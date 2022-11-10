@@ -410,6 +410,7 @@
 }
 
 .ticket-info-popup-container {
+    justify-content: space-between;
     width: 40%;
     height: 80%;
     font-size: 20px;
@@ -418,11 +419,16 @@
     background-color: white;
     border-radius: 18px;
     box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
+    overflow-y: auto;
 }
 
 .ticket-info-popup-wrapper {
     gap: 30px;
     align-items: flex-start;
+}
+
+.ticket-info-popup-category-container {
+    justify-content: space-between;
 }
 
 .ticket-info-popup-category > p {
@@ -468,7 +474,7 @@
     font-weight: 300;
 }
 
-.ticket-info-popup-wrapper img {
+.ticket-info-popup-prio-image {
     width: 14px;
     height: 10px;
     margin-top: 1px;
@@ -494,302 +500,35 @@
     padding: 3px;
 }
 
-
-
-/* ########## RESPONSIVE ########## */
-@media screen and (max-width: 1600px) {
-    .board-wrapper {
-        padding: 30px;
-    }
+.ticket-info-popup-cross {
+    width: 30px;
+    height: 30px;
 }
 
-@media screen and (max-width: 1300px) {
-    .board-content {
-        padding-top: 30px;
-    }
+.ticket-info-popup-edit-container {
+    justify-content: flex-end;
 }
 
-@media screen and (max-width: 1200px) {
-    .board-content {
-        gap: 20px;
-    }
-    .board-column-header p {
-        font-size: 16px;
-    }
+.ticket-info-popup-edit {
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    border-radius: 8px;
+    bottom: 40px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    transition: background-color 125ms ease-in-out;
 }
 
-@media screen and (max-width: 1080px) {
-    .board-column-header p {
-        font-size: 12px;
-    }
+.ticket-info-popup-edit:hover {
+    background-color: #29ABE2;
 }
 
-@media screen and (max-width: 1010px) {
-    .board-wrapper {
-        padding: 40px 20px;
-    }
-
-    .board-header > p {
-        font-size: 40px;
-    }
-
-    .board-header-right {
-        height: 40px;
-    }
-
-    .board-content {
-        padding-top: 40px;
-    }
-
-    .board-column-header-plus {
-        padding: 3px 3px 6px;
-        width: 20px;
-        height: 20px;
-        font-size: 23px;
-        font-weight: 300;
-        border-radius: 7px;
-    }
-
-    .board-header-search-popup-spacer-left {
-        max-width: 422px;
-    }
-
-    .board-header-search-popup-spacer-right {
-        max-width: 168px;
-    }
+.ticket-info-popup-edit > img {
+    width: 20px;
 }
 
-@media screen and (min-width: 801px) and (max-width: 1000px) {
-    .ticket-container {
-        padding: 10px;
-        border-radius: 20px;
-    }
-
-    .ticket-category {
-        padding: 2px 16px;
-        font-size: 14px;
-        border-radius: 7px;
-    }
-
-    .ticket-description-title {
-        font-size: 14px;
-    }
-
-    .ticket-description {
-        font-size: 12px;
-    }
-
-    .process-bar-container {
-        gap: 8px;
-    }
-
-    .process-state {
-        min-width: 46px;
-        font-size: 10px;
-    }
-
-    .ticket-contact {
-        font-size: 10px;
-        width: 30px;
-        height: 30px;
-        margin: 0 -5px 0 0;
-    }
-}
-
-@media screen and (max-width: 830px) {
-    .board-content {
-        gap: 12px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .board-wrapper {
-        padding: 0 30px 130px;
-    }
-
-    .board-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .board-header-left {
-        width: 100%;
-        padding-bottom: 30px;
-    }
-
-    .board-header-addTask-button-resp {
-        align-self: flex-end;
-    }
-
-    .board-header-left .board-header-addTask-button-resp {
-        display: block;
-        width: 34px;
-        height: 34px;
-        background-color:#2A3647;
-        border-radius: 7px;
-        padding: 8px;
-    }
-
-    .board-header-addTask-button-resp:hover {
-        background-color: #29ABE2;
-    }
-
-    .board-header-left p {
-        font-size: 42px;
-    }
-
-    .board-header-left {
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-
-    .board-header-right .board-header-addTask-button {
-        display: none;
-    }
-
-    .board-header-search-wrapper {
-        width: 240px;
-        border-radius: 9px;
-        padding: 0 11px;
-    }
-
-    .board-search-icon {
-        width: 20px;
-        height: 20px;
-        margin-left: 14px;
-    }
-
-    .board-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .board-column {
-        max-width: 100%;
-    }
-
-    .board-column-header p {
-        font-size: 20px;
-        
-    }
-
-    .board-column-header-plus {
-        padding: 3px 3px 8px;
-        width: 28px;
-        height: 28px;
-        border-radius: 10px;
-        border: 1px solid black;
-        font-size: 37px;
-        font-weight: 200;
-    }
-
-    .ticket-description {
-        -webkit-line-clamp: 3;
-    }
-
-    .onhold-container-first {
-        display: block;
-    }
-
-    .onhold-container-last {
-        display: none;
-    }
-
-    .emptyColumn {
-        height: 60px;
-        width: 100%;
-    }
-
-    .noTask {
-        display: block;
-        text-align: center;
-        border: 1px dotted #919191;
-        color: #919191;
-        background-color:#d1d1d1;
-        padding: 10px;
-        font-size: 14px;
-        border-radius: 8px;
-        height: 100%;
-    }
-
-    .highlight-area {
-        height: 50px;
-        border-radius: 15px;
-        animation: openDragArea 125ms ease-in-out
-    }
-
-    @keyframes openDragArea {
-        from {
-            height: 0px;
-        } to {
-            height: 50px;
-        }
-    }
-
-    .board-header-search-popup-spacer-left, .board-header-search-popup-spacer-right {
-        width: 0%;
-    }
-
-    /* .search-result-p {
-        max-width: 150px;
-    } */
-}
-
-@media screen and (max-width: 300px) {
-
-    .board-wrapper {
-        padding: 0 10px 90px;
-    }
-
-    .board-header-left {
-        padding-bottom: 25px;
-    }
-
-    .boar-header-left p {
-        font-size: 35px;
-    }
-
-    .board-content {
-        padding-top: 28px;
-    }
-
-
-
-    /* Ticket */
-
-    .ticket-container {
-        padding: 10px;
-        border-radius: 20px;
-    }
-
-    .ticket-category {
-        padding: 2px 16px;
-        font-size: 14px;
-        border-radius: 7px;
-    }
-
-    .ticket-description-title {
-        font-size: 14px;
-    }
-
-    .ticket-description {
-        font-size: 12px;
-    }
-
-    .process-bar-container {
-        gap: 8px;
-    }
-
-    .process-state {
-        min-width: 46px;
-        font-size: 10px;
-    }
-
-    .ticket-contact {
-        font-size: 10px;
-        width: 30px;
-        height: 30px;
-        margin: 0 -5px 0 0;
-    }
+.ticket-info-popup-backArrow {
+    display: none;
 }
