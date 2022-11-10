@@ -41,8 +41,13 @@ html {
     position: absolute;
 }
 
+.space-between {
+    justify-content: space-between;
+}
+
 
 /*Simon's Part*/
+
 h1 {
     font-size: 48px;
     margin-block-start: 0;
@@ -108,6 +113,8 @@ form {
     justify-content: space-between;
     cursor: pointer;
     padding: 8px 16px;
+    background-color: white;
+    border-radius: 9px;
 }
 
 .dropdown-container {
@@ -133,6 +140,8 @@ form {
     align-items: center;
     padding: 8px 16px;
     cursor: pointer;
+    background-color: white;
+    border-radius: 9px;
 }
 
 .dropdown-content-child:hover {
@@ -207,6 +216,7 @@ form {
     border-radius: 9px;
     height: 40px;
     align-items: center;
+    background-color: white;
 }
 
 .subtask-input {

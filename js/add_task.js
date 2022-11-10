@@ -196,7 +196,7 @@ function renderContactsDropdown() {
 
 function templateContactsYou() {
     return /*html*/ `
-        <label for="checkbox-you" class="dropdown-content-child">    
+        <label for="checkbox-you" class="dropdown-content-child space-between">    
                 <span>You</span>
                 <input value="you" name="checkbox" id="checkbox-you" type="checkbox">
         </label>
@@ -206,7 +206,7 @@ function templateContactsYou() {
 
 function templateDropdownContacts(i) {
     return /*html*/ `
-        <label for="checkbox + ${i}" class="dropdown-content-child">    
+        <label for="checkbox + ${i}" class="dropdown-content-child space-between">    
                 <span>${contacts[i]['name']}</span>
                 <input value="${i}" name="checkbox" id="checkbox + ${i}" type="checkbox">
         </label>
