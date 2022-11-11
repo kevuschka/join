@@ -36,22 +36,27 @@ let contacts = [{
     'name': 'Simon Meyer',
     'color': '#0190E0',
     'email': 'simon.meyer@gmail.com',
-    'phone': '+490123456789'
+    'phone': '+490123456789',
+    'abbreviation': 'SM'
 },{
     'name': 'Maximilian Vogel',
     'color': '#EE00D6',
     'email': 'maximilian.vogel@gmail.com',
-    'phone': '+49 0123 456 78 9'
+    'phone': '+49 0123 456 78 9',
+    'abbreviation': 'MV'
 },{
     'name': 'Eva Fischer',
     'color': '#02CF2F',
     'email': 'Eva.Fischer@gmail.com',
-    'phone': '+49 0123 456 78 9'
+    'phone': '+49 0123 456 78 9',
+    'abbreviation': 'EF'
+
 },{
     'name': 'Hans Maier',
     'color': '#0038FF',
     'email': 'Hans.Maier@gmail.com',
-    'phone': '+49 0123 456 78 9'
+    'phone': '+49 0123 456 78 9',
+    'abbreviation': 'HM'
 }];
 
 
