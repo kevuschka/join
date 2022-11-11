@@ -64,7 +64,8 @@ let newContact = {
     'name': '',
     'color': '',
     'email': '',
-    'phone': ''
+    'phone': '',
+    'abbreviation': '',
 }
 
 
