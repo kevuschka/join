@@ -184,6 +184,21 @@ form {
     margin-top: 8px;
 }
 
+.contact-icon {
+    margin-top: 18px;
+    margin-right: 8px;
+    padding: 10px 8px;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #FFFFFF;
+}
+
 .prio-btn {
     margin-right: 8px;
     border-radius: 9px;
@@ -320,7 +335,14 @@ ul {
     object-fit: contain;
 }
 
-
+.task-added-pop-up-ctn {
+    background-color: transparent;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+}
 
 @media (max-width: 1600px) {
     form {

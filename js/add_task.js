@@ -1,5 +1,5 @@
 let categoryObject;
-let dropdownContacts = ['Hans', 'Jürgen'];
+let contactIconArray = []; //safes the indexes of the seleceted Contacts
 
 async function renderAddTask() {
     renderCategoryDropdown();
@@ -199,10 +199,53 @@ function templateContactsYou() {
 
 function templateDropdownContacts(i) {
     return /*html*/ `
-        <label for="checkbox + ${i}" class="dropdown-content-child space-between">    
+        <label for="checkbox${i}" class="dropdown-content-child space-between">    
                 <span>${contacts[i]['name']}</span>
-                <input value="${i}" name="checkbox" id="checkbox + ${i}" type="checkbox">
+                <input value="${i}" name="checkbox" id="checkbox${i}" type="checkbox" onclick="changeDisplayInContactIconSection(${i})">
         </label>
+    `;
+}
+
+
+function changeDisplayInContactIconSection(i) {
+    let index = contactIconArray.indexOf(i);
+    if (ContactIsAlreadyInArray(index)) {
+        removeFromContactsIconArray(index);
+    } else {
+        addToContactsIconArray(i);
+    }
+    renderContactIconSection();
+}
+
+
+function ContactIsAlreadyInArray(index) {
+    return index > -1;
+}
+
+
+function removeFromContactsIconArray(index) {
+    contactIconArray.splice(index, 1); 
+}
+
+
+function addToContactsIconArray(i) {
+    contactIconArray.push(i);
+}
+
+
+function renderContactIconSection() {
+    let container = document.getElementById('contacts-icon-section');
+    container.innerHTML = '';
+    for (let i = 0; i < contactIconArray.length; i++) {
+        let contactIndex = contactIconArray[i] //in the contactIonArray are the indexes of the selected contacts
+        container.innerHTML += templateContactIconSection(contactIndex);
+    }
+}
+
+
+function templateContactIconSection(index) {
+    return /*html*/ `
+        <div class="contact-icon" style="background-color: ${contacts[index]['color']}">${contacts[index]['abbreviation']}</div>
     `;
 }
 
