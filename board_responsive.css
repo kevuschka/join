@@ -322,8 +322,12 @@
 
     @media screen and (max-height: 700px) {
         .ticket-info-popup-container {
-            padding: 127px 30px 30px;
+            padding: 100px 30px 30px;
             font-size: 14px;
+        }
+
+        .ticket-info-popup-wrapper {
+            gap: 22px;
         }
     }
 }
