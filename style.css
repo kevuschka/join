@@ -115,7 +115,7 @@ a {
 .wrapper {
     width: 100%;
     min-height: 100%;
-    overflow-y:auto;
+    overflow-y: hidden;
     transition: all 125ms ease-in-out;
 }
 
@@ -274,6 +274,20 @@ a {
     height: 100%;
     overflow-y: auto;
 }
+
+/* ########## POP UP TASK CREATED########## */
+.pop-up-task-added {
+    width: 40%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    transform: translateY(100vh);
+    z-index: 3;
+}
+
 
 /* ########## RESPONSIVE ########## */
 @media screen and (max-width: 1010px) {

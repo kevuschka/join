@@ -6,7 +6,7 @@ function renderPopups() {
     container.innerHTML = renderHeaderMenuPopup();
     container.innerHTML += renderTemplateTicketInfoPopup();
     container.innerHTML += `
-        <div class="pop-up-task-added">
+        <div class="pop-up-task-added flex">
             <span>Task added to board</span>
             <img src="./assets/img/board-nav-icon.png">
         </div>
