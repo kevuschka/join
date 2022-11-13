@@ -357,6 +357,15 @@ body {
     display: none;
 }
 
+.midColor {
+    filter: saturate(416%) contrast(380%) brightness(384%) 
+      invert(345%) sepia(162%) hue-rotate(-1459deg);
+}
+
+.lowColor {
+      filter: saturate(500%) contrast(700%) brightness(500%) sepia(60%) hue-rotate(-602deg);
+}
+
 @media screen and (max-width: 1600px) {
     .animationContainer {
         padding: 30px 70px 30px 100px;
@@ -383,6 +392,10 @@ body {
     .user {
         font-size: 50px;
     }
+
+    .date-container {
+        margin-left: 43px;
+    }
 }
 
 
@@ -401,6 +414,10 @@ body {
 
     .greet-container {
         display: none;
+    }
+
+    .date-container {
+        margin-left: 155px;
     }
 
 .content-container {
@@ -455,7 +472,7 @@ body {
    position: absolute;
    top: 50%;
     left: 25%;
-   z-index: 2;
+   z-index: 0;
    }
 
         @keyframes introGreet {
@@ -534,7 +551,11 @@ body {
 
     @media(max-width: 850px) {
         .greet-container2 {
-            left: 4%;
+            left: 15%;
+        }
+
+        .date-container {
+            margin-left: 113px;
         }
 }
 
@@ -583,6 +604,20 @@ body {
     .task-info-container, .priority-pool, .doAndDone {
         height: 130px;
     }
+
+    .greet-container2 {
+       
+        left: 15% !important;
+    }
+
+.date-container {
+    margin-left: 35px;
+}
+
+.verticalLineGrey {
+    margin-left: 49px;
+}
+
 }
 
 
@@ -619,8 +654,18 @@ body {
         font-size: 24px;
     }
 
+    .greet-container2 {
+       
+        left: 15% !important;
+    }
 }
 
+@media(max-width: 590px) {
+    .greet-container2 {
+       
+        left: 5% !important;
+    }
+}
 
 
 @media(max-width: 520px) {
@@ -712,7 +757,7 @@ body {
 
 .greet-container2 {
     top: 50%;
-    left: 0%;
+    left: 15% !important;
 }
 
 .task_info_box1:hover {
@@ -776,10 +821,7 @@ body {
     filter: unset;
 }
 
-.greet-container2 {
-    left: -10%;
-    width: 98%;
-}
+
 
 .user2 {
     font-size: 49px;
@@ -788,15 +830,26 @@ body {
 .greet2 {
     font-size: 34px;
 }
-
-.greet-container2 {
-    left: -18%;
 }
+
+@media(max-width: 430px) {
+    .greet-container2 {
+        top: 50%;
+        left: 5% !important;
+    }
 }
 
 @media screen and (max-width: 400px) {
     .task-info-container, .priority-pool, .doAndDone {
         height: 90px;
+    }
+
+    .priority-container {
+        margin-left: 14px;
+    }
+
+    .date-container{
+        margin-left: 13px;
     }
 }
 
@@ -822,6 +875,10 @@ body {
 
     .task-info-text {
         font-size: 14px;
+    }
+
+    .date-container {
+        margin-left: 54px;
     }
 }
 
@@ -870,4 +927,9 @@ body {
     .priority-container {
         margin-left: 35px;
     }
+
+    .date-container {
+        margin-left: 54px;
+    }
+
 }

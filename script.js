@@ -87,7 +87,7 @@ let newContact = {
 
 
 // ########## ALLES ZUM BACKEND ##########
-setURL('http://developerakademie.com/smallest_backend_ever');
+setURL('https://gruppe-348.developerakademie.net/join/smallest_backend_ever');
 
 //LOAD
 async function init() {

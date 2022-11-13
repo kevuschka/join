@@ -10,19 +10,20 @@
     <link rel="stylesheet" href="font.css">
     <link rel="stylesheet" href="style.css">
     <!-- JS Loaded on every page -->
-    <script src="./mini_backend.js"></script>
-    <script src="script.js"></script>
+    <script src="mini_backend.js"></script>
     <script src="js/nav_template.js"></script>
     <script src="js/header_template.js"></script>
-    <script src="js/popup.js"></script>
-    <script src="js/board.js"></script>
-    <script src="js/summery.js"></script>
     <script src="js/add_task.js"></script>
+    <script src="script.js"></script>
+    <script src="js/board.js"></script>
+   
+    <script src="js/popup.js"></script>
+    <script src="js/summery.js"></script>
     
     
 
 </head>
-<body onload="renderSummary();renderNav();renderHeader();renderPopups();markNavItem(1)">
+<body onload="addTest();renderSummary();renderNav();renderHeader();renderPopups();markNavItem(1);">
     <div class="page flex relative" id="page">
         <div class="nav flex column" id="nav"></div>
         <div class="wrapper flex column relative" id="wrapper">
@@ -31,6 +32,9 @@
             <div class="content-container" id="content-container">
                 <p class="header-title-resp d-none cursor-d">Kanban Project Management Tool</p>
                 <div class="animationContainer w-100">
+
+                    
+
                     <div class="summary-pool w-100 h-100 flex column">
                         <div class="header-summary w-100">
                             <span class="header-text1">Summary</span>
@@ -48,12 +52,12 @@
                                 <div class="flex">
                                     <div class="priority-pool w-100 flex">     
                                         <div class="priority-container h-100">
-                                            <div><img id="priority-Icon" class="priority-Icon" src="assets/img/arrowBlue.png"></div>
-                                            <div class="priority-text-pool"><span id="priority-count" class="priority-count">0</span> <span class="priority-text">Urgent</span></div>
+                                            <div><img id="priority-Icon" class="priority-Icon" src="assets/img/arrowBlue.png"></div> 
+                                            <div class="priority-text-pool"><span id="priority-count" class="priority-count">0</span> <span id="priority-text" class="priority-text">Urgent</span></div>
                                         </div>
                                         <img class="verticalLineGrey" src="assets/img/verticalLineGrey.png">
                                         <div class="date-container h-100">
-                                            <span class="date">Oktober 16, 2022</span>
+                                            <span id="date" class="date">Oktober 16, 2022</span>
                                             <span class="deadline">Upcoming Deadline</span>
                                         </div>
                                     </div>
