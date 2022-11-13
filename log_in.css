@@ -403,6 +403,11 @@ font-family: 'Noto Sans', sans-serif;
             .signButton1, .signButton2 {
                 width: 170px;
                 font-size: 14px;
+                padding: 14px;
+            }
+
+            .signButton1 {
+                border: none;
             }
 
             .logText {
