@@ -80,7 +80,7 @@ body {
     }
     100% {
       left: 50px;
-      top: 45px;
+      top: 50px;
     }
 }
 
@@ -96,9 +96,9 @@ body {
         top: 40vh;
     }
     100% {
-      
-      left: 50px;
-      top: 45px;
+      width: 55px;
+      left: 35px;
+      top: 40px;
     }
 }
 
@@ -186,7 +186,7 @@ body {
 
 .logPool {
     background-color: #F6F7F8;
-    height: 82.8vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -312,14 +312,36 @@ font-family: 'Noto Sans', sans-serif;
     height: 44px;
 }
 
+@media(max-width: 800px) {
+    .joinLogo {
+        width: 55px;
+        left: 35px;
+        top: 40px;
+    }
+
+    @keyframes joinLogo{
+        0% {
+          width: 200px;
+          left: 30%;
+          top: 40vh;
+          
+        }
+        50% {
+            width: 200px;
+            left: 30%;
+            top: 40vh;
+        }
+        100% {
+            width: 55px;
+            left: 35px;
+            top: 40px;
+        }
+    }
+}
 
 @media(max-width: 740px) {
     .logPool {
         margin-top: 50px;
-    }
-
-    .joinLogo {
-        width: 12%;
     }
 
     .logContainer {
@@ -336,10 +358,6 @@ font-family: 'Noto Sans', sans-serif;
         .logPool {
             margin-top: 66px;
             justify-content: space-evenly;
-        }
-
-        .joinLogo {
-            width: 80px;
         }
     
         .logContainer {
@@ -368,23 +386,6 @@ font-family: 'Noto Sans', sans-serif;
             height: 4px;
         }
 
-        @keyframes joinLogo{
-            0% {
-              width: 200px;
-              left: 30%;
-              top: 40vh;
-              
-            }
-            50% {
-                width: 200px;
-                left: 30%;
-                top: 40vh;
-            }
-            100% {
-              left: 50px;
-              top: 45px;
-            }
-        }
             
             .checkPool {
                 flex-direction: column-reverse;
@@ -445,10 +446,6 @@ font-family: 'Noto Sans', sans-serif;
 
 
         @media(max-width: 390px) {
-            .joinLogo {
-                width: 80px;
-            }
-        
             .logContainer {
                 width: 320px;
             }
@@ -458,7 +455,6 @@ font-family: 'Noto Sans', sans-serif;
 
             @media(max-width: 350px) {
                 .joinLogo {
-                    width: 70px;
                     z-index: 3;
                 }
 
@@ -485,8 +481,9 @@ font-family: 'Noto Sans', sans-serif;
                     }
                     100% {
                         opacity: 1;
-                      left: 50px;
-                      top: 50px;
+                        width: 55px;
+                        left: 35px;
+                        top: 40px;
                     }
                 }
 
@@ -522,9 +519,9 @@ font-family: 'Noto Sans', sans-serif;
                         opacity: 1;
                     }
                     100% {
-                      
-                      left: 50px;
-                      top: 50px;
+                      width: 55px;
+                      left: 35px;
+                      top: 40px;
                       opacity: 0;
                       display:none;
                     }
