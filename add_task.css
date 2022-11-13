@@ -339,18 +339,6 @@ ul {
     display: none;
 }
 
-.pop-up-task-added {
-    width: 40%;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    display: flex !important;
-}
-
 @media (max-width: 1600px) {
     form {
         padding: 30px 100px;
