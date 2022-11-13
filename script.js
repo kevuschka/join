@@ -145,7 +145,7 @@ function unmarkAllNAvItems() {
 }
 
 function renderResponsiveHeaderTitle() {
-    document.getElementById('content-container').innerHTML += `<p class="header-title-resp d-none cursor-d">Kanban Project Management Tool</p>`;
+    document.getElementById('content-container').innerHTML = `<p class="header-title-resp d-none cursor-d">Kanban Project Management Tool</p>`;
 }
 
 function allowDrop(ev) {
