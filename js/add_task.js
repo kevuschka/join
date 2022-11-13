@@ -6,7 +6,6 @@ async function renderAddTask() {
     renderCategoryColorSelection();
     renderContactsDropdown();
     renderPrioritySelection();
-    whenItsAddtask();
 }
 
 

@@ -3,7 +3,6 @@ async function initAddTask() {
     await includeHTML();
     clearTask();
     renderAddTask();  //in add_task.js
-    whenItsAddtask();
 }
 
 

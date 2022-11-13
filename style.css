@@ -194,6 +194,10 @@ a {
     width: 106px;
 }
 
+.header-right-corner-addTask {
+    display: none;
+}
+
 .help-img {
     width: 20px;
     height: 20px;
