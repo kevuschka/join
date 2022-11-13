@@ -78,46 +78,10 @@ function addTest() {
 }
 
 function test() {
-    renderResponsiveHeaderTitle();
-    templateBoard();
+    // renderResponsiveHeaderTitle();
+    // templateBoard();
     renderBoardContent();
     document.getElementById('content-container').innerHTML += renderBoardSearchbarPopup();
-}
-
-
-function templateBoard() {
-    let content = document.getElementById('content-container');
-    content.innerHTML += renderBoardSearchbarPopup();
-    content.innerHTML += `
-        <div class="board-wrapper">
-            <div class="board-container flex column">
-                <div class="board-header flex">
-                    <div class="board-header-left flex">
-                        <p class="bold">Board</p>
-                        <img class="board-header-addTask-button-resp cursor-p d-none" src="assets/img/board-add-task-icon.png">
-                    </div>
-                    <div class="board-header-right flex">
-                        <div class="board-header-search-wrapper relative flex">
-                            <div class="board-header-search-container flex" id="board-header-search-container" onclick="showInput()">
-                                <div class="board-header-search-input-container flex">
-                                    <div class="board-header-search-input w-100"></div>
-                                </div>
-                                <img class="board-search-icon cursor-p" src="assets/img/search-icon.png">
-                            </div>
-                            <div class="board-header-search-input-and-results-popup w-100 h-100 flex column d-none" id="board-header-search-input-and-results-popup">
-                                <input class="board-header-search-input-popup h-100 w-100" id="board-header-search-input-popup" type="text" placeholder="Find Task" onkeyup="taskFilter()" focus autofocus onclick="doNotClose(event)">
-                                <div class="board-header-search-results-popup absolute flex column d-none" id="board-header-search-results-popup"></div>
-                            </div>
-                        </div>
-                        <div class="board-header-addTask-button flex cursor-p">
-                            <p class="bold">Add task</p>
-                            <img class="board-white-plus-image" src="assets/img/board-add-task-icon.png">
-                        </div>
-                    </div>
-                </div>
-                <div class="board-content flex" id="board-content"></div>
-            </div>
-        </div>`;
 }
 
 
@@ -165,7 +129,7 @@ function renderBoardColumnContent(n) {
  * @returns the ticket template
  */
 function renderTemplateTicket(n,j) {
-    return `<div class="ticket-container flex column cursor-p" id="ticket-container-${n}-${j}" draggable="true" ondragstart="startDragging(${n}, ${j})" onmousedown="highlightTicket(${n},${j})" onmouseup="removeHighlightTicket(${n},${j})"></div>`;
+    return `<div class="ticket-container flex column cursor-p" id="ticket-container-${n}-${j}" draggable="true" ondragstart="startDragging(${n}, ${j})" onmousedown="highlightTicket(${n},${j})" onmouseup="removeHighlightTicket(${n},${j})" onclick="renderTicketInfoPopupContainer(${n}, ${j})"></div>`;
 }
 
 
@@ -363,7 +327,6 @@ function filterTicketTitles(inputComparison, resultsContainer, n) {
 
 
 function isTeamMemberHere(i,j, inputComparison) {
-    let isHere = false;
     let member;
     for (let m = 0; m < boardColumns[i][j]['team'].length; m++) {
         member = (boardColumns[i][j]['team'][m]['name'].toLowerCase());
@@ -450,7 +413,6 @@ function highlightTicket(column, ticket) {
 function removeHighlightTicket(column, ticket) {
     document.getElementById(`ticket-container-${column}-${ticket}`).classList.remove('ticket-highlight');
 }
-
 
 
 

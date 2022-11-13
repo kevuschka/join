@@ -4,7 +4,7 @@
 function renderPopups() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
-    // container.innerHTML += renderBoardSearchbarPopup();
+    container.innerHTML += renderTemplateTicketInfoPopup();
 }
 
 /**Logout-Popup (Header profile onclick) */
@@ -77,10 +77,92 @@ function closeBoardSearchbarPopup() {
 }
 
 
+//////////////////// BOARD: TICKET ONCLICK POPUP /////////////////////
+function renderTemplateTicketInfoPopup() {
+    return `<div class="board-ticket-info-popup-full flex fixed w-100 d-none" id="board-ticket-info-popup-full" onclick="closeTicketInfoPopup()"></div>`;
+}
+
+function renderTicketInfoPopupContainer(column, ticket) {
+    let content;
+    content = document.getElementById('board-ticket-info-popup-full');
+    content.innerHTML = renderTemplateTicketInfoPopupContainer(column, ticket);
+    renderTicketInfoPopupTeammembers(column, ticket);
+    colorTicketElements(column, ticket);
+    content.classList.remove('d-none');
+}
+
+
+function renderTemplateTicketInfoPopupContainer(column, ticket) {
+    return `
+    <div class="ticket-info-popup-container flex column relative" onclick="doNotClose(event)">
+            <div class="ticket-info-popup-wrapper w-100 flex column">
+                <div class="ticket-info-popup-category-container flex w-100">
+                    <div class="ticket-info-popup-category flex">
+                        <p class="h-100 cursor-d" id="ticket-info-popup-category-${column}-${ticket}">${boardColumns[column][ticket]['category']['name']}</p> 
+                    </div>
+                    <img class="ticket-info-popup-cross cursor-p" src="assets/img/popup-cross.png" onclick="closeTicketInfoPopup()">
+                    <img class="ticket-info-popup-backArrow cursor-p" src="assets/img/back-arraw.png" onclick="closeTicketInfoPopup()">
+                </div>
+                <div class="ticket-info-popup-title flex">
+                    <p class="cursor-d">${boardColumns[column][ticket]['title']}</p>
+                </div>
+                <div class="ticket-info-popup-description flex">
+                    <p class="cursor-d">${boardColumns[column][ticket]['description']}</p>
+                </div>
+                <div class="ticket-info-popup-date-and-prio-and-assignedTo">
+                    <div class="ticket-info-popup-date flex">
+                        <p class="cursor-d">Due date:</p>
+                        <p class="cursor-d"></p>
+                    </div>
+                    <div class="ticket-info-popup-prio flex">
+                        <p class="cursor-d">Priority:</p>
+                        <div class="ticket-info-popup-prio-wrapper flex" id="ticket-info-popup-prio-${column}-${ticket}">
+                            <p class="cursor-d">${boardColumns[column][ticket]['prior']['name']}</p>
+                            <img class="ticket-info-popup-prio-image" id="ticket-info-popup-prio-image-${column}-${ticket}" src="${boardColumns[column][ticket]['prior']['image']}">
+                        </div>
+                    </div>
+                    <div class="ticket-info-popup-assignedTo flex column" id="ticket-info-popup-assignedTo-${column}-${ticket}">
+                        <p class="cursor-d">Assigned To:</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ticket-info-popup-edit-container w-100 flex">
+                <div class="ticket-info-popup-edit flex cursor-p"><img src="assets/img/pencil-white.png"></div>
+            </div>
+        </div>`;
+}
 
 
 
 
 
+function renderTicketInfoPopupTeammembers(column, ticket) {
+    let content = document.getElementById(`ticket-info-popup-assignedTo-${column}-${ticket}`);
+    for (let i = 0; i < boardColumns[column][ticket]['team'].length; i++) {
+        content.innerHTML += `
+        <div class="ticket-info-popup-member flex">
+            <div class="ticket-contact ticket-info-popup-member-circle" id="ticket-info-popup-member-cicle-${column}-${ticket}-${i}">${getNameLetters(column,ticket,i)}</div>
+            <p class="cursor-d">${boardColumns[column][ticket]['team'][i]['name']}</p>
+        </div>`
+    }
+}
+
+
+function colorTicketElements(column, ticket) {
+    document.getElementById(`ticket-info-popup-category-${column}-${ticket}`).style.backgroundColor = `${boardColumns[column][ticket]['category']['color']}`;
+    document.getElementById(`ticket-info-popup-prio-${column}-${ticket}`).style.backgroundColor = `${boardColumns[column][ticket]['prior']['color']}`;
+    for (let i = 0; i < boardColumns[column][ticket]['team'].length; i++) coloringTicketInfoPopupMembers(column, ticket, i);
+    document.getElementById(`ticket-info-popup-prio-image-${column}-${ticket}`).style.filter = `brightness(0) invert(1)`;
+}
+
+
+function coloringTicketInfoPopupMembers(column, ticket, teamMember) {
+    document.getElementById(`ticket-info-popup-member-cicle-${column}-${ticket}-${teamMember}`).style.backgroundColor = `${boardColumns[column][ticket]['team'][teamMember]['color']}`;
+}
+
+
+function closeTicketInfoPopup() {
+    document.getElementById('board-ticket-info-popup-full').classList.add('d-none');
+}
 
 

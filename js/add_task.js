@@ -1,5 +1,5 @@
 let categoryObject;
-let dropdownContacts = ['Hans', 'Jürgen'];
+let contactIconArray = []; //safes the indexes of the seleceted Contacts
 
 async function renderAddTask() {
     renderCategoryDropdown();
@@ -103,7 +103,7 @@ function removeClassFromSelectedColor() {
 
 
 function changeVisibilityCategory() {
-    clearCategoryInput();
+    clearInput('new-category-input');
     changeVisibility('category-dropdown-field');
     changeVisibility('new-category-input-ctn');
     changeVisibility('category-color-selection-ctn');
@@ -149,14 +149,6 @@ function createNewCategoryObject() {
 }
 
 
-function clearCategoryInput() {
-    let input = document.getElementById('new-category-input');
-    if (input.value != '') {
-        clearInput(input);
-    }
-}
-
-
 function selectCategory(i) {
     changeCategoryDropdownText(i)
     addCategoryToTask(i)
@@ -186,16 +178,17 @@ function renderContactsDropdown() {
     let id = 'contacts-dropdown';
     let dropdown = document.getElementById(id);
     dropdown.innerHTML = templateContactsYou();
-    for (let i = 0; i < contacts.length; i++) {
+    //show first 3 Contacts
+    for (let i = 0; i < 3; i++) {
         dropdown.innerHTML += templateDropdownContacts(i);
     }
-    //dropdown.innerHTML += templateDropwdownInviteNewContact();  
+    dropdown.innerHTML += templateDropwdownInviteNewContact();  
 }
 
 
 function templateContactsYou() {
     return /*html*/ `
-        <label for="checkbox-you" class="dropdown-content-child">    
+        <label for="checkbox-you" class="dropdown-content-child space-between">    
                 <span>You</span>
                 <input value="you" name="checkbox" id="checkbox-you" type="checkbox">
         </label>
@@ -205,16 +198,72 @@ function templateContactsYou() {
 
 function templateDropdownContacts(i) {
     return /*html*/ `
-        <label for="checkbox + ${i}" class="dropdown-content-child">    
+        <label for="checkbox${i}" class="dropdown-content-child space-between">    
                 <span>${contacts[i]['name']}</span>
-                <input value="${i}" name="checkbox" id="checkbox + ${i}" type="checkbox">
+                <input value="${i}" name="checkbox" id="checkbox${i}" type="checkbox" onclick="changeDisplayInContactIconSection(${i})">
         </label>
     `;
 }
 
 
+function changeDisplayInContactIconSection(i) {
+    let index = contactIconArray.indexOf(i);
+    if (ContactIsAlreadyInArray(index)) {
+        removeFromContactsIconArray(index);
+    } else {
+        addToContactsIconArray(i);
+    }
+    renderContactIconSection();
+}
+
+
+function ContactIsAlreadyInArray(index) {
+    return index > -1;
+}
+
+
+function removeFromContactsIconArray(index) {
+    contactIconArray.splice(index, 1); 
+}
+
+
+function addToContactsIconArray(i) {
+    contactIconArray.push(i);
+}
+
+
+function renderContactIconSection() {
+    let container = document.getElementById('contacts-icon-section');
+    container.innerHTML = '';
+    for (let i = 0; i < contactIconArray.length; i++) {
+        let contactIndex = contactIconArray[i] //in the contactIonArray are the indexes of the selected contacts
+        container.innerHTML += templateContactIconSection(contactIndex);
+    }
+}
+
+
+function templateContactIconSection(index) {
+    return /*html*/ `
+        <div class="contact-icon" style="background-color: ${contacts[index]['color']}">${contacts[index]['abbreviation']}</div>
+    `;
+}
+
+
 function templateDropwdownInviteNewContact() {
-    //TODO
+    return /*html*/ `
+        <div onclick="changeVisibilityContactSection(), focusOnInput('input-invite-contact')" class="dropdown-content-child space-between">
+            <span>Invite new Contact</span>
+            <img src="./assets/img/add-task-invite-icon.svg">
+        </div>
+    `;
+}
+
+
+function changeVisibilityContactSection() {
+    clearInput('input-invite-contact')
+    changeVisibility('invite-contact-ctn');
+    changeVisibility('contacts-dropdown-ctn');
+    changeVisibility('contacts-dropdown');
 }
 
 
@@ -299,14 +348,12 @@ function addPrioBtnToTask(i) {
 function changeVisibilitySubtask() {
     changeVisibility('subtask-placeholder-input-ctn');
     changeVisibility('subtask-input-ctn');
-    focusOnInput('subtask-input');
 }
 
 
 function clearSubtaskInput() {
     changeVisibilitySubtask();
-    let input = document.getElementById('subtask-input');
-    clearInput(input);
+    clearInput('subtask-input');
 }
 
 
@@ -317,7 +364,7 @@ function addSubtask() {
         changeVisibilitySubtask();
         addTaskToSubtaskList(subtask);
         addSubtaskToTask(subtask);
-        clearInput(input)
+        clearInput('subtask-input')
     }
 }
 
@@ -404,5 +451,8 @@ function focusOnInput(id) {
 
 
 function clearInput(id) {
-    id.value = '';
+    let elem = document.getElementById(id);
+    if (elem.value != '') {
+        elem.value = '';
+    }
 }

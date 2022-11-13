@@ -43,37 +43,43 @@
         <div class="logContainer">
 
             
-                <form onsubmit="login(); return false;" class="logPool1">
+                <form onsubmit="login(); return false;" class="logPool1 flex column w-100">
+                <div class="logo-and-underline flex column w-100">
                     <span class="logText">Log in</span>
                     <img class="underline" src="assets/img/underline.png">
-
-                    <div class="input-relative">
-                        <input id="email" class="input" type="text" placeholder="Email" required>
-                        <img class="case" src="assets/img/add-contact-email-icon.png">
+                </div>
+                <div class="input-and-check-and-btns flex column w-100">
+                    <div class="inputs">
+                        <div class="input-relative">
+                            <input id="email" class="input" type="text" placeholder="Email" required>
+                            <img class="case" src="assets/img/add-contact-email-icon.png">
+                        </div>
+                    
+                        <div class="input-relative">
+                            <input id="password" class="input" type="password" placeholder="Password" required>
+                            <img class="lock" src="assets/img/login-password-icon.png">
+                        </div>
                     </div>
-
-                    <div class="input-relative">
-                        <input id="password" class="input" type="password" placeholder="Password" required>
-                        <img class="lock" src="assets/img/login-password-icon.png">
+                    <div class="check-and-btns flex column">
+                        <div class="checkPool">
+                        
+                            <div class="checkContainer">
+                                <input class="inputCheck" type="checkbox" placeholder="Password" required>
+                                <span class="checkText">Remember me</span>
+                            </div>
+                        
+                            <a class="forgotText" href="forgot_password.html">Forgot my password</a>
+                        
+                        </div>
+                    
+                        <div class="buttonContainer">
+                            <a href=""><button class="signButton1">Log in</button></a>
+                            <a href=""><button class="signButton2"><span>Guest Log in</span></button></a>
+                        </div>
                     </div>
-
-                <div class="checkPool">
-
-                    <div class="checkContainer">
-                    <input class="inputCheck" type="checkbox" placeholder="Password">
-                    <span class="checkText">Remember me</span>
-                    </div>
-
-                    <a class="forgotText" href="forgot_password.html">Forgot my password</a>
-                
                 </div>
 
-                <div class="buttonContainer">
-                    <a href=""><button class="signButton1">Log in</button></a>
-                    <a href=""><button class="signButton2"><span>Guest Log in</span></button></a>
-                </div>
-                </form>
-          
+            </div>
 
            
 
