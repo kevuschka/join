@@ -98,7 +98,7 @@ body {
     100% {
       width: 55px;
       left: 35px;
-      top: 40px;
+      top: 35px;
     }
 }
 
@@ -316,7 +316,7 @@ font-family: 'Noto Sans', sans-serif;
     .joinLogo {
         width: 55px;
         left: 35px;
-        top: 40px;
+        top: 35px;
     }
 
     @keyframes joinLogo{
@@ -334,7 +334,7 @@ font-family: 'Noto Sans', sans-serif;
         100% {
             width: 55px;
             left: 35px;
-            top: 40px;
+            top: 35px;
         }
     }
 }
@@ -358,6 +358,7 @@ font-family: 'Noto Sans', sans-serif;
         .logPool {
             margin-top: 66px;
             justify-content: space-evenly;
+            height: 89vh;
         }
     
         .logContainer {
@@ -483,7 +484,7 @@ font-family: 'Noto Sans', sans-serif;
                         opacity: 1;
                         width: 55px;
                         left: 35px;
-                        top: 40px;
+                        top: 35px;
                     }
                 }
 
@@ -521,7 +522,7 @@ font-family: 'Noto Sans', sans-serif;
                     100% {
                       width: 55px;
                       left: 35px;
-                      top: 40px;
+                      top: 35px;
                       opacity: 0;
                       display:none;
                     }
