@@ -68,6 +68,16 @@ if(msg) {
 }
 
 
+function newPassword() {
+let newPassword = document.getElementById('newPassword').value;
+let confirmPassword = document.getElementById('confirmPassword').value;
+
+    if(newPassword == confirmPassword) {
+        let changedPassword  = confirmPassword;
+        console.log('The new password is,', changedPassword);
+    }
+    
+}
 
 
     /*new Date().toLocaleString("de-DE");*/
