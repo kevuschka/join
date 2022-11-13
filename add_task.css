@@ -339,13 +339,15 @@ ul {
     display: none;
 }
 
-.task-added-pop-up-ctn {
-    background-color: transparent;
+.pop-up-task-added {
+    width: 40%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
     left: 0;
     right: 0;
-    top: 0;
-    bottom: 0;
-    height: 100vh;
 }
 
 @media (max-width: 1600px) {

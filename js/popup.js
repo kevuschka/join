@@ -5,6 +5,12 @@ function renderPopups() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
     container.innerHTML += renderTemplateTicketInfoPopup();
+    container.innerHTML += `
+        <div class="pop-up-task-added">
+            <span>Task added to board</span>
+            <img src="./assets/img/board-nav-icon.png">
+        </div>
+    `;
 }
 
 /**Logout-Popup (Header profile onclick) */
