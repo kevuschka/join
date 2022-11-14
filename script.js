@@ -151,3 +151,5 @@ function renderResponsiveHeaderTitle() {
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
+
