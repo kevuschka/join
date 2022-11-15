@@ -301,6 +301,7 @@ a {
 .slide-up-anmitation {
     animation-name: slideUP;
     animation-duration: 225ms;
+    animation-fill-mode: forwards;
 }
 
 @keyframes slideUP {

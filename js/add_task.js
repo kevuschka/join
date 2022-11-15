@@ -407,11 +407,6 @@ function clearImageToDarkBlue() {
 }
 
 
-function clearAddTask() {
-    clearVariableTask()
-}
-
-
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
 function createTask() {
@@ -430,6 +425,22 @@ function addInputValuesToTask(identifier) {
 
 function pushTaskToTodo() {
     todo.push(task);
+}
+
+
+function switchToBoard() {
+    if (URLequalsBoardHtml()) {
+        setTimeout(function (){
+            window.location.href = '/board.html';     
+          }, 1000);
+    }
+}
+
+
+function URLequalsBoardHtml() {
+    if ('/add_task.html' == window.location.pathname) {
+        return true
+    }
 }
 
 
@@ -455,4 +466,9 @@ function clearInput(id) {
     if (elem.value != '') {
         elem.value = '';
     }
+}
+
+
+function waitOneSecond() {
+    
 }
