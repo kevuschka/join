@@ -33,7 +33,7 @@ async function addUser() {
     let allUsersAsString = JSON.stringify(users);
     await backend.setItem('users', allUsersAsString);
     //Weiterleitung zu Login-Seite + Nachricht anzeigen: "Erfolgreiche Registrierung!".
-    /*window.location.href = 'index.html?msg=Du hast dich erfolgreich registriert';*/
+    window.location.href = 'index.html?msg=Du hast dich erfolgreich registriert';
     
 
 }
@@ -76,8 +76,14 @@ let confirmPassword = document.getElementById('confirmPassword').value;
         let changedPassword  = confirmPassword;
         console.log('The new password is,', changedPassword);
     }
-    
+    window.location.href = 'login.html?msg=Password erfolgreich eingerichtet';
 }
 
 
     /*new Date().toLocaleString("de-DE");*/
+
+    function preventRefresh() {
+        var form = document.getElementById("myform");
+        function handleForm(event) { event.preventDefault(); } 
+        form.addEventListener('submit', handleForm);
+    }
