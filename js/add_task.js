@@ -432,7 +432,7 @@ function switchToBoard() {
     if (URLequalsBoardHtml()) {
         setTimeout(function (){
             window.location.href = '/board.html';     
-          }, 1000);
+          }, 500);
     }
 }
 

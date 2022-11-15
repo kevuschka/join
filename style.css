@@ -299,7 +299,7 @@ a {
     font-weight: bold;
 }
 
-.slide-up-anmitation {
+.create-task-animation {
     animation-name: slideUP;
     animation-duration: 225ms;
     animation-fill-mode: forwards;
@@ -307,8 +307,13 @@ a {
 
 @keyframes slideUP {
     from {transform: translateY(100vh)}
-    to {transform: translateY(80vh)}
+    to {transform: translateY(85vh)}
   }
+
+@keyframes display {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
 
 
 
@@ -501,8 +506,19 @@ a {
     .header-create-btn > img {
         width: 20px;
     }
-}
 
+    /* CREATE TASK POP-UP*/
+    .pop-up-created-task {
+        transform: translateY(70vh);
+        opacity: 0;
+    }
+
+    .create-task-animation {
+        animation-name: display;
+        animation-timing-function: ease-in-out;
+        animation-duration: 125ms;
+    }
+}
 @media screen and (max-width: 400px) {
     .nav {
         padding: 0 10px 0 10px;

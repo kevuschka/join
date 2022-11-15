@@ -180,5 +180,5 @@ function templateCreatedTaskPopUp() {
 
 
 function startSlideUPAnimation() {
-    document.getElementById('pop-up-created-task').classList.add('slide-up-anmitation');
+    document.getElementById('pop-up-created-task').classList.add('create-task-animation');
 }
