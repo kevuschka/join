@@ -137,14 +137,14 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
 function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
     content.innerHTML = '';//SIMOOOOOON
-    content.innerHTML += renderTicketInfoEditBtn();
+    content.innerHTML += renderTicketInfoEditBtn(column, ticket);
 }
 
 
-function renderTicketInfoEditBtn() {
+function renderTicketInfoEditBtn(column, ticket) {
     return `
         <div class="ticket-info-popup-editting-ok-btn-container w-100 flex">
-            <div class="ticket-info-popup-editting-ok-btn cursor-p flex"
+            <div class="ticket-info-popup-editting-ok-btn cursor-p flex" onclick="renderTicketInfoPopupContainer(${column}, ${ticket})">
                 <p>Ok</p>
                 <img src="assets/img/check-small.png">
             </div>
