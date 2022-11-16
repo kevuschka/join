@@ -5,6 +5,7 @@ function renderPopups() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
     container.innerHTML += renderTemplateTicketInfoPopup();
+    container.innerHTML += templateCreatedTaskPopUp();
 }
 
 /**Logout-Popup (Header profile onclick) */
@@ -166,3 +167,18 @@ function closeTicketInfoPopup() {
 }
 
 
+//////////////////// CREATED TASK ANIMATION ///////////////////////////////
+
+function templateCreatedTaskPopUp() {
+    return /*html*/ `
+        <div class="pop-up-created-task absolute-centered flex" id="pop-up-created-task">
+            <span>Task added to board</span>
+            <img src="./assets/img/board-nav-icon.png">
+        </div>
+    `;
+}
+
+
+function startSlideUPAnimation() {
+    document.getElementById('pop-up-created-task').classList.add('create-task-animation');
+}
