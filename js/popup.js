@@ -144,7 +144,7 @@ function renderTicketInfoEditting(column, ticket) {
 function renderTicketInfoEditBtn() {
     return `
         <div class="ticket-info-popup-editting-ok-btn-container w-100 flex">
-            <div class="ticket-info-popup-editting-ok-btn flex"
+            <div class="ticket-info-popup-editting-ok-btn cursor-p flex"
                 <p>Ok</p>
                 <img src="assets/img/check-small.png">
             </div>
