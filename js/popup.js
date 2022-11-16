@@ -95,7 +95,7 @@ function renderTicketInfoPopupContainer(column, ticket) {
 
 function renderTemplateTicketInfoPopupContainer(column, ticket) {
     return `
-    <div class="ticket-info-popup-container flex column relative" onclick="doNotClose(event)">
+    <div class="ticket-info-popup-container flex column relative" onclick="doNotClose(event)" id="ticket-info-popup-container-${column}-${ticket}">
             <div class="ticket-info-popup-wrapper w-100 flex column">
                 <div class="ticket-info-popup-category-container flex w-100">
                     <div class="ticket-info-popup-category flex">
@@ -128,7 +128,25 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
                 </div>
             </div>
             <div class="ticket-info-popup-edit-container w-100 flex">
-                <div class="ticket-info-popup-edit flex cursor-p"><img src="assets/img/pencil-white.png"></div>
+                <div class="ticket-info-popup-edit flex cursor-p" onclick="renderTicketInfoEditting(${column}, ${ticket})"><img src="assets/img/pencil-white.png"></div>
+            </div>
+        </div>`;
+}
+
+
+function renderTicketInfoEditting(column, ticket) {
+    let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
+    content.innerHTML = '';//SIMOOOOOON
+    content.innerHTML += renderTicketInfoEditBtn();
+}
+
+
+function renderTicketInfoEditBtn() {
+    return `
+        <div class="ticket-info-popup-editting-ok-btn-container w-100 flex">
+            <div class="ticket-info-popup-editting-ok-btn flex"
+                <p>Ok</p>
+                <img src="assets/img/check-small.png">
             </div>
         </div>`;
 }

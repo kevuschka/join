@@ -265,6 +265,7 @@ function renderOnholdTicketTargetResponsive(i) {
 function startDragging(column, ticket) {
     currentElement = boardColumns[column][ticket];
     for (let i = 0; i < boardColumns.length; i++) highlightAllAreas(i,column,ticket);
+    for (let i = 0; i < boardColumns.length; i++) removeAllHighlightAreas(i);
     currentElementTicket = ticket;
 }
 
@@ -375,7 +376,6 @@ function highlightAllAreas(i,column,ticket) {
         let getHeight = myDiv.offsetHeight;
         document.getElementById(`onhold-container-column-${i}-last`).style.height = `${getHeight}px`;
     }
-    removeAllHighlightAreas(i);
 }
 
 
