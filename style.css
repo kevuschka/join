@@ -324,6 +324,7 @@ a {
     bottom: 0;
     justify-content: center;
     align-items: center;
+    padding: 40px;
     background-color: rgba(0,0,0,0.3);
     z-index: 3;
     overflow: hidden;
