@@ -26,6 +26,12 @@
     .board-content {
         padding-top: 30px;
     }
+
+    @media screen and (max-height: 700px) {
+        .ticket-info-popup-container {
+            padding: 30px;
+        }
+    }
 }
 
 @media screen and (max-width: 1200px) {

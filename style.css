@@ -276,7 +276,7 @@ a {
     overflow-y: auto;
 }
 
-/* ########## POP UP TASK CREATED########## */
+/* ########## POPUP TASK CREATED ########## */
 .absolute-centered {
     width: fit-content;
     position: absolute;
@@ -315,6 +315,59 @@ a {
     to {opacity: 1;}
 }
 
+
+/* ########## POPUP BOARD-ADDTASK ########## */
+.board-addtask-popup-full {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 3;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.opa-1 {
+    opacity: 1;
+}
+
+.showBackgroundAnimation {
+    animation: showBackground 110ms ease-in;
+}
+
+.hideBackgroundAnimation {
+    animation: hideBackground 125ms ease-in;
+}
+
+@keyframes showBackground {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes hideBackground {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+.board-addtask-popup {
+    width: 80%;
+    height: 90%;
+    background-color: white;
+    border-radius: 10px;
+    transform: translateX(100vw);
+    transition: transform 225ms ease-in-out;
+}
+
+.board-addtask-popup-slideIn {
+    transform: translateX(0);
+}
+
+.board-addtask-popup-slideOut {
+    transform: translateX(100vw);
+}
 
 
 /* ########## RESPONSIVE ########## */

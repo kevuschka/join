@@ -6,6 +6,7 @@ function renderPopups() {
     container.innerHTML = renderHeaderMenuPopup();
     container.innerHTML += renderTemplateTicketInfoPopup();
     container.innerHTML += templateCreatedTaskPopUp();
+    container.innerHTML += renderBoardAddtaskPopup();
 }
 
 /**Logout-Popup (Header profile onclick) */
@@ -27,13 +28,13 @@ function renderHeaderMenuPopup() {
  */
 function openHeaderMenuPopup() {
     removeClasslist('header-menu-container-full',`d-none`);
-    slideIn();
+    headerMenuPopupSlideIn();
 }
 
 /**
  * That function is for letting the header menu-popup slide in, removing the class d-none before.
  */
-function slideIn() {
+function headerMenuPopupSlideIn() {
     setTimeout(() => {
         addClasslist('header-menu-container-full',`header-menu-popup-slideIn`);
     }, 1);
@@ -45,13 +46,13 @@ function slideIn() {
 function closeHeaderMenuPopup() {
     removeClasslist('header-menu-container-full',`header-menu-popup-slideIn`);
     addClasslist('header-menu-container-full',`header-menu-popup-slideOut`);
-    slideOut();
+    headerMenuPopupSlideOut();
 }
 
 /**
  * That function is for letting the slideout-effect happen without applying d-none first.
  */
-function slideOut() {
+function headerMenuPopupSlideOut() {
     setTimeout(() => {
         addClasslist('header-menu-container-full',`d-none`);
         removeClasslist('header-menu-container-full', `header-menu-popup-slideOut`); 
@@ -200,3 +201,49 @@ function templateCreatedTaskPopUp() {
 function startSlideUPAnimation() {
     document.getElementById('pop-up-created-task').classList.add('create-task-animation');
 }
+
+
+//////////////////// BOARD: ADD-TASK POPUP ///////////////////////////////
+
+function renderBoardAddtaskPopup() {
+    return `
+    <div class="board-addtask-popup-full flex absolute d-none" id="board-addtask-popup-full" onclick="closeBoardAddtaskPopup()">
+        <div class="board-addtask-popup flex relative flex" id="board-addtask-popup" onclick="doNotClose(event)"></div>
+    </div>`;
+}
+
+
+function openBoardAddtaskPopup() {
+    removeClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
+    removeClasslist(`board-addtask-popup-full`,`d-none`);
+    addClasslist(`board-addtask-popup-full`,`showBackgroundAnimation`);
+    addClasslist(`board-addtask-popup-full`,`opa-1`);
+    boardAddtaskPopupSlideIn();
+}
+
+
+function boardAddtaskPopupSlideIn() {
+    setTimeout(() => {
+        addClasslist(`board-addtask-popup`, `board-addtask-popup-slideIn`);
+    }, 1);
+}
+
+
+function closeBoardAddtaskPopup() {
+    removeClasslist(`board-addtask-popup`,'board-addtask-popup-slideIn');
+    removeClasslist(`board-addtask-popup-full`,'showBackgroundAnimation');
+    boardAddtaskPopupSlideOut();
+}
+
+
+function boardAddtaskPopupSlideOut() {
+    setTimeout(() => {
+        addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
+        removeClasslist(`board-addtask-popup-full`,`opa-1`);
+    }, 102);
+    setTimeout(() => {
+        addClasslist(`board-addtask-popup-full`, `d-none`);
+    }, 230);
+}
+
+
