@@ -596,6 +596,10 @@
     to {opacity: 0;}
 }
 
+.board-addtask-popup-header-resp {
+    display: none;
+}
+
 .board-addtask-popup {
     width: 80%;
     height: 90%;
@@ -612,6 +616,10 @@
 
 .board-addtask-popup-slideOut {
     transform: translateX(100vw);
+}
+
+.board-addtask-popup-content {
+    padding: 40px;
 }
 
 .board-addtask-popup-cross {

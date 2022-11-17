@@ -209,19 +209,22 @@ function startSlideUPAnimation() {
 function renderTemplateBoardAddtaskPopup() {
     return `
     <div class="board-addtask-popup-full flex absolute d-none" id="board-addtask-popup-full" onclick="closeBoardAddtaskPopup()">
-        <div class="board-addtask-popup flex relative flex" id="board-addtask-popup" onclick="doNotClose(event)"></div>
+        <div class="board-addtask-popup flex relative" id="board-addtask-popup" onclick="doNotClose(event)">
+            <div class="board-addtask-popup-header-resp w-100" id="board-addtask-popup-header-resp">
+                <img class="board-addtask-popup-header-resp-image" src="assets/img/logo-big2.png">
+                <button form="myform" value="update" class="board-addtask-popup-header-resp-create-btn cursor-p flex">
+                    Create
+                    <img src="./assets/img/check-small.png">
+                </button>
+            </div>
+            <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
+            <div class="board-addtask-popup-content flex" id="board-addtask-popup-content"></div>
+        </div>
     </div>`;
 }
 
 function renderBoardAddtaskPopup() {
-    //document.getElementById(`board-addtask-popup`).innerHTML = //SIMON SIMOOOOOOOOOOOOOOOOOOON
-    renderBoardAddtaskCross();
-}
-
-
-function renderBoardAddtaskCross() {
-    document.getElementById(`board-addtask-popup`).innerHTML += `
-        <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">`;
+    //document.getElementById(`board-addtask-popup-content`).innerHTML = //SIMON SIMOOOOOOOOOOOOOOOOOOON
 }
 
 
