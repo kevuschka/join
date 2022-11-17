@@ -6,7 +6,8 @@ function renderPopups() {
     container.innerHTML = renderHeaderMenuPopup();
     container.innerHTML += renderTemplateTicketInfoPopup();
     container.innerHTML += templateCreatedTaskPopUp();
-    container.innerHTML += renderBoardAddtaskPopup();
+    container.innerHTML += renderTemplateBoardAddtaskPopup();
+    renderBoardAddtaskPopup();
 }
 
 /**Logout-Popup (Header profile onclick) */
@@ -137,7 +138,7 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
 
 function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
-    content.innerHTML = '';//SIMOOOOOON
+    content.innerHTML = '';//SIMON SIMOOOOOOOOOOOOOOOOOOOOON
     content.innerHTML += renderTicketInfoEditBtn(column, ticket);
 }
 
@@ -205,11 +206,22 @@ function startSlideUPAnimation() {
 
 //////////////////// BOARD: ADD-TASK POPUP ///////////////////////////////
 
-function renderBoardAddtaskPopup() {
+function renderTemplateBoardAddtaskPopup() {
     return `
     <div class="board-addtask-popup-full flex absolute d-none" id="board-addtask-popup-full" onclick="closeBoardAddtaskPopup()">
         <div class="board-addtask-popup flex relative flex" id="board-addtask-popup" onclick="doNotClose(event)"></div>
     </div>`;
+}
+
+function renderBoardAddtaskPopup() {
+    //document.getElementById(`board-addtask-popup`).innerHTML = //SIMON SIMOOOOOOOOOOOOOOOOOOON
+    renderBoardAddtaskCross();
+}
+
+
+function renderBoardAddtaskCross() {
+    document.getElementById(`board-addtask-popup`).innerHTML += `
+        <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">`;
 }
 
 
