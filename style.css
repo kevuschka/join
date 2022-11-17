@@ -315,67 +315,6 @@ a {
     to {opacity: 1;}
 }
 
-
-/* ########## POPUP BOARD-ADDTASK ########## */
-.board-addtask-popup-full {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    background-color: rgba(0,0,0,0.3);
-    z-index: 3;
-    overflow: hidden;
-    opacity: 0;
-}
-
-.opa-1 {
-    opacity: 1;
-}
-
-.showBackgroundAnimation {
-    animation: showBackground 110ms ease-in;
-}
-
-.hideBackgroundAnimation {
-    animation: hideBackground 125ms ease-in;
-}
-
-@keyframes showBackground {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes hideBackground {
-    from {opacity: 1;}
-    to {opacity: 0;}
-}
-
-.board-addtask-popup {
-    width: 80%;
-    height: 90%;
-    background-color: white;
-    border-radius: 30px;
-    transform: translateX(100vw);
-    transition: transform 225ms ease-in-out;
-}
-
-.board-addtask-popup-slideIn {
-    transform: translateX(0);
-}
-
-.board-addtask-popup-slideOut {
-    transform: translateX(100vw);
-}
-
-.board-addtask-popup-cross {
-    top: 40px;
-    right: 40px;
-}
-
-
 /* ########## RESPONSIVE ########## */
 @media screen and (max-width: 1010px) {
     .header {
@@ -577,28 +516,8 @@ a {
         animation-timing-function: ease-in-out;
         animation-duration: 125ms;
     }
-
-    /* BOARD ADDTASK BTN POPUP */
-    .board-addtask-popup-full {
-        opacity: 1;
-    }
-
-    .showBackgroundAnimation, .hideBackgroundAnimation {
-        animation: unset;
-    }
-
-    .board-addtask-popup {
-        width: 100%;
-        height: 100%;
-        transform: translateX(0vw);
-        transition: unset;
-        border-radius: 0;
-    }
-    
-    .board-addtask-popup-slideIn, .board-addtask-popup-slideOut {
-        transform: unset;
-    }
 }
+
 @media screen and (max-width: 400px) {
     .nav {
         padding: 0 10px 0 10px;
