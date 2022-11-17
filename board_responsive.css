@@ -390,7 +390,7 @@
         height: 15px;
     }
 
-    @media screen and (max-height: 700px) {
+    @media screen and (max-height: 720px) {
         .ticket-info-popup-container {
             padding: 100px 30px 30px;
             font-size: 14px;
