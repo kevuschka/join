@@ -4,6 +4,7 @@ let inProgress = [];
 let feedback = [];
 let done = [];
 let boardColumns = [todo, inProgress, feedback, done];
+let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
 let priorities = [
     {
