@@ -626,3 +626,10 @@
     top: 40px;
     right: 40px;
 }
+
+/*Slide-Up Animation for creating a task*/
+
+@keyframes slideUP {
+    from {transform: translateY(100vh)}
+    to {transform: translateY(70vh)}
+  }

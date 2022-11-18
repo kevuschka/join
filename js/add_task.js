@@ -423,7 +423,7 @@ function createTask() {
      addInputValuesToTask('description');
      addInputValuesToTask('due-date');
      pushTaskToTodo();
-     initAddTask();
+     clearAddTask();
 }
 
 
@@ -433,7 +433,7 @@ function addInputValuesToTask(identifier) {
 
 
 function pushTaskToTodo() {
-    todo.push(task);
+    boardColumns[0].push(task);
 }
 
 

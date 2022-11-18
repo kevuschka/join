@@ -288,7 +288,7 @@ a {
 
 .pop-up-created-task {
     transform: translateY(100vh);
-    z-index: 3;
+    z-index: 999;
     background-color: #2A3647;
     color: white;
     border-radius: 9px;
@@ -300,15 +300,10 @@ a {
 }
 
 .create-task-animation {
-    animation-name: slideUP;
+    animation-name: slideUP; /* Animation is in add_task_only.css and board.css*/
     animation-duration: 225ms;
     animation-fill-mode: forwards;
 }
-
-@keyframes slideUP {
-    from {transform: translateY(100vh)}
-    to {transform: translateY(85vh)}
-  }
 
 @keyframes display {
     from {opacity: 0;}
