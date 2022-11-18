@@ -178,8 +178,7 @@ function renderContactsDropdown() {
     let id = 'contacts-dropdown';
     let dropdown = document.getElementById(id);
     dropdown.innerHTML = templateContactsYou();
-    //show first 3 Contacts
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < contacts.length; i++) {
         dropdown.innerHTML += templateDropdownContacts(i);
     }
     dropdown.innerHTML += templateDropwdownInviteNewContact();  
@@ -266,6 +265,10 @@ function changeVisibilityContactSection() {
     changeVisibility('contacts-dropdown');
 }
 
+
+function inviteContact() {
+    //TODO
+}
 
 ///SHOW FIRST LETTERS PICTURE TODO
 
