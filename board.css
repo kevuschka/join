@@ -596,6 +596,10 @@
     to {opacity: 0;}
 }
 
+.add-task-form-style-board {
+    padding: 0 !important;
+}
+
 .board-addtask-popup-header-resp {
     display: none;
 }
@@ -616,10 +620,6 @@
 
 .board-addtask-popup-slideOut {
     transform: translateX(100vw);
-}
-
-.board-addtask-popup-content {
-    padding: 40px;
 }
 
 .board-addtask-popup-cross {

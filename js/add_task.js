@@ -407,6 +407,15 @@ function clearImageToDarkBlue() {
 }
 
 
+function clearAddTask() {
+    if (window.location.pathname == '/board.html') {
+        renderAddTaskInBoard();
+    } else {
+        initAddTask();
+    }
+}
+
+
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
 function createTask() {

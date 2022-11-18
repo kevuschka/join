@@ -7,6 +7,7 @@ async function initAddTask() {
 
 
 async function renderAddTaskInBoard() {
+    document.getElementById('board-addtask-popup-content').innerHTML = '';
     await includeHTML();
     clearTask();
     renderAddTask();  //in add_task.js

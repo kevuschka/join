@@ -1,0 +1,9 @@
+@media (max-width: 800px) {
+    #header-right-corner {
+        display: none;
+    }
+    
+    #header-right-corner-addTask {
+        display: unset;
+    }
+}

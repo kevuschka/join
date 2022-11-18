@@ -1,52 +1,6 @@
-/*General Part*/
-*, *:before, *:after {
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box; 
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-.flex {
-    display: flex;
-}
-
-.w-100 {
-    width: 100%;
-}
-
-.column {
-    flex-direction: column;
-}
-
-.cursor-p {
-    cursor: pointer;
-}
-
-.cursor-d {
-    cursor: default;
-}
-
-.d-none {
-    display: none;
-}
-
-.relative {
-    position: relative;
-}
-
-.absolute {
-    position: absolute;
-}
-
 .space-between {
     justify-content: space-between;
 }
-
-
-/*Simon's Part*/
 
 h1 {
     font-size: 48px;
@@ -56,10 +10,6 @@ h1 {
 
 form {
     padding: 60px 100px;
-}
-
-.add-task-form-style-board {
-    padding: 0 !important;
 }
 
 .margin-bottom-24 {
@@ -391,14 +341,6 @@ ul {
 }
 
 @media (max-width: 800px) {
-    #header-right-corner {
-        display: none;
-    }
-    
-    #header-right-corner-addTask {
-        display: unset;
-    }
-
     h1 {
         font-size: 42px;
     }
