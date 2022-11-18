@@ -3,7 +3,7 @@
  */
 function renderPopups() {
     let container = document.getElementById('popUp');
-    container.innerHTML = renderHeaderMenuPopup();
+    container.innerHTML += renderHeaderMenuPopup();
     container.innerHTML += renderTemplateTicketInfoPopup();
     container.innerHTML += templateCreatedTaskPopUp();
     container.innerHTML += renderTemplateBoardAddtaskPopup();
@@ -218,7 +218,7 @@ function renderTemplateBoardAddtaskPopup() {
                 </button>
             </div>
             <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
-            <div class="board-addtask-popup-content flex" id="board-addtask-popup-content"></div>
+            <div w3-include-html="./assets/templates/task_form.html" class="content-container" board-addtask-popup-content flex" id="board-addtask-popup-content"></div>
         </div>
     </div>`;
 }

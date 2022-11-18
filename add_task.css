@@ -58,6 +58,10 @@ form {
     padding: 60px 100px;
 }
 
+.add-task-form-style-board {
+    padding: 0 !important;
+}
+
 .margin-bottom-24 {
     margin-bottom: 24px;
 }

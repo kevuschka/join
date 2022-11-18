@@ -6,6 +6,13 @@ async function initAddTask() {
 }
 
 
+async function renderAddTaskInBoard() {
+    await includeHTML();
+    clearTask();
+    renderAddTask();  //in add_task.js
+}
+
+
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {

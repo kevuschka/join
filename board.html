@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="font.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="board_responsive.css">
+    <link rel="stylesheet" href="add_task.css">
     <!-- <link rel="stylesheet" href="add_task.css"> -->
     <!-- JS Loaded on every page -->
     <script src="mini_backend.js"></script>
@@ -17,10 +18,11 @@
     <script src="js/nav_template.js"></script>
     <script src="js/header_template.js"></script>
     <script src="js/popup.js"></script>
+    <script src="./js/init_add_task.js"></script>
     <script src="js/add_task.js"></script>
     <script src="js/board.js"></script>
 </head>
-<body onload="renderNav();renderHeader();renderPopups();markNavItem(2);addTest();test()">
+<body onload="renderNav();renderHeader();renderPopups();markNavItem(2);addTest();test();renderAddTaskInBoard()">
     <div class="top-page relative">
         <div class="page flex" id="page">
             <div class="nav flex column" id="nav"></div>
