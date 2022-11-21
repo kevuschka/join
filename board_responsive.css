@@ -379,7 +379,7 @@
     }
 
     .board-addtask-popup-cross {
-        top: 95px;
+        top: 40px;
         right: 40px;
     }
 
@@ -414,6 +414,11 @@
     /* TICKET INFO POPUP */
     .board-ticket-info-popup-full {
         bottom: 80px;
+    }
+
+    .board-addtask-popup-cross {
+        top: 30px;
+        right: 30px;
     }
 }
 

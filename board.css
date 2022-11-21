@@ -627,8 +627,8 @@
 }
 
 .board-addtask-popup-cross {
-    top: 40px;
-    right: 40px;
+    top: 0px;
+    right: 0px;
 }
 
 /*Slide-Up Animation for creating a task*/

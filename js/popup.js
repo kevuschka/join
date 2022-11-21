@@ -246,8 +246,9 @@ function renderTemplateBoardAddtaskPopup() {
                     <img src="./assets/img/check-small.png">
                 </button>
             </div>
-            <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
-            <div class="board-addtask-popup-content w-100 h-100" id="board-addtask-popup-content-container">
+            
+            <div class="board-addtask-popup-content w-100 h-100 relative" id="board-addtask-popup-content-container">
+                <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
                 <div w3-include-html="./assets/templates/task_form.html" class="content-container" id="board-addtask-popup-content"></div>    
             </div>
         </div>
@@ -300,12 +301,22 @@ function closeBoardAddtaskPopupFilled() {
 
 
 function boardAddtaskPopupSlideOut() {
-    setTimeout(() => {
-        addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
-        removeClasslist(`board-addtask-popup-full`,`opa-1`);
-    }, 102);
-    setTimeout(() => {
-        addClasslist(`board-addtask-popup-full`, `d-none`);
-    }, 230);
+    if(window.innerWidth > 800) {
+        setTimeout(() => {
+            addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
+            removeClasslist(`board-addtask-popup-full`,`opa-1`);
+        }, 102);
+        setTimeout(() => {
+            addClasslist(`board-addtask-popup-full`, `d-none`);
+        }, 230);
+    } else boardAddtaskNoSlide();
 }
 
+
+function boardAddtaskNoSlide() {
+    addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
+    removeClasslist(`board-addtask-popup-full`,`opa-1`);
+    setTimeout(() => {
+        addClasslist(`board-addtask-popup-full`, `d-none`);
+    }, 1);
+}
