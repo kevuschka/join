@@ -10,6 +10,15 @@ function renderPopups() {
 }
 
 
+function renderPopupsInBoard() {
+    let container = document.getElementById('popUp');
+    container.innerHTML = renderHeaderMenuPopup();
+    container.innerHTML += renderTemplateTicketInfoPopup();
+    container.innerHTML += renderTemplateBoardAddtaskPopup();
+    renderPopupCreatedAddtask();
+}
+
+
 function renderPopupsInAddTask() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
@@ -208,7 +217,19 @@ function templateCreatedTaskPopUp() {
 
 
 function startSlideUPAnimation() {
-    document.getElementById('pop-up-created-task').classList.add('create-task-animation');
+    if(window.location.pathname == '/board.html') {
+        document.getElementById('pop-up-created-task').classList.add('create-task-animation');
+        setTimeout(() => {
+            endSlideUPAnimation();
+        }, 1400);
+    } else {
+        document.getElementById('pop-up-created-task').classList.add('create-task-animation');
+    }
+}
+
+
+function endSlideUPAnimation() {
+    document.getElementById('pop-up-created-task').classList.remove('create-task-animation');
 }
 
 
@@ -226,9 +247,17 @@ function renderTemplateBoardAddtaskPopup() {
                 </button>
             </div>
             <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
-            <div w3-include-html="./assets/templates/task_form.html" class="content-container board-addtask-popup-content" id="board-addtask-popup-content"></div>
+            <div class="board-addtask-popup-content w-100 h-100" id="board-addtask-popup-content-container">
+                <div w3-include-html="./assets/templates/task_form.html" class="content-container" id="board-addtask-popup-content"></div>    
+            </div>
         </div>
     </div>`;
+}
+
+
+function renderPopupCreatedAddtask() {
+    let content = document.getElementById('board-addtask-popup');
+    content.innerHTML +=  templateCreatedTaskPopUp();
 }
 
 
@@ -255,6 +284,21 @@ function closeBoardAddtaskPopup() {
 }
 
 
+function closeBoardAddtaskPopupFilled() {
+    setTimeout(() => {
+        removeClasslist(`board-addtask-popup`,'board-addtask-popup-slideIn');
+        removeClasslist(`board-addtask-popup-full`,'showBackgroundAnimation');
+    }, 1000);
+    setTimeout(() => {
+        addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
+        removeClasslist(`board-addtask-popup-full`,`opa-1`);
+    }, 1102);
+    setTimeout(() => {
+        addClasslist(`board-addtask-popup-full`, `d-none`);
+    }, 1230);
+}
+
+
 function boardAddtaskPopupSlideOut() {
     setTimeout(() => {
         addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
@@ -264,5 +308,4 @@ function boardAddtaskPopupSlideOut() {
         addClasslist(`board-addtask-popup-full`, `d-none`);
     }, 230);
 }
-
 

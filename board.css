@@ -614,6 +614,10 @@
     transition: transform 225ms ease-in-out;
 }
 
+.board-addtask-popup-content .content-container {
+    background-color: white;
+}
+
 .board-addtask-popup-slideIn {
     transform: translateX(0);
 }
@@ -632,4 +636,4 @@
 @keyframes slideUP {
     from {transform: translateY(100vh)}
     to {transform: translateY(70vh)}
-  }
+}

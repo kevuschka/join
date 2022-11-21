@@ -292,6 +292,14 @@
         border-radius: 10px;
     }
 
+    .board-addtask-popup-content .content-container {
+        background-color: unset;
+    }
+
+    .content-container {
+        overflow: unset;
+    }
+
     @media screen and (max-height: 700px) {
         .ticket-info-popup-contianer {
             padding: 100px 30px 30px;

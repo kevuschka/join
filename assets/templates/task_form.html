@@ -1,4 +1,4 @@
-<form class="add-task-form-style-board" id="myform" onsubmit="createTask(), startSlideUPAnimation(), switchToBoard(); return false">      
+<form class="add-task-form-style-board" id="myform" onsubmit="createTask(), startSlideUPAnimation(), switchToBoard(), closeBoardAddtaskPopupFilled(); return false">      
     <h1>Add Task</h1>
     <div class="flex margin-bottom-24 add-task-form-child">
         <div class="add-task-column-left add-task-column flex column">
@@ -80,7 +80,7 @@
         </div>
     </div>
     <div class="create-task-btn-container">
-        <button type="button" onclick="clearAddTask()" class="flex add-task-btn clear-btn" onmouseover="clearImageToLightBlue()" onmouseout="clearImageToDarkBlue()">
+        <button type="button" onclick="clearAddTask();closeBoardAddtaskPopup()" class="flex add-task-btn clear-btn" onmouseover="clearImageToLightBlue()" onmouseout="clearImageToDarkBlue()">
             Clear
             <img id="clear-image" src="./assets/img/clear-x-icon.png">
         </button>
