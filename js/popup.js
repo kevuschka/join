@@ -19,14 +19,6 @@ function renderPopupsInBoard() {
 }
 
 
-function renderPopupsInAddTask() {
-    let container = document.getElementById('popUp');
-    container.innerHTML = renderHeaderMenuPopup();
-    container.innerHTML += renderTemplateTicketInfoPopup();
-    container.innerHTML += templateCreatedTaskPopUp();
-}
-
-
 /**Logout-Popup (Header profile onclick) */
 function renderHeaderMenuPopup() {
     return `<div class="header-menu-container-full absolute d-none" id="header-menu-container-full" onclick="closeHeaderMenuPopup()">
