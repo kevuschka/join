@@ -68,6 +68,10 @@ a {
     text-decoration: none;
 }
 
+.auto {
+    overflow: auto;
+}
+
 /* colors:
     blue/gray nav-background: #2A3647
     nav-background selected:  #091931

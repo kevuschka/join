@@ -6,7 +6,7 @@ function renderPopups() {
     container.innerHTML = renderHeaderMenuPopup();
     container.innerHTML += renderTemplateTicketInfoPopup();
     container.innerHTML += templateCreatedTaskPopUp();
-    container.innerHTML += renderTemplateBoardAddtaskPopup();
+    // container.innerHTML += renderTemplateBoardAddtaskPopup();
 }
 
 

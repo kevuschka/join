@@ -1,5 +1,13 @@
 let categoryObject;
 let contactIconArray = []; //safes the indexes of the seleceted Contacts
+let currentUser = {
+    'name': 'Max Mustermann',
+    'color': '#0190E0',
+    'email': 'max.mustermann@gmail.com',
+    'phone': '+490123456789',
+    'abbreviation': 'MM'
+}
+
 
 async function renderAddTask() {
     renderCategoryDropdown();
@@ -189,7 +197,7 @@ function templateContactsYou() {
     return /*html*/ `
         <label for="checkbox-you" class="dropdown-content-child space-between">    
                 <span>You</span>
-                <input value="you" name="checkbox" id="checkbox-you" type="checkbox">
+                <input value="you" name="checkbox" class="contacts-cb" id="checkbox-you" type="checkbox">
         </label>
     `;
 }
@@ -199,7 +207,7 @@ function templateDropdownContacts(i) {
     return /*html*/ `
         <label for="checkbox${i}" class="dropdown-content-child space-between">    
                 <span>${contacts[i]['name']}</span>
-                <input value="${i}" name="checkbox" id="checkbox${i}" type="checkbox" onclick="changeDisplayInContactIconSection(${i})">
+                <input value="${i}" name="checkbox" class="contacts-cb" id="checkbox${i}" type="checkbox" onclick="changeDisplayInContactIconSection(${i})">
         </label>
     `;
 }
@@ -421,17 +429,41 @@ function clearAddTask() {
 
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
-function createTask() {
+async function createTask() {
      addInputValuesToTask('title');
      addInputValuesToTask('description');
      addInputValuesToTask('due-date');
+     pushAssignedContactsToTask();
      pushTaskToTodo();
      clearAddTask();
+     switchToBoard()
 }
 
 
 function addInputValuesToTask(identifier) {
     task[identifier] = document.getElementById(identifier).value;
+}
+
+
+function pushAssignedContactsToTask() {
+    let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (currentUserIsSelected(checkboxes[i])) {
+            addCurrentUserToTeam()
+        } else {
+            task['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
+        }
+    }
+}
+
+
+function currentUserIsSelected(checkbox) {
+    return checkbox.value == 'you';
+}
+
+
+function addCurrentUserToTeam() {
+    //TODO
 }
 
 
