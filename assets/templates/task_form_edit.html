@@ -1,0 +1,49 @@
+<form class="add-task-form-style-board">      
+    <div class="margin-bottom-24 add-task-form-child">
+        <div class="add-task-column-left-child flex column">
+            <span class=>Title</span>
+            <input type="text" id="title" required class="add-task-input margin-bottom-24" placeholder="Enter a title">
+        </div>
+        <div class="add-task-column-left-child flex column">
+            <span class=>Description</span>
+            <textarea name="description" id="description" placeholder="Enter a description" class="add-task-textarea margin-bottom-24"></textarea>
+        </div>
+        <div class="w-100 flex column">
+            <span>Due Date</span>
+            <input type="date" id="due-date" class="add-task-input margin-bottom-24" min="2022-10-01" max="2030-12-31">
+        </div>
+        <div class="w-100 flex column">
+            <span>Prio</span>
+            <div class="add-task-prio-container margin-bottom-24" id="prio-container"></div>
+        </div>
+        <div class="add-task-column-left-child flex column">
+            <span class=>Assigned to</span>
+            <div class="dropdown-container">
+                <div class="dropdown" id="contacts-dropdown-ctn" onclick="changeVisibility('contacts-dropdown')">
+                    <span>Select contacts to assign</span>
+                    <img src="./assets/img/vector_2.png">
+                </div>
+                <div class="dropdown-content max-height-180 auto d-none" id="contacts-dropdown">
+                </div>
+                <div class="input-container d-none" id="invite-contact-ctn">
+                    <input class="w-100 subtask-input" id="input-invite-contact" type="email" placeholder="Contact email">
+                    <div class="flex">
+                        <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="changeVisibilityContactSection()">
+                        |
+                        <img src="./assets/img/add_task_check.png" class="icon-subtask" onclick="changeVisibilityContactSection(), inviteContact()">
+                    </div>
+                </div>
+            </div>
+            <div id="contacts-icon-section" class="flex"></div>
+        </div>
+        <div class="create-task-btn-container">
+            <button class="flex add-task-btn create-btn">
+                Ok
+                <img src="./assets/img/check-small.png">
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
