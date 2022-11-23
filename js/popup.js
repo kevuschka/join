@@ -147,10 +147,59 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
 
 function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
-    content.innerHTML = '';//SIMON SIMOOOOOOOOOOOOOOOOOOOOON
-    content.innerHTML += renderTicketInfoEditBtn(column, ticket);
+    content.innerHTML = templateTicketEditing(column, ticket);
+    // content.innerHTML += renderTicketInfoEditBtn(column, ticket);
 }
 
+
+function templateTicketEditing(column, ticket) {
+    return /*html*/ `
+    <form class="add-task-form-style-board">      
+            <div class="add-task-column-left-child flex column">
+                <span class=>Title</span>
+                <input type="text" value="${boardColumns[column][ticket]['title']}" id="title-edit" required class="add-task-input margin-bottom-24" placeholder="Enter a title">
+            </div>
+            <div class="add-task-column-left-child flex column">
+                <span class=>Description</span>
+                <textarea name="description" id="description-edit" placeholder="Enter a description" class="add-task-textarea margin-bottom-24">${boardColumns[column][ticket]['description']}</textarea>
+            </div>
+            <div class="w-100 flex column">
+                <span>Due Date</span>
+                <input type="date" id="due-date-edit" value="${boardColumns[column][ticket]['due-date']}" class="add-task-input margin-bottom-24" min="2022-10-01" max="2030-12-31">
+            </div>
+            <div class="w-100 flex column">
+                <span>Prio</span>
+                <div class="add-task-prio-container margin-bottom-24" id="prio-container-edit"></div>
+            </div>
+            <div class="add-task-column-left-child flex column margin-bottom-24">
+                <span class=>Assigned to</span>
+                <div class="dropdown-container">
+                    <div class="dropdown" id="contacts-dropdown-ctn-edit" onclick="changeVisibility('contacts-dropdown')">
+                        <span>Select contacts to assign</span>
+                        <img src="./assets/img/vector_2.png">
+                    </div>
+                    <div class="dropdown-content max-height-180 auto d-none" id="contacts-dropdown-edit">
+                    </div>
+                    <div class="input-container d-none" id="invite-contact-ctn-edit">
+                        <input class="w-100 subtask-input" id="input-invite-contact-edit" type="email" placeholder="Contact email">
+                        <div class="flex">
+                            <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="changeVisibilityContactSection()">
+                            |
+                            <img src="./assets/img/add_task_check.png" class="icon-subtask" onclick="changeVisibilityContactSection(), inviteContact()">
+                        </div>
+                    </div>
+                </div>
+                <div id="contacts-icon-section-edit" class="flex"></div>
+            </div>
+            <div class="create-task-btn-container">
+                <button class="flex add-task-btn create-btn">
+                    Ok
+                    <img src="./assets/img/check-small.png">
+                </button>
+            </div>
+    </form>
+    `;
+}
 
 function renderTicketInfoEditBtn(column, ticket) {
     return `

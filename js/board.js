@@ -22,7 +22,8 @@ let createdTask = {
         'image': 'assets/img/green.png',
         'color': '#7AE229'
     },
-    'board': 0
+    'board': 0,
+    'due-date': '2022-11-26'
 };
 
 
@@ -61,7 +62,7 @@ let createdTask2 = {
         'color': '#FF3D00'
     },
     'board': 0,
-    'due-date': ''
+    'due-date': '2022-11-26'
 };
 
 
