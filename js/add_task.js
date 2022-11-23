@@ -34,14 +34,6 @@ function clearTask() {
 }
 
 
-async function renderAddTaskInBoard() {
-    document.getElementById('board-addtask-popup-content').innerHTML = '';
-    await includeHTML();
-    clearTask();
-    renderAddTask();  //in add_task.js
-}
-
-
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -231,8 +223,7 @@ function addCategoryToTask(i) {
 ///////////////////////// CONTACTS DROPDOWN FUNCTIONS ////////////////////////////////////
 
 function renderContactsDropdown() {
-    let id = 'contacts-dropdown';
-    let dropdown = document.getElementById(id);
+    let dropdown = document.getElementById('contacts-dropdown');
     dropdown.innerHTML = templateContactsYou();
     for (let i = 0; i < contacts.length; i++) {
         dropdown.innerHTML += templateDropdownContacts(i);
@@ -467,10 +458,10 @@ function clearImageToDarkBlue() {
 
 
 function clearAddTask() {
-    if (window.location.pathname == '/board.html') {
-        renderAddTaskInBoard();
-    } else {
+    if (window.location.pathname == '/add_task.html') {
         initAddTask();
+    } else {
+        //will be close nontheless
     }
 }
 

@@ -2,8 +2,12 @@
     justify-content: space-between;
 }
 
-.max-height-180 {
-    max-height: 180px;
+.max-height-176 {
+    max-height: 176px;
+}
+
+.max-height-69 {
+    max-height: 69px;
 }
 
 h1 {
@@ -108,7 +112,7 @@ form {
     padding: 8px 16px;
     cursor: pointer;
     background-color: white;
-    border-radius: 9px;
+    border-radius: 11px;
 }
 
 .dropdown-content-child:hover {
@@ -273,6 +277,11 @@ ul {
     display: flex;
 }
 
+.create-task-btn-container-edit {
+    justify-content: flex-end;
+    display: flex;
+}
+
 .create-btn-responsive {
     display: flex;
     align-items: center;
@@ -397,10 +406,6 @@ ul {
 }
 
 @media (max-width: 380px) {
-    .create-task-btn-container {
-        justify-content: center;
-    }
-
     .add-task-btn {
         margin-left: 0;
     }
@@ -415,11 +420,6 @@ ul {
 }
 
 @media (max-width: 350px) {
-    .create-task-btn-container {
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-
     .add-task-btn {
         margin-left: 0;
     }
