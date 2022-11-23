@@ -1,20 +1,5 @@
 let categoryObject;
 let contactIconArray = []; //safes the indexes of the seleceted Contacts
-//basic task structure
-function clearTask() {
-    task = { 
-        'category': [],
-        'title': '',
-        'description': '',
-        'process': 0,
-        'subtasks': 0,
-        'subtasksArray': [],
-        'team': [],
-        'prior': '',
-        'board': 0,
-        'due-date': '',
-    };
-}
 let currentUser = {
     'name': 'Max Mustermann',
     'color': '#0190E0',
@@ -29,6 +14,23 @@ async function initAddTask() {
     await includeHTML();
     clearTask();
     renderAddTask();  //in add_task.js
+}
+
+
+//basic task structure
+function clearTask() {
+    task = { 
+        'category': [],
+        'title': '',
+        'description': '',
+        'process': 0,
+        'subtasks': 0,
+        'subtasksArray': [],
+        'team': [],
+        'prior': '',
+        'board': 0,
+        'due-date': '',
+    };
 }
 
 
