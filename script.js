@@ -61,6 +61,12 @@ let contacts = [{
     'email': 'Hans.Maier@gmail.com',
     'phone': '+49 0123 456 78 9',
     'abbreviation': 'HM'
+},{
+    'name': 'Manuel Neuer',
+    'color': '#0038FF',
+    'email': 'Neuer.manuell@gmail.com',
+    'phone': '+49 0123 456 78 9',
+    'abbreviation': 'MN'
 }];
 
 
@@ -99,6 +105,17 @@ let newContact = {
 //     },
 //     'board': 0
 // };
+
+// 'category': [],
+// 'title': '',
+// 'description': '',
+// 'process': 0,
+// 'subtasks': 0,
+// 'subtasksArray': [],
+// 'team': [],
+// 'prior': '',
+// 'board': 0,
+// 'due-date': '',
 
 
 // ########## ALLES ZUM BACKEND ##########

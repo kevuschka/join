@@ -125,7 +125,7 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
                 <div class="ticket-info-popup-date-and-prio-and-assignedTo">
                     <div class="ticket-info-popup-date flex">
                         <p class="cursor-d">Due date:</p>
-                        <p class="cursor-d"></p>
+                        <p class="cursor-d">${boardColumns[column][ticket]['due-date']}</p>
                     </div>
                     <div class="ticket-info-popup-prio flex">
                         <p class="cursor-d">Priority:</p>
@@ -207,6 +207,7 @@ function templateTicketEditing(column, ticket) {
     </form>
     `;
 }
+
 
 function renderTicketInfoEditBtn(column, ticket) {
     return `

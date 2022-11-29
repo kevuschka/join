@@ -24,7 +24,7 @@ function filterContacts(list) {
 
 function renderTemplateListLetter(letter, list) {
     list.innerHTML += `
-        <div class="contacts-container-withLetter-${letter} column flex">
+        <div class="contacts-container-withLetter column flex">
             <p>${letter}</p>
             <div class="container-with-contacts column flex" id="contacts-with-${letter}"></div>
         </div>`
@@ -33,18 +33,24 @@ function renderTemplateListLetter(letter, list) {
 function renderListLetterContacts(letter, number, j) {
     let content = document.getElementById(`contacts-with-${letter}`);
     content.innerHTML +=  renderTemplateListLetterContact(letter, number, j);
+    contactAbbreviationColoring(letter, number, j);
 }
 
 
 function renderTemplateListLetterContact(letter, number, j) {
     return `
-        <div class="contact flex" id="contact-withLetter-${letter}-number-${number}">
-            <div class="contact-abbreviation-wrapper">
+        <div class="contact cursor-p flex" id="contact-withLetter-${letter}-number-${number}">
+            <div class="contact-abbreviation-wrapper flex" id="contact-abbreviation-wrapper-${letter}-${number}">
                 <p class="contact-abbreviation">${contacts[j]['abbreviation']}</p>
             </div>
-            <div class="contact-name-wrapper column flex>
+            <div class="contact-name-wrapper column flex">
                 <p class="contact-name">${contacts[j]['name']}</p>
                 <p class="contact-email">${contacts[j]['email']}</p>    
             </div>
         </div>`
+}
+
+
+function contactAbbreviationColoring(letter, number, j) {
+    document.getElementById(`contact-abbreviation-wrapper-${letter}-${number}`).style.backgroundColor = `${contacts[j]['color']}`;
 }

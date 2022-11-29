@@ -453,7 +453,11 @@
     gap: 25px;
 }
 
-.ticket-info-popup-date > p {
+.ticket-info-popup-date {
+    gap: 12px;
+}
+
+.ticket-info-popup-date p:nth-child(1) {
     font-weight: bold;
 }
 
