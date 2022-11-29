@@ -342,7 +342,6 @@ function templatePrioritySelection(i) {
 function selectPrio(i) {
     changeSelectedPrioBtn(i);
     resetOtherPrioBtns(i);
-    addPrioBtnToTask(i);
 }
 
 
@@ -388,9 +387,7 @@ function removeStyleAttributesBtn(button) {
 }
 
 
-function addPrioBtnToTask(i) {
-    task['prior'] = priorities[i]
-}
+
 
 
 ///////////////////////// SUBTASK FUNCTIONS ////////////////////////////////////
@@ -472,10 +469,21 @@ async function createTask() {
      addInputValuesToTask('title');
      addInputValuesToTask('description');
      addInputValuesToTask('due-date');
+     addPriotityToTask();
      pushAssignedContactsToTask();
      pushTaskToTodo();
      clearAddTask();
      switchToBoard()
+}
+
+
+function addPriotityToTask() {
+    for (let i = 0; i < priorities.length; i++) {
+        let btn = document.getElementById(priorities[i]['name']); //id of the btns equals name of the priority
+        if (btn.hasAttribute('style')) {
+            task['prior'] = priorities[i];
+        }
+    }
 }
 
 

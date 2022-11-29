@@ -1,9 +1,3 @@
-
-function connectCurrentTaskAndTask(column, ticket) {
-    task = boardColumns[column][ticket];
-}
-
-
 //colors the priority which is chosen in the task opened to edit
 function selectPrioInEditContainer(column, ticket) {
     let id = boardColumns[column][ticket]['prior']['name'];
@@ -14,3 +8,13 @@ function selectPrioInEditContainer(column, ticket) {
 }
 
 
+function saveChanges(columm, ticket) {
+    changeValuesForEditedTask(columm, ticket, 'title');
+    changeValuesForEditedTask(columm, ticket, 'description');
+    changeValuesForEditedTask(columm, ticket, 'due-date');
+}
+
+
+function changeValuesForEditedTask(column, ticket, identifier) {
+    boardColumns[column][ticket][identifier] = document.getElementById(identifier).value; //input field id is equal to name of the attribute in the task
+}
