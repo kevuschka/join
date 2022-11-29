@@ -159,7 +159,7 @@ function renderTicketInfoEditting(column, ticket) {
 
 function templateTicketEditing(column, ticket) {
     return /*html*/ `
-    <form class="add-task-form-style-board-wrapper column flex">      
+    <form class="add-task-form-style-board-wrapper column flex" onsubmit="renderTicketInfoPopupContainer(${column}, ${ticket}); return false">      
         <div class="add-task-form-style-board">
             <div class="add-task-column-left-child flex column">
                 <span class=>Title</span>
