@@ -1,7 +1,7 @@
 function renderContactsList() {
     let list = document.getElementById(`contacts-list`);
     list.innerHTML = '';
-    filterContacts();
+    filterContacts(list);
 }
 
 function filterContacts(list) {
@@ -9,21 +9,42 @@ function filterContacts(list) {
     for (let i = 0; i < alphabet.length; i++) {
         let contactNumberAtThisLetter = 0;
         for (let j = 0; j < contacts.length; j++) {
-            if(contactNumber == contacts.length) break;
-            if(alphabet[i] == contacts[j]['name'].charAt(0).toLowerCase()) {
+            if(alphabet[i] == contacts[j]['name'].toLowerCase().charAt(0)) {
                 contactNumber++;
                 contactNumberAtThisLetter++;
-                if(contactNumberAtThisLetter == 1) renderListLetter(alphabet[i].toUpperCase(), list);
+                if(contactNumberAtThisLetter == 1) renderTemplateListLetter(alphabet[i].toUpperCase(), list);
+                renderListLetterContacts(alphabet[i].toUpperCase(), contactNumberAtThisLetter, j);
             }
-
-            
+            if(contactNumber == contacts.length) break;
         }
         if(contactNumber == contacts.length) break;
-
     }
 }
 
 
-function renderListLetter(x, list) {
-    list.innerHTML += `<div></div>`
+function renderTemplateListLetter(letter, list) {
+    list.innerHTML += `
+        <div class="contacts-container-withLetter-${letter} column flex">
+            <p>${letter}</p>
+            <div class="container-with-contacts column flex" id="contacts-with-${letter}"></div>
+        </div>`
+}
+
+function renderListLetterContacts(letter, number, j) {
+    let content = document.getElementById(`contacts-with-${letter}`);
+    content.innerHTML +=  renderTemplateListLetterContact(letter, number, j);
+}
+
+
+function renderTemplateListLetterContact(letter, number, j) {
+    return `
+        <div class="contact flex" id="contact-withLetter-${letter}-number-${number}">
+            <div class="contact-abbreviation-wrapper">
+                <p class="contact-abbreviation">${contacts[j]['abbreviation']}</p>
+            </div>
+            <div class="contact-name-wrapper column flex>
+                <p class="contact-name">${contacts[j]['name']}</p>
+                <p class="contact-email">${contacts[j]['email']}</p>    
+            </div>
+        </div>`
 }
