@@ -159,7 +159,8 @@ function renderTicketInfoEditting(column, ticket) {
 
 function templateTicketEditing(column, ticket) {
     return /*html*/ `
-    <form class="add-task-form-style-board">      
+    <form class="add-task-form-style-board-wrapper column flex">      
+        <div class="add-task-form-style-board">
             <div class="add-task-column-left-child flex column">
                 <span class=>Title</span>
                 <input type="text" value="${boardColumns[column][ticket]['title']}" id="title" required class="add-task-input margin-bottom-24" placeholder="Enter a title">
@@ -196,12 +197,13 @@ function templateTicketEditing(column, ticket) {
                 </div>
                 <div id="contacts-icon-section" class="flex"></div>
             </div>
-            <div class="create-task-btn-container-edit">
-                <button class="flex add-task-btn create-btn">
-                    Ok
-                    <img src="./assets/img/check-small.png">
-                </button>     
-            </div>
+        </div>
+        <div class="create-task-btn-container-edit">
+            <button class="flex add-task-btn create-btn">
+                Ok
+                <img src="./assets/img/check-small.png">
+            </button>     
+        </div>
     </form>
     `;
 }
@@ -331,7 +333,7 @@ async function openBoardAddtaskPopup() {
 function boardAddtaskPopupSlideIn() {
     setTimeout(() => {
         addClasslist(`board-addtask-popup`, `board-addtask-popup-slideIn`);
-    }, 1);
+    }, 10);
 }
 
 
@@ -339,7 +341,6 @@ function closeBoardAddtaskPopup() {
     removeClasslist(`board-addtask-popup`,'board-addtask-popup-slideIn');
     removeClasslist(`board-addtask-popup-full`,'showBackgroundAnimation');
     boardAddtaskPopupSlideOut();
-    document.getElementById('board-addtask-popup-content').innerHTML = '';
 }
 
 
@@ -369,6 +370,7 @@ function boardAddtaskPopupSlideOut() {
         }, 102);
         setTimeout(() => {
             addClasslist(`board-addtask-popup-full`, `d-none`);
+            document.getElementById('board-addtask-popup-content').innerHTML = '';
         }, 230);
     } else boardAddtaskNoSlide();
 }

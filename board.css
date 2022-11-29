@@ -596,7 +596,9 @@
     to {opacity: 0;}
 }
 
-.add-task-form-style-board {
+.add-task-form-style-board-wrapper {
+    height: 100%;
+    justify-content: space-between;
     padding: 0 !important;
 }
 
@@ -606,7 +608,7 @@
 
 .board-addtask-popup {
     width: 80%;
-    height: 90%;
+    max-height: 100%;
     padding: 40px;
     background-color: white;
     border-radius: 30px;
