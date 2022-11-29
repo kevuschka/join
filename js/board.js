@@ -19,6 +19,7 @@ let createdTask = {
     ],
     'prior': {
         'name': 'Low',
+        'prio-index': 2,
         'image': 'assets/img/green.png',
         'color': '#7AE229'
     },
@@ -58,6 +59,7 @@ let createdTask2 = {
     ],
     'prior': {
         'name': 'Urgent',
+        'prio-index': 0,
         'image': './assets/img/red-prio.svg',
         'color': '#FF3D00'
     },

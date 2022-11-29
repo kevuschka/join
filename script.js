@@ -9,16 +9,19 @@ let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 let priorities = [
     {
         'name': 'Urgent',
+        'prio-index': 0,
         'image': './assets/img/red-prio.svg',
         'color': '#FF3D00'
     },
     {
         'name': 'Medium',
+        'prio-index': 1,
         'image': './assets/img/orange-prio.svg',
         'color': '#FFA800'
     },
     {
         'name': 'Low',
+        'prio-index': 2,
         'image': './assets/img/green-prio.svg',
         'color': '#7AE229'
     }

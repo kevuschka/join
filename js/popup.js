@@ -149,7 +149,9 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
 function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
     content.innerHTML = templateTicketEditing(column, ticket);
+    connectCurrentTaskAndTask(column, ticket)
     renderPrioritySelection(); //in add_task.js
+    selectPrioInEditContainer(column, ticket);
     renderContactsDropdown(); //in add_task.js
     // content.innerHTML += renderTicketInfoEditBtn(column, ticket);
 }

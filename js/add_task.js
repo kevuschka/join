@@ -331,7 +331,7 @@ function renderPrioritySelection() {
 
 function templatePrioritySelection(i) {
     return /*html*/ `
-         <button type="button" class="prio-btn" id="prio-btn-${i}" onclick="selectPrio(${i})">
+         <button type="button" class="prio-btn" id="${priorities[i]['name']}" onclick="selectPrio(${i})">
             ${priorities[i]['name']}
             <img src="${priorities[i]['image']}">
         </button>
@@ -347,7 +347,7 @@ function selectPrio(i) {
 
 
 function changeSelectedPrioBtn(i) {
-    let id = 'prio-btn-' + i;
+    let id = priorities[i]['name'];
     let button = document.getElementById(id);
     if (!button.hasAttribute('style')) {
         changePrioImageToWhite(button, i);
@@ -360,7 +360,7 @@ function changeSelectedPrioBtn(i) {
 
 function resetOtherPrioBtns(i) {
     for (let j = 0; j < priorities.length; j++) {
-        let id = 'prio-btn-' + j;
+        let id = priorities[j]['name'];
         let button = document.getElementById(id); 
         //i is the clicked button
         //only gets executed for the button which was selected right before button i was clicked
@@ -371,7 +371,7 @@ function resetOtherPrioBtns(i) {
 }
 
 
-function changePrioImageToWhite(button, i) {
+function changePrioImageToWhite(button) {
     button.lastElementChild.style.filter = 'brightness(0) invert(1)'   
 }
 
