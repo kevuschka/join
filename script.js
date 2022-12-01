@@ -67,6 +67,13 @@ let contacts = [{
     'email': 'Neuer.manuell@gmail.com',
     'phone': '+49 0123 456 78 9',
     'abbreviation': 'MN'
+},
+{
+    'name': 'Kevin Schumilo',
+    'color': '#02CF2F',
+    'email': 'kevin.schumilo@gmail.com',
+    'phone': '+49 0123 456 78 9',
+    'abbreviation': 'KV'
 }];
 
 

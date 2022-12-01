@@ -150,8 +150,10 @@ function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
     content.innerHTML = templateTicketEditing(column, ticket);
     renderPrioritySelection(); //in add_task.js
-    selectPrioInEditContainer(column, ticket);
     renderContactsDropdown(); //in add_task.js
+    selectPrioInEditContainer(column, ticket); //in edit_task.js
+    renderAlreadyAssignedContacts(column, ticket); //in edit_task.js
+
     // content.innerHTML += renderTicketInfoEditBtn(column, ticket);
 }
 
