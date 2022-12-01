@@ -27,7 +27,7 @@ function renderAlreadyAssignedContacts(column, ticket) {
 }
 
 
-//without that we cannot use .length property on the Json Object
+//without that we cannot use .length  (Does not work on a Json Object)
 function getAssignedContacts(column, ticket) {
     let assignedContacts = [];
     for (let i = 0; i < Object.keys(boardColumns[column][ticket]['team']).length; i++) {
@@ -56,6 +56,10 @@ function changeValuesForEditedTask(column, ticket, identifier) {
 }
 
 
+//clears the contacts array which is needed to know which contacts abbreviations should be displayed
+function clearContactIconArray() {
+    contactIconArray = [];
+}
 
 
 

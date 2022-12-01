@@ -149,6 +149,7 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
 function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
     content.innerHTML = templateTicketEditing(column, ticket);
+    clearContactIconArray();
     renderPrioritySelection(); //in add_task.js
     renderContactsDropdown(); //in add_task.js
     selectPrioInEditContainer(column, ticket); //in edit_task.js
@@ -160,7 +161,7 @@ function renderTicketInfoEditting(column, ticket) {
 
 function templateTicketEditing(column, ticket) {
     return /*html*/ `
-    <form class="add-task-form-style-board-wrapper column flex" onsubmit="saveChanges(${column}, ${ticket}), renderTicketInfoPopupContainer(${column}, ${ticket}); return false">      
+    <form class="add-task-form-style-board-wrapper column flex" onsubmit="saveChanges(${column}, ${ticket}), renderTicketInfoPopupContainer(${column}, ${ticket}) clearContactIconArray(); return false">      
         <div class="add-task-form-style-board">
             <div class="add-task-column-left-child flex column">
                 <span class=>Title</span>
@@ -291,6 +292,7 @@ async function renderAddTaskInBoard() {
     document.getElementById('board-addtask-popup-content').innerHTML = '';
     await includeHTML();
     clearTask();
+    clearContactIconArray();
     renderAddTask();  //in add_task.js
 }
 
