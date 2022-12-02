@@ -18,7 +18,7 @@ function renderAlreadyAssignedContacts(column, ticket) {
         for (let j = 0; j < contacts.length; j++) {
             //compare email of all contacts with them assigned to the task 
             if (boardColumns[column][ticket]['team'][i]['email'] == contacts[j]['email']) { 
-                displayAssignedContactsAsChecked();
+                displayAssignedContactsAsChecked(j);
                 changeDisplayInContactIconSection(j); //in add_task.js -> same as if contact would have been clicked
                 break
             }
@@ -37,8 +37,8 @@ function getAssignedContacts(column, ticket) {
 }
 
 
-function displayAssignedContactsAsChecked(column, ticket) {
-    //TODO
+function displayAssignedContactsAsChecked(j) {
+    document.getElementById('checkbox' + j).checked = true;
 }
 
 
