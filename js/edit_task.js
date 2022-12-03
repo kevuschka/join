@@ -48,7 +48,8 @@ function saveChanges(columm, ticket) {
     changeValuesForEditedTask(columm, ticket, 'title');
     changeValuesForEditedTask(columm, ticket, 'description');
     changeValuesForEditedTask(columm, ticket, 'due-date');
-    //changeAssignedContactsForEditedTask(columm, ticket);
+    changePriorityOfEditedTask(columm, ticket);
+    changeAssignedContactsForEditedTask(columm, ticket);
 }
 
 
@@ -57,8 +58,18 @@ function changeValuesForEditedTask(column, ticket, identifier) {
 }
 
 
-function changeAssignedContactsForEditedTask() {
-    boardColumns[columm][ticket]['team'] = [];
+function changePriorityOfEditedTask(column, ticket) {
+    for (let i = 0; i < priorities.length; i++) {
+        let btn = document.getElementById(priorities[i]['name']); //id of the btns equals name of the priority
+        if (btn.hasAttribute('style')) {
+            boardColumns[column][ticket]['prior'] = priorities[i];
+        }
+    }
+}
+
+
+function changeAssignedContactsForEditedTask(column, ticket) {
+    boardColumns[column][ticket]['team'] = [];
     let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
     for (let i = 0; i < checkboxes.length; i++) {
         if (currentUserIsSelected(checkboxes[i])) {
