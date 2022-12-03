@@ -311,7 +311,7 @@ function renderTemplateBoardAddtaskPopup() {
             
             <div class="board-addtask-popup-content w-100 h-100 relative" id="board-addtask-popup-content-container">
                 <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
-                <div w3-include-html="./assets/templates/task_form.html" class="content-container" id="board-addtask-popup-content"></div>    
+                <div w3-include-html="./assets/templates/task_form.html" class="add-task-container" id="board-addtask-popup-content"></div>    
             </div>
         </div>
     </div>`;

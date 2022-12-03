@@ -48,11 +48,35 @@ function saveChanges(columm, ticket) {
     changeValuesForEditedTask(columm, ticket, 'title');
     changeValuesForEditedTask(columm, ticket, 'description');
     changeValuesForEditedTask(columm, ticket, 'due-date');
+    //changeAssignedContactsForEditedTask(columm, ticket);
 }
 
 
 function changeValuesForEditedTask(column, ticket, identifier) {
     boardColumns[column][ticket][identifier] = document.getElementById(identifier).value; //input field id is equal to name of the attribute in the task
+}
+
+
+function changeAssignedContactsForEditedTask() {
+    boardColumns[columm][ticket]['team'] = [];
+    let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (currentUserIsSelected(checkboxes[i])) {
+            addCurrentUserToTeamEdit()
+        } else {
+            boardColumns[column][ticket]['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
+        }
+    }
+}
+
+
+function currentUserIsSelected(checkbox) {
+    return checkbox.value == 'you';
+}
+
+
+function addCurrentUserToTeamEdit() {
+    //TODO
 }
 
 
