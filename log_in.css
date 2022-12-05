@@ -132,6 +132,7 @@ body {
     color: white;
     cursor: pointer;
     transition: background-color 125ms, color 125ms, border 125ms, box-shadow 125ms ease-in-out;
+    font-weight: bold;
    }
 
    .signButton:hover {
@@ -156,6 +157,7 @@ body {
 
    .signButton1 {
     width: 120px;
+    border: none;
    }
 
    .signButton2 {
@@ -172,7 +174,7 @@ body {
 
    .signButton2:hover {
     color: #29ABE2;
-    border:#29ABE2 1px solid;
+    border:#29ABE2 2px solid;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
    }
 
@@ -225,7 +227,7 @@ box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 }
 
 .input-and-check-and-btns {
-    gap: 42px;
+    
     align-items: center;
 }
 
@@ -273,6 +275,7 @@ box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 .check-and-btns {
     gap: 28px;
     width: 85%;
+    padding-top: 25px;
 }
 
 .checkPool {
@@ -305,6 +308,11 @@ font-family: 'Noto Sans', sans-serif;
 
 .d-none {
     display: none;
+}
+
+.indexError {
+    padding-top: 5px;
+    color: red;   
 }
 
 .input-relative {

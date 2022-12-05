@@ -139,17 +139,33 @@ let todo2 = [{
 }];
 
 
+function greet() {
+    let today = new Date()
+    let hour = today.getHours()
+    
+    
+    if (hour < 11 && hour >= 07) {
+        document.getElementById('greet').innerHTML = `Guten Morgen`;
+    } else if (hour >= 11 && hour < 18) {
+        document.getElementById('greet').innerHTML = `Guten Mittag`;
+    } else if(hour >= 18) {
+        document.getElementById('greet').innerHTML = `Guten Abend`;
+    }
+}
+
+
+
 /**
  * This function renders informations about the number of tasks in the categories
  * 
  * 
  */
 function renderSummary() {
-    document.getElementById('task-count1').innerHTML = `${todo2.length}`;
+    document.getElementById('task-count1').innerHTML = `${todo.length}`;
     document.getElementById('task-count2').innerHTML = `${inProgress.length}`;
     document.getElementById('task-count3').innerHTML = `${feedback.length}`;
 
-    document.getElementById('task-info-count').innerHTML = `${todo2.length}`;
+    document.getElementById('task-info-count').innerHTML = `${todo.length}`;
     document.getElementById('task-info-count2').innerHTML = `${done.length}`;
     
 
@@ -168,8 +184,8 @@ filterPriorities();
    
 function filterPriorities() {
 
-    for (let j = 0; j < todo2.length; j++) {
-        const element2 = todo2[j];
+    for (let j = 0; j < createdTask.length; j++) {
+        const element2 = createdTask[j];
         
         if(element2.prior.name == 'Urgent') {
                 urgent++;
@@ -182,24 +198,20 @@ function filterPriorities() {
             renderPriorityContainer(j);
 
 }
-
-
-
 }
  
+
 function renderPriorityContainer(j) {
     if(urgent == 1) {
         document.getElementById('priority-Icon').src = 'assets/img/summary-arrow-up-icon.png';
         document.getElementById('priority-count').innerHTML = `${urgent}`;
         document.getElementById('priority-text').innerHTML = `Urgent`;
 
-        if(todo2[j].prior.name == 'Urgent') {
-            document.getElementById('date').innerHTML = `${todo2[j]['due-date']}`;
+        if(createdTask[j].prior.name == 'Urgent') {
+            document.getElementById('date').innerHTML = `${createdTask[j]['due-date']}`;
         }
-
     }
 
-        
         
      else if(mid > low) {
         document.getElementById('priority-Icon').src = 'assets/img/summary-arrow-up-icon.png';
@@ -213,5 +225,3 @@ function renderPriorityContainer(j) {
         document.getElementById('priority-text').innerHTML = 'Low';
     }
 }
-
- 
