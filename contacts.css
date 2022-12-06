@@ -5,7 +5,10 @@
     box-shadow: 4px 0px 4px rgb(0 0 0 / 10%);
     padding: 20px 50px;
     z-index: 1;
-    overflow-y: auto;
+}
+
+.contacts-list-overflow-container {
+    overflow-x: auto;
 }
 
 .contacts-list-btn-resp-container {
@@ -38,6 +41,11 @@
     background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1));
     border-radius: 20px;
 }
+
+.contact:hover .contact-abbreviation-wrapper {
+    border: 1px solid white;
+}
+
 
 .contact-abbreviation-wrapper {
     justify-content: center;
@@ -349,7 +357,7 @@
     }
 
     .contacts-list-wrapper {
-        padding: 170px 10px 95px;
+        padding: 170px 5px 95px;
     }
 
     .contacts-list-btn-resp {
@@ -391,7 +399,7 @@
     }
 } 
 
-@media screen and (max-width: 290px) {
+@media screen and (max-width: 270px) {
 
     .contacts-list-btn-resp-container {
         padding: 20px;
@@ -399,7 +407,7 @@
     }
 
     .contacts-list-wrapper {
-        padding: 170px 10px 80px;
+        padding: 152px 10px 80px;
     }
 
     .contacts-list-btn-resp {
