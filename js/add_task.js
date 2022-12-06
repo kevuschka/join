@@ -252,6 +252,7 @@ function templateDropdownContacts(i) {
 }
 
 
+//Changes if a Contacts Initials are displayed in the section below the Contact Dropdown
 function changeDisplayInContactIconSection(i) {
     let index = contactIconArray.indexOf(i);
     if (ContactIsAlreadyInArray(index)) {

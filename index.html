@@ -20,7 +20,7 @@
     <title>LogInToJoin</title>
 </head>
 
-<body onload="init(); redirect();">
+<body onload="init()">
 
 <div class="animationContainer">
     <div class="navPool">
@@ -60,6 +60,9 @@
                             <img class="lock" src="assets/img/login-password-icon.png">
                         </div>
                     </div>
+
+                    <div  id="indexError" class="indexError d-none">Password or Email incorrect</div>
+
                     <div class="check-and-btns flex column">
                         <div class="checkPool">
                         
@@ -68,6 +71,8 @@
                                 <span class="checkText">Remember me</span>
                             </div>
                         
+                           
+
                             <a class="forgotText" href="forgot_password.html">Forgot my password</a>
                         
                         </div>

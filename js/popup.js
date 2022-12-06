@@ -149,9 +149,12 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
 function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
     content.innerHTML = templateTicketEditing(column, ticket);
+    clearContactIconArray();
     renderPrioritySelection(); //in add_task.js
-    selectPrioInEditContainer(column, ticket);
     renderContactsDropdown(); //in add_task.js
+    selectPrioInEditContainer(column, ticket); //in edit_task.js
+    renderAlreadyAssignedContacts(column, ticket); //in edit_task.js
+
     // content.innerHTML += renderTicketInfoEditBtn(column, ticket);
 }
 
@@ -289,6 +292,7 @@ async function renderAddTaskInBoard() {
     document.getElementById('board-addtask-popup-content').innerHTML = '';
     await includeHTML();
     clearTask();
+    clearContactIconArray();
     renderAddTask();  //in add_task.js
 }
 

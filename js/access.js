@@ -6,23 +6,88 @@ let users = [{}];
 
 
 
-    async function init() {
+
+/**
+ * This function loads users data from the server
+ * 
+ * */ async function init() { 
        
         await downloadFromServer();
         users = JSON.parse(backend.getItem('users')) || [];
     }
 
 
-async function addUser() {
+/**
+ * This function manages following:
+ * - Checking if array is empty or not for various actions
+ * 
+ *  */ async function addUser() {
     let userName = document.getElementById('username');
     let email = document.getElementById('email');
+    console.log('Email is,', email);
     let password = document.getElementById('password');
+
+        if(users.length == 0) {
+            pushUser(userName, email, password);
+        } else {
+            checkMail(userName, email, password);
+    
+    }
+}
+
+
+/**
+ * This function manages following:
+ * - Checking typed email if user was already registered
+ * - If email is unused checkmail() will redirect users typed information to pushuser()
+ * 
+ */function checkMail(userName, email, password) {
+if (users.find(o => o.email == email.value)) {
+alert('Diese E-Mail ist bereits registriert!');
+} else {
+
+
+   /* let fullName = userName.split(' ');
+    let initials = fullName.shift().charAt(0) + fullName.pop().charAt(0);
+    return initials.toUpperCase();*/
+
+let name= userName.value.split(' ');
+let firstLetter = name.toString().charAt(0).toUpperCase();
+let secondLetter = name[1].toString().charAt(0).toUpperCase();
+let initials = firstLetter + secondLetter
+
+
+pushUser(userName, email, password, initials);
+}
+}
+
+
+
+
+/**
+ * This function manages following:
+ * - pushing the typed informations into the array 'users'
+ * - Clearing the inputfield after submitting the formular  
+ * - Saving the new data in the backend
+ * - Redirecting to the login site
+ * 
+ */async function pushUser(userName, email, password, initials) {
+
+    
+
 
     let user = {
         'userName':userName.value,
+        'valid'   : false,
+        'loggedIn': false,
+        'shortLetter':initials,
         'email'   :email.value,
-        'password':password.value
+        'password':password.value,
+        'phone'   :'',
+        'color'   :''
     }
+
+
 
     userName.value ='';
     email.value ='';
@@ -32,15 +97,16 @@ async function addUser() {
 
     let allUsersAsString = JSON.stringify(users);
     await backend.setItem('users', allUsersAsString);
-    //Weiterleitung zu Login-Seite + Nachricht anzeigen: "Erfolgreiche Registrierung!".
     window.location.href = 'index.html?msg=Du hast dich erfolgreich registriert';
-    
-
 }
 
-
-
-function login() {
+/**
+ * This function manages following:
+ * - Checking if email and password are matching for a successfull login
+ * - Redirecting user to the join main page
+ * - If email and password are not matching, an error message will show up under the input field
+ * 
+ * */function login() {
   
 
     let email = document.getElementById('email');
@@ -51,39 +117,173 @@ function login() {
     if(user) {
         console.log('user gefunden');
     
-        //Weiterleitung zu Join-Seite + Nachricht anzeigen: "Erfolgreiche Anmeldung!".
     window.location.href = 'summary.html?msg=Du hast dich erfolgreich angemeldet';
+    } else {
+        document.getElementById('indexError').classList.remove('d-none');
+        document.getElementById('password').classList.add('border-color');
     }
-} 
-
-function redirect() {
-const urlParams = new URLSearchParams(window.location.search);
-const msg = urlParams.get('msg');
-
-if(msg) {
-    document.getElementById('msgBox').innerHTML = msg;
-} else {
-    document.getElementById('msgBox').classList.add('d-none');
-}
 }
 
+let usersEmail;
+let usersArray;
 
-function newPassword() {
-let newPassword = document.getElementById('newPassword').value;
-let confirmPassword = document.getElementById('confirmPassword').value;
+/**
+ * This function manages following:
+ * - Saves the email typed from the forgot_password.html for further verification in reset_Password.html
+ * - Redirecting user to reset_password.html to reset his password
+ * - If email doesn't exist, an error message will show up under the input field
+ * 
+ * */ /*function giveID() {
+    
+    usersEmail = document.getElementById('forgotEmail').value;
+
+    for (let u = 0; u < users.length; u++) {
+        usersArray = users[u];
+       }
+
+
+        if (usersArray.email.includes(usersEmail)) {
+
+                localStorage.setItem('usersEmail', usersEmail);
+            
+                document.getElementById('forgotPopup').classList.add("flex");
+                setTimeout(function() {
+                    window.location.href = 'index.html?msg=Du hast dich erfolgreich angemeldet';
+                   
+                  }, 1500);
+ } else { 
+            document.getElementById('forgotError').classList.remove('d-none');
+            document.getElementById('forgotEmail').classList.add('border-color');
+           }
+
+ }*/
+
+ function giveID() {
+    usersEmail = document.getElementById('forgotEmail').value;
+
+    
+        if (users.find(o => o.email == usersEmail)) {
+
+                localStorage.setItem('usersEmail', usersEmail);
+            
+                document.getElementById('forgotPopup').classList.add("flex");
+                setTimeout(function() {
+                    window.location.href = 'forgot_password.html?msg=Du hast dich erfolgreich angemeldet';
+                   
+                  }, 1500);
+         } else { 
+            document.getElementById('forgotError').classList.remove('d-none');
+            document.getElementById('forgotEmail').classList.add('border-color');
+           }
+           
+ }
+
+
+
+
+async function onSubmit(event) {
+    event.preventDefault();
+    giveID(); 
+    let formData = new FormData(event.target);
+    let response = await action(formData);
+    if(response.ok) 
+    console.log('email was send!');
+    else
+    alert('Email not send!');
+}
+
+function action(formData) {
+    const input = 'https://gruppe-348.developerakademie.net/join/send_mail.php';
+    const requestInit = {
+        method: 'post',
+        body: formData
+    };
+
+    return fetch(
+        input,
+        requestInit
+        );
+}
+
+function sendData() {
+    
+}
+
+
+/**
+ * This function manages following:
+ * - Loads the typed email saved from the give() function for the verification process in newPassword()
+ *
+ * */function load() {
+
+    usersEmail = localStorage.getItem('usersEmail');
+}
+
+    let userArray;
+    let changedPassword;
+
+
+
+
+/**
+ * This function manages following:
+ * - Making sure the passwords from reset_password.html got matched together to create the new password
+ * - filtering the exact object in the array where the typed email from forgot_password.html is located at to change the password of the user
+ * - Saving the new password in the backend
+ * - Redirecting user to the login page page
+ * - If the passwords are not matching, an error message will show up under the input field
+ * 
+ * */async function newPassword() {
+
+    let newPassword = document.getElementById('newPassword').value;
+    let confirmPassword = document.getElementById('confirmPassword').value;
+
+        for (let u = 0; u < users.length; u++) {
+             userArray = users[u];
 
     if(newPassword == confirmPassword) {
-        let changedPassword  = confirmPassword;
+        console.log('Email identified and password matched');
+        changedPassword  = confirmPassword;
         console.log('The new password is,', changedPassword);
-    }
-    window.location.href = 'login.html?msg=Password erfolgreich eingerichtet';
+
+
+       if (users[u].email == usersEmail) {
+        users[u].password = changedPassword;
+
+        let allUsersAsString = JSON.stringify(users);
+        await backend.setItem('users', allUsersAsString);
+
+        document.getElementById('resetPopup').classList.add("flex");
+
+        setTimeout(function() {
+            window.location.href = 'reset_password.html?msg=Du hast dich erfolgreich angemeldet';
+           
+          }, 1500);
+
 }
 
 
-    /*new Date().toLocaleString("de-DE");*/
+           
+        }
+    }
 
-    function preventRefresh() {
-        var form = document.getElementById("myform");
-        function handleForm(event) { event.preventDefault(); } 
-        form.addEventListener('submit', handleForm);
+    if(newPassword !== confirmPassword && users.find(o => o.email !== usersEmail)) {
+        document.getElementById('resetError').classList.remove('d-none');
+        document.getElementById('confirmPassword').classList.add('border-color');
+    }
+}
+
+
+/**
+ * This function manages following:
+ * - Prevents the form from refreshing the page
+ * 
+ * */function preventRefresh() {
+       newPassword();
+       return false;
+    }
+
+    function preventRefreshForgot() {
+        preventDefault();
+        return false;
     }

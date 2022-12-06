@@ -53,7 +53,7 @@ let createdTask2 = {
         },{
             'name': 'Kevin Schumilo',
             'color': '#02CF2F',
-            'email': 'Eva.Fischer@gmail.com',
+            'email': 'kevin.schumilo@gmail.com',
             'phone': '+49 0123 456 78 9'
         }
     ],

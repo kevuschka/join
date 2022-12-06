@@ -23,7 +23,7 @@
     
 
 </head>
-<body onload="addTest();renderSummary();renderNav();renderHeader();renderPopups();markNavItem(1);">
+<body onload="greet();renderSummary();renderNav();renderHeader();renderPopups();markNavItem(1);">
     <div class="page flex relative" id="page">
         <div class="nav flex column" id="nav"></div>
         <div class="wrapper flex column relative" id="wrapper">
@@ -74,14 +74,14 @@
                                 </div>
                             </div>
                             <div class="greet-container w-100">
-                                <span class="greet">Good morning,</span> <span class="user">Sofia Müller</span>
+                                <span id="greet" class="greet">Good Day,</span> <span id="user" class="user">Sofia Müller</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="greet-container2">
-                <span class="greet2">Good morning,</span> <span class="user2">Sofia Müller</span>
+                <span class="greet2">Good Day,</span> <span class="user2">Sofia Müller</span>
             </div>
             </div>
         </div>

@@ -296,9 +296,9 @@
         background-color: unset;
     }
 
-    .content-container {
+    /* .content-container {
         overflow: unset;
-    }
+    } */
 
     @media screen and (max-height: 700px) {
         .ticket-info-popup-contianer {

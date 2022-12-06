@@ -2,16 +2,17 @@
 
 ########### CONFIG ###############
 
-$recipient = 'sesgigi@yahoo.de';
-$redirect = 'reset_password.html';
+$recipient = 'your@mail.de';
+#$redirect = 'reset_password.html';
 
 ########### CONFIG END ###########
 
-$timeStamp= round(microtime(true) * 1000);
-$to="sesgigi@yahoo.de";
-$message="gruppe-348.developerakademie.net/join/reset_password.html";
-mail($to, $subject, $message, $headers);
-$url="gruppe-348.developerakademie.net/join/reset_password.html?email=".$_POST['email']."&timeSTamp=".$timeSTamp;
+#$timeStamp= round(microtime(true) * 1000);
+#$to="sesgigi@yahoo.de";
+#+$message="gruppe-348.developerakademie.net/join/reset_password.html";
+#mail($to, $subject, $message, $headers);
+#$somevar = $_GET["uid"]; //puts the uid varialbe into $somevar
+
 
 
 
@@ -45,14 +46,31 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case ("POST"): //Send the email;
         header("Access-Control-Allow-Origin: *");
 
-        $subject = "Contact From " . $_POST['name'];
-        $headers = "From:  noreply@developerakademie.com";
+        $email = $_POST['email'];
 
-        mail($recipient, $subject, $_POST['message'], $headers);
-        header("Location: " . $redirect); 
+        $message = "Hello,\n
+        \nFollow this link to reset your Join password for your  " . $email ." account.\n
+        \nhttps://gruppe-348.developerakademie.net/join/reset_password.html?email=" . $email . "\n
+        \nIf you didn't ask to reset your password, you can ignore this email.\n
+        \nThanks,\n
+        \nYour Join team\n";
+
+        $recipient = $email;
+        $subject = "Reset your password for Join App";
+        $headers = "Form: noreply@https://gruppe-348.developerakademie.net";
+
+        $result = mail($recipient, $subject, $message, $headers);
+        print($result);
+        
+
+        #mail($recipient, $subject, $_POST['message'], $headers);
+       #header("Location: " . $redirect); 
 
         break;
     default: //Reject any non POST or OPTIONS requests.
         header("Allow: POST", true, 405);
         exit;
 }
+
+
+$url="gruppe-348.developerakademie.net/join/reset_password.html?email=".$_POST['email']."&timeSTamp=".$timeSTamp;
