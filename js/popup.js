@@ -4,7 +4,7 @@
 function renderPopups() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
-    container.innerHTML += renderTemplateTicketInfoPopup();
+    // container.innerHTML += renderTemplateTicketInfoPopup();
     container.innerHTML += templateCreatedTaskPopUp();
     // container.innerHTML += renderTemplateBoardAddtaskPopup();
 }
@@ -16,6 +16,13 @@ function renderPopupsInBoard() {
     container.innerHTML += renderTemplateTicketInfoPopup();
     container.innerHTML += renderTemplateBoardAddtaskPopup();
     renderPopupCreatedAddtask();
+}
+
+function renderPopupsInContacts() {
+    let container = document.getElementById('popUp');
+    container.innerHTML = renderHeaderMenuPopup();
+    let containerResp = document.getElementById('popUp-responsive');
+    containerResp.innerHTML += renderContactsInfoPopupResponsive();
 }
 
 
@@ -253,6 +260,7 @@ function coloringTicketInfoPopupMembers(column, ticket, teamMember) {
 function closeTicketInfoPopup() {
     document.getElementById('board-ticket-info-popup-full').classList.add('d-none');
     document.getElementById('board-ticket-info-popup-full').innerHTML = '';
+    test();
 }
 
 
@@ -386,4 +394,12 @@ function boardAddtaskNoSlide() {
     setTimeout(() => {
         addClasslist(`board-addtask-popup-full`, `d-none`);
     }, 1);
+}
+
+
+//////////////////// CONTACT: CONTACT INFO POPUP (ONLY RESPONSIVE)///////////////////////////////
+
+
+function renderContactsInfoPopupResponsive() {
+        return `<div class="contact-info-popup-responsive-full flex fixed w-100 d-none" id="contact-info-popup-responsive-full"></div>`;
 }

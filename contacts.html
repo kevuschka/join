@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
     <link rel="stylesheet" href="contacts.css">
+    <link rel="stylesheet" href="contacts_responsive.css">
     <!-- CSS Loaded on every page -->
     <link rel="stylesheet" href="font.css">
     <link rel="stylesheet" href="style.css">
@@ -17,14 +18,14 @@
     <script src="js/popup.js"></script>
     <script src="js/contacts.js"></script>
 </head>
-<body onload="renderNav();renderHeader();renderPopups();markNavItem(4);renderContactsList()">
+<body onload="renderNav();renderHeader();renderPopupsInContacts();markNavItem(4);renderContactsList()">
     <div class="top-page relative">
         <div class="page flex" id="page">
             <div class="nav flex column" id="nav"></div>
             <div class="popUp" id="popUp"></div>
             <div class="wrapper flex column relative" id="wrapper">
                 <div class="header flex" id="header"></div>
-                <div class="content-container" id="content-container">
+                <div class="content-container relative" id="content-container">
                     <div class="contacts-wrapper flex w-100 h-100">
                         <div class="contacts-list-wrapper flex column">
                             <div class="contacts-list-btn-resp-container fixed w-100">
@@ -54,6 +55,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="popUp-responsive" id="popUp-responsive"></div>
                 </div>
             </div>
         </div>

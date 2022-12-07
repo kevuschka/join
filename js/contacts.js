@@ -39,7 +39,7 @@ function renderListLetterContacts(letter, number, j) {
 
 function renderTemplateListLetterContact(letter, number, j) {
     return `
-        <div class="contact cursor-p flex" id="contact-withLetter-${letter}-number-${number}" onclick="showContactInfoPopup(${j}, ${letter}, ${number})">
+        <div class="contact cursor-p flex" id="contact-withLetter-${letter}-number-${number}" onclick="showContactInfoPopup(${j}, '${letter}', ${number})">
             <div class="contact-abbreviation-wrapper flex" id="contact-abbreviation-wrapper-${letter}-${number}">
                 <p class="contact-abbreviation">${contacts[j]['abbreviation']}</p>
             </div>
@@ -66,7 +66,9 @@ function showContactInfoPopup(index, letter, number) {
 
 function changebackgroundColorOfSelectedContact(letter, number) {
     renderContactsList();
-    document.getElementById(`contact-withLetter-${letter}-number-${number}`).style.backgroundColor = "#091931";
+    document.getElementById(`contact-withLetter-${letter}-number-${number}`).style.backgroundColor = "#2A3647";
+    document.getElementById(`contact-withLetter-${letter}-number-${number}`).style.color = "#ffffff";
+    document.getElementById(`contact-abbreviation-wrapper-${letter}-${number}`).style.border = `1px solid white`;
 }
 
 function renderContactInfoPopup(i) {
