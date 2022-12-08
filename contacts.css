@@ -132,6 +132,16 @@
 
 
 /* CONTACT INFO POPUP */
+.contacts-info-popup-container {
+    transform: translateX(100vw);
+    /* animation: slideInContactsInfoPopup 125ms ease-in-out; */
+    transition: all 125ms ease-in-out;
+}
+
+.contact-info-popup-visible {
+    transform: translateX(0vw);
+}
+
 .contatc-info-popup-container {
     padding: 80px 0px 100px;
     height: 100%;
@@ -183,6 +193,7 @@
 }
 
 .contact-info-popup-editContact-btn {
+    display: flex;
     align-items: flex-end;
     gap: 7px;
 }

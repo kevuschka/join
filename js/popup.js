@@ -21,6 +21,8 @@ function renderPopupsInBoard() {
 function renderPopupsInContacts() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
+    container.innerHTML += renderTemplateBoardAddtaskPopup();
+    renderPopupCreatedAddtask();
     let containerResp = document.getElementById('popUp-responsive');
     containerResp.innerHTML += renderContactsInfoPopupResponsive();
 }
@@ -369,7 +371,7 @@ function closeBoardAddtaskPopupFilled() {
         addClasslist(`board-addtask-popup-full`, `d-none`);
     }, 1230);
     setTimeout(() => {
-        document.getElementById('board-addtask-popup-content').innerHTML = ''; //to wait until the window is not visible
+        document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
     }, 1250);
 }
 
@@ -405,24 +407,62 @@ function renderContactsInfoPopupResponsive() {
 }
 
 
-function showContactsInfoPopupResponsive(contact) {
-    renderTemplateContactsInfoPopupResp(contact);
+function showContactInfoPopupResponsive(contact) {
+    renderTemplateContactInfoPopupResp(contact);
+    contactInfoPopupAbbreviationColoring(contact);
     removeClasslist('contact-info-popup-responsive-full', 'd-none');
 }
 
 
-function renderTemplateContactsInfoPopupResp(profil) {
+function renderTemplateContactInfoPopupResp(profil) {
     let content = document.getElementById(`contact-info-popup-responsive-full`);
-    content.innerHTML = templateContactsInfoPopupResp(profil);
+    content.innerHTML = templateContactInfoPopupResp(profil);
+    renderTemplateContactInfoPopupInnerWrapper();
+    renderTemplateContactInfoPopupRespContactInfo(profil);
 }
 
 
-function templateContactsInfoPopupResp(member) {
-    return `
-        <p class="header-title-resp cursor-d">Kanban Project Management Tool</p>
-        <div class="contact-info-popup-resp-wrapper">
+function templateContactInfoPopupResp(member) {
+    return `<p class="header-title-resp cursor-d">Kanban Project Management Tool</p>
+            <div class="contact-info-popup-resp-wrapper">
+                <div class="contact-info-popup-resp-inner-wrapper column flex" id="contact-info-popup-resp-inner-wrapper"></div>
+                <div class="contact-info-popup-resp-pencil-wrapper flex">
+                    <img class="cursor-p" src="assets/img/pencil-white.png">
+                </div>
+            </div>`;
+}
 
+
+function renderTemplateContactInfoPopupInnerWrapper() {
+    let content = document.getElementById(`contact-info-popup-resp-inner-wrapper`);
+    content.innerHTML = templateContactInfoPopupRespInnerWrapper();
+}
+
+
+function templateContactInfoPopupRespInnerWrapper() {
+    return `
+        <div class="contact-info-popup-resp-title column flex">
+            <div class="contact-info-popup-resp-title-without-line column flex">
+                <div class="contact-info-popup-resp-title-head flex">
+                    <p>Contacts</p>
+                    <img src="assets/img/back-arraw.png" onclick="closeContactInfoPopupResponsive()">
+                </div>
+                <p>Better with a team</p>
+            </div>
+            <img src="assets/img/linehorizontal.png">
         </div>
-        <div class="contact-info-popup-resp-pencil-wrapper flex"><img src="assets/img/pencil-white.png"></div>
-    `;
+        <div class="contact-info-popup-resp-contactInfo column flex" id="contact-info-popup-resp-contactInfo"></div>`;
+}
+
+
+function renderTemplateContactInfoPopupRespContactInfo(member) {
+    let content = document.getElementById(`contact-info-popup-resp-contactInfo`);
+    content.innerHTML = renderTemplateContactInfoPopupAbbreviationAndName(member);
+    content.innerHTML += renderTemplateContactInfoPopupTitleAndEditContactBtn(member);
+    content.innerHTML += renderTemplateContactInfoPopupEmailAndPhone(member);
+}
+
+
+function closeContactInfoPopupResponsive() {
+    addClasslist('contact-info-popup-responsive-full', 'd-none');
 }

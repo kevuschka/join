@@ -375,6 +375,165 @@
         overflow-y: auto;
         padding: 0px 20px;
     }
+
+    /* CONTACTS INFO POPUP */
+    .header-title-resp {
+        font-size: 22px;
+    }
+
+    .contact-info-popup-responsive-full  {
+        z-index: 1;
+        overflow-y: auto;
+    }
+
+    .contact-info-popup-resp-wrapper {
+        padding: 0px 30px 124px;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .contact-info-popup-resp-inner-wrapper {
+        gap: 35px;
+        font-size: 26px;
+    }
+
+    .contact-info-popup-resp-title {
+        gap: 35px;
+    }
+
+    .contact-info-popup-resp-title-without-line {
+        gap: 20px;
+    }
+
+    .contact-info-popup-resp-title-head {
+        justify-content: space-between;
+        padding: 0 10px 0 0;
+    }
+
+    .contact-info-popup-resp-title-head > p {
+        font-size: 70px;
+        font-weight: bold;
+    }
+
+    .contact-info-popup-resp-title-head > img {
+        width: 22px;
+        height: 22px;
+        margin-top: 23px;
+    }
+
+    .contact-info-popup-resp-title > img {
+        width: 135px;
+        height: 4px;
+    }
+
+    .contact-info-popup-resp-contactInfo {
+        gap: 12px;
+    }
+
+    .contact-info-popup-abbreviation-and-name {
+        gap: 45px;
+        align-items: flex-end;
+    }
+
+    .contact-info-popup-abbreviation-wrapper .contact-info-popup-abbreviation {
+        width: 110px;
+        height: 110px;
+        font-size: 34px;
+    }
+
+    .contact-info-popup-name-and-addtask {
+        gap: unset;
+    }
+
+    .contact-info-popup-name-and-addtask > p {
+        font-size: 42px;
+    }
+
+    .contact-info-popup-addTask-btn p:last-child {
+        font-size: 20px;
+    }
+
+    .contact-info-popup-title-and-editContactBtn > p {
+        font-size: 26px;
+    }
+
+    .contact-info-popup-editContact-btn {
+        display: none;
+    }
+
+    .contact-info-popup-email-and-phone {
+        font-size: 18px;
+    }
+
+    .contact-info-popup-resp-pencil-wrapper {
+        justify-content: flex-end;
+    }
+
+    .contact-info-popup-resp-pencil-wrapper > img {
+        background-color: #2A3647;
+        border-radius: 11px;
+        padding: 3px 8px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    /* CONTACTS INFO POPUP */
+
+    .contact-info-popup-resp-inner-wrapper {
+        gap: 22px;
+        font-size: 20px;
+    }
+
+    .contact-info-popup-resp-title {
+        gap: 22px;
+    }
+
+    .contact-info-popup-resp-title-without-line {
+        gap: 14px;
+    }
+
+    .contact-info-popup-resp-title-head > p {
+        font-size: 42px;
+    }
+
+    .contact-info-popup-resp-title-head > img {
+        width: 14px;
+        height: 14px;
+        margin-top: 11px;
+    }
+
+    .contact-info-popup-resp-title > img {
+        width: 87px;
+        height: 3px;
+    }
+
+    .contact-info-popup-abbreviation-and-name {
+        gap: 30px;
+    }
+
+    .contact-info-popup-abbreviation-wrapper .contact-info-popup-abbreviation {
+        width: 80px;
+        height: 80px;
+        font-size: 24px;
+    }
+
+    .contact-info-popup-name-and-addtask > p {
+        font-size: 24px;
+    }
+
+    .contact-info-popup-addTask-btn p:last-child {
+        font-size: 14px;
+    }
+
+    .contact-info-popup-title-and-editContactBtn > p {
+        font-size: 20px;
+    }
+
+    .contact-info-popup-email-and-phone {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -436,6 +595,31 @@
     .contact-email {
         font-size: 12px;
     }
+
+    /* CONTACTS INFO POPUP */
+    .contact-info-popup-resp-wrapper {
+        padding: 0px 30px 110px;
+    }
+
+    .contact-info-popup-abbreviation-and-name {
+        gap: 5px;
+    }
+
+    .contact-info-popup-name-and-addtask > p {
+        font-size: 24px;
+    }
+
+    .contact-info-popup-addTask-btn p:last-child {
+        font-size: 14px;
+    }
+
+    .contact-info-popup-title-and-editContactBtn > p {
+        font-size: 20px;
+    }
+
+    .contact-info-popup-email-and-phone {
+        gap: 10;    
+    }
 } 
 
 @media screen and (max-width: 340px) {
@@ -443,11 +627,90 @@
         justify-content: space-between;
         gap: unset;
     }
+
+    /* CONTACT INFO POPUP */
+    .contact-info-popup-resp-title-without-line > p {
+        font-size: 16px;
+    }
+
+    .contact-info-popup-resp-title-head {
+        margin-right: 8px;
+    }
+
+    .contact-info-popup-resp-title-head > p {
+        font-size: 32px;
+    }
+
+    .contact-info-popup-resp-title-head > img {
+        width: 12px;
+        height: 12px;
+    }
+
+    .contact-info-popup-resp-title > img {
+        width: 70px;
+    }
+
+    .contact-info-popup-resp-contactInfo {
+        gap: 8px;
+    }
+
+    .contact-info-popup-abbreviation-and-name {
+        align-items: center;
+    }
+
+    .contact-info-popup-abbreviation-wrapper .contact-info-popup-abbreviation {
+        width: 50px;
+        height: 50px;
+        font-size: 15px;
+    }
+
+    .contact-info-popup-name-and-addtask > p {
+        font-size: 20px;
+    }
+
+    .contact-info-popup-addTask-btn {
+        gap: 3px;
+    }
+
+    .contact-info-popup-addTask-btn p:first-child {
+        font-size: 18px;
+    }
+
+    .contact-info-popup-addTask-btn p:last-child {
+        font-size: 11px;
+    }
+
+    .contact-info-popup-title-and-editContactBtn > p {
+        font-size: 14px;
+    }
+
+    .contact-info-popup-email-and-phone {
+        font-size: 12px;
+        gap: 8px;
+    }
+
+    .contact-info-popup-email-wrapper, .contact-info-popup-phone-wrapper {
+        gap: 8px;
+    }
+
+    .contact-info-popup-resp-pencil-wrapper > img {
+        padding: 4px 7px;
+        width: 27px;
+        height: 27px;
+        border-radius: 7px;
+    }
 } 
 
 @media screen and (max-width: 310px) {
     .contact {
         padding: 8px 10px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    /* CONTACT INFO POPUP */
+    .contact-info-popup-resp-wrapper {
+        padding: 0px 10px 78px;
     }
 }
 

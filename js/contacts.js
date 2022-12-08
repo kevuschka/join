@@ -39,7 +39,7 @@ function renderListLetterContacts(letter, number, j) {
 
 function renderTemplateListLetterContact(letter, number, j) {
     return `
-        <div class="contact cursor-p flex" id="contact-withLetter-${letter}-number-${number}" onclick="showContactInfoPopup(${j}, '${letter}', ${number})">
+        <div class="contact cursor-p flex" id="contact-withLetter-${letter}-number-${number}" onclick="openContactInfoPopup(${j}, '${letter}', ${number})">
             <div class="contact-abbreviation-wrapper flex" id="contact-abbreviation-wrapper-${letter}-${number}">
                 <p class="contact-abbreviation">${contacts[j]['abbreviation']}</p>
             </div>
@@ -56,11 +56,20 @@ function contactAbbreviationColoring(letter, number, j) {
 }
 
 
+function openContactInfoPopup(index, letter, number) {
+    if(window.innerWidth > 800) showContactInfoPopup(index, letter, number);
+    else showContactInfoPopupResponsive(index);
+}
+
+
 function showContactInfoPopup(index, letter, number) {
-    changebackgroundColorOfSelectedContact(letter, number);
-    renderContactInfoPopup(index);
-    contactInfoPopupAbbreviationColoring(index);
-    // document.getElementById('contact-popup').classList.remove('d-none');
+    removeClasslist('contacts-info-popup-container', 'contact-info-popup-visible');
+    setTimeout(() => {
+        changebackgroundColorOfSelectedContact(letter, number);
+        renderContactInfoPopup(index);
+        contactInfoPopupAbbreviationColoring(index);
+        addClasslist('contacts-info-popup-container', 'contact-info-popup-visible');
+    }, 125);
 }
 
 
@@ -95,7 +104,7 @@ function renderTemplateContactInfoPopupAbbreviationAndName(i) {
                 </div>
                 <div class="contact-info-popup-name-and-addtask column flex">
                     <p>${contacts[i]['name']}</p>
-                    <div class="contact-info-popup-addTask-btn flex cursor-p" onclick="">
+                    <div class="contact-info-popup-addTask-btn flex cursor-p" onclick="openBoardAddtaskPopup()">
                         <p>+</p>
                         <p>Add Task</p>
                     </div>
@@ -107,7 +116,7 @@ function renderTemplateContactInfoPopupAbbreviationAndName(i) {
 function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
     return `<div class="contact-info-popup-title-and-editContactBtn flex">
                 <p>Contact Information</p>
-                <div class="contact-info-popup-editContact-btn flex cursor-p" onclick="">
+                <div class="contact-info-popup-editContact-btn cursor-p" onclick="">
                     <img src="assets/img/profil-edit-contact-icon.png">
                     <p>Edit Contact</p>
                 </div>
