@@ -77,7 +77,7 @@
 .contacts-info-wrapper {
     padding: 65px 90px 50px;
     background-color: #F6F7F8;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .contacts-info-container {
@@ -211,4 +211,14 @@
     width: 160px;
     height: 160px;
     font-size: 70px;
+}
+
+/* CONTACT INFO POPUP RESPONSIVE (under 800px width) */
+
+.contact-info-popup-responsive-full {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #F6F7F8;
 }

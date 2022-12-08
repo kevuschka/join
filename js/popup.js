@@ -401,5 +401,28 @@ function boardAddtaskNoSlide() {
 
 
 function renderContactsInfoPopupResponsive() {
-        return `<div class="contact-info-popup-responsive-full flex fixed w-100 d-none" id="contact-info-popup-responsive-full"></div>`;
+        return `<div class="contact-info-popup-responsive-full column flex fixed w-100 d-none" id="contact-info-popup-responsive-full"></div>`;
+}
+
+
+function showContactsInfoPopupResponsive(contact) {
+    renderTemplateContactsInfoPopupResp(contact);
+    removeClasslist('contact-info-popup-responsive-full', 'd-none');
+}
+
+
+function renderTemplateContactsInfoPopupResp(profil) {
+    let content = document.getElementById(`contact-info-popup-responsive-full`);
+    content.innerHTML = templateContactsInfoPopupResp(profil);
+}
+
+
+function templateContactsInfoPopupResp(member) {
+    return `
+        <p class="header-title-resp cursor-d">Kanban Project Management Tool</p>
+        <div class="contact-info-popup-resp-wrapper">
+
+        </div>
+        <div class="contact-info-popup-resp-pencil-wrapper flex"><img src="assets/img/pencil-white.png"></div>
+    `;
 }
