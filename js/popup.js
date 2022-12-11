@@ -116,40 +116,43 @@ function renderTicketInfoPopupContainer(column, ticket) {
 
 function renderTemplateTicketInfoPopupContainer(column, ticket) {
     return `
-    <div class="ticket-info-popup-container auto column flex relative" onclick="doNotClose(event)" id="ticket-info-popup-container-${column}-${ticket}">
-            <div class="ticket-info-popup-wrapper w-100 flex column">
-                <div class="ticket-info-popup-category-container flex w-100">
-                    <div class="ticket-info-popup-category flex">
-                        <p class="h-100 cursor-d" id="ticket-info-popup-category-${column}-${ticket}">${boardColumns[column][ticket]['category']['name']}</p> 
+        <div class="ticket-info-popup-container column flex relative" onclick="doNotClose(event)" id="ticket-info-popup-container-${column}-${ticket}">
+            <div class="ticket-info-popup-inner-container flex column h-100 w-100" id="ticket-info-popup-inner-container-${column}-${ticket}">
+                <div class="ticket-info-popup-wrapper w-100 flex column">
+                    <div class="ticket-info-popup-category-container flex w-100">
+                        <div class="ticket-info-popup-category flex">
+                            <p class="h-100 cursor-d" id="ticket-info-popup-category-${column}-${ticket}">${boardColumns[column][ticket]['category']['name']}</p> 
+                        </div>
+                        <img class="ticket-info-popup-cross cursor-p" src="assets/img/popup-cross.png" onclick="closeTicketInfoPopup()">
+                        <img class="ticket-info-popup-backArrow cursor-p" src="assets/img/back-arraw.png" onclick="closeTicketInfoPopup()">
                     </div>
-                    <img class="ticket-info-popup-cross cursor-p" src="assets/img/popup-cross.png" onclick="closeTicketInfoPopup()">
-                    <img class="ticket-info-popup-backArrow cursor-p" src="assets/img/back-arraw.png" onclick="closeTicketInfoPopup()">
-                </div>
-                <div class="ticket-info-popup-title flex">
-                    <p class="cursor-d">${boardColumns[column][ticket]['title']}</p>
-                </div>
-                <div class="ticket-info-popup-description flex">
-                    <p class="cursor-d">${boardColumns[column][ticket]['description']}</p>
-                </div>
-                <div class="ticket-info-popup-date-and-prio-and-assignedTo">
-                    <div class="ticket-info-popup-date flex">
-                        <p class="cursor-d">Due date:</p>
-                        <p class="cursor-d">${boardColumns[column][ticket]['due-date']}</p>
+                    <div class="ticket-info-popup-title flex">
+                        <p class="cursor-d">${boardColumns[column][ticket]['title']}</p>
                     </div>
-                    <div class="ticket-info-popup-prio flex">
-                        <p class="cursor-d">Priority:</p>
-                        <div class="ticket-info-popup-prio-wrapper flex" id="ticket-info-popup-prio-${column}-${ticket}">
-                            <p class="cursor-d">${boardColumns[column][ticket]['prior']['name']}</p>
-                            <img class="ticket-info-popup-prio-image" id="ticket-info-popup-prio-image-${column}-${ticket}" src="${boardColumns[column][ticket]['prior']['image']}">
+                    <div class="ticket-info-popup-description flex">
+                        <p class="cursor-d">${boardColumns[column][ticket]['description']}</p>
+                    </div>
+                    <div class="ticket-info-popup-date-and-prio-and-assignedTo">
+                        <div class="ticket-info-popup-date flex">
+                            <p class="cursor-d">Due date:</p>
+                            <p class="cursor-d">${boardColumns[column][ticket]['due-date']}</p>
+                        </div>
+                        <div class="ticket-info-popup-prio flex">
+                            <p class="cursor-d">Priority:</p>
+                            <div class="ticket-info-popup-prio-wrapper flex" id="ticket-info-popup-prio-${column}-${ticket}">
+                                <p class="cursor-d">${boardColumns[column][ticket]['prior']['name']}</p>
+                                <img class="ticket-info-popup-prio-image" id="ticket-info-popup-prio-image-${column}-${ticket}" src="${boardColumns[column][ticket]['prior']['image']}">
+                            </div>
+                        </div>
+                        <div class="ticket-info-popup-assignedTo flex column" id="ticket-info-popup-assignedTo-${column}-${ticket}">
+                            <p class="cursor-d">Assigned To:</p>
                         </div>
                     </div>
-                    <div class="ticket-info-popup-assignedTo flex column" id="ticket-info-popup-assignedTo-${column}-${ticket}">
-                        <p class="cursor-d">Assigned To:</p>
-                    </div>
                 </div>
-            </div>
-            <div class="ticket-info-popup-edit-container w-100 flex">
-                <div class="ticket-info-popup-edit flex cursor-p" onclick="renderTicketInfoEditting(${column}, ${ticket})"><img src="assets/img/pencil-white.png"></div>
+                <div class="ticket-info-popup-edit-container w-100 flex">
+                    <div class="ticket-info-popup-edit flex cursor-p" onclick="renderTicketInfoEditting(${column}, ${ticket})"><img src="assets/img/pencil-white.png"></div>
+                </div>
+                </div>
             </div>
         </div>`;
 }

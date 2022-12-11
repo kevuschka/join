@@ -199,6 +199,10 @@ a {
     width: 106px;
 }
 
+.header-title-resp {
+    display: none;
+}
+
 .header-right-corner-addTask {
     display: none;
 }
@@ -221,6 +225,10 @@ a {
     width: 40px;
     height: 40px;
     object-fit: cover;
+}
+
+.logo-img-resp {
+    display: none;
 }
 
 
