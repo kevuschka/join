@@ -279,7 +279,7 @@ function templateCreatedTaskPopUp() {
 
 
 function startSlideUPAnimation() {
-    if(window.location.pathname == '/board.html') {
+    if((window.location.pathname == '/board.html') || (window.location.pathname == '/contacts.html')) {
         document.getElementById('pop-up-created-task').classList.add('create-task-animation');
         setTimeout(() => {
             endSlideUPAnimation();
