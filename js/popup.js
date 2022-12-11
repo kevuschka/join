@@ -116,7 +116,7 @@ function renderTicketInfoPopupContainer(column, ticket) {
 
 function renderTemplateTicketInfoPopupContainer(column, ticket) {
     return `
-    <div class="ticket-info-popup-container auto flex column relative" onclick="doNotClose(event)" id="ticket-info-popup-container-${column}-${ticket}">
+    <div class="ticket-info-popup-container auto column flex relative" onclick="doNotClose(event)" id="ticket-info-popup-container-${column}-${ticket}">
             <div class="ticket-info-popup-wrapper w-100 flex column">
                 <div class="ticket-info-popup-category-container flex w-100">
                     <div class="ticket-info-popup-category flex">
@@ -157,7 +157,8 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
 
 function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
-    content.innerHTML = templateTicketEditing(column, ticket);
+    content.innerHTML = `<div class="ticket-info-popup-inner-container flex column h-100 w-100" id="ticket-info-popup-inner-container-${column}-${ticket}"></div>`;
+    document.getElementById(`ticket-info-popup-inner-container-${column}-${ticket}`).innerHTML = templateTicketEditing(column, ticket);
     clearContactIconArray();
     renderPrioritySelection(); //in add_task.js
     renderContactsDropdown(); //in add_task.js
@@ -320,7 +321,7 @@ function renderTemplateBoardAddtaskPopup() {
             </div>
             
             <div class="board-addtask-popup-content w-100 h-100 relative" id="board-addtask-popup-content-container">
-                <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
+                <img class="board-addtask-popup-cross cursor-p fixed" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
                 <div w3-include-html="./assets/templates/task_form.html" class="content-container" id="board-addtask-popup-content"></div>    
             </div>
         </div>
