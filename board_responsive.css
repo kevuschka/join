@@ -388,7 +388,8 @@
     }
 
     .board-addtask-popup-cross {
-        top: 90px;
+        position: absolute;
+        top: 40px;
         right: 40px;
     }
 

@@ -142,3 +142,4 @@ function contactInfoPopupAbbreviationColoring(index) {
     document.getElementById(`contact-info-popup-abbreviation-${index}`).style.backgroundColor = `${contacts[index]['color']}`;
     // addClasslist(`contact-info-popup-abbreviation-${index}`, `contact-info-popup-abbreviation`);
 }
+
