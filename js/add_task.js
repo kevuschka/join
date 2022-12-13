@@ -186,6 +186,12 @@ function addCategoryNameToCategoryObject() {
 
 function pushCategoryObjectToCategoryArray() {
     category.push(categoryObject);
+    saveCategoriesOnServer();
+}
+
+
+function saveCategoriesOnServer() {
+    backend.setItem('category', JSON.stringify(category));
 }
 
 
