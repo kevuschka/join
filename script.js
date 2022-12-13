@@ -27,10 +27,10 @@ let priorities = [
     }
 ]
 
-let category = [{
-    'name': 'Design',
-    'color': '#FF8A00',
-}];
+let category = [
+//     'name': 'Design',
+//     'color': '#FF8A00',
+];
 
 
 let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
@@ -132,6 +132,9 @@ setURL('https://gruppe-348.developerakademie.net/join/smallest_backend_ever');
 async function init() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
+    //boardColumns = JSON.parse(backend.getItem('boardColumns')) || [];
+    category = JSON.parse(backend.getItem('category')) || [];
+    //contacts = JSON.parse(backend.getITEM('contacts')) || [];
 }
 // ADD
 // async function addUser() {
