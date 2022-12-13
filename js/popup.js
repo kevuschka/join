@@ -479,10 +479,8 @@ function closeContactInfoPopupResponsive() {
 
 //////////////////// CONTACT: NEW CONTACT BTN - POPUP///////////////////////////////
 function templateContactsNewContactPopup() {
-    return `<div class="contacts-new-contact-popup-full absolute d-none" id="contacts-new-contact-popup-full" onclick="closeContactsNewContactPopup()">
-                <div class="contacts-new-contact-popup-wrapper relative w-100 h-100 flex">
+    return `<div class="contacts-new-contact-popup-full flex absolute d-none" id="contacts-new-contact-popup-full" onclick="closeContactsNewContactPopup()">
                     <div class="contacts-new-contact-popup-container relative" id="contacts-new-contact-popup-container"></div>
-                </div>
             </div>`;
 }
 
@@ -546,7 +544,7 @@ function contactsNewContactSlideIn() {
 
 
 function closeContactsNewContactPopup() {
-    removeClasslist(`contacts-new-contact-popup-full`,'board-addtask-popup-slideIn');
+    removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     contactsNewContactsPopupSlideOut();
 }

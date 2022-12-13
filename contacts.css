@@ -242,21 +242,23 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 3;
-}
-
-.contacts-new-contact-popup-wrapper {
     justify-content: center;
     align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 3;
     overflow: hidden;
+    opacity: 0;
 }
+
 
 .contacts-new-contact-popup-container {
     background-color: white;
     border-radius: 30px;
     width: 90%;
     height: 70%;
+    transform: translateX(100vw);
+    transition: transform 125ms ease-in-out;
 }
 
 .contacts-new-contact-popup-darkside-title-and-logo {
