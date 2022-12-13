@@ -480,7 +480,7 @@ function closeContactInfoPopupResponsive() {
 //////////////////// CONTACT: NEW CONTACT BTN - POPUP///////////////////////////////
 function templateContactsNewContactPopup() {
     return `<div class="contacts-new-contact-popup-full flex absolute d-none" id="contacts-new-contact-popup-full" onclick="closeContactsNewContactPopup()">
-                    <div class="contacts-new-contact-popup-container relative" id="contacts-new-contact-popup-container"></div>
+                    <div class="contacts-new-contact-popup-container relative" id="contacts-new-contact-popup-container" onclick="doNotClose(event)"></div>
             </div>`;
 }
 
@@ -520,7 +520,37 @@ function templateNewContactPopup() {
                             <img src="assets/img/add-contact-icon.png">
                         </div>
                     </div>
-                    <form></form>    
+                    <div class="contacts-new-contact-popup-form flex" id="contacts-new-contant-popup-form">
+                        <form class="w-100" id="contacts-new-contant-popup-form-tag">
+                            <div class="contacts-new-contact-popup-form-container flex column">
+                                <div class="contacts-new-contact-popup-form-inputs-container flex column">
+                                    <div class="contacts-new-contact-popup-form-name flex">
+                                        <input type="text" id="new-contact-form-name" name="name" placeholder="Name" required>
+                                        <img src="assets/img/add-contact-name-icon.png">
+                                    </div>
+                                    <div class="contacts-new-contact-popup-form-email flex">
+                                        <input type="email" id="new-contact-form-email" name="email" placeholder="Email" required>
+                                        <img src="assets/img/add-contact-email-icon.png">
+                                    </div>
+                                    <div class="contacts-new-contact-popup-form-phone flex">
+                                        <input type="number" id="new-contact-form-phone" name="phone" placeholder="Phone" required>
+                                        <img src="assets/img/add-contact-phone-icon.png">
+                                    </div>
+                                </div>
+                                <div class="contacts-new-contact-popup-form-btns flex">
+                                    <div class="new-contact-popup-form-btn-cancel flex cursor-p" onmouseover="changeColorOfContactsNewContactBtnCancelToLightblue()" onmouseout="changeColorOfContactsNewContactBtnCancelToBlack()" onclick="closeContactsNewContactPopup()">
+                                        <p>Cancel</p>
+                                        <img class="new-contact-form-btn-cancel-cross-black" id="new-contact-form-btn-cancel-cross-black" src="assets/img/add_task_cancel.png">
+                                        <img class="new-contact-form-btn-cancel-cross-blue d-none" id="new-contact-form-btn-cancel-cross-blue" src="assets/img/blue-cancel-icon.png">
+                                    </div>
+                                    <button class="new-contact-popup-form-btn-create cursor-p flex">
+                                        <p>Create contact</p>
+                                        <img src="assets/img/check-small.png"> 
+                                    </button>
+                                </div>
+                            </div>
+                        </form>   
+                    </div> 
                 </div>
             </div>`;
 }
@@ -588,6 +618,18 @@ function closeContactsNewContactPopupFilled() {
     setTimeout(() => {
         document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
     }, 1250);
+}
+
+
+function changeColorOfContactsNewContactBtnCancelToLightblue() {
+    addClasslist(`new-contact-form-btn-cancel-cross-black`, `d-none`);
+    removeClasslist(`new-contact-form-btn-cancel-cross-blue`, `d-none`);
+}
+
+
+function changeColorOfContactsNewContactBtnCancelToBlack() {
+    removeClasslist(`new-contact-form-btn-cancel-cross-black`, `d-none`);
+    addClasslist(`new-contact-form-btn-cancel-cross-blue`, `d-none`);
 }
 
 

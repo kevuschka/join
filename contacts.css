@@ -277,16 +277,16 @@
 }
 
 .contacts-new-contact-popup-darkside-title-and-logo-container > img {
-    width: 60px;
+    width: 4vw;
 }
 
 .contacts-new-contact-popup-darkside-title-and-logo-container > p {
-    font-size: 90px;
+    font-size: 4vw;
     font-weight: bold;
 }
 
 .contacts-new-contact-popup-subtitle-container {
-    font-size: 40px;
+    font-size: 1.8vw;
     gap: 8px;
 }
 
@@ -295,11 +295,112 @@
 }
 
 .contacts-new-contact-popup-subtitle-container > img {
-    width: 140px;
+    width: 7vw;
     height: 5px;
 }
 
-
 .contacts-new-contact-popup-abbreviation-wrapper {
+    justify-content: center;
     align-items: center;
+    width: 40%;
+}
+
+.contacts-new-contact-popup-abbreviation > img {
+    width: 170px;
+}
+
+.contacts-new-contact-popup-form-side {
+    width: 60%;;
+}
+
+.contacts-new-contact-popup-form {
+    align-items: center;
+    width: 50%;
+    font-size: 18px;
+}
+
+#contacts-new-contant-popup-form-tag {
+    padding: 0;
+}
+
+.contacts-new-contact-popup-form-container {
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.contacts-new-contact-popup-form-inputs-container {
+    gap: 35px;
+}
+
+.contacts-new-contact-popup-form-name, .contacts-new-contact-popup-form-email, .contacts-new-contact-popup-form-phone {
+    align-items: center;
+    border: 1px solid lightgray;
+    border-radius: 7px;
+    padding: 10px 16px 10px 14px;
+}
+
+.contacts-new-contact-popup-form  input {
+    width: 100%;
+    outline: none;
+    border: none;
+    color: gray;
+}
+
+.contacts-new-contact-popup-form  input, .new-contact-popup-form-btn-cancel, .new-contact-popup-form-btn-create {
+    font-size: 18px;
+}
+
+
+.contacts-new-contact-popup-form-name > img  {
+    width: 22px;
+}
+
+.contacts-new-contact-popup-form-email > img  {
+    width: 20px;
+    height: 15px;
+}
+
+.contacts-new-contact-popup-form-phone > img  {
+    width: 22px;
+}
+
+.contacts-new-contact-popup-form-btns {
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+    
+}
+
+.new-contact-popup-form-btn-cancel {
+    border: 1px solid #2A3647;
+    color: #2A3647;
+}
+
+.new-contact-popup-form-btn-cancel:hover {
+    color: #29ABE2;
+    border: 1px solid #29ABE2;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.new-contact-popup-form-btn-create {
+    background-color: #2A3647;
+    color: white;
+    border: unset;
+}
+
+.new-contact-popup-form-btn-create:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.new-contact-popup-form-btn-cancel, .new-contact-popup-form-btn-create {
+    align-items: center;
+    border-radius: 8px;
+    padding: 12px 15px;
+    gap: 10px;
+    transition: background-color 125ms, color 125ms, border 125ms, box-shadow 125ms ease-in-out;
+}
+
+.new-contact-form-btn-cancel-cross-black {
+    filter: invert(0.2);
 }

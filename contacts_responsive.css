@@ -56,6 +56,12 @@
             .contact-info-popup-email-and-phone, .contact-info-popup-email-wrapper, .contact-info-popup-phone-wrapper {
                 gap: 8px;
             }
+
+            /* NEW CONTACT BTN - POPUP */
+            .contacts-new-contact-popup-darkside-title-and-logo-container {
+                margin-bottom: 65px;
+                gap: 10px;
+            }
         }
 
         @media screen and (max-height: 670px) {
