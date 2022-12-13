@@ -22,6 +22,7 @@ function renderPopupsInContacts() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
     container.innerHTML += renderTemplateBoardAddtaskPopup();
+    container.innerHTML += templateContactsNewContactPopup();
     renderPopupCreatedAddtask();
     let containerResp = document.getElementById('popUp-responsive');
     containerResp.innerHTML += renderContactsInfoPopupResponsive();
@@ -475,3 +476,120 @@ function renderTemplateContactInfoPopupRespContactInfo(member) {
 function closeContactInfoPopupResponsive() {
     addClasslist('contact-info-popup-responsive-full', 'd-none');
 }
+
+//////////////////// CONTACT: NEW CONTACT BTN - POPUP///////////////////////////////
+function templateContactsNewContactPopup() {
+    return `<div class="contacts-new-contact-popup-full absolute d-none" id="contacts-new-contact-popup-full" onclick="closeContactsNewContactPopup()">
+                <div class="contacts-new-contact-popup-wrapper relative w-100 h-100 flex">
+                    <div class="contacts-new-contact-popup-container relative" id="contacts-new-contact-popup-container"></div>
+                </div>
+            </div>`;
+}
+
+
+function openContactsNewContactPopup() {
+    renderContactsNewContactPopup();
+    removeClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+    removeClasslist(`contacts-new-contact-popup-full`,`d-none`);
+    addClasslist(`contacts-new-contact-popup-full`,`showBackgroundAnimation`);
+    addClasslist(`contacts-new-contact-popup-full`,`opa-1`);
+    contactsNewContactSlideIn();
+}
+
+
+function renderContactsNewContactPopup() {
+    let wrapper = document.getElementById(`contacts-new-contact-popup-container`);
+    wrapper.innerHTML = templateNewContactPopup();
+    wrapper.innerHTML += templateNewContactCloseCross(); 
+}
+
+
+function templateNewContactPopup() {
+    return `<div class="contacts-new-contact-popup flex w-100 h-100">
+                <div class="contacts-new-contact-popup-darkside-title-and-logo flex column">
+                    <div class="contacts-new-contact-popup-darkside-title-and-logo-container flex column w-100">
+                            <img src="assets/img/logo-big.png">
+                            <p class="contacts-new-contact-popup-title">Add contact</p>
+                            <div class="contacts-new-contact-popup-subtitle-container flex column w-100">
+                                <p class="contacts-new-contact-popup-subtitle">Tasks are better with a team!</p>
+                                <img src="assets/img/underline.png">
+                            </div>
+                    </div>
+                </div>
+                <div class="contacts-new-contact-popup-form-side relative flex">
+                    <div class="contacts-new-contact-popup-abbreviation-wrapper flex">
+                        <div class="contacts-new-contact-popup-abbreviation" id="contacts-new-contact-abbreviation">
+                            <img src="assets/img/add-contact-icon.png">
+                        </div>
+                    </div>
+                    <form></form>    
+                </div>
+            </div>`;
+}
+
+
+
+function templateNewContactCloseCross() {
+    return `
+        <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeContactsNewContactPopup()" src="assets/img/popup-cross.png">`;
+}
+
+
+
+
+
+function contactsNewContactSlideIn() {
+    setTimeout(() => {
+        addClasslist(`contacts-new-contact-popup-container`, `board-addtask-popup-slideIn`);
+    }, 10);
+}
+
+
+function closeContactsNewContactPopup() {
+    removeClasslist(`contacts-new-contact-popup-full`,'board-addtask-popup-slideIn');
+    removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
+    contactsNewContactsPopupSlideOut();
+}
+
+
+function contactsNewContactsPopupSlideOut() {
+    if(window.innerWidth > 800) {
+        setTimeout(() => {
+            addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+            removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
+        }, 102);
+        setTimeout(() => {
+            addClasslist(`contacts-new-contact-popup-full`, `d-none`);
+            document.getElementById('contacts-new-contact-popup-container').innerHTML = '';
+        }, 230);
+    } else contactsNewContactPopupNoSlide();
+}
+
+
+function contactsNewContactPopupNoSlide() {
+    addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+    removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
+    setTimeout(() => {
+        addClasslist(`contacts-new-contact-popup-full`, `d-none`);
+    }, 1);
+}
+
+
+function closeContactsNewContactPopupFilled() {
+    setTimeout(() => {
+        removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
+        removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
+    }, 1000);
+    setTimeout(() => {
+        addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+        removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
+    }, 1102);
+    setTimeout(() => {
+        addClasslist(`contacts-new-contact-popup-full`, `d-none`);
+    }, 1230);
+    setTimeout(() => {
+        document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
+    }, 1250);
+}
+
+

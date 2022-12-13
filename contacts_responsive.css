@@ -476,6 +476,20 @@
         border-radius: 11px;
         padding: 3px 8px;
     }
+
+    /* New Contact BTN Popup */
+    .contacts-new-contact-full {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .contacts-new-contact-wrapper {
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media screen and (max-width: 600px) {

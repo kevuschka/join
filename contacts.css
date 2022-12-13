@@ -233,3 +233,71 @@
     right: 0;
     background-color: #F6F7F8;
 }
+
+
+/* NEW CONTACT BTN - POPUP */
+
+.contacts-new-contact-popup-full {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 3;
+}
+
+.contacts-new-contact-popup-wrapper {
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.contacts-new-contact-popup-container {
+    background-color: white;
+    border-radius: 30px;
+    width: 90%;
+    height: 70%;
+}
+
+.contacts-new-contact-popup-darkside-title-and-logo {
+    color: white;
+    background:  #2A3647;
+    width: 40%;
+    justify-content: center;
+    padding: 55px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.contacts-new-contact-popup-darkside-title-and-logo-container {
+    margin-bottom: 140px;
+    gap: 18px;
+}
+
+.contacts-new-contact-popup-darkside-title-and-logo-container > img {
+    width: 60px;
+}
+
+.contacts-new-contact-popup-darkside-title-and-logo-container > p {
+    font-size: 90px;
+    font-weight: bold;
+}
+
+.contacts-new-contact-popup-subtitle-container {
+    font-size: 40px;
+    gap: 8px;
+}
+
+.contacts-new-contact-popup-subtitle-container > p {
+
+}
+
+.contacts-new-contact-popup-subtitle-container > img {
+    width: 140px;
+    height: 5px;
+}
+
+
+.contacts-new-contact-popup-abbreviation-wrapper {
+    align-items: center;
+}
