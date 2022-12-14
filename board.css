@@ -626,7 +626,7 @@
     background-color: white;
     border-radius: 30px;
     transform: translateX(100vw);
-    transition: transform 225ms ease-in-out;
+    transition: transform 125ms ease-in-out;
 }
 
 .board-addtask-popup-content {
