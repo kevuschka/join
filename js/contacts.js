@@ -116,7 +116,7 @@ function renderTemplateContactInfoPopupAbbreviationAndName(i) {
 function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
     return `<div class="contact-info-popup-title-and-editContactBtn flex">
                 <p>Contact Information</p>
-                <div class="contact-info-popup-editContact-btn cursor-p" onclick="">
+                <div class="contact-info-popup-editContact-btn cursor-p" onclick="openContactsNewContactPopup(${i})">
                     <img src="assets/img/profil-edit-contact-icon.png">
                     <p>Edit Contact</p>
                 </div>
@@ -143,3 +143,11 @@ function contactInfoPopupAbbreviationColoring(index) {
     // addClasslist(`contact-info-popup-abbreviation-${index}`, `contact-info-popup-abbreviation`);
 }
 
+
+function makeValueContactsAddtoTrue() {
+    contacts_add = true;
+}
+
+function makeValueContactsAddToFalse() {
+    contacts_add = false;
+}

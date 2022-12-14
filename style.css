@@ -56,6 +56,10 @@ html, body {
     position: absolute;
 }
 
+.justify-center {
+    justify-content: center;
+}
+
 .fixed {
     position: fixed;
 }
@@ -286,6 +290,7 @@ a {
     width: 100%;
     height: 100%;
     overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 /* ########## POPUP TASK CREATED ########## */

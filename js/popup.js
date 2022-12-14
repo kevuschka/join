@@ -485,8 +485,8 @@ function templateContactsNewContactPopup() {
 }
 
 
-function openContactsNewContactPopup() {
-    renderContactsNewContactPopup();
+function openContactsNewContactPopup(index = 0) {
+    renderContactsNewContactPopup(index);
     removeClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
     removeClasslist(`contacts-new-contact-popup-full`,`d-none`);
     addClasslist(`contacts-new-contact-popup-full`,`showBackgroundAnimation`);
@@ -495,20 +495,22 @@ function openContactsNewContactPopup() {
 }
 
 
-function renderContactsNewContactPopup() {
+function renderContactsNewContactPopup(index) {
     let wrapper = document.getElementById(`contacts-new-contact-popup-container`);
-    wrapper.innerHTML = templateNewContactPopup();
-    wrapper.innerHTML += templateNewContactCloseCross(); 
+    wrapper.innerHTML = templateNewContactPopup(index);
+    wrapper.innerHTML += templateNewContactCloseCross();
+    displayBTNs(index); 
 }
 
 
-function templateNewContactPopup() {
+function templateNewContactPopup(index) {
     return `<div class="contacts-new-contact-popup flex w-100 h-100">
                 <div class="contacts-new-contact-popup-darkside-title-and-logo flex column">
-                    <div class="contacts-new-contact-popup-darkside-title-and-logo-container flex column w-100">
+                    <div class="contacts-new-contact-popup-darkside-title-and-logo-container flex column">
                             <img src="assets/img/logo-big.png">
-                            <p class="contacts-new-contact-popup-title">Add contact</p>
-                            <div class="contacts-new-contact-popup-subtitle-container flex column w-100">
+                            <p class="contacts-new-contact-popup-title d-none" id="contacts-new-contact-popup-title">Add contact</p>
+                            <p class="contacts-new-contact-popup-title d-none" id="contacts-add-contact-popup-title">Edit contact</p>
+                            <div class="contacts-new-contact-popup-subtitle-container d-none flex column w-100" id="contacts-new-contact-popup-subtitle-container">
                                 <p class="contacts-new-contact-popup-subtitle">Tasks are better with a team!</p>
                                 <img src="assets/img/underline.png">
                             </div>
@@ -516,8 +518,13 @@ function templateNewContactPopup() {
                 </div>
                 <div class="contacts-new-contact-popup-form-side relative flex">
                     <div class="contacts-new-contact-popup-abbreviation-wrapper flex">
-                        <div class="contacts-new-contact-popup-abbreviation" id="contacts-new-contact-abbreviation">
+                        <div class="contacts-new-contact-popup-abbreviation d-none" id="contacts-new-contact-abbreviation">
                             <img src="assets/img/add-contact-icon.png">
+                        </div>
+                        <div class="contacts-new-contact-popup-abbreviation d-none" id="contacts-new-contact-abbreviation-existing-user">
+                            <div class="contacts-new-contact-popup-abbreviation-container flex w-100 h-100" id="contacts-new-contact-popup-abbreviation-container">
+                                <p class="flex">${contacts[index]['abbreviation']}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="contacts-new-contact-popup-form flex" id="contacts-new-contant-popup-form">
@@ -533,19 +540,22 @@ function templateNewContactPopup() {
                                         <img src="assets/img/add-contact-email-icon.png">
                                     </div>
                                     <div class="contacts-new-contact-popup-form-phone flex">
-                                        <input type="number" id="new-contact-form-phone" name="phone" placeholder="Phone" required>
+                                        <input type="tel" id="new-contact-form-phone" name="phone" placeholder="Phone" required>
                                         <img src="assets/img/add-contact-phone-icon.png">
                                     </div>
                                 </div>
-                                <div class="contacts-new-contact-popup-form-btns flex">
-                                    <div class="new-contact-popup-form-btn-cancel flex cursor-p" onmouseover="changeColorOfContactsNewContactBtnCancelToLightblue()" onmouseout="changeColorOfContactsNewContactBtnCancelToBlack()" onclick="closeContactsNewContactPopup()">
+                                <div class="contacts-new-contact-popup-form-btns flex" id="contacts-new-contact-popup-form-btns">
+                                    <div class="new-contact-popup-form-btn-cancel cursor-p flex d-none" id="new-contact-popup-form-btn-cancel" onmouseover="changeColorOfContactsNewContactBtnCancelToLightblue()" onmouseout="changeColorOfContactsNewContactBtnCancelToBlack()" onclick="closeContactsNewContactPopup()">
                                         <p>Cancel</p>
                                         <img class="new-contact-form-btn-cancel-cross-black" id="new-contact-form-btn-cancel-cross-black" src="assets/img/add_task_cancel.png">
                                         <img class="new-contact-form-btn-cancel-cross-blue d-none" id="new-contact-form-btn-cancel-cross-blue" src="assets/img/blue-cancel-icon.png">
                                     </div>
-                                    <button class="new-contact-popup-form-btn-create cursor-p flex">
+                                    <button class="new-contact-popup-form-btn-create cursor-p flex d-none" id="new-contact-popup-form-btn-create">
                                         <p>Create contact</p>
                                         <img src="assets/img/check-small.png"> 
+                                    </button>
+                                    <button class="edit-contact-popup-form-btn-save cursor-p flex d-none" id="edit-contact-popup-form-btn-save">
+                                        <p>Save</p>
                                     </button>
                                 </div>
                             </div>
@@ -556,32 +566,75 @@ function templateNewContactPopup() {
 }
 
 
-
 function templateNewContactCloseCross() {
     return `
-        <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeContactsNewContactPopup()" src="assets/img/popup-cross.png">`;
+        <img class="board-addtask-popup-cross cursor-p absolute" id="new-contact-popup-cross" onclick="closeContactsNewContactPopup()" src="assets/img/popup-cross.png">`;
 }
 
 
+function displayBTNs(index) {
+    if(window.innerWidth > 800) {
+        if(contacts_add) showElementsInTemplateForAddingNewContact();
+        else showElementsInTemplateForEdittingContact(index);
+    } else {
+        if (contacts_add) showElementsInTemplateForAddingNewContact_resp();
+        else showElementsInTemplateForEdittingContact(index);
+    }
+}
 
+function showElementsInTemplateForAddingNewContact() {
+    contacts_add = false;
+    removeClasslist(`contacts-new-contact-popup-title`, `d-none`);
+    removeClasslist(`contacts-new-contact-popup-subtitle-container`, `d-none`);
+    removeClasslist(`contacts-new-contact-abbreviation`, `d-none`);
+    removeClasslist(`new-contact-popup-form-btn-create`, `d-none`);
+    removeClasslist(`new-contact-popup-form-btn-cancel`, `d-none`);
+}
+
+
+function showElementsInTemplateForAddingNewContact_resp() {
+    contacts_add = false;
+    removeClasslist(`contacts-new-contact-popup-title`, `d-none`);
+    removeClasslist(`contacts-new-contact-popup-subtitle-container`, `d-none`);
+    removeClasslist(`contacts-new-contact-abbreviation`, `d-none`);
+    removeClasslist(`new-contact-popup-form-btn-create`, `d-none`);
+}
+
+
+function showElementsInTemplateForEdittingContact(index) {
+    removeClasslist(`contacts-add-contact-popup-title`, `d-none`);
+    removeClasslist(`contacts-new-contact-abbreviation-existing-user`, `d-none`);
+    addClasslist(`contacts-new-contact-popup-form-btns`, `justify-center`)
+    removeClasslist(`edit-contact-popup-form-btn-save`, `d-none`);
+    fillInputFieldsOfEditContacPopupWithExistingData(index);
+}
+
+
+function fillInputFieldsOfEditContacPopupWithExistingData(index) {
+    document.getElementById(`new-contact-form-name`).value = contacts[index]['name'];
+    document.getElementById(`new-contact-form-email`).value = contacts[index]['email'];
+    document.getElementById(`new-contact-form-phone`).value = contacts[index]['phone'];
+}
 
 
 function contactsNewContactSlideIn() {
     setTimeout(() => {
-        addClasslist(`contacts-new-contact-popup-container`, `board-addtask-popup-slideIn`);
+        if(window.innerWidth > 800) addClasslist(`contacts-new-contact-popup-container`, `board-addtask-popup-slideIn`);
+        if(window.innerWidth < 801) addClasslist(`contacts-new-contact-popup-container`, `contacts-popup-slideIn-responsive`);
     }, 10);
 }
 
 
 function closeContactsNewContactPopup() {
-    removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
+    if(window.innerWidth > 800) removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
+    if(window.innerWidth < 801) removeClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     contactsNewContactsPopupSlideOut();
+    makeValueContactsAddToFalse();
 }
 
 
 function contactsNewContactsPopupSlideOut() {
-    if(window.innerWidth > 800) {
         setTimeout(() => {
             addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
             removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
@@ -590,21 +643,21 @@ function contactsNewContactsPopupSlideOut() {
             addClasslist(`contacts-new-contact-popup-full`, `d-none`);
             document.getElementById('contacts-new-contact-popup-container').innerHTML = '';
         }, 230);
-    } else contactsNewContactPopupNoSlide();
 }
 
 
-function contactsNewContactPopupNoSlide() {
-    addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
-    removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
-    setTimeout(() => {
-        addClasslist(`contacts-new-contact-popup-full`, `d-none`);
-    }, 1);
-}
+// function contactsNewContactPopupNoSlide() {
+//     addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+//     removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
+//     setTimeout(() => {
+//         addClasslist(`contacts-new-contact-popup-full`, `d-none`);
+//     }, 1);
+// }
 
 
 function closeContactsNewContactPopupFilled() {
     setTimeout(() => {
+        document.getElementById(`contacts-new-contact-popup-container`).style.transition = `unset`;
         removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
         removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     }, 1000);
@@ -618,6 +671,7 @@ function closeContactsNewContactPopupFilled() {
     setTimeout(() => {
         document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
     }, 1250);
+    makeValueContactsAddToFalse();
 }
 
 
