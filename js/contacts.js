@@ -148,6 +148,56 @@ function makeValueContactsAddtoTrue() {
     contacts_add = true;
 }
 
+
 function makeValueContactsAddToFalse() {
     contacts_add = false;
+}
+
+///////////////////////// CREATE NEW CONTACT ////////////////////////////////////
+function createContact() {
+    addInputValuesToContact('name');
+    addInputValuesToContact('email');
+    addInputValuesToContact('phone');
+    addAbbreviationToContact('name');
+    addColorToContact('color');
+    pushContactToContacts();
+    clearNewContact();
+    
+}
+
+/**
+ * The function, to assign the values getting by the user to the 'new contact' JSON object. 
+ * You'll find a similar function in add_task.js in line 476.
+ * @param {string} identifier - ID of the input fields in the popup 'new contact' on the contacts-site.
+ */
+function addInputValuesToContact(identifier) {
+    newContact[identifier] = document.getElementById(identifier).value; 
+}
+
+
+function addColorToContact(identifier) {
+    newContact[identifier] = colors[getRandomNumberFromZeroToNine()];
+}
+
+
+function addAbbreviationToContact(identifier) {
+    newContact['abbreviation'] =  getNameLetters(document.getElementById(identifier).value);
+}
+
+
+function pushContactToContacts() {
+    contacts.push(newContact);
+}
+
+/**
+ * basic contact structure
+ */
+function clearNewContact() {
+    newContact = {
+        'name': '',
+        'color': '',
+        'email': '',
+        'phone': '',
+        'abbreviation': '',
+    };
 }

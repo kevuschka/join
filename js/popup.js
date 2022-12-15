@@ -236,15 +236,14 @@ function renderTicketInfoEditBtn(column, ticket) {
 }
 
 
-
-
-
 function renderTicketInfoPopupTeammembers(column, ticket) {
+    let name;
     let content = document.getElementById(`ticket-info-popup-assignedTo-${column}-${ticket}`);
     for (let i = 0; i < boardColumns[column][ticket]['team'].length; i++) {
+        name = boardColumns[column][ticket]['team'][i]['name'];
         content.innerHTML += `
         <div class="ticket-info-popup-member flex">
-            <div class="ticket-contact ticket-info-popup-member-circle" id="ticket-info-popup-member-cicle-${column}-${ticket}-${i}">${getNameLetters(column,ticket,i)}</div>
+            <div class="ticket-contact ticket-info-popup-member-circle" id="ticket-info-popup-member-circle-${column}-${ticket}-${i}">${getNameLetters(name)}</div>
             <p class="cursor-d">${boardColumns[column][ticket]['team'][i]['name']}</p>
         </div>`
     }
@@ -260,7 +259,7 @@ function colorTicketElements(column, ticket) {
 
 
 function coloringTicketInfoPopupMembers(column, ticket, teamMember) {
-    document.getElementById(`ticket-info-popup-member-cicle-${column}-${ticket}-${teamMember}`).style.backgroundColor = `${boardColumns[column][ticket]['team'][teamMember]['color']}`;
+    document.getElementById(`ticket-info-popup-member-circle-${column}-${ticket}-${teamMember}`).style.backgroundColor = `${boardColumns[column][ticket]['team'][teamMember]['color']}`;
 }
 
 
@@ -437,7 +436,7 @@ function templateContactInfoPopupResp(member) {
             <div class="contact-info-popup-resp-wrapper">
                 <div class="contact-info-popup-resp-inner-wrapper column flex" id="contact-info-popup-resp-inner-wrapper"></div>
                 <div class="contact-info-popup-resp-pencil-wrapper flex">
-                    <img class="cursor-p" src="assets/img/pencil-white.png">
+                    <img class="cursor-p" src="assets/img/pencil-white.png" onclick="openContactsNewContactPopup(${member})">
                 </div>
             </div>`;
 }
@@ -497,13 +496,15 @@ function openContactsNewContactPopup(index = 0) {
 
 function renderContactsNewContactPopup(index) {
     let wrapper = document.getElementById(`contacts-new-contact-popup-container`);
-    wrapper.innerHTML = templateNewContactPopup(index);
+    wrapper.innerHTML = templateNewContactPopup();
     wrapper.innerHTML += templateNewContactCloseCross();
     displayBTNs(index); 
+    if(!contacts_add) document.getElementById(`contacts-new-contact-popup-abbreviation-container`).style.backgroundColor = `${contacts[index]['color']}`;
+    contacts_add = false;
 }
 
 
-function templateNewContactPopup(index) {
+function templateNewContactPopup() {
     return `<div class="contacts-new-contact-popup flex w-100 h-100">
                 <div class="contacts-new-contact-popup-darkside-title-and-logo flex column">
                     <div class="contacts-new-contact-popup-darkside-title-and-logo-container flex column">
@@ -519,28 +520,24 @@ function templateNewContactPopup(index) {
                 <div class="contacts-new-contact-popup-form-side relative flex">
                     <div class="contacts-new-contact-popup-abbreviation-wrapper flex">
                         <div class="contacts-new-contact-popup-abbreviation d-none" id="contacts-new-contact-abbreviation">
-                            <img src="assets/img/add-contact-icon.png">
+                            <img class="new-contact-popup-profil-icon" src="assets/img/add-contact-icon.png">
                         </div>
-                        <div class="contacts-new-contact-popup-abbreviation d-none" id="contacts-new-contact-abbreviation-existing-user">
-                            <div class="contacts-new-contact-popup-abbreviation-container flex w-100 h-100" id="contacts-new-contact-popup-abbreviation-container">
-                                <p class="flex">${contacts[index]['abbreviation']}</p>
-                            </div>
-                        </div>
+                        <div class="contacts-new-contact-popup-abbreviation new-contact-popup-profil-icon d-none" id="contacts-new-contact-abbreviation-existing-user"></div>
                     </div>
                     <div class="contacts-new-contact-popup-form flex" id="contacts-new-contant-popup-form">
                         <form class="w-100" id="contacts-new-contant-popup-form-tag">
                             <div class="contacts-new-contact-popup-form-container flex column">
                                 <div class="contacts-new-contact-popup-form-inputs-container flex column">
                                     <div class="contacts-new-contact-popup-form-name flex">
-                                        <input type="text" id="new-contact-form-name" name="name" placeholder="Name" required>
+                                        <input type="text" id="name" name="name" placeholder="Name" required>
                                         <img src="assets/img/add-contact-name-icon.png">
                                     </div>
                                     <div class="contacts-new-contact-popup-form-email flex">
-                                        <input type="email" id="new-contact-form-email" name="email" placeholder="Email" required>
+                                        <input type="email" id="email" name="email" placeholder="Email" required>
                                         <img src="assets/img/add-contact-email-icon.png">
                                     </div>
                                     <div class="contacts-new-contact-popup-form-phone flex">
-                                        <input type="tel" id="new-contact-form-phone" name="phone" placeholder="Phone" required>
+                                        <input type="tel" id="phone" name="phone" placeholder="Phone" required>
                                         <img src="assets/img/add-contact-phone-icon.png">
                                     </div>
                                 </div>
@@ -550,7 +547,7 @@ function templateNewContactPopup(index) {
                                         <img class="new-contact-form-btn-cancel-cross-black" id="new-contact-form-btn-cancel-cross-black" src="assets/img/add_task_cancel.png">
                                         <img class="new-contact-form-btn-cancel-cross-blue d-none" id="new-contact-form-btn-cancel-cross-blue" src="assets/img/blue-cancel-icon.png">
                                     </div>
-                                    <button class="new-contact-popup-form-btn-create cursor-p flex d-none" id="new-contact-popup-form-btn-create">
+                                    <button class="new-contact-popup-form-btn-create cursor-p flex d-none" id="new-contact-popup-form-btn-create" onclick="createContact();reloadPage()">
                                         <p>Create contact</p>
                                         <img src="assets/img/check-small.png"> 
                                     </button>
@@ -582,8 +579,8 @@ function displayBTNs(index) {
     }
 }
 
+
 function showElementsInTemplateForAddingNewContact() {
-    contacts_add = false;
     removeClasslist(`contacts-new-contact-popup-title`, `d-none`);
     removeClasslist(`contacts-new-contact-popup-subtitle-container`, `d-none`);
     removeClasslist(`contacts-new-contact-abbreviation`, `d-none`);
@@ -593,7 +590,6 @@ function showElementsInTemplateForAddingNewContact() {
 
 
 function showElementsInTemplateForAddingNewContact_resp() {
-    contacts_add = false;
     removeClasslist(`contacts-new-contact-popup-title`, `d-none`);
     removeClasslist(`contacts-new-contact-popup-subtitle-container`, `d-none`);
     removeClasslist(`contacts-new-contact-abbreviation`, `d-none`);
@@ -603,6 +599,7 @@ function showElementsInTemplateForAddingNewContact_resp() {
 
 function showElementsInTemplateForEdittingContact(index) {
     removeClasslist(`contacts-add-contact-popup-title`, `d-none`);
+    renderTemplateAbbreviationWrapperOfExistingUser(index);
     removeClasslist(`contacts-new-contact-abbreviation-existing-user`, `d-none`);
     addClasslist(`contacts-new-contact-popup-form-btns`, `justify-center`)
     removeClasslist(`edit-contact-popup-form-btn-save`, `d-none`);
@@ -610,10 +607,18 @@ function showElementsInTemplateForEdittingContact(index) {
 }
 
 
+function renderTemplateAbbreviationWrapperOfExistingUser(index) {
+    document.getElementById(`contacts-new-contact-abbreviation-existing-user`).innerHTML = `
+        <div class="contacts-new-contact-popup-abbreviation-container flex w-100 h-100" id="contacts-new-contact-popup-abbreviation-container">
+            <p class="flex">${contacts[index]['abbreviation']}</p>
+        </div>`;    
+}
+
+
 function fillInputFieldsOfEditContacPopupWithExistingData(index) {
-    document.getElementById(`new-contact-form-name`).value = contacts[index]['name'];
-    document.getElementById(`new-contact-form-email`).value = contacts[index]['email'];
-    document.getElementById(`new-contact-form-phone`).value = contacts[index]['phone'];
+    document.getElementById(`name`).value = contacts[index]['name'];
+    document.getElementById(`email`).value = contacts[index]['email'];
+    document.getElementById(`phone`).value = contacts[index]['phone'];
 }
 
 

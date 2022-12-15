@@ -223,8 +223,9 @@
             width: 30%;
         }
 
-        .contacts-new-contact-popup-abbreviation > img {
+        .new-contact-popup-profil-icon {
             width: 130px;
+            height: 130px;
         }
 
         .contacts-new-contact-popup-form {
@@ -390,8 +391,9 @@
             width: 30%;
         }
 
-        .contacts-new-contact-popup-abbreviation > img {
+        .new-contact-popup-profil-icon {
             width: 100px;
+            height: 100px;
         }
 
         .contacts-new-contact-popup-form {
@@ -643,8 +645,9 @@
         margin-top: -62px;
     }
 
-    .contacts-new-contact-popup-abbreviation > img {
+    .new-contact-popup-profil-icon{
             width: 120px;
+            height: 120px;
     }
 
     .contacts-new-contact-popup-form {
@@ -742,8 +745,9 @@
             margin-top: -50px;
         }
 
-        .contacts-new-contact-popup-abbreviation > img {
+        .new-contact-popup-profil-icon {
             width: 90px;
+            height: 90px;
         }
 
         .contacts-new-contact-popup-form {

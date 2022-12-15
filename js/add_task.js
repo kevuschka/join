@@ -480,7 +480,7 @@ async function createTask() {
      pushAssignedContactsToTask();
      pushTaskToTodo();
      clearAddTask();
-     switchToBoard()
+     switchToBoard();
 }
 
 

@@ -190,19 +190,20 @@ function renderTemplateTicketFooter(n,j) {
 
 ////////////////// TEAM
 function renderTicketTeam(n,j) {
+    let name;
     let k = boardColumns[n][j]['team'].length;
     let content = document.getElementById(`ticket-contacts-container-${n}-${j}`);
     if(boardColumns[n][j]['team'].length > 3) k = 2;
     for (let i = 0; i < k ; i++) {
-        content.innerHTML += `<div class="ticket-contact" id="board-contact-${n}-${j}-${i}">${getNameLetters(n,j,i)}</div>`;
+        name = boardColumns[n][j]['team'][i]['name'];
+        content.innerHTML += `<div class="ticket-contact" id="board-contact-${n}-${j}-${i}">${getNameLetters(name)}</div>`;
         coloringTicketMembers(n,j,i);
     }
     if(k < boardColumns[n][j]['team'].length) renderContactPlaceholder(k,n,j,content);
 }
 
 
-function getNameLetters(column, ticket, teamMember) {
-    let name = boardColumns[column][ticket]['team'][teamMember]['name'];
+function getNameLetters(name) {
     let firstLetter = name.toString().charAt(0).toUpperCase();  
     let index = name.indexOf(' '); 
     let secondLetter = name.toString().charAt(index+1).toUpperCase();
