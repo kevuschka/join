@@ -14,7 +14,9 @@ async function initAddTask() {
     await renderResponsiveHeaderTitle(); //in script.js
     await includeHTML();
     clearTask();
-    renderAddTask();  //in add_task.js
+    setTimeout(function(){
+        renderAddTask();
+    }, 500);
 }
 
 
