@@ -28,10 +28,7 @@ let priorities = [
     }
 ]
 
-let category = [
-//     'name': 'Design',
-//     'color': '#FF8A00',
-];
+let category = [];
 
 
 let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
