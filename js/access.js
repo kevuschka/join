@@ -76,7 +76,7 @@ pushUser(userName, email, password, initials);
     
 
 
-    let user = {
+    let newUser = {
         'userName':userName.value,
         'valid'   : false,
         'loggedIn': false,
@@ -93,12 +93,22 @@ pushUser(userName, email, password, initials);
     email.value ='';
     password.value ='';
     
-    users.push(user);
+    users.push(newUser);
 
     let allUsersAsString = JSON.stringify(users);
     await backend.setItem('users', allUsersAsString);
     window.location.href = 'index.html?msg=Du hast dich erfolgreich registriert';
 }
+
+/*let currentUser = {};*/
+
+function isLoggedIn() {
+
+    let itemSet = localStorage.getItem('usersEmail');
+    if(!itemSet) {
+        window.location.href = 'index.html?msg=Du hast dich erfolgreich angemeldet';
+    }
+    }
 
 /**
  * This function manages following:
@@ -109,15 +119,34 @@ pushUser(userName, email, password, initials);
  * */function login() {
   
 
-    let email = document.getElementById('email');
+    let usersEmail = document.getElementById('email');
     let password = document.getElementById('password');
 
-    let user = users.find(u => u.email == email.value && u.password == password.value);
+    let user = users.find(u => u.email == usersEmail.value && u.password == password.value);
     console.log(user);
     if(user) {
         console.log('user gefunden');
+
+        localStorage.setItem('usersEmail', usersEmail.value);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        console.log('user saved in key');
+
+        
+        /*for (let u = 0; u < users.length; u++) {
+            const userArray = users[u];
+            
+            if (users[u].email == email.value) {
+            
+                currentUser.push(users[u]);
+                console.log('Der User wurde in currentUser gespeichert')
+             }
+        }*/
+       
+
+        window.location.href = 'summary.html?msg=Du hast dich erfolgreich angemeldet';
+
     
-    window.location.href = 'summary.html?msg=Du hast dich erfolgreich angemeldet';
+
     } else {
         document.getElementById('indexError').classList.remove('d-none');
         document.getElementById('password').classList.add('border-color');
@@ -127,38 +156,17 @@ pushUser(userName, email, password, initials);
 let usersEmail;
 let usersArray;
 
+
+
+
 /**
  * This function manages following:
  * - Saves the email typed from the forgot_password.html for further verification in reset_Password.html
  * - Redirecting user to reset_password.html to reset his password
  * - If email doesn't exist, an error message will show up under the input field
- * 
- * */ /*function giveID() {
-    
-    usersEmail = document.getElementById('forgotEmail').value;
-
-    for (let u = 0; u < users.length; u++) {
-        usersArray = users[u];
-       }
-
-
-        if (usersArray.email.includes(usersEmail)) {
-
-                localStorage.setItem('usersEmail', usersEmail);
-            
-                document.getElementById('forgotPopup').classList.add("flex");
-                setTimeout(function() {
-                    window.location.href = 'index.html?msg=Du hast dich erfolgreich angemeldet';
-                   
-                  }, 1500);
- } else { 
-            document.getElementById('forgotError').classList.remove('d-none');
-            document.getElementById('forgotEmail').classList.add('border-color');
-           }
-
- }*/
-
+ * */
  function giveID() {
+
     usersEmail = document.getElementById('forgotEmail').value;
 
     
@@ -167,15 +175,16 @@ let usersArray;
                 localStorage.setItem('usersEmail', usersEmail);
             
                 document.getElementById('forgotPopup').classList.add("flex");
+                
                 setTimeout(function() {
-                    window.location.href = 'forgot_password.html?msg=Du hast dich erfolgreich angemeldet';
+                  
+                    window.location.href = 'reset_password.html?msg=Du hast dich erfolgreich angemeldet';
                    
                   }, 1500);
          } else { 
             document.getElementById('forgotError').classList.remove('d-none');
             document.getElementById('forgotEmail').classList.add('border-color');
            }
-           
  }
 
 
