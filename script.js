@@ -135,7 +135,7 @@ function getRandomNumberFromZeroToNine() {
 }
 
 // ########## ALLES ZUM BACKEND ##########
-setURL('https://gruppe-348.developerakademie.net/join/smallest_backend_ever');
+setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 //LOAD
 async function init() {

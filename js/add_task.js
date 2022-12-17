@@ -8,6 +8,7 @@ let currentUser = {
     'abbreviation': 'MM'
 }
 
+setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 async function initAddTask() {
     await renderResponsiveHeaderTitle(); //in script.js
