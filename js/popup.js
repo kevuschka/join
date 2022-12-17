@@ -22,6 +22,7 @@ function renderPopupsInContacts() {
     let container = document.getElementById('popUp');
     container.innerHTML = renderHeaderMenuPopup();
     container.innerHTML += renderTemplateBoardAddtaskPopup();
+    container.innerHTML += templateContactsNewContactPopup();
     renderPopupCreatedAddtask();
     let containerResp = document.getElementById('popUp-responsive');
     containerResp.innerHTML += renderContactsInfoPopupResponsive();
@@ -116,40 +117,43 @@ function renderTicketInfoPopupContainer(column, ticket) {
 
 function renderTemplateTicketInfoPopupContainer(column, ticket) {
     return `
-    <div class="ticket-info-popup-container auto flex column relative" onclick="doNotClose(event)" id="ticket-info-popup-container-${column}-${ticket}">
-            <div class="ticket-info-popup-wrapper w-100 flex column">
-                <div class="ticket-info-popup-category-container flex w-100">
-                    <div class="ticket-info-popup-category flex">
-                        <p class="h-100 cursor-d" id="ticket-info-popup-category-${column}-${ticket}">${boardColumns[column][ticket]['category']['name']}</p> 
+        <div class="ticket-info-popup-container column flex relative" onclick="doNotClose(event)" id="ticket-info-popup-container-${column}-${ticket}">
+            <div class="ticket-info-popup-inner-container flex column h-100 w-100" id="ticket-info-popup-inner-container-${column}-${ticket}">
+                <div class="ticket-info-popup-wrapper w-100 flex column">
+                    <div class="ticket-info-popup-category-container flex w-100">
+                        <div class="ticket-info-popup-category flex">
+                            <p class="h-100 cursor-d" id="ticket-info-popup-category-${column}-${ticket}">${boardColumns[column][ticket]['category']['name']}</p> 
+                        </div>
+                        <img class="ticket-info-popup-cross cursor-p" src="assets/img/popup-cross.png" onclick="closeTicketInfoPopup()">
+                        <img class="ticket-info-popup-backArrow cursor-p" src="assets/img/back-arraw.png" onclick="closeTicketInfoPopup()">
                     </div>
-                    <img class="ticket-info-popup-cross cursor-p" src="assets/img/popup-cross.png" onclick="closeTicketInfoPopup()">
-                    <img class="ticket-info-popup-backArrow cursor-p" src="assets/img/back-arraw.png" onclick="closeTicketInfoPopup()">
-                </div>
-                <div class="ticket-info-popup-title flex">
-                    <p class="cursor-d">${boardColumns[column][ticket]['title']}</p>
-                </div>
-                <div class="ticket-info-popup-description flex">
-                    <p class="cursor-d">${boardColumns[column][ticket]['description']}</p>
-                </div>
-                <div class="ticket-info-popup-date-and-prio-and-assignedTo">
-                    <div class="ticket-info-popup-date flex">
-                        <p class="cursor-d">Due date:</p>
-                        <p class="cursor-d">${boardColumns[column][ticket]['due-date']}</p>
+                    <div class="ticket-info-popup-title flex">
+                        <p class="cursor-d">${boardColumns[column][ticket]['title']}</p>
                     </div>
-                    <div class="ticket-info-popup-prio flex">
-                        <p class="cursor-d">Priority:</p>
-                        <div class="ticket-info-popup-prio-wrapper flex" id="ticket-info-popup-prio-${column}-${ticket}">
-                            <p class="cursor-d">${boardColumns[column][ticket]['prior']['name']}</p>
-                            <img class="ticket-info-popup-prio-image" id="ticket-info-popup-prio-image-${column}-${ticket}" src="${boardColumns[column][ticket]['prior']['image']}">
+                    <div class="ticket-info-popup-description flex">
+                        <p class="cursor-d">${boardColumns[column][ticket]['description']}</p>
+                    </div>
+                    <div class="ticket-info-popup-date-and-prio-and-assignedTo">
+                        <div class="ticket-info-popup-date flex">
+                            <p class="cursor-d">Due date:</p>
+                            <p class="cursor-d">${boardColumns[column][ticket]['due-date']}</p>
+                        </div>
+                        <div class="ticket-info-popup-prio flex">
+                            <p class="cursor-d">Priority:</p>
+                            <div class="ticket-info-popup-prio-wrapper flex" id="ticket-info-popup-prio-${column}-${ticket}">
+                                <p class="cursor-d">${boardColumns[column][ticket]['prior']['name']}</p>
+                                <img class="ticket-info-popup-prio-image" id="ticket-info-popup-prio-image-${column}-${ticket}" src="${boardColumns[column][ticket]['prior']['image']}">
+                            </div>
+                        </div>
+                        <div class="ticket-info-popup-assignedTo flex column" id="ticket-info-popup-assignedTo-${column}-${ticket}">
+                            <p class="cursor-d">Assigned To:</p>
                         </div>
                     </div>
-                    <div class="ticket-info-popup-assignedTo flex column" id="ticket-info-popup-assignedTo-${column}-${ticket}">
-                        <p class="cursor-d">Assigned To:</p>
-                    </div>
                 </div>
-            </div>
-            <div class="ticket-info-popup-edit-container w-100 flex">
-                <div class="ticket-info-popup-edit flex cursor-p" onclick="renderTicketInfoEditting(${column}, ${ticket})"><img src="assets/img/pencil-white.png"></div>
+                <div class="ticket-info-popup-edit-container w-100 flex">
+                    <div class="ticket-info-popup-edit flex cursor-p" onclick="renderTicketInfoEditting(${column}, ${ticket})"><img src="assets/img/pencil-white.png"></div>
+                </div>
+                </div>
             </div>
         </div>`;
 }
@@ -157,7 +161,8 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
 
 function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
-    content.innerHTML = templateTicketEditing(column, ticket);
+    content.innerHTML = `<div class="ticket-info-popup-inner-container flex column h-100 w-100" id="ticket-info-popup-inner-container-${column}-${ticket}"></div>`;
+    document.getElementById(`ticket-info-popup-inner-container-${column}-${ticket}`).innerHTML = templateTicketEditing(column, ticket);
     clearContactIconArray();
     renderPrioritySelection(); //in add_task.js
     renderContactsDropdown(); //in add_task.js
@@ -231,15 +236,14 @@ function renderTicketInfoEditBtn(column, ticket) {
 }
 
 
-
-
-
 function renderTicketInfoPopupTeammembers(column, ticket) {
+    let name;
     let content = document.getElementById(`ticket-info-popup-assignedTo-${column}-${ticket}`);
     for (let i = 0; i < boardColumns[column][ticket]['team'].length; i++) {
+        name = boardColumns[column][ticket]['team'][i]['name'];
         content.innerHTML += `
         <div class="ticket-info-popup-member flex">
-            <div class="ticket-contact ticket-info-popup-member-circle" id="ticket-info-popup-member-cicle-${column}-${ticket}-${i}">${getNameLetters(column,ticket,i)}</div>
+            <div class="ticket-contact ticket-info-popup-member-circle" id="ticket-info-popup-member-circle-${column}-${ticket}-${i}">${getNameLetters(name)}</div>
             <p class="cursor-d">${boardColumns[column][ticket]['team'][i]['name']}</p>
         </div>`
     }
@@ -255,7 +259,7 @@ function colorTicketElements(column, ticket) {
 
 
 function coloringTicketInfoPopupMembers(column, ticket, teamMember) {
-    document.getElementById(`ticket-info-popup-member-cicle-${column}-${ticket}-${teamMember}`).style.backgroundColor = `${boardColumns[column][ticket]['team'][teamMember]['color']}`;
+    document.getElementById(`ticket-info-popup-member-circle-${column}-${ticket}-${teamMember}`).style.backgroundColor = `${boardColumns[column][ticket]['team'][teamMember]['color']}`;
 }
 
 
@@ -279,7 +283,7 @@ function templateCreatedTaskPopUp() {
 
 
 function startSlideUPAnimation() {
-    if(window.location.pathname == '/board.html') {
+    if((window.location.pathname == '/board.html') || (window.location.pathname == '/contacts.html')) {
         document.getElementById('pop-up-created-task').classList.add('create-task-animation');
         setTimeout(() => {
             endSlideUPAnimation();
@@ -320,7 +324,7 @@ function renderTemplateBoardAddtaskPopup() {
             </div>
             
             <div class="board-addtask-popup-content w-100 h-100 relative" id="board-addtask-popup-content-container">
-                <img class="board-addtask-popup-cross cursor-p absolute" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
+                <img class="board-addtask-popup-cross cursor-p fixed" onclick="closeBoardAddtaskPopup()" src="assets/img/popup-cross.png">
                 <div w3-include-html="./assets/templates/task_form.html" class="content-container" id="board-addtask-popup-content"></div>    
             </div>
         </div>
@@ -373,6 +377,11 @@ function closeBoardAddtaskPopupFilled() {
     setTimeout(() => {
         document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
     }, 1250);
+    if (window.location.pathname == '/contacts.html') {
+        setTimeout(() => {
+            window.location.href = './board.html';
+        }, 1250);
+    }
 }
 
 
@@ -427,7 +436,7 @@ function templateContactInfoPopupResp(member) {
             <div class="contact-info-popup-resp-wrapper">
                 <div class="contact-info-popup-resp-inner-wrapper column flex" id="contact-info-popup-resp-inner-wrapper"></div>
                 <div class="contact-info-popup-resp-pencil-wrapper flex">
-                    <img class="cursor-p" src="assets/img/pencil-white.png">
+                    <img class="cursor-p" src="assets/img/pencil-white.png" onclick="openContactsNewContactPopup(${member})">
                 </div>
             </div>`;
 }
@@ -466,3 +475,220 @@ function renderTemplateContactInfoPopupRespContactInfo(member) {
 function closeContactInfoPopupResponsive() {
     addClasslist('contact-info-popup-responsive-full', 'd-none');
 }
+
+//////////////////// CONTACT: NEW CONTACT BTN - POPUP///////////////////////////////
+function templateContactsNewContactPopup() {
+    return `<div class="contacts-new-contact-popup-full flex absolute d-none" id="contacts-new-contact-popup-full" onclick="closeContactsNewContactPopup()">
+                    <div class="contacts-new-contact-popup-container relative" id="contacts-new-contact-popup-container" onclick="doNotClose(event)"></div>
+            </div>`;
+}
+
+
+function openContactsNewContactPopup(index = 0) {
+    renderContactsNewContactPopup(index);
+    removeClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+    removeClasslist(`contacts-new-contact-popup-full`,`d-none`);
+    addClasslist(`contacts-new-contact-popup-full`,`showBackgroundAnimation`);
+    addClasslist(`contacts-new-contact-popup-full`,`opa-1`);
+    contactsNewContactSlideIn();
+}
+
+
+function renderContactsNewContactPopup(index) {
+    let wrapper = document.getElementById(`contacts-new-contact-popup-container`);
+    wrapper.innerHTML = templateNewContactPopup();
+    wrapper.innerHTML += templateNewContactCloseCross();
+    displayBTNs(index); 
+    if(!contacts_add) document.getElementById(`contacts-new-contact-popup-abbreviation-container`).style.backgroundColor = `${contacts[index]['color']}`;
+    contacts_add = false;
+}
+
+
+function templateNewContactPopup() {
+    return `<div class="contacts-new-contact-popup flex w-100 h-100">
+                <div class="contacts-new-contact-popup-darkside-title-and-logo flex column">
+                    <div class="contacts-new-contact-popup-darkside-title-and-logo-container flex column">
+                            <img src="assets/img/logo-big.png">
+                            <p class="contacts-new-contact-popup-title d-none" id="contacts-new-contact-popup-title">Add contact</p>
+                            <p class="contacts-new-contact-popup-title d-none" id="contacts-add-contact-popup-title">Edit contact</p>
+                            <div class="contacts-new-contact-popup-subtitle-container d-none flex column w-100" id="contacts-new-contact-popup-subtitle-container">
+                                <p class="contacts-new-contact-popup-subtitle">Tasks are better with a team!</p>
+                                <img src="assets/img/underline.png">
+                            </div>
+                    </div>
+                </div>
+                <div class="contacts-new-contact-popup-form-side relative flex">
+                    <div class="contacts-new-contact-popup-abbreviation-wrapper flex">
+                        <div class="contacts-new-contact-popup-abbreviation d-none" id="contacts-new-contact-abbreviation">
+                            <img class="new-contact-popup-profil-icon" src="assets/img/add-contact-icon.png">
+                        </div>
+                        <div class="contacts-new-contact-popup-abbreviation new-contact-popup-profil-icon d-none" id="contacts-new-contact-abbreviation-existing-user"></div>
+                    </div>
+                    <div class="contacts-new-contact-popup-form flex" id="contacts-new-contant-popup-form">
+                        <form class="w-100" id="contacts-new-contant-popup-form-tag">
+                            <div class="contacts-new-contact-popup-form-container flex column">
+                                <div class="contacts-new-contact-popup-form-inputs-container flex column">
+                                    <div class="contacts-new-contact-popup-form-name flex">
+                                        <input type="text" id="name" name="name" placeholder="Name" required>
+                                        <img src="assets/img/add-contact-name-icon.png">
+                                    </div>
+                                    <div class="contacts-new-contact-popup-form-email flex">
+                                        <input type="email" id="email" name="email" placeholder="Email" required>
+                                        <img src="assets/img/add-contact-email-icon.png">
+                                    </div>
+                                    <div class="contacts-new-contact-popup-form-phone flex">
+                                        <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+                                        <img src="assets/img/add-contact-phone-icon.png">
+                                    </div>
+                                </div>
+                                <div class="contacts-new-contact-popup-form-btns flex" id="contacts-new-contact-popup-form-btns">
+                                    <div class="new-contact-popup-form-btn-cancel cursor-p flex d-none" id="new-contact-popup-form-btn-cancel" onmouseover="changeColorOfContactsNewContactBtnCancelToLightblue()" onmouseout="changeColorOfContactsNewContactBtnCancelToBlack()" onclick="closeContactsNewContactPopup()">
+                                        <p>Cancel</p>
+                                        <img class="new-contact-form-btn-cancel-cross-black" id="new-contact-form-btn-cancel-cross-black" src="assets/img/add_task_cancel.png">
+                                        <img class="new-contact-form-btn-cancel-cross-blue d-none" id="new-contact-form-btn-cancel-cross-blue" src="assets/img/blue-cancel-icon.png">
+                                    </div>
+                                    <button class="new-contact-popup-form-btn-create cursor-p flex d-none" id="new-contact-popup-form-btn-create" onclick="createContact();reloadPage()">
+                                        <p>Create contact</p>
+                                        <img src="assets/img/check-small.png"> 
+                                    </button>
+                                    <button class="edit-contact-popup-form-btn-save cursor-p flex d-none" id="edit-contact-popup-form-btn-save">
+                                        <p>Save</p>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>   
+                    </div> 
+                </div>
+            </div>`;
+}
+
+
+function templateNewContactCloseCross() {
+    return `
+        <img class="board-addtask-popup-cross cursor-p absolute" id="new-contact-popup-cross" onclick="closeContactsNewContactPopup()" src="assets/img/popup-cross.png">`;
+}
+
+
+function displayBTNs(index) {
+    if(window.innerWidth > 800) {
+        if(contacts_add) showElementsInTemplateForAddingNewContact();
+        else showElementsInTemplateForEdittingContact(index);
+    } else {
+        if (contacts_add) showElementsInTemplateForAddingNewContact_resp();
+        else showElementsInTemplateForEdittingContact(index);
+    }
+}
+
+
+function showElementsInTemplateForAddingNewContact() {
+    removeClasslist(`contacts-new-contact-popup-title`, `d-none`);
+    removeClasslist(`contacts-new-contact-popup-subtitle-container`, `d-none`);
+    removeClasslist(`contacts-new-contact-abbreviation`, `d-none`);
+    removeClasslist(`new-contact-popup-form-btn-create`, `d-none`);
+    removeClasslist(`new-contact-popup-form-btn-cancel`, `d-none`);
+}
+
+
+function showElementsInTemplateForAddingNewContact_resp() {
+    removeClasslist(`contacts-new-contact-popup-title`, `d-none`);
+    removeClasslist(`contacts-new-contact-popup-subtitle-container`, `d-none`);
+    removeClasslist(`contacts-new-contact-abbreviation`, `d-none`);
+    removeClasslist(`new-contact-popup-form-btn-create`, `d-none`);
+}
+
+
+function showElementsInTemplateForEdittingContact(index) {
+    removeClasslist(`contacts-add-contact-popup-title`, `d-none`);
+    renderTemplateAbbreviationWrapperOfExistingUser(index);
+    removeClasslist(`contacts-new-contact-abbreviation-existing-user`, `d-none`);
+    addClasslist(`contacts-new-contact-popup-form-btns`, `justify-center`)
+    removeClasslist(`edit-contact-popup-form-btn-save`, `d-none`);
+    fillInputFieldsOfEditContacPopupWithExistingData(index);
+}
+
+
+function renderTemplateAbbreviationWrapperOfExistingUser(index) {
+    document.getElementById(`contacts-new-contact-abbreviation-existing-user`).innerHTML = `
+        <div class="contacts-new-contact-popup-abbreviation-container flex w-100 h-100" id="contacts-new-contact-popup-abbreviation-container">
+            <p class="flex">${contacts[index]['abbreviation']}</p>
+        </div>`;    
+}
+
+
+function fillInputFieldsOfEditContacPopupWithExistingData(index) {
+    document.getElementById(`name`).value = contacts[index]['name'];
+    document.getElementById(`email`).value = contacts[index]['email'];
+    document.getElementById(`phone`).value = contacts[index]['phone'];
+}
+
+
+function contactsNewContactSlideIn() {
+    setTimeout(() => {
+        if(window.innerWidth > 800) addClasslist(`contacts-new-contact-popup-container`, `board-addtask-popup-slideIn`);
+        if(window.innerWidth < 801) addClasslist(`contacts-new-contact-popup-container`, `contacts-popup-slideIn-responsive`);
+    }, 10);
+}
+
+
+function closeContactsNewContactPopup() {
+    if(window.innerWidth > 800) removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
+    if(window.innerWidth < 801) removeClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
+    removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
+    contactsNewContactsPopupSlideOut();
+    makeValueContactsAddToFalse();
+}
+
+
+function contactsNewContactsPopupSlideOut() {
+        setTimeout(() => {
+            addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+            removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
+        }, 102);
+        setTimeout(() => {
+            addClasslist(`contacts-new-contact-popup-full`, `d-none`);
+            document.getElementById('contacts-new-contact-popup-container').innerHTML = '';
+        }, 230);
+}
+
+
+// function contactsNewContactPopupNoSlide() {
+//     addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+//     removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
+//     setTimeout(() => {
+//         addClasslist(`contacts-new-contact-popup-full`, `d-none`);
+//     }, 1);
+// }
+
+
+function closeContactsNewContactPopupFilled() {
+    setTimeout(() => {
+        document.getElementById(`contacts-new-contact-popup-container`).style.transition = `unset`;
+        removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
+        removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
+    }, 1000);
+    setTimeout(() => {
+        addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+        removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
+    }, 1102);
+    setTimeout(() => {
+        addClasslist(`contacts-new-contact-popup-full`, `d-none`);
+    }, 1230);
+    setTimeout(() => {
+        document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
+    }, 1250);
+    makeValueContactsAddToFalse();
+}
+
+
+function changeColorOfContactsNewContactBtnCancelToLightblue() {
+    addClasslist(`new-contact-form-btn-cancel-cross-black`, `d-none`);
+    removeClasslist(`new-contact-form-btn-cancel-cross-blue`, `d-none`);
+}
+
+
+function changeColorOfContactsNewContactBtnCancelToBlack() {
+    removeClasslist(`new-contact-form-btn-cancel-cross-black`, `d-none`);
+    addClasslist(`new-contact-form-btn-cancel-cross-blue`, `d-none`);
+}
+
+

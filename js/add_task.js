@@ -8,6 +8,7 @@ let currentUser = {
     'abbreviation': 'MM'
 }
 
+setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 async function initAddTask() {
     await renderResponsiveHeaderTitle(); //in script.js
@@ -186,6 +187,12 @@ function addCategoryNameToCategoryObject() {
 
 function pushCategoryObjectToCategoryArray() {
     category.push(categoryObject);
+    saveCategoriesOnServer();
+}
+
+
+function saveCategoriesOnServer() {
+    backend.setItem('category', JSON.stringify(category));
 }
 
 
@@ -474,7 +481,7 @@ async function createTask() {
      pushAssignedContactsToTask();
      pushTaskToTodo();
      clearAddTask();
-     switchToBoard()
+     switchToBoard();
 }
 
 

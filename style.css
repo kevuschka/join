@@ -45,7 +45,7 @@ html, body {
 }
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 .relative {
@@ -54,6 +54,10 @@ html, body {
 
 .absolute {
     position: absolute;
+}
+
+.justify-center {
+    justify-content: center;
 }
 
 .fixed {
@@ -199,6 +203,10 @@ a {
     width: 106px;
 }
 
+.header-title-resp {
+    display: none;
+}
+
 .header-right-corner-addTask {
     display: none;
 }
@@ -221,6 +229,10 @@ a {
     width: 40px;
     height: 40px;
     object-fit: cover;
+}
+
+.logo-img-resp {
+    display: none;
 }
 
 
@@ -273,11 +285,12 @@ a {
 }
 
 /* ########## CONTENT ########## */
-.content-container {
+.wrapper > .content-container {
     background-color: #F6F7F8;
     width: 100%;
     height: 100%;
     overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 /* ########## POPUP TASK CREATED ########## */

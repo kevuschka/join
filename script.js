@@ -5,6 +5,7 @@ let feedback = [];
 let done = [];
 let boardColumns = [todo, inProgress, feedback, done];
 let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
+let contacts_add = false;
 
 let priorities = [
     {
@@ -27,55 +28,53 @@ let priorities = [
     }
 ]
 
-let category = [{
-    'name': 'Design',
-    'color': '#FF8A00',
-}];
+let category = [];
 
 
 let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
+let colors = ['#0190e0','#ee00d6', '#02cf2f', '#ffa800', '#9327ff', '#ff5c00', '#4e963d', '#32daff', '#007cee', '#cb02cf']
 
+let contacts = [
+//{
+//     'name': 'Simon Meyer',
+//     'color': '#0190E0',
+//     'email': 'simon.meyer@gmail.com',
+//     'phone': '+490123456789',
+//     'abbreviation': 'SM'
+// },{
+//     'name': 'Maximilian Vogel',
+//     'color': '#EE00D6',
+//     'email': 'maximilian.vogel@gmail.com',
+//     'phone': '+49 0123 456 78 9',
+//     'abbreviation': 'MV'
+// },{
+//     'name': 'Eva Fischer',
+//     'color': '#02CF2F',
+//     'email': 'Eva.Fischer@gmail.com',
+//     'phone': '+49 0123 456 78 9',
+//     'abbreviation': 'EF'
 
-let contacts = [{
-    'name': 'Simon Meyer',
-    'color': '#0190E0',
-    'email': 'simon.meyer@gmail.com',
-    'phone': '+490123456789',
-    'abbreviation': 'SM'
-},{
-    'name': 'Maximilian Vogel',
-    'color': '#EE00D6',
-    'email': 'maximilian.vogel@gmail.com',
-    'phone': '+49 0123 456 78 9',
-    'abbreviation': 'MV'
-},{
-    'name': 'Eva Fischer',
-    'color': '#02CF2F',
-    'email': 'Eva.Fischer@gmail.com',
-    'phone': '+49 0123 456 78 9',
-    'abbreviation': 'EF'
-
-},{
-    'name': 'Hans Maier',
-    'color': '#0038FF',
-    'email': 'Hans.Maier@gmail.com',
-    'phone': '+49 0123 456 78 9',
-    'abbreviation': 'HM'
-},{
-    'name': 'Manuel Neuer',
-    'color': '#0038FF',
-    'email': 'Neuer.manuell@gmail.com',
-    'phone': '+49 0123 456 78 9',
-    'abbreviation': 'MN'
-},
-{
-    'name': 'Kevin Schumilo',
-    'color': '#02CF2F',
-    'email': 'kevin.schumilo@gmail.com',
-    'phone': '+49 0123 456 78 9',
-    'abbreviation': 'KV'
-}];
-
+// },{
+//     'name': 'Hans Maier',
+//     'color': '#0038FF',
+//     'email': 'Hans.Maier@gmail.com',
+//     'phone': '+49 0123 456 78 9',
+//     'abbreviation': 'HM'
+// },{
+//     'name': 'Manuel Neuer',
+//     'color': '#0038FF',
+//     'email': 'Neuer.manuell@gmail.com',
+//     'phone': '+49 0123 456 78 9',
+//     'abbreviation': 'MN'
+// },
+// {
+//     'name': 'Kevin Schumilo',
+//     'color': '#02CF2F',
+//     'email': 'kevin.schumilo@gmail.com',
+//     'phone': '+49 0123 456 78 9',
+//     'abbreviation': 'KV'
+//}
+];
 
 let newContact = {
     'name': '',
@@ -84,7 +83,6 @@ let newContact = {
     'phone': '',
     'abbreviation': '',
 }
-
 
 // let createdTask = {
 //     'category': {'name': 'Design','color': '#FF7A00'},
@@ -125,13 +123,24 @@ let newContact = {
 // 'due-date': '',
 
 
+// Returns a random integer from 0 to 9:
+//Math.random returns a number lower than 1
+//Math.floor makes the decimal number to a 'no decimal' number
+//10 is the number of values we want, beginning from  0
+function getRandomNumberFromZeroToNine() {
+    return Math.floor(Math.random() * 10);
+}
+
 // ########## ALLES ZUM BACKEND ##########
-setURL('https://gruppe-348.developerakademie.net/join/smallest_backend_ever');
+setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 //LOAD
 async function init() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
+    //boardColumns = JSON.parse(backend.getItem('boardColumns')) || [];
+    category = JSON.parse(backend.getItem('category')) || [];
+    //contacts = JSON.parse(backend.getITEM('contacts')) || [];
 }
 // ADD
 // async function addUser() {
@@ -173,11 +182,16 @@ function unmarkAllNAvItems() {
 }
 
 function renderResponsiveHeaderTitle() {
-    document.getElementById('content-container').innerHTML = `<p class="header-title-resp d-none cursor-d">Kanban Project Management Tool</p>`;
+    document.getElementById('content-container').innerHTML = `<p class="header-title-resp cursor-d">Kanban Project Management Tool</p>`;
 }
 
 function allowDrop(ev) {
     ev.preventDefault();
+}
+
+
+function reloadPage() {
+    window.location.reload(true);
 }
 
 
