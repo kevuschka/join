@@ -11,7 +11,7 @@ let currentUser = {
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 async function initAddTask() {
-    await renderResponsiveHeaderTitle(); //in script.js
+    renderResponsiveHeaderTitle(); //in script.js
     await includeHTML();
     clearTask();
     setTimeout(function(){

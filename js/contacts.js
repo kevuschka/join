@@ -117,7 +117,7 @@ function renderTemplateContactInfoPopupAbbreviationAndName(i) {
 function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
     return `<div class="contact-info-popup-title-and-editContactBtn flex">
                 <p>Contact Information</p>
-                <div class="contact-info-popup-editContact-btn cursor-p" onclick="openContactsNewContactPopup(${i})">
+                <div class="contact-info-popup-editContact-btn cursor-p" onclick="noCreateOnlyEditContact(${i});openContactsNewContactPopup(${i})">
                     <img src="assets/img/profil-edit-contact-icon.png">
                     <p>Edit Contact</p>
                 </div>
@@ -154,16 +154,30 @@ function makeValueContactsAddToFalse() {
     contacts_add = false;
 }
 
-///////////////////////// CREATE NEW CONTACT ////////////////////////////////////
-function createContact() {
+///////////////////////// CREATE  OR  SAVE   NEW CONTACT ////////////////////////////////////
+async function creatingOrSavingContact() {
+    await createContact(); 
+    closeContactsNewContactPopupFilled(); 
+    renderContactsList();
+}
+
+
+
+async function createContact() {
+    addAllInputValuesToContact();
+    if(!edittingNewContact) contacts.push(newContact);
+    else saveAllInputValuesToContact();
+    await addContact();
+    clearNewContact();
+}
+
+
+function addAllInputValuesToContact() {
     addInputValuesToContact('name');
     addInputValuesToContact('email');
     addInputValuesToContact('phone');
     addAbbreviationToContact('name');
     addColorToContact('color');
-    addContact();
-    clearNewContact();
-
 }
 
 /**
@@ -176,13 +190,63 @@ function addInputValuesToContact(identifier) {
 }
 
 
+function addAbbreviationToContact(identifier) {
+    newContact['abbreviation'] =  getNameLetters(document.getElementById(identifier).value);
+}
+
+
 function addColorToContact(identifier) {
     newContact[identifier] = colors[getRandomNumberFromZeroToNine()];
 }
 
+// SAVE
+function saveAllInputValuesToContact() {
+    saveInputValuesToContact('name');
+    saveInputValuesToContact('email');
+    saveInputValuesToContact('phone');
+    saveInputValuesToContact('abbreviation');
+}
 
-function addAbbreviationToContact(identifier) {
-    newContact['abbreviation'] =  getNameLetters(document.getElementById(identifier).value);
+
+function saveInputValuesToContact(identifier) {
+    contacts[choosedContactToEdit][identifier] = newContact[identifier];
+}
+
+/**
+ * That function will be started, if the user chooses to edit an existing contact. The function changes the variable
+ * 'edittingNewContact' to true and changes the undefinded variable 'chossedContactToEdit' to the index.
+ * @param {*number} index - Thats the index of the contact-object in the array 'contacts' which is to edit
+ */
+function noCreateOnlyEditContact(index) {
+    edittingNewContact = true;
+    choosedContactToEdit = index;
+}
+
+
+
+
+
+
+
+
+
+///////////////////////// SAVE (EDITTED) CONTACT ////////////////////////////////////
+async function saveEditContact() {
+    saveValuesToContact('name');
+    saveValuesToContact('email');
+    saveValuesToContact('phone');
+    await saveContact();
+    clearNewContact();
+}
+
+
+function choosingContact(index) {
+    choosedContactToEdit = index;
+}
+
+
+function saveValuesToContact(identifier) {
+    contacts[choosedContactToEdit][identifier] = document.getElementById(identifier).value;
 }
 
 

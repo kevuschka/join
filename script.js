@@ -6,6 +6,8 @@ let done = [];
 let boardColumns = [todo, inProgress, feedback, done];
 let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 let contacts_add = false;
+let edittingNewContact = false;
+let choosedContactToEdit;
 let users = [];
 
 let priorities = [
@@ -30,8 +32,6 @@ let priorities = [
 ]
 
 let category = [];
-
-
 let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
 let colors = ['#0190e0','#ee00d6', '#02cf2f', '#ffa800', '#9327ff', '#ff5c00', '#4e963d', '#32daff', '#007cee', '#cb02cf']
 
@@ -130,10 +130,10 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 //LOAD
 async function init() {
     await downloadFromServer();
-    users = await JSON.parse(backend.getItem('users')) || [];
-    boardColumns = await JSON.parse(backend.getItem('boardColumns')) || [];
-    category = await JSON.parse(backend.getItem('category')) || [];
-    contacts = await JSON.parse(backend.getItem('contacts')) || [];
+    users =  await JSON.parse(backend.getItem('users')) || [];
+    boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [todo, inProgress, feedback, done]; // compare with line 6
+    category =  await JSON.parse(backend.getItem('category')) || [];
+    contacts =  await JSON.parse(backend.getItem('contacts')) || [];
     renderNav();
     renderHeader();
     if(window.location.pathname.includes('contacts.html')) initContacts();
@@ -158,9 +158,9 @@ function initContacts() {
 // ADD
 
 async function addContact() {
-    contacts.push(newContact);
     await backend.setItem('contacts', JSON.stringify(contacts));
 }
+
 
 
 // async function addUser() {

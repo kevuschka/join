@@ -525,7 +525,7 @@ function templateNewContactPopup() {
                         <div class="contacts-new-contact-popup-abbreviation new-contact-popup-profil-icon d-none" id="contacts-new-contact-abbreviation-existing-user"></div>
                     </div>
                     <div class="contacts-new-contact-popup-form flex" id="contacts-new-contant-popup-form">
-                        <form class="w-100" id="contacts-new-contant-popup-form-tag">
+                        <form class="w-100" id="contacts-new-contant-popup-form-tag" onsubmit="creatingOrSavingContact(); return false">
                             <div class="contacts-new-contact-popup-form-container flex column">
                                 <div class="contacts-new-contact-popup-form-inputs-container flex column">
                                     <div class="contacts-new-contact-popup-form-name flex">
@@ -547,7 +547,7 @@ function templateNewContactPopup() {
                                         <img class="new-contact-form-btn-cancel-cross-black" id="new-contact-form-btn-cancel-cross-black" src="assets/img/add_task_cancel.png">
                                         <img class="new-contact-form-btn-cancel-cross-blue d-none" id="new-contact-form-btn-cancel-cross-blue" src="assets/img/blue-cancel-icon.png">
                                     </div>
-                                    <button class="new-contact-popup-form-btn-create cursor-p flex d-none" id="new-contact-popup-form-btn-create" onclick="createContact();closeContactsNewContactPopupFilled();renderContactsList()">
+                                    <button class="new-contact-popup-form-btn-create cursor-p flex d-none" id="new-contact-popup-form-btn-create">
                                         <p>Create contact</p>
                                         <img src="assets/img/check-small.png"> 
                                     </button>
