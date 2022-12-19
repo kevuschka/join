@@ -138,7 +138,7 @@ async function init() {
     renderHeader();
     renderPopupsInContacts();
     markNavItem(4);
-    await renderContactsList();
+    renderContactsList();
 }
 // ADD
 

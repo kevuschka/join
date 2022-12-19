@@ -1,4 +1,4 @@
-await function renderContactsList() {
+function renderContactsList() {
     let list = document.getElementById(`contacts-list`);
     list.innerHTML = '';
     filterContacts(list);
@@ -197,4 +197,10 @@ function clearNewContact() {
         'phone': '',
         'abbreviation': '',
     };
+}
+
+
+function renderResponsivePopups() {
+    let containerResp = document.getElementById('popUp-responsive');
+    containerResp.innerHTML += renderContactsInfoPopupResponsive();
 }

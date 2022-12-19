@@ -24,8 +24,7 @@ function renderPopupsInContacts() {
     container.innerHTML += renderTemplateBoardAddtaskPopup();
     container.innerHTML += templateContactsNewContactPopup();
     renderPopupCreatedAddtask();
-    let containerResp = document.getElementById('popUp-responsive');
-    containerResp.innerHTML += renderContactsInfoPopupResponsive();
+    renderResponsivePopups();
 }
 
 
