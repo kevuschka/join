@@ -547,7 +547,7 @@ function templateNewContactPopup() {
                                         <img class="new-contact-form-btn-cancel-cross-black" id="new-contact-form-btn-cancel-cross-black" src="assets/img/add_task_cancel.png">
                                         <img class="new-contact-form-btn-cancel-cross-blue d-none" id="new-contact-form-btn-cancel-cross-blue" src="assets/img/blue-cancel-icon.png">
                                     </div>
-                                    <button class="new-contact-popup-form-btn-create cursor-p flex d-none" id="new-contact-popup-form-btn-create" onclick="createContact();reloadPage()">
+                                    <button class="new-contact-popup-form-btn-create cursor-p flex d-none" id="new-contact-popup-form-btn-create" onclick="createContact();closeContactsNewContactPopupFilled();renderContactsList()">
                                         <p>Create contact</p>
                                         <img src="assets/img/check-small.png"> 
                                     </button>

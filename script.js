@@ -6,6 +6,7 @@ let done = [];
 let boardColumns = [todo, inProgress, feedback, done];
 let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 let contacts_add = false;
+let users = [];
 
 let priorities = [
     {
@@ -126,14 +127,6 @@ let newContact = {
 // 'due-date': '',
 
 
-// Returns a random integer from 0 to 9:
-//Math.random returns a number lower than 1
-//Math.floor makes the decimal number to a 'no decimal' number
-//10 is the number of values we want, beginning from  0
-function getRandomNumberFromZeroToNine() {
-    return Math.floor(Math.random() * 10);
-}
-
 // ########## ALLES ZUM BACKEND ##########
 setURL('https://gruppe-348.developerakademie.net/join/smallest_backend_ever');
 
@@ -141,11 +134,23 @@ setURL('https://gruppe-348.developerakademie.net/join/smallest_backend_ever');
 async function init() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
-    //boardColumns = JSON.parse(backend.getItem('boardColumns')) || [];
+    boardColumns = JSON.parse(backend.getItem('boardColumns')) || [];
     category = JSON.parse(backend.getItem('category')) || [];
-    //contacts = JSON.parse(backend.getITEM('contacts')) || [];
+    contacts = JSON.parse(backend.getItem('contacts')) || [];
+    renderNav();
+    renderHeader();
+    renderPopupsInContacts();
+    markNavItem(4);
+    await renderContactsList();
 }
 // ADD
+
+async function addContact() {
+    contacts.push(newContact);
+    await backend.setItem('contacts', JSON.stringify(contacts));
+}
+
+
 // async function addUser() {
 //     users.push('John);
 //     await backend.setItem('users', JSON.stringify(users));
@@ -195,6 +200,24 @@ function allowDrop(ev) {
 
 function reloadPage() {
     window.location.reload(true);
+}
+
+
+function getNameLetters(name) {
+    let firstLetter = name.toString().charAt(0).toUpperCase();  
+    let index = name.indexOf(' '); 
+    let secondLetter = name.toString().charAt(index+1).toUpperCase();
+    return firstLetter + secondLetter;
+}
+
+
+// Returns a random integer from 0 to 9:
+//Math.random returns a number lower than 1
+//Math.floor makes the decimal number to a 'no decimal' number
+//10 is the number of values we want, beginning from  0
+//Using this function to get a random color out of the array 'colors'
+function getRandomNumberFromZeroToNine() {
+    return Math.floor(Math.random() * 10);
 }
 
 
