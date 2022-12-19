@@ -1,7 +1,7 @@
 function renderContactsList() {
     let list = document.getElementById(`contacts-list`);
     list.innerHTML = '';
-    filterContacts(list);
+    if(contacts.length > 0 ) filterContacts(list);
 }
 
 function filterContacts(list) {
@@ -197,10 +197,4 @@ function clearNewContact() {
         'phone': '',
         'abbreviation': '',
     };
-}
-
-
-function renderResponsivePopups() {
-    let containerResp = document.getElementById('popUp-responsive');
-    containerResp.innerHTML += renderContactsInfoPopupResponsive();
 }
