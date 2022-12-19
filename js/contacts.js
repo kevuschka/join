@@ -68,7 +68,7 @@ function settingContactValuesGlobaly(index, letter, number) {
     cleanContactValues();
     contactValues['index'] = index;
     contactValues['letter'] = letter;
-    contactValues['number'] = number;
+    contactValues['number'] = number-1;
 }
 
 
@@ -248,7 +248,7 @@ function clearNewContact() {
 
 
 function MoveToContact() {
-    document.getElementById(`contact-with-letter-${contactValue['letter']}-number-${contactValue['number']}`).click();
+    document.getElementById(`contact-with-letter-${contactValues['letter']}-number-${contactValues['number']}`).click();
 }
 
 
