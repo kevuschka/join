@@ -58,8 +58,17 @@ function contactAbbreviationColoring(letter, number, j) {
 
 
 function openContactInfoPopup(index, letter, number) {
+    settingContactValuesGlobaly(index, letter, number);
     if(window.innerWidth > 800) showContactInfoPopup(index, letter, number);
     else showContactInfoPopupResponsive(index);
+}
+
+
+function settingContactValuesGlobaly(index, letter, number) {
+    cleanContactValues();
+    contactValues['index'] = index;
+    contactValues['letter'] = letter;
+    contactValues['number'] = number;
 }
 
 
@@ -80,6 +89,7 @@ function changebackgroundColorOfSelectedContact(letter, number) {
     document.getElementById(`contact-withLetter-${letter}-number-${number}`).style.color = "#ffffff";
     document.getElementById(`contact-abbreviation-wrapper-${letter}-${number}`).style.border = `1px solid white`;
 }
+
 
 function renderContactInfoPopup(i) {
     let popupContainer = document.getElementById('contacts-info-popup-container');
@@ -117,7 +127,7 @@ function renderTemplateContactInfoPopupAbbreviationAndName(i) {
 function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
     return `<div class="contact-info-popup-title-and-editContactBtn flex">
                 <p>Contact Information</p>
-                <div class="contact-info-popup-editContact-btn cursor-p" onclick="noCreateOnlyEditContact(${i});openContactsNewContactPopup(${i})">
+                <div class="contact-info-popup-editContact-btn cursor-p" onclick="settingValuesForEdittingContact(${i});openContactsNewContactPopup(${i})">
                     <img src="assets/img/profil-edit-contact-icon.png">
                     <p>Edit Contact</p>
                 </div>
@@ -169,6 +179,7 @@ async function createContact() {
     else saveAllInputValuesToContact();
     await addContact();
     clearNewContact();
+    MoveToContact();
 }
 
 
@@ -217,38 +228,10 @@ function saveInputValuesToContact(identifier) {
  * 'edittingNewContact' to true and changes the undefinded variable 'chossedContactToEdit' to the index.
  * @param {*number} index - Thats the index of the contact-object in the array 'contacts' which is to edit
  */
-function noCreateOnlyEditContact(index) {
+function settingValuesForEdittingContact(index) {
     edittingNewContact = true;
     choosedContactToEdit = index;
 }
-
-
-
-
-
-
-
-
-
-///////////////////////// SAVE (EDITTED) CONTACT ////////////////////////////////////
-async function saveEditContact() {
-    saveValuesToContact('name');
-    saveValuesToContact('email');
-    saveValuesToContact('phone');
-    await saveContact();
-    clearNewContact();
-}
-
-
-function choosingContact(index) {
-    choosedContactToEdit = index;
-}
-
-
-function saveValuesToContact(identifier) {
-    contacts[choosedContactToEdit][identifier] = document.getElementById(identifier).value;
-}
-
 
 /**
  * basic contact structure
@@ -260,5 +243,19 @@ function clearNewContact() {
         'email': '',
         'phone': '',
         'abbreviation': '',
+    };
+}
+
+
+function MoveToContact() {
+    document.getElementById(`contact-with-letter-${contactValue['letter']}-number-${contactValue['number']}`).click();
+}
+
+
+function cleanContactValues() {
+    contactValues = {
+        'index' : '',
+        'letter' : '',
+        'number' : '',
     };
 }

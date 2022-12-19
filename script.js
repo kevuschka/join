@@ -85,6 +85,13 @@ let newContact = {
     'abbreviation': '',
 }
 
+
+let contactValues = {
+    'index' : '',
+    'letter' : '',
+    'number' : '',
+}
+
 // let createdTask = {
 //     'category': {'name': 'Design','color': '#FF7A00'},
 //     'title': 'Website redesign',
