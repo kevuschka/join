@@ -1,4 +1,4 @@
-function renderContactsList() {
+await function renderContactsList() {
     let list = document.getElementById(`contacts-list`);
     list.innerHTML = '';
     filterContacts(list);
@@ -29,6 +29,7 @@ function renderTemplateListLetter(letter, list) {
             <div class="container-with-contacts column flex" id="contacts-with-${letter}"></div>
         </div>`
 }
+
 
 function renderListLetterContacts(letter, number, j) {
     let content = document.getElementById(`contacts-with-${letter}`);
@@ -160,9 +161,9 @@ function createContact() {
     addInputValuesToContact('phone');
     addAbbreviationToContact('name');
     addColorToContact('color');
-    pushContactToContacts();
+    addContact();
     clearNewContact();
-    
+
 }
 
 /**
@@ -184,10 +185,6 @@ function addAbbreviationToContact(identifier) {
     newContact['abbreviation'] =  getNameLetters(document.getElementById(identifier).value);
 }
 
-
-function pushContactToContacts() {
-    contacts.push(newContact);
-}
 
 /**
  * basic contact structure
