@@ -129,17 +129,27 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 //LOAD
 async function init() {
+    renderNav();
+    renderHeader();
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
     boardColumns = JSON.parse(backend.getItem('boardColumns')) || [];
     category = JSON.parse(backend.getItem('category')) || [];
     contacts = JSON.parse(backend.getItem('contacts')) || [];
-    renderNav();
-    renderHeader();
-    renderPopupsInContacts();
-    markNavItem(4);
-    renderContactsList();
+    if(window.location.pathname == "/contacts.html") {
+        renderPopupsInContacts();
+        markNavItem(4);
+        setTimeout(() => {
+            renderContactsList();
+        },500);
+    } else if(window.location.pathname == "/add_task.html") {
+        renderPopups();
+        markNavItem(3);
+        initAddTask();
+    } 
 }
+
+
 // ADD
 
 async function addContact() {
