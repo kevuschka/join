@@ -67,8 +67,8 @@ function openContactInfoPopup(index, letter, number) {
 function settingContactValuesGlobaly(index, letter, number) {
     cleanContactValues();
     contactValues['index'] = index;
-    contactValues['letter'] = letter;
-    contactValues['number'] = number-1;
+    contactValues['letter'] = `${letter}`;
+    contactValues['number'] = number;
 }
 
 
@@ -155,20 +155,12 @@ function contactInfoPopupAbbreviationColoring(index) {
 }
 
 
-function makeValueContactsAddtoTrue() {
-    contacts_add = true;
-}
-
-
-function makeValueContactsAddToFalse() {
-    contacts_add = false;
-}
-
 ///////////////////////// CREATE  OR  SAVE   NEW CONTACT ////////////////////////////////////
 async function creatingOrSavingContact() {
     await createContact(); 
     closeContactsNewContactPopupFilled(); 
     renderContactsList();
+    MoveToContact();
 }
 
 
@@ -179,7 +171,6 @@ async function createContact() {
     else saveAllInputValuesToContact();
     await addContact();
     clearNewContact();
-    MoveToContact();
 }
 
 
@@ -233,6 +224,12 @@ function settingValuesForEdittingContact(index) {
     choosedContactToEdit = index;
 }
 
+
+function cleanValuesForEdittingContact() {
+    edittingNewContact = false;
+    choosedContactToEdit = -1;
+}
+
 /**
  * basic contact structure
  */
@@ -248,7 +245,9 @@ function clearNewContact() {
 
 
 function MoveToContact() {
-    document.getElementById(`contact-with-letter-${contactValues['letter']}-number-${contactValues['number']}`).click();
+    setTimeout(() => {
+        document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
+    }, 150);
 }
 
 

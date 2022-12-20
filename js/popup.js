@@ -499,8 +499,7 @@ function renderContactsNewContactPopup(index) {
     wrapper.innerHTML = templateNewContactPopup();
     wrapper.innerHTML += templateNewContactCloseCross();
     displayBTNs(index); 
-    if(!contacts_add) document.getElementById(`contacts-new-contact-popup-abbreviation-container`).style.backgroundColor = `${contacts[index]['color']}`;
-    contacts_add = false;
+    if(edittingNewContact) document.getElementById(`contacts-new-contact-popup-abbreviation-container`).style.backgroundColor = `${contacts[index]['color']}`;
 }
 
 
@@ -571,10 +570,10 @@ function templateNewContactCloseCross() {
 
 function displayBTNs(index) {
     if(window.innerWidth > 800) {
-        if(contacts_add) showElementsInTemplateForAddingNewContact();
+        if(!edittingNewContact) showElementsInTemplateForAddingNewContact();
         else showElementsInTemplateForEdittingContact(index);
     } else {
-        if (contacts_add) showElementsInTemplateForAddingNewContact_resp();
+        if (!edittingNewContact) showElementsInTemplateForAddingNewContact_resp();
         else showElementsInTemplateForEdittingContact(index);
     }
 }
@@ -603,7 +602,7 @@ function showElementsInTemplateForEdittingContact(index) {
     removeClasslist(`contacts-new-contact-abbreviation-existing-user`, `d-none`);
     addClasslist(`contacts-new-contact-popup-form-btns`, `justify-center`)
     removeClasslist(`edit-contact-popup-form-btn-save`, `d-none`);
-    fillInputFieldsOfEditContacPopupWithExistingData(index);
+    fillInputFieldsOfEditContactPopupWithExistingData(index);
 }
 
 
@@ -615,7 +614,7 @@ function renderTemplateAbbreviationWrapperOfExistingUser(index) {
 }
 
 
-function fillInputFieldsOfEditContacPopupWithExistingData(index) {
+function fillInputFieldsOfEditContactPopupWithExistingData(index) {
     document.getElementById(`name`).value = contacts[index]['name'];
     document.getElementById(`email`).value = contacts[index]['email'];
     document.getElementById(`phone`).value = contacts[index]['phone'];
@@ -635,7 +634,7 @@ function closeContactsNewContactPopup() {
     if(window.innerWidth < 801) removeClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     contactsNewContactsPopupSlideOut();
-    makeValueContactsAddToFalse();
+    cleanValuesForEdittingContact();
 }
 
 
@@ -661,22 +660,16 @@ function contactsNewContactsPopupSlideOut() {
 
 
 function closeContactsNewContactPopupFilled() {
-    setTimeout(() => {
-        document.getElementById(`contacts-new-contact-popup-container`).style.transition = `unset`;
-        removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
-        removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
-    }, 1000);
-    setTimeout(() => {
-        addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
-        removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
-    }, 1102);
+    document.getElementById(`contacts-new-contact-popup-container`).style.transition = `unset`;
+    removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
+    removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
+    addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
+    removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
     setTimeout(() => {
         addClasslist(`contacts-new-contact-popup-full`, `d-none`);
-    }, 1230);
-    setTimeout(() => {
         document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
-    }, 1250);
-    makeValueContactsAddToFalse();
+    }, 110);
+    cleanValuesForEdittingContact();
 }
 
 
