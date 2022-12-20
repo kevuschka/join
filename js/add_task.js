@@ -480,6 +480,7 @@ async function createTask() {
      addPriotityToTask();
      pushAssignedContactsToTask();
      pushTaskToTodo();
+     saveTaskOnServer();
      clearAddTask();
      switchToBoard();
 }
@@ -542,6 +543,10 @@ function URLequalsBoardHtml() {
     }
 }
 
+
+function saveTaskOnServer() {
+    backend.setItem('boardColumns', JSON.stringify(boardColumns));
+}
 
 ///////////////////////// GENERAL FUNCTIONS////////////////////////////////////
 
