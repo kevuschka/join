@@ -14,6 +14,7 @@ function filterContacts(list) {
                 contactNumberAtThisLetter++;
                 if(contactNumberAtThisLetter == 1) renderTemplateListLetter(alphabet[i].toUpperCase(), list);
                 renderListLetterContacts(alphabet[i].toUpperCase(), contactNumberAtThisLetter, j);
+                if(createdContact == contacts[j]['name'].toLowerCase()) settingContactValuesGlobaly(j, alphabet[i].toUpperCase(), contactNumberAtThisLetter);
             }
             if(contactNumber == contacts.length) break;
         }
@@ -41,6 +42,7 @@ function renderListLetterContacts(letter, number, j) {
 function renderTemplateListLetterContact(letter, number, j) {
     return `
         <div class="contact cursor-p flex" id="contact-withLetter-${letter}-number-${number}" onclick="openContactInfoPopup(${j}, '${letter}', ${number})">
+            <a class="d-none" href="#contact-withLetter-${letter}-number-${number}" id="contact-link-withLetter-${letter}-number-${number}"></a>
             <div class="contact-abbreviation-wrapper flex" id="contact-abbreviation-wrapper-${letter}-${number}">
                 <p class="contact-abbreviation">${contacts[j]['abbreviation']}</p>
             </div>
@@ -167,6 +169,7 @@ async function creatingOrSavingContact() {
 
 async function createContact() {
     addAllInputValuesToContact();
+    getCreatedContactValue();
     if(!edittingNewContact) contacts.push(newContact);
     else saveAllInputValuesToContact();
     await addContact();
@@ -199,6 +202,11 @@ function addAbbreviationToContact(identifier) {
 
 function addColorToContact(identifier) {
     newContact[identifier] = colors[getRandomNumberFromZeroToNine()];
+}
+
+
+function getCreatedContactValue() {
+    createdContact = document.getElementById('name').value.toLowerCase();
 }
 
 // SAVE
@@ -246,6 +254,7 @@ function clearNewContact() {
 
 function MoveToContact() {
     setTimeout(() => {
+        document.getElementById(`contact-link-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
         document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
     }, 150);
 }

@@ -34,7 +34,7 @@ let category = [];
 let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
 let colors = ['#0190e0','#ee00d6', '#02cf2f', '#ffa800', '#9327ff', '#ff5c00', '#4e963d', '#32daff', '#007cee', '#cb02cf']
 
-let contacts = [
+
 //{
 //     'name': 'Simon Meyer',
 //     'color': '#0190E0',
@@ -74,8 +74,7 @@ let contacts = [
 //     'phone': '+49 0123 456 78 9',
 //     'abbreviation': 'KV'
 //}
-];
-
+let contacts = [];
 let newContact = {
     'name': '',
     'color': '',
@@ -84,12 +83,13 @@ let newContact = {
     'abbreviation': '',
 }
 
-
 let contactValues = {
     'index' : '',
     'letter' : '',
     'number' : '',
 }
+
+let createdContact;
 
 // let createdTask = {
 //     'category': {'name': 'Design','color': '#FF7A00'},

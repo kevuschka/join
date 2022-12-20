@@ -436,7 +436,7 @@ function templateContactInfoPopupResp(member) {
             <div class="contact-info-popup-resp-wrapper">
                 <div class="contact-info-popup-resp-inner-wrapper column flex" id="contact-info-popup-resp-inner-wrapper"></div>
                 <div class="contact-info-popup-resp-pencil-wrapper flex">
-                    <img class="cursor-p" src="assets/img/pencil-white.png" onclick="openContactsNewContactPopup(${member})">
+                    <img class="cursor-p" src="assets/img/pencil-white.png" onclick="settingValuesForEdittingContact(${member});openContactsNewContactPopup(${member})">
                 </div>
             </div>`;
 }
@@ -623,15 +623,15 @@ function fillInputFieldsOfEditContactPopupWithExistingData(index) {
 
 function contactsNewContactSlideIn() {
     setTimeout(() => {
-        if(window.innerWidth > 800) addClasslist(`contacts-new-contact-popup-container`, `board-addtask-popup-slideIn`);
-        if(window.innerWidth < 801) addClasslist(`contacts-new-contact-popup-container`, `contacts-popup-slideIn-responsive`);
+        if(window.innerWidth > 800) openWhenContactCreated();
+        if(window.innerWidth < 801) openWhenContactEditted();
     }, 10);
 }
 
 
 function closeContactsNewContactPopup() {
-    if(window.innerWidth > 800) removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
-    if(window.innerWidth < 801) removeClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
+    if(window.innerWidth > 800) closeWhenContactCreated();
+    if(window.innerWidth < 801) closeWhenContactEditted();
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     contactsNewContactsPopupSlideOut();
     cleanValuesForEdittingContact();
@@ -661,14 +661,16 @@ function contactsNewContactsPopupSlideOut() {
 
 function closeContactsNewContactPopupFilled() {
     document.getElementById(`contacts-new-contact-popup-container`).style.transition = `unset`;
-    removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
+    closeWhenContactCreated();
+    closeWhenContactEditted();
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
     removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
     setTimeout(() => {
         addClasslist(`contacts-new-contact-popup-full`, `d-none`);
         document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
-    }, 110);
+        document.getElementById(`contacts-new-contact-popup-container`).style = ``;
+    }, 100);
     cleanValuesForEdittingContact();
 }
 
@@ -682,6 +684,26 @@ function changeColorOfContactsNewContactBtnCancelToLightblue() {
 function changeColorOfContactsNewContactBtnCancelToBlack() {
     removeClasslist(`new-contact-form-btn-cancel-cross-black`, `d-none`);
     addClasslist(`new-contact-form-btn-cancel-cross-blue`, `d-none`);
+}
+
+
+function openWhenContactCreated() {
+    addClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
+}
+
+
+function closeWhenContactCreated() {
+    removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
+}
+
+
+function openWhenContactEditted() {
+    addClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
+}
+
+
+function closeWhenContactEditted() {
+    removeClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
 }
 
 
