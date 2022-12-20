@@ -358,13 +358,46 @@ body {
     display: none;
 }
 
-.midColor {
-    filter: saturate(416%) contrast(380%) brightness(384%) 
-      invert(345%) sepia(162%) hue-rotate(-1459deg);
+.priority-Icon {
+    filter: brightness(0) invert(1);
+}
+
+.priorities-Color {
+    filter: brightness(0) invert(1);
 }
 
 .lowColor {
       filter: saturate(500%) contrast(700%) brightness(500%) sepia(60%) hue-rotate(-602deg);
+}
+
+.priorities-radius-urgent {
+    background-color: #FF3D00;
+    width: 80px;
+    height: 80px;
+    border-radius: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.priorities-radius-mid {
+    background-color: #FFA800;
+    width: 80px;
+    height: 80px;
+    border-radius: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.priorities-radius-low {
+    background-color: #7AE229;
+    width: 80px;
+    height: 80px;
+    border-radius: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 1600px) {
@@ -706,7 +739,12 @@ body {
     }
 
 .priority-Icon {
-    width: 45px;
+     width: 22px;
+}
+
+.priorities-radius-low {
+    width: 60px;
+    height: 60px;
 }
 
 .to-do-text {

@@ -20,10 +20,10 @@
     <script src="js/popup.js"></script>
     <script src="js/summery.js"></script>
     
-    
+    <!---isLoggedIn();--->
 
 </head>
-<body onload="isLoggedIn();greet();renderSummary();renderNav();renderHeader();renderPopups();markNavItem(1);">
+<body onload="greet();renderSummary();renderNav();renderHeader();renderPopups();markNavItem(1);">
     <div class="page flex relative" id="page">
         <div class="nav flex column" id="nav"></div>
         <div class="wrapper flex column relative" id="wrapper">
@@ -52,7 +52,7 @@
                                 <div class="flex">
                                     <div class="priority-pool w-100 flex">     
                                         <div class="priority-container h-100">
-                                            <div><img id="priority-Icon" class="priority-Icon" src="assets/img/arrowBlue.png"></div> 
+                                            <div><div id="priorities-radius" class="priorities-radius"><img id="priority-Icon" class="priority-Icon" src="assets/img/orange.png"></div></div> 
                                             <div class="priority-text-pool"><span id="priority-count" class="priority-count">0</span> <span id="priority-text" class="priority-text">Urgent</span></div>
                                         </div>
                                         <img class="verticalLineGrey" src="assets/img/verticalLineGrey.png">

@@ -2,7 +2,7 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 
 let users = [{}];
-
+let user;
 
 
 
@@ -14,6 +14,7 @@ let users = [{}];
        
         await downloadFromServer();
         users = JSON.parse(backend.getItem('users')) || [];
+        user = JSON.parse(backend.getItem('currentUser'));
     }
 
 
@@ -122,7 +123,7 @@ function isLoggedIn() {
     let usersEmail = document.getElementById('email');
     let password = document.getElementById('password');
 
-    let user = users.find(u => u.email == usersEmail.value && u.password == password.value);
+    user = users.find(u => u.email == usersEmail.value && u.password == password.value);
     console.log(user);
     if(user) {
         console.log('user gefunden');

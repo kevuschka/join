@@ -19,7 +19,7 @@ let todo2 = [{
         }
     ],
     'prior': {
-        'name': 'Urgent',
+        'name': 'Mid',
         'image': 'assets/img/green.png',
         'color': '#7AE229'
     },
@@ -56,7 +56,7 @@ let todo2 = [{
         }
     ],
     'prior': {
-        'name': 'Low',
+        'name': 'Mid',
         'image': './assets/img/red-prio.svg',
         'color': '#FF3D00'
     },
@@ -93,7 +93,7 @@ let todo2 = [{
         }
     ],
     'prior': {
-        'name': 'Low',
+        'name': 'Mid',
         'image': './assets/img/red-prio.svg',
         'color': '#FF3D00'
     },
@@ -187,8 +187,8 @@ filterPriorities();
    
 function filterPriorities() {
 
-    for (let j = 0; j < createdTask.length; j++) {
-        const element2 = createdTask[j];
+    for (let j = 0; j < todo2.length; j++) {
+        const element2 = todo2[j];
         
         if(element2.prior.name == 'Urgent') {
                 urgent++;
@@ -205,25 +205,34 @@ function filterPriorities() {
  
 
 function renderPriorityContainer(j) {
-    if(urgent == 1) {
-        document.getElementById('priority-Icon').src = 'assets/img/summary-arrow-up-icon.png';
+    if(urgent >= 1) {
+        document.getElementById('priority-Icon').src = 'assets/img/red.png';
+        document.getElementById('priority-Icon').classList.add('priority-Icon');
+        document.getElementById('priorities-radius').classList.remove('priorities-radius-mid');
+        document.getElementById('priorities-radius').classList.remove('priorities-radius-low');
+        document.getElementById('priorities-radius').classList.add('priorities-radius-urgent');
         document.getElementById('priority-count').innerHTML = `${urgent}`;
         document.getElementById('priority-text').innerHTML = `Urgent`;
 
-        if(createdTask[j].prior.name == 'Urgent') {
-            document.getElementById('date').innerHTML = `${createdTask[j]['due-date']}`;
+        if(todo2[j].prior.name == 'Urgent') {
+            document.getElementById('date').innerHTML = `${todo2[j]['due-date']}`;
         }
     }
-
         
      else if(mid > low) {
-        document.getElementById('priority-Icon').src = 'assets/img/summary-arrow-up-icon.png';
-        document.getElementById('priority-Icon').classList.add('midColor');
+        document.getElementById('priority-Icon').src = 'assets/img/orange.png';
+        document.getElementById('priority-Icon').classList.add('priority-Icon');
+        document.getElementById('priorities-radius').classList.remove('priorities-radius-urgent');
+        document.getElementById('priorities-radius').classList.remove('priorities-radius-low');
+        document.getElementById('priorities-radius').classList.add('priorities-radius-mid');
         document.getElementById('priority-count').innerHTML = `${mid}`;
         document.getElementById('priority-text').innerHTML = 'Mid';
     } else if(low > mid) {
-        document.getElementById('priority-Icon').src = 'assets/img/summary-arrow-up-icon.png';
-        document.getElementById('priority-Icon').classList.add('lowColor');
+        document.getElementById('priority-Icon').src = 'assets/img/green.png';
+        document.getElementById('priority-Icon').classList.add('priorities-Color');
+        document.getElementById('priorities-radius').classList.remove('priorities-radius-urgent');
+        document.getElementById('priorities-radius').classList.remove('priorities-radius-mid');
+        document.getElementById('priorities-radius').classList.add('priorities-radius-low');
         document.getElementById('priority-count').innerHTML = `${low}`;
         document.getElementById('priority-text').innerHTML = 'Low';
     }
