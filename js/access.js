@@ -55,7 +55,7 @@ alert('Diese E-Mail ist bereits registriert!');
 let initials = getNameLetters(userName);
 let color = colors[getRandomNumberFromZeroToNine()];
 
-pushUser(userName, email, password, initials);
+pushUser(userName, email, password, initials, color);
 }
 }
 
