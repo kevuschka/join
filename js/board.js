@@ -203,12 +203,8 @@ function renderTicketTeam(n,j) {
 }
 
 
-function getNameLetters(name) {
-    let firstLetter = name.toString().charAt(0).toUpperCase();  
-    let index = name.indexOf(' '); 
-    let secondLetter = name.toString().charAt(index+1).toUpperCase();
-    return firstLetter + secondLetter;
-}
+// getNameLetters(name) you find this function in script.js
+
 
 
 function coloringTicketMembers(column, ticket, teamMember) {

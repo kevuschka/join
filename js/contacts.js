@@ -1,7 +1,7 @@
 function renderContactsList() {
     let list = document.getElementById(`contacts-list`);
     list.innerHTML = '';
-    filterContacts(list);
+    if(contacts.length > 0 ) filterContacts(list);
 }
 
 function filterContacts(list) {
@@ -30,6 +30,7 @@ function renderTemplateListLetter(letter, list) {
         </div>`
 }
 
+
 function renderListLetterContacts(letter, number, j) {
     let content = document.getElementById(`contacts-with-${letter}`);
     content.innerHTML +=  renderTemplateListLetterContact(letter, number, j);
@@ -57,8 +58,17 @@ function contactAbbreviationColoring(letter, number, j) {
 
 
 function openContactInfoPopup(index, letter, number) {
+    settingContactValuesGlobaly(index, letter, number);
     if(window.innerWidth > 800) showContactInfoPopup(index, letter, number);
     else showContactInfoPopupResponsive(index);
+}
+
+
+function settingContactValuesGlobaly(index, letter, number) {
+    cleanContactValues();
+    contactValues['index'] = index;
+    contactValues['letter'] = letter;
+    contactValues['number'] = number-1;
 }
 
 
@@ -79,6 +89,7 @@ function changebackgroundColorOfSelectedContact(letter, number) {
     document.getElementById(`contact-withLetter-${letter}-number-${number}`).style.color = "#ffffff";
     document.getElementById(`contact-abbreviation-wrapper-${letter}-${number}`).style.border = `1px solid white`;
 }
+
 
 function renderContactInfoPopup(i) {
     let popupContainer = document.getElementById('contacts-info-popup-container');
@@ -116,7 +127,7 @@ function renderTemplateContactInfoPopupAbbreviationAndName(i) {
 function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
     return `<div class="contact-info-popup-title-and-editContactBtn flex">
                 <p>Contact Information</p>
-                <div class="contact-info-popup-editContact-btn cursor-p" onclick="openContactsNewContactPopup(${i})">
+                <div class="contact-info-popup-editContact-btn cursor-p" onclick="settingValuesForEdittingContact(${i});openContactsNewContactPopup(${i})">
                     <img src="assets/img/profil-edit-contact-icon.png">
                     <p>Edit Contact</p>
                 </div>
@@ -153,16 +164,31 @@ function makeValueContactsAddToFalse() {
     contacts_add = false;
 }
 
-///////////////////////// CREATE NEW CONTACT ////////////////////////////////////
-function createContact() {
+///////////////////////// CREATE  OR  SAVE   NEW CONTACT ////////////////////////////////////
+async function creatingOrSavingContact() {
+    await createContact(); 
+    closeContactsNewContactPopupFilled(); 
+    renderContactsList();
+}
+
+
+
+async function createContact() {
+    addAllInputValuesToContact();
+    if(!edittingNewContact) contacts.push(newContact);
+    else saveAllInputValuesToContact();
+    await addContact();
+    clearNewContact();
+    MoveToContact();
+}
+
+
+function addAllInputValuesToContact() {
     addInputValuesToContact('name');
     addInputValuesToContact('email');
     addInputValuesToContact('phone');
     addAbbreviationToContact('name');
     addColorToContact('color');
-    pushContactToContacts();
-    clearNewContact();
-    
 }
 
 /**
@@ -175,18 +201,36 @@ function addInputValuesToContact(identifier) {
 }
 
 
-function addColorToContact(identifier) {
-    newContact[identifier] = colors[getRandomNumberFromZeroToNine()];
-}
-
-
 function addAbbreviationToContact(identifier) {
     newContact['abbreviation'] =  getNameLetters(document.getElementById(identifier).value);
 }
 
 
-function pushContactToContacts() {
-    contacts.push(newContact);
+function addColorToContact(identifier) {
+    newContact[identifier] = colors[getRandomNumberFromZeroToNine()];
+}
+
+// SAVE
+function saveAllInputValuesToContact() {
+    saveInputValuesToContact('name');
+    saveInputValuesToContact('email');
+    saveInputValuesToContact('phone');
+    saveInputValuesToContact('abbreviation');
+}
+
+
+function saveInputValuesToContact(identifier) {
+    contacts[choosedContactToEdit][identifier] = newContact[identifier];
+}
+
+/**
+ * That function will be started, if the user chooses to edit an existing contact. The function changes the variable
+ * 'edittingNewContact' to true and changes the undefinded variable 'chossedContactToEdit' to the index.
+ * @param {*number} index - Thats the index of the contact-object in the array 'contacts' which is to edit
+ */
+function settingValuesForEdittingContact(index) {
+    edittingNewContact = true;
+    choosedContactToEdit = index;
 }
 
 /**
@@ -199,5 +243,19 @@ function clearNewContact() {
         'email': '',
         'phone': '',
         'abbreviation': '',
+    };
+}
+
+
+function MoveToContact() {
+    document.getElementById(`contact-with-letter-${contactValues['letter']}-number-${contactValues['number']}`).click();
+}
+
+
+function cleanContactValues() {
+    contactValues = {
+        'index' : '',
+        'letter' : '',
+        'number' : '',
     };
 }

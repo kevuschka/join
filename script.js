@@ -6,6 +6,9 @@ let done = [];
 let boardColumns = [todo, inProgress, feedback, done];
 let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 let contacts_add = false;
+let edittingNewContact = false;
+let choosedContactToEdit;
+let users = [];
 
 let priorities = [
     {
@@ -29,8 +32,6 @@ let priorities = [
 ]
 
 let category = [];
-
-
 let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
 let colors = ['#0190e0','#ee00d6', '#02cf2f', '#ffa800', '#9327ff', '#ff5c00', '#4e963d', '#32daff', '#007cee', '#cb02cf']
 
@@ -84,6 +85,13 @@ let newContact = {
     'abbreviation': '',
 }
 
+
+let contactValues = {
+    'index' : '',
+    'letter' : '',
+    'number' : '',
+}
+
 // let createdTask = {
 //     'category': {'name': 'Design','color': '#FF7A00'},
 //     'title': 'Website redesign',
@@ -123,26 +131,45 @@ let newContact = {
 // 'due-date': '',
 
 
-// Returns a random integer from 0 to 9:
-//Math.random returns a number lower than 1
-//Math.floor makes the decimal number to a 'no decimal' number
-//10 is the number of values we want, beginning from  0
-function getRandomNumberFromZeroToNine() {
-    return Math.floor(Math.random() * 10);
-}
-
 // ########## ALLES ZUM BACKEND ##########
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 //LOAD
 async function init() {
     await downloadFromServer();
-    users = JSON.parse(backend.getItem('users')) || [];
-    //boardColumns = JSON.parse(backend.getItem('boardColumns')) || [];
-    category = JSON.parse(backend.getItem('category')) || [];
-    //contacts = JSON.parse(backend.getITEM('contacts')) || [];
+    users =  await JSON.parse(backend.getItem('users')) || [];
+    boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [todo, inProgress, feedback, done]; // compare with line 6
+    category =  await JSON.parse(backend.getItem('category')) || [];
+    contacts =  await JSON.parse(backend.getItem('contacts')) || [];
+    renderNav();
+    renderHeader();
+    if(window.location.pathname.includes('contacts.html')) initContacts();
+    else if(window.location.pathname.includes('add_task.html')) initAddtaks();
 }
+
+
+function initAddtaks() {
+    markNavItem(3);
+    renderPopups();
+    initAddTask();
+}
+
+
+function initContacts() {
+    markNavItem(4);
+    renderPopupsInContacts();
+    renderContactsList();
+}
+
+
 // ADD
+
+async function addContact() {
+    await backend.setItem('contacts', JSON.stringify(contacts));
+}
+
+
+
 // async function addUser() {
 //     users.push('John);
 //     await backend.setItem('users', JSON.stringify(users));
@@ -192,6 +219,24 @@ function allowDrop(ev) {
 
 function reloadPage() {
     window.location.reload(true);
+}
+
+
+function getNameLetters(name) {
+    let firstLetter = name.toString().charAt(0).toUpperCase();  
+    let index = name.indexOf(' '); 
+    let secondLetter = name.toString().charAt(index+1).toUpperCase();
+    return firstLetter + secondLetter;
+}
+
+
+// Returns a random integer from 0 to 9:
+//Math.random returns a number lower than 1
+//Math.floor makes the decimal number to a 'no decimal' number
+//10 is the number of values we want, beginning from  0
+//Using this function to get a random color out of the array 'colors'
+function getRandomNumberFromZeroToNine() {
+    return Math.floor(Math.random() * 10);
 }
 
 
