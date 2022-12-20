@@ -1,7 +1,7 @@
 function renderHeader() {
     let content = document.getElementById('header');
     content.innerHTML = templateHeader();
-    if(currentUserHeaderData) showUserInHeader();
+    if(currentUserHeaderData['abbreviation']) showUserInHeader();
     else showGuestUserInHeader();
 }
 

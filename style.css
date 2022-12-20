@@ -203,6 +203,10 @@ a {
     width: 106px;
 }
 
+.header-menu-resp {
+    display: none;
+}
+
 .header-title-resp {
     display: none;
 }
@@ -484,7 +488,7 @@ a {
     }
 
     .header-menu-resp {
-        display: block;
+        display: unset;
     }
 
     .header-menu-item {

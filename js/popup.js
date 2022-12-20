@@ -36,8 +36,8 @@ function renderHeaderMenuPopup() {
                 <div class="header-menu-container absolute flex" onclick="doNotClose(event)">
                     <div class="header-menu-spacer" onclick="closeHeaderMenuPopup()"></div>
                     <div class="header-menu flex column cursor-p" onclick="closeHeaderMenuPopup()">
-                        <a href="help.html" class="header-menu-item header-menu-resp d-none">Help</a>
-                        <a href="legal_notice.html" class="header-menu-item header-menu-resp d-none">Legal notice</a>
+                        <a href="help.html" class="header-menu-item header-menu-resp">Help</a>
+                        <a href="legal_notice.html" class="header-menu-item header-menu-resp">Legal notice</a>
                         <a href="javascipt:logout()" class="header-menu-item">Log out</a>
                     </div>
                 </div>
