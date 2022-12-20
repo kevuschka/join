@@ -14,9 +14,7 @@ async function initAddTask() {
     renderResponsiveHeaderTitle(); //in script.js
     await includeHTML();
     clearTask();
-    setTimeout(function(){
-        renderAddTask();
-    }, 500);
+    renderAddTask();
 }
 
 
@@ -482,6 +480,7 @@ async function createTask() {
      addPriotityToTask();
      pushAssignedContactsToTask();
      pushTaskToTodo();
+     saveboardColumnsOnServer();
      clearAddTask();
      switchToBoard();
 }
@@ -544,6 +543,10 @@ function URLequalsBoardHtml() {
     }
 }
 
+
+function saveboardColumnsOnServer() {
+    backend.setItem('boardColumns', JSON.stringify(boardColumns));
+}
 
 ///////////////////////// GENERAL FUNCTIONS////////////////////////////////////
 
