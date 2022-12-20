@@ -141,26 +141,48 @@ async function init() {
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [todo, inProgress, feedback, done]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
-    renderNav();
-    renderHeader();
-    if(window.location.pathname.includes('contacts.html')) initContacts();
-    else if(window.location.pathname.includes('add_task.html')) initAddtaks();
+    renderSiteRelatedTemplate();
 }
 
 
-function initAddtaks() {
-    markNavItem(3);
+function renderSiteRelatedTemplate() {
+    renderNav();
+    renderHeader();
+    if(window.location.pathname.includes('summery.html')) initSummery(1);
+    else if(window.location.pathname.includes('board.html')) initBoard(2);
+    else if(window.location.pathname.includes('add_task.html')) initAddtask(3);
+    else if(window.location.pathname.includes('contacts.html')) initContacts(4);
+}
+
+
+function initSummery(value) {
+    greet();
+    markNavItem(value);
+    renderPopups();
+    renderSummary();
+}
+
+
+function initBoard(value) {
+    markNavItem(value);
+    renderPopupsInBoard();
+    addTest();
+    test()
+}
+
+
+function initAddtask(value) {
+    markNavItem(value);
     renderPopups();
     initAddTask();
 }
 
 
-function initContacts() {
-    markNavItem(4);
+function initContacts(value) {
+    markNavItem(value);
     renderPopupsInContacts();
     renderContactsList();
 }
-
 
 // LOGIN 
 function isLoggedIn() {
