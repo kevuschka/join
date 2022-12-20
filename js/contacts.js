@@ -222,10 +222,7 @@ function saveInputValuesToContact(identifier) {
 }
 
 
-// ADD
-async function addContact() {
-    await backend.setItem('contacts', JSON.stringify(contacts));
-}
+
 
 /**
  * That function will be started, if the user chooses to edit an existing contact. The function changes the variable
@@ -258,10 +255,13 @@ function clearNewContact() {
 
 
 function MoveToContact() {
-    setTimeout(() => {
-        document.getElementById(`contact-link-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
-        document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
-    }, 150);
+    if(window.innerWidth > 800) document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click(); 
+    else {
+        setTimeout(() => {
+            document.getElementById(`contact-link-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
+            document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
+        }, 150);
+    }   
 }
 
 

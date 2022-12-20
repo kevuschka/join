@@ -8,6 +8,10 @@ let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 let edittingNewContact = false;
 let choosedContactToEdit;
 let users = [];
+let currentUserHeaderData = {
+    'abbreviation': '',
+    'color': '',
+};
 
 let priorities = [
     {
@@ -141,21 +145,34 @@ async function init() {
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [todo, inProgress, feedback, done]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
+    getCurrentUserHeaderData();
     renderSiteRelatedTemplate();
 }
 
 
 function renderSiteRelatedTemplate() {
-    renderNav();
-    renderHeader();
-    if(window.location.pathname.includes('summery.html')) initSummery(1);
+    if(navAndHeaderNeeded()) renderNavAndHeader();
+    if(window.location.pathname.includes('summary.html')) initSummary(1);
     else if(window.location.pathname.includes('board.html')) initBoard(2);
     else if(window.location.pathname.includes('add_task.html')) initAddtask(3);
     else if(window.location.pathname.includes('contacts.html')) initContacts(4);
+    
 }
 
 
-function initSummery(value) {
+function navAndHeaderNeeded() {
+    if(window.location.pathname.includes('index.html' || 'sign_up.html' || 'reset_password.html' || 'forgot_password.html')) return false;
+    else return true;
+}
+
+
+function renderNavAndHeader() {
+    renderNav();
+    renderHeader();
+}
+
+
+function initSummary(value) {
     greet();
     markNavItem(value);
     renderPopups();
@@ -190,6 +207,12 @@ function isLoggedIn() {
     if(!itemSet) {
         window.location.href = 'index.html?msg=Du hast dich erfolgreich angemeldet';
     }
+}
+
+
+// ADD
+async function addContact() {
+    await backend.setItem('contacts', JSON.stringify(contacts));
 }
 
 // async function addUser() {
@@ -259,6 +282,15 @@ function getNameLetters(name) {
 //Using this function to get a random color out of the array 'colors'
 function getRandomNumberFromZeroToNine() {
     return Math.floor(Math.random() * 10);
+}
+
+
+function getCurrentUserHeaderData() {
+    let currentUserHeaderDataAsText = localStorage.getItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData)) || '';
+    if(currentUserHeaderDataAsText) {
+        currentUserHeaderData['abbreviation'] = JSON.parse(currentUserHeaderDataAsText).abbreviation;
+        currentUserHeaderData['color'] = JSON.parse(currentUserHeaderDataAsText).color;
+    }
 }
 
 

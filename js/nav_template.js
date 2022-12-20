@@ -1,4 +1,4 @@
-function renderNav(n) {
+function renderNav() {
     let navbar = document.getElementById('nav');
     navbar.innerHTML = renderNavContent();  
     renderMainNavItems();
@@ -17,13 +17,13 @@ function renderNavContent() {
 
 function renderMainNavItems() {
     let content = document.getElementById('nav-main-selection');
-    content.innerHTML = renderNavItemSummery();
+    content.innerHTML = renderNavItemSummary();
     content.innerHTML += renderNavItemBoard();
     content.innerHTML += renderNavItemAddTask();
     content.innerHTML += renderNavItemContacts();
 }
 
-function renderNavItemSummery() {
+function renderNavItemSummary() {
     return `<a href="summary.html" class="nav-item nav-summary flex" id="1">
                 <img src="assets/img/summary-nav-icon.png">
                 <p>Summary</p>

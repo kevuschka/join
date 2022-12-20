@@ -1,7 +1,7 @@
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 
-let users = [{}];
+
 let user;
 
 
@@ -52,11 +52,8 @@ alert('Diese E-Mail ist bereits registriert!');
     let initials = fullName.shift().charAt(0) + fullName.pop().charAt(0);
     return initials.toUpperCase();*/
 
-let name= userName.value.split(' ');
-let firstLetter = name.toString().charAt(0).toUpperCase();
-let secondLetter = name[1].toString().charAt(0).toUpperCase();
-let initials = firstLetter + secondLetter
-
+let initials = getNameLetters(userName);
+let color = colors[getRandomNumberFromZeroToNine()];
 
 pushUser(userName, email, password, initials);
 }
@@ -72,7 +69,7 @@ pushUser(userName, email, password, initials);
  * - Saving the new data in the backend
  * - Redirecting to the login site
  * 
- */async function pushUser(userName, email, password, initials) {
+ */async function pushUser(userName, email, password, initials, color) {
 
     
 
@@ -81,11 +78,11 @@ pushUser(userName, email, password, initials);
         'userName':userName.value,
         'valid'   : false,
         'loggedIn': false,
-        'shortLetter':initials,
+        'abbreviation':initials,
         'email'   :email.value,
         'password':password.value,
         'phone'   :'',
-        'color'   :''
+        'color'   : color,
     }
 
 
@@ -124,6 +121,8 @@ pushUser(userName, email, password, initials);
 
         localStorage.setItem('usersEmail', usersEmail.value);
         localStorage.setItem('currentUser', JSON.stringify(user));
+        setCurrentUserHeaderData(user);
+
         console.log('user saved in key');
 
         
@@ -146,6 +145,13 @@ pushUser(userName, email, password, initials);
         document.getElementById('indexError').classList.remove('d-none');
         document.getElementById('password').classList.add('border-color');
     }
+}
+
+
+function setCurrentUserHeaderData(user) {
+    currentUserHeaderData['abbreviation'] = user['abbreviation'];
+    currentUserHeaderData['color'] = user['color'];
+    localStorage.setItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData));
 }
 
 let usersEmail;
