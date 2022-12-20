@@ -468,7 +468,7 @@ function clearAddTask() {
     if (window.location.pathname == '/add_task.html') {
         initAddTask();
     } else {
-        //will be close nontheless
+        closeBoardAddtaskPopup()
     }
 }
 
