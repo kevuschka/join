@@ -7,15 +7,15 @@ let user;
 
 
 
-/**
- * This function loads users data from the server
- * 
- * */ async function init() { 
+// /**
+//  * This function loads users data from the server
+//  * 
+//  * */ async function init() { 
        
-        await downloadFromServer();
-        users = JSON.parse(backend.getItem('users')) || [];
-        user = JSON.parse(backend.getItem('currentUser'));
-    }
+//         await downloadFromServer();
+//         users = JSON.parse(backend.getItem('users')) || [];
+//         user = JSON.parse(backend.getItem('currentUser')) || [];
+//     }
 
 
 /**
@@ -103,13 +103,7 @@ pushUser(userName, email, password, initials);
 
 /*let currentUser = {};*/
 
-function isLoggedIn() {
-
-    let itemSet = localStorage.getItem('usersEmail');
-    if(!itemSet) {
-        window.location.href = 'index.html?msg=Du hast dich erfolgreich angemeldet';
-    }
-    }
+// isLoggedIn() wurde zu script.js hinzugefügt, damit sie aus jeder Seite aufrufbar ist. Habe sie drin in popup.js Zeile 51
 
 /**
  * This function manages following:

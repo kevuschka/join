@@ -137,6 +137,7 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 async function init() {
     await downloadFromServer();
     users =  await JSON.parse(backend.getItem('users')) || [];
+    user = await JSON.parse(backend.getItem('currentUser')) || [];
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [todo, inProgress, feedback, done]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
@@ -161,13 +162,13 @@ function initContacts() {
 }
 
 
-// ADD
-
-async function addContact() {
-    await backend.setItem('contacts', JSON.stringify(contacts));
+// LOGIN 
+function isLoggedIn() {
+    let itemSet = localStorage.getItem('usersEmail');
+    if(!itemSet) {
+        window.location.href = 'index.html?msg=Du hast dich erfolgreich angemeldet';
+    }
 }
-
-
 
 // async function addUser() {
 //     users.push('John);

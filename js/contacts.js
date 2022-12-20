@@ -166,7 +166,6 @@ async function creatingOrSavingContact() {
 }
 
 
-
 async function createContact() {
     addAllInputValuesToContact();
     getCreatedContactValue();
@@ -220,6 +219,12 @@ function saveAllInputValuesToContact() {
 
 function saveInputValuesToContact(identifier) {
     contacts[choosedContactToEdit][identifier] = newContact[identifier];
+}
+
+
+// ADD
+async function addContact() {
+    await backend.setItem('contacts', JSON.stringify(contacts));
 }
 
 /**
