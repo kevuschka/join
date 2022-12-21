@@ -1,18 +1,8 @@
+// ##### TASK #####
 let task;
-let todo = [];
-let inProgress = [];
-let feedback = [];
-let done = [];
-let boardColumns = [todo, inProgress, feedback, done];
-let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
-let edittingNewContact = false;
-let choosedContactToEdit;
-let users = [];
-let currentUserHeaderData = {
-    'abbreviation': '',
-    'color': '',
-};
 
+/** That object is used in AddTask when creating a new task. 
+ * Familiar functions: templatePrioritySelection(i), changeSelectedPrioBtn(i), resetOtherPrioBtns(i) */
 let priorities = [
     {
         'name': 'Urgent',
@@ -34,51 +24,11 @@ let priorities = [
     }
 ]
 
-let category = [];
-let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
-let colors = ['#0190e0','#ee00d6', '#02cf2f', '#ffa800', '#9327ff', '#ff5c00', '#4e963d', '#32daff', '#007cee', '#cb02cf']
 
-
-//{
-//     'name': 'Simon Meyer',
-//     'color': '#0190E0',
-//     'email': 'simon.meyer@gmail.com',
-//     'phone': '+490123456789',
-//     'abbreviation': 'SM'
-// },{
-//     'name': 'Maximilian Vogel',
-//     'color': '#EE00D6',
-//     'email': 'maximilian.vogel@gmail.com',
-//     'phone': '+49 0123 456 78 9',
-//     'abbreviation': 'MV'
-// },{
-//     'name': 'Eva Fischer',
-//     'color': '#02CF2F',
-//     'email': 'Eva.Fischer@gmail.com',
-//     'phone': '+49 0123 456 78 9',
-//     'abbreviation': 'EF'
-
-// },{
-//     'name': 'Hans Maier',
-//     'color': '#0038FF',
-//     'email': 'Hans.Maier@gmail.com',
-//     'phone': '+49 0123 456 78 9',
-//     'abbreviation': 'HM'
-// },{
-//     'name': 'Manuel Neuer',
-//     'color': '#0038FF',
-//     'email': 'Neuer.manuell@gmail.com',
-//     'phone': '+49 0123 456 78 9',
-//     'abbreviation': 'MN'
-// },
-// {
-//     'name': 'Kevin Schumilo',
-//     'color': '#02CF2F',
-//     'email': 'kevin.schumilo@gmail.com',
-//     'phone': '+49 0123 456 78 9',
-//     'abbreviation': 'KV'
-//}
+// ##### CONTACTS #####
 let contacts = [];
+
+/** That object is important when creating a new contact in contacts. Familiar functions: addAllInputValuesToContact() */
 let newContact = {
     'name': '',
     'color': '',
@@ -87,62 +37,93 @@ let newContact = {
     'abbreviation': '',
 }
 
+/** That object is important to for the scroll function, after editting or creating a new contact in "contacts"
+ *  Familiar functions: settingContactValuesGlobaly(index, letter, number), cleanContactValues()
+ */
 let contactValues = {
     'index' : '',
     'letter' : '',
     'number' : '',
 }
 
+/** That variable is important to scroll to the new contact after creating it.
+ *  Find it in contacts.js. Familiar functions: filerContacts() 
+ */
 let createdContact;
 
-// let createdTask = {
-//     'category': {'name': 'Design','color': '#FF7A00'},
-//     'title': 'Website redesign',
-//     'description': "Modify the contents of the main website. Adjust the UI to the company's brand design.",
-//     'progress': 0,
-//     'subtasks': 1,
-//     'team': [
-//         {
-//             'name': 'Simon Meyer',
-//             'color': '#0190E0',
-//             'email': 'simon.meyer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Maximilian Vogel',
-//             'color': '#EE00D6',
-//             'email': 'maximilian.vogel@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         }
-//     ],
-//     'prior': {
-//         'name': 'Low',
-//         'image': 'assets/img/green.png',
-//         'color': '#7AE229'
-//     },
-//     'board': 0
-// };
+/** This two variables are important for loading the right templates and buttons, if a contact will be editted or not (creating new contact).
+ *  Familiar functions: settingValuesForEdittingContact(index), cleanValuesForEdittingContact()
+*/
+let edittingNewContact = false;
+let indexOfChoosedContactToEdit;
 
-// 'category': [],
-// 'title': '',
-// 'description': '',
-// 'process': 0,
-// 'subtasks': 0,
-// 'subtasksArray': [],
-// 'team': [],
-// 'prior': '',
-// 'board': 0,
-// 'due-date': '',
+/** Array for choosing a random color out of this array. Find it in contacts.js
+ *  Familiar functions: addColorToContact(identifier)
+ */
+let colors = ['#0190e0','#ee00d6', '#02cf2f', '#ffa800', '#9327ff', '#ff5c00', '#4e963d', '#32daff', '#007cee', '#cb02cf']
+
+/** That variable is important to get an alphabetic order in the contacts list. 
+*  Familiar functions: filterContacts(list)
+*/
+let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
 
-// ########## ALLES ZUM BACKEND ##########
+// ##### USERS #####
+let users = [];
+
+/** That object is important to store data for displaying the user-profil in the top right corner on the header (not important if guest-login used)
+ * Familiar functions: setCurrentUserHeaderData(user) (access.js), getCurrentUserHeaderData()
+*/
+let currentUserHeaderData = {
+    'abbreviation': '',
+    'color': '',
+};
+
+
+// ##### CATEGORY #####
+let category = [];
+let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
+
+
+// ##### NAV #####
+let selectedNavItem = 0;
+
+/**
+ * That function marks the category/tab in the navbar on the same page.
+ * @param {number} n - The id of the category/tab in the nav
+ */
+function markNavItem(n) {
+    unmarkAllNAvItems();
+    selectedNavItem = n;
+    document.getElementById(`${n}`).classList.add('selected-nav-item');  
+}
+
+
+function markPreviewsNavItem() {
+    document.getElementById(`${selectedNavItem}`).classList.add('selected-nav-item'); 
+}
+
+
+function unmarkAllNAvItems() {
+    for (let i = 1; i < 5; i++) document.getElementById(`${i}`).classList.remove('selected-nav-item');
+}
+
+
+// ##### HEADER RESPONSIVE #####
+function renderResponsiveHeaderTitle() {
+    document.getElementById('content-container').innerHTML = `<p class="header-title-resp cursor-d">Kanban Project Management Tool</p>`;
+}
+
+
+// ########## BACKEND ##########
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
-//LOAD
+
 async function init() {
     await downloadFromServer();
     users =  await JSON.parse(backend.getItem('users')) || [];
     user = await JSON.parse(backend.getItem('currentUser')) || [];
-    boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [todo, inProgress, feedback, done]; // compare with line 6
+    boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [[], [], [], []]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
     getCurrentUserHeaderData();
@@ -183,8 +164,7 @@ function initSummary(value) {
 function initBoard(value) {
     markNavItem(value);
     renderPopupsInBoard();
-    addTest();
-    test()
+    renderBoard();
 }
 
 
@@ -215,6 +195,10 @@ async function addContact() {
     await backend.setItem('contacts', JSON.stringify(contacts));
 }
 
+async function addBoard() {
+    await backend.setItem('boardColumns', JSON.stringify(boardColumns));
+}
+
 // async function addUser() {
 //     users.push('John);
 //     await backend.setItem('users', JSON.stringify(users));
@@ -224,6 +208,8 @@ async function addContact() {
 //     await backend.deleteItem('users');
 // }
 
+
+// HELPFULL FUNCTIONS
 function addClasslist(id, classe) {
     document.getElementById(id).classList.add(classe);
 }
@@ -232,30 +218,10 @@ function removeClasslist(id, classe) {
     document.getElementById(id).classList.remove(classe);
 }
 
-let selectedNavItem = 0;
-
 function doNotClose(event) {
     event.stopPropagation();
 }
 
-function markNavItem(n) {
-    unmarkAllNAvItems();
-    selectedNavItem = n;
-    document.getElementById(`${n}`).classList.add('selected-nav-item');  
-}
-
-function markPreviewsNavItem() {
-    document.getElementById(`${selectedNavItem}`).classList.add('selected-nav-item'); 
-}
-
-
-function unmarkAllNAvItems() {
-    for (let i = 1; i < 5; i++) document.getElementById(`${i}`).classList.remove('selected-nav-item');
-}
-
-function renderResponsiveHeaderTitle() {
-    document.getElementById('content-container').innerHTML = `<p class="header-title-resp cursor-d">Kanban Project Management Tool</p>`;
-}
 
 function allowDrop(ev) {
     ev.preventDefault();

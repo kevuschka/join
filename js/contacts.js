@@ -1,4 +1,4 @@
-function renderContactsList() {
+function renderContactsList() { 
     let list = document.getElementById(`contacts-list`);
     list.innerHTML = '';
     if(contacts.length > 0 ) filterContacts(list);
@@ -218,7 +218,7 @@ function saveAllInputValuesToContact() {
 
 
 function saveInputValuesToContact(identifier) {
-    contacts[choosedContactToEdit][identifier] = newContact[identifier];
+    contacts[indexOfChoosedContactToEdit][identifier] = newContact[identifier];
 }
 
 
@@ -231,13 +231,13 @@ function saveInputValuesToContact(identifier) {
  */
 function settingValuesForEdittingContact(index) {
     edittingNewContact = true;
-    choosedContactToEdit = index;
+    indexOfChoosedContactToEdit = index;
 }
 
 
 function cleanValuesForEdittingContact() {
     edittingNewContact = false;
-    choosedContactToEdit = -1;
+    indexOfChoosedContactToEdit = -1;
 }
 
 /**

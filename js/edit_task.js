@@ -50,7 +50,7 @@ function saveChanges(columm, ticket) {
     changeValuesForEditedTask(columm, ticket, 'due-date');
     changePriorityOfEditedTask(columm, ticket);
     changeAssignedContactsForEditedTask(columm, ticket);
-    saveboardColumnsOnServer();
+    addBoard();
 }
 
 

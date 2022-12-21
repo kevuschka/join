@@ -715,7 +715,7 @@ async function createTask() {
      addPriotityToTask();
      pushAssignedContactsToTask();
      pushTaskToTodo();
-     saveboardColumnsOnServer();
+     addBoard();
      clearAddTask();
      switchToBoard();
 }
@@ -776,11 +776,6 @@ function URLequalsBoardHtml() {
     if ('/add_task.html' == window.location.pathname) {
         return true
     }
-}
-
-
-function saveboardColumnsOnServer() {
-    backend.setItem('boardColumns', JSON.stringify(boardColumns));
 }
 
 ///////////////////////// GENERAL FUNCTIONS////////////////////////////////////

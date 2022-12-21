@@ -150,7 +150,7 @@ function isLoggedIn() {
 }
 
 /**
- * Data to load on every page the header-profile if registered user
+ * Data to load on every page the header-profile, if user is registered
  * @param {JSON} user - json object/user info, that is registered.
  */
 function setCurrentUserHeaderData(user) {
