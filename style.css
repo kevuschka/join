@@ -229,10 +229,15 @@ a {
 
 .header-profil {
     border-radius: 50%;
-    border: 2px solid white;
+    border: 1px solid white;
     width: 40px;
     height: 40px;
     object-fit: cover;
+}
+
+#header-profil-container-user-abbreviation {
+    justify-content: center;
+    align-items: center;
 }
 
 .logo-img-resp {

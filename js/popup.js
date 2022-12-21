@@ -48,6 +48,7 @@ function renderHeaderMenuPopup() {
 function logout() {
     localStorage.removeItem('usersEmail');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserHeaderData');
     isLoggedIn();
 }
 
