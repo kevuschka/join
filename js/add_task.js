@@ -483,6 +483,9 @@ function changeVisibilityContactSection() {
 
 ///////////////////////// PIORITY SELECTION FUNCTIONS ////////////////////////////////////
 
+/**
+ * This function renders the dropdown container for the selection of the priority 
+ */
 function renderPrioritySelection() {
     let container = document.getElementById('prio-container');
     for (let i = 0; i < priorities.length; i++) {
@@ -491,6 +494,12 @@ function renderPrioritySelection() {
 }
 
 
+/**
+ * This function generates the html code to display and be able to select the priotity (current iteration)
+ * 
+ * @param {int} i - index of the current priority in the priorities array 
+ * @returns a html template which displays the name of the priority with index i and the image assigned to this priority
+ */
 function templatePrioritySelection(i) {
     return /*html*/ `
          <button type="button" class="prio-btn" id="${priorities[i]['name']}" onclick="selectPrio(${i})">
@@ -501,12 +510,23 @@ function templatePrioritySelection(i) {
 }
 
 
+/**
+ * This function is designed change the design of the priority buttons (selected/not selected)
+ * 
+ * @param {int} i - index of the current priority in the priorities array 
+ */
 function selectPrio(i) {
     changeSelectedPrioBtn(i);
     resetOtherPrioBtns(i);
 }
 
 
+/**
+ * This function changes the design of priority button which has been clicked
+ * By changing the design it gets if a button is currently selected
+ * 
+ * @param {int} i - index of the current priority in the priorities array 
+ */
 function changeSelectedPrioBtn(i) {
     let id = priorities[i]['name'];
     let button = document.getElementById(id);
@@ -519,6 +539,11 @@ function changeSelectedPrioBtn(i) {
 }
 
 
+/**
+ * This function resets the design of the priority buttons which were not clicked now but selected with a click before to default
+ * 
+ * @param {int} i - the index of the priority (in priorities array) which is clicked 
+ */
 function resetOtherPrioBtns(i) {
     for (let j = 0; j < priorities.length; j++) {
         let id = priorities[j]['name'];
@@ -532,17 +557,34 @@ function resetOtherPrioBtns(i) {
 }
 
 
+/**
+ * This function is used to change the image of the priority to white 
+ * 
+ * @param {Element} button - The button where the image should be changed to white
+ */
 function changePrioImageToWhite(button) {
     button.lastElementChild.style.filter = 'brightness(0) invert(1)'   
 }
 
 
+/**
+ * This function changes the bg-color (according to the priorityObject) and the color of the text (white) 
+ * 
+ * @param {Element} button - The button where the colors should be changed
+ * @param {int} i - the index of the priorityObject in the priorities array
+ */
 function changePrioBtnColors(button, i) {
     button.style.backgroundColor = `${priorities[i]['color']}`;
     button.style.color = 'white';
 }
 
 
+/**
+ * This function resets the design of a priority button to default
+ * This is done by removing the style attribute from the button and from the image
+ * 
+ * @param {Element} button - The button where the style attribute should be removed (design set back to default) 
+ */
 function removeStyleAttributesBtn(button) {
     button.removeAttribute('style');
     button.lastElementChild.removeAttribute('style');
@@ -551,18 +593,29 @@ function removeStyleAttributesBtn(button) {
 
 ///////////////////////// SUBTASK FUNCTIONS ////////////////////////////////////
 
+/**
+ * This function function changes which part of the subtask section is visible
+ */
 function changeVisibilitySubtask() {
     changeVisibility('subtask-placeholder-input-ctn');
     changeVisibility('subtask-input-ctn');
 }
 
 
+/**
+ * This function calls the function which changes which part of the subtask section is visible
+ * and clears the subtask input field  
+ */
 function clearSubtaskInput() {
     changeVisibilitySubtask();
     clearInput('subtask-input');
 }
 
 
+/**
+ * This function adds the entered subtask to the task currently under creation and wirtes the subtask into the list below the subtask input
+ * This only happens if the input field is not empty
+ */
 function addSubtask() {
     let input = document.getElementById('subtask-input');
     let subtask = input.value;
@@ -575,17 +628,32 @@ function addSubtask() {
 }
 
 
+/**
+ * This function checks if the input field is empty
+ * @param {Element} input - The input field where subtasks are entered 
+ * @returns a condition which is true if input field is empty
+ */
 function inputFieldIsEmpty(input) {
     return input == '';
 }
 
 
+/**
+ * This function adds the currently entered subtask to the container which displays all subtasks below the input field
+ * 
+ * @param {string} task - the value which has been entered in the subtask input field
+ */
 function addTaskToSubtaskList(task) {
     let container = document.getElementById('subtask-list-container');
     container.innerHTML += templateSubtaskList(task);
 }
 
-
+/**
+ * This function generates the html code used to display the newly entered subtask in the subtask list
+ * 
+ * @param {string} task - the value entered in the subtask input field 
+ * @returns a html template with a list item consisting of the name of the subtask and a checkbox
+ */
 function templateSubtaskList(task) {
     return /*html*/ `
         <li class="subtask-list-entry flex"><input class="subtask-checkbox" type="checkbox">${task}</li>
@@ -593,6 +661,11 @@ function templateSubtaskList(task) {
 }
 
 
+/**
+ * This function adds the new subtask to the task in creation and increases the counter (which counts how many subtasks there are) by one
+ * 
+ * @param {string} subtask - the value entered in the subtask input field (the name of the subtask)
+ */
 function addSubtaskToTask(subtask) {
     task['subtasksArray'].push(subtask);
     task['subtasks']++;
@@ -601,18 +674,29 @@ function addSubtaskToTask(subtask) {
 
 ///////////////////////// BOTTOM BUTTONS SECTION ////////////////////////////////////
 
+/**
+ * This function changes the image in the clear button to a lightblue version of it 
+ */
 function clearImageToLightBlue() {
     let img = document.getElementById('clear-image');
     img.src = './assets/img/blue-cancel-icon.png'
 }
 
 
+/**
+ * This function changes the image in the clear button to a darkblue version of it  
+ */
 function clearImageToDarkBlue() {
     let img = document.getElementById('clear-image');
     img.src = './assets/img/clear-x-icon.png'
 }
 
 
+/**
+ * This function sets the add task form back to default
+ * In add_task.html the initAddTask is called to reset everything
+ * the other pages the add task pop up is closed which leads to the same effect
+ */
 function clearAddTask() {
     if (window.location.pathname == '/add_task.html') {
         initAddTask();
