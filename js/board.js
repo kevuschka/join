@@ -165,12 +165,12 @@ function renderTemplateTicketDescription(n,j) {
 
 ////////////////// PROGRESSBAR
 function renderTemplateTicketProgressbar(n,j) {
-    if(boardColumns[n][j]['progress'] > 1) { 
+    if(boardColumns[n][j]['subtasks'] > 1) { 
         let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
         ticketContent.innerHTML += `
             <div class="process-bar-container flex" id="process-bar-container-${n}-${j}">
                 <div class="process-bar"></div>
-                <div class="process-state">${boardColumns[n][j]['progress']}/${boardColumns[n][j]['subtasks']} Done</div>
+                <div class="process-state">${boardColumns[n][j]['process']}/${boardColumns[n][j]['subtasks']} Done</div>
             </div>`;
     }
 }
@@ -272,7 +272,11 @@ async function drop(column) {
     }
     await addBoard();
     await init();
-    // renderBoardContent();
+}
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
 }
 
 

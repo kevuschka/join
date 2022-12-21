@@ -223,11 +223,6 @@ function doNotClose(event) {
 }
 
 
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-
 function reloadPage() {
     window.location.reload(true);
 }
