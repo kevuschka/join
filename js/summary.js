@@ -164,12 +164,12 @@ function greet() {
  * 
  */
 function renderSummary() {
-    document.getElementById('task-count1').innerHTML = `${todo.length}`;
-    document.getElementById('task-count2').innerHTML = `${inProgress.length}`;
-    document.getElementById('task-count3').innerHTML = `${feedback.length}`;
+    document.getElementById('task-count1').innerHTML = `${boardColumns[0].length}`;
+    document.getElementById('task-count2').innerHTML = `${boardColumns[1].length}`;
+    document.getElementById('task-count3').innerHTML = `${boardColumns[2].length}`;
 
-    document.getElementById('task-info-count').innerHTML = `${todo.length}`;
-    document.getElementById('task-info-count2').innerHTML = `${done.length}`;
+    document.getElementById('task-info-count').innerHTML = `${boardColumns[0].length}`;
+    document.getElementById('task-info-count2').innerHTML = `${boardColumns[3].length}`;
     
 
     // if (task[0]['prior']=='assets/img/green.png') {
