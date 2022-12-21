@@ -8,8 +8,12 @@ function renderHeader() {
 
 function showUserInHeader() {
     let header = document.getElementById(`header-right-corner`);
-    header.innerHTML += `<div class="header-profil-container flex cursor-p" id="header-profil-container-user" onclick="openHeaderMenuPopup()"><p class="header-profil flex" id="header-profil-container-user-abbreviation">${currentUserHeaderData['abbreviation']}</p></div>`;
+    header.innerHTML += `<div class="header-profil-container flex cursor-p" id="header-profil-container-user" onclick="openHeaderMenuPopup()"><p class="header-profil flex " id="header-profil-container-user-abbreviation">${currentUserHeaderData['abbreviation']}</p></div>`;
     document.getElementById(`header-profil-container-user`).style.backgroundColor = `${currentUserHeaderData['color']}`;
+    document.getElementById(`header-profil-container-user-abbreviation`).style.color = `${currentUserHeaderData['color']}`;
+    document.getElementById(`header-profil-container-user-abbreviation`).style.border = `2px solid ${currentUserHeaderData['color']}`;
+    document.getElementById(`header-profil-container-user-abbreviation`).style.filter = `invert(1)`;
+    
 }
 
 

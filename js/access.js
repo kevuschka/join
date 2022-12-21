@@ -29,10 +29,15 @@ let user;
     console.log('Email is,', email);
     let password = document.getElementById('password');
 
+    let name= userName.value.split(' ');
+    let firstLetter = name.toString().charAt(0).toUpperCase();
+    let secondLetter = name[1].toString().charAt(0).toUpperCase();
+    let initials = firstLetter + secondLetter;
+
         if(users.length == 0) {
-            pushUser(userName, email, password);
+            pushUser(userName, email, password, initials);
         } else {
-            checkMail(userName, email, password);
+            checkMail(userName, email, password, initials);
     
     }
 }
@@ -47,17 +52,9 @@ let user;
 if (users.find(o => o.email == email.value)) {
 alert('Diese E-Mail ist bereits registriert!');
 } else {
-
-
    /* let fullName = userName.split(' ');
     let initials = fullName.shift().charAt(0) + fullName.pop().charAt(0);
     return initials.toUpperCase();*/
-
-let name= userName.value.split(' ');
-let firstLetter = name.toString().charAt(0).toUpperCase();
-let secondLetter = name[1].toString().charAt(0).toUpperCase();
-let initials = firstLetter + secondLetter
-
 
 pushUser(userName, email, password, initials);
 }
