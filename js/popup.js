@@ -223,7 +223,7 @@ function templateTicketEditing(column, ticket) {
                 </div>
                 <div id="contacts-icon-section" class="flex"></div>
             </div>
-            <div class="w-100 flex column">
+            <div class="w-100 flex column" id="subtask-edit-container">
                 <span>Subtasks</span>
                 <ul class="flex column" id="subtask-list-container"></ul>
             </div>
