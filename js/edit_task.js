@@ -42,11 +42,14 @@ function displayAssignedContactsAsChecked(j) {
 }
 
 
+/////////////////// SUBTASK SECTION ////////////////////
+
 function renderSubtasksInEditContainer(column, ticket) {
     let subtasks = getSubtasksFromTask(column, ticket);
     for (let i = 0; i < subtasks.length; i++) {
         addTaskToSubtaskList(subtasks[i]);
     }
+   addDisplayNoneToSubtaskIfEmpty(subtasks);
 }
 
 
@@ -56,6 +59,13 @@ function getSubtasksFromTask(column, ticket) {
         subtasks.push(boardColumns[column][ticket]['subtasksArray'][i]);
     }
     return subtasks;
+}
+
+
+function addDisplayNoneToSubtaskIfEmpty(subtasks) {
+    if (subtasks == '') {
+        document.getElementById('subtask-edit-container').classList.add('d-none');
+    }
 }
 
 
