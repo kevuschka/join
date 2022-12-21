@@ -71,6 +71,9 @@ async function renderAddTask() {
 }
 
 
+/**
+ * This function changes the span in the clear button in the task form from clear to cancel, if the current page is not add_task.html
+ */
 function changeClearToCancel() {
     if (!URLequalsAddTaskHtml()) {
         document.getElementById('clear-btn-string').innerHTML = 'Cancel';
