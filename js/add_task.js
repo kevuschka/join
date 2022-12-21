@@ -67,6 +67,17 @@ async function renderAddTask() {
     renderCategoryColorSelection();
     renderContactsDropdown();
     renderPrioritySelection();
+    changeClearToCancel();
+}
+
+
+/**
+ * This function changes the span in the clear button in the task form from clear to cancel, if the current page is not add_task.html
+ */
+function changeClearToCancel() {
+    if (!URLequalsAddTaskHtml()) {
+        document.getElementById('clear-btn-string').innerHTML = 'Cancel';
+    }
 }
 
 
@@ -765,7 +776,7 @@ function pushTaskToTodo() {
 
 
 function switchToBoard() {
-    if (URLequalsNotBoardHtml()) {
+    if (URLequalsAddTaskHtml()) {
         setTimeout(function (){
             window.location.href = '/board.html';     
           }, 500);
@@ -773,7 +784,7 @@ function switchToBoard() {
 }
 
 
-function URLequalsNotBoardHtml() {
+function URLequalsAddTaskHtml() {
     if ('/add_task.html' == window.location.pathname) {
         return true
     }
