@@ -71,15 +71,6 @@ let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 // ##### USERS #####
 let users = [];
 
-/** That object is important to store data for displaying the user-profil in the top right corner on the header (not important if guest-login used)
- * Familiar functions: setCurrentUserHeaderData(user) (access.js), getCurrentUserHeaderData()
-*/
-let currentUserHeaderData = {
-    'abbreviation': '',
-    'color': '',
-};
-
-
 // ##### CATEGORY #####
 let category = [];
 let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
@@ -246,12 +237,6 @@ function getRandomNumberFromZeroToNine() {
 }
 
 
-function getCurrentUserHeaderData() {
-    let currentUserHeaderDataAsText = localStorage.getItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData)) || '';
-    if(currentUserHeaderDataAsText) {
-        currentUserHeaderData['abbreviation'] = JSON.parse(currentUserHeaderDataAsText).abbreviation;
-        currentUserHeaderData['color'] = JSON.parse(currentUserHeaderDataAsText).color;
-    }
-}
+
 
 

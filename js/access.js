@@ -1,9 +1,12 @@
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
+async function inits() {
+    await downloadFromServer();
+    users =  await JSON.parse(backend.getItem('users')) || [];
+    user = await JSON.parse(backend.getItem('currentUser')) || [];
+}
 
-/*let users = [{}];*/
 let user;
-
 
 /**
  * This function loads users data from the server
@@ -149,15 +152,6 @@ function isLoggedIn() {
     }
 }
 
-/**
- * Data to load on every page the header-profile, if user is registered
- * @param {JSON} user - json object/user info, that is registered.
- */
-function setCurrentUserHeaderData(user) {
-    currentUserHeaderData['abbreviation'] = user['shortLetter'];
-    currentUserHeaderData['color'] = user['color'];
-    localStorage.setItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData));
-}
 
 let usersEmail;
 
