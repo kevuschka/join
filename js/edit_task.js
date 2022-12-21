@@ -1,4 +1,4 @@
-/////////////////// CONTACTS SECTION ////////////////////
+/////////////////// PRIORITY SECTION ////////////////////
 //colors the priority which is chosen in the task opened to edit
 function selectPrioInEditContainer(column, ticket) {
     let id = boardColumns[column][ticket]['prior']['name'];
@@ -39,6 +39,23 @@ function getAssignedContacts(column, ticket) {
 
 function displayAssignedContactsAsChecked(j) {
     document.getElementById('checkbox' + j).checked = true;
+}
+
+
+function renderSubtasksInEditContainer(column, ticket) {
+    let subtasks = getSubtasksFromTask(column, ticket);
+    for (let i = 0; i < subtasks.length; i++) {
+        addTaskToSubtaskList(subtasks[i]);
+    }
+}
+
+
+function getSubtasksFromTask(column, ticket) {
+    let subtasks = [];
+    for (let i = 0; i < Object.keys(boardColumns[column][ticket]['subtasksArray']).length; i++) {
+        subtasks.push(boardColumns[column][ticket]['subtasksArray'][i]);
+    }
+    return subtasks;
 }
 
 
