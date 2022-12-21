@@ -176,7 +176,7 @@ function initContacts(value) {
 function isLoggedIn() {
     let itemSet = localStorage.getItem('usersEmail');
     if(!itemSet) {
-        window.location.href = 'index.html?msg=Du hast dich erfolgreich angemeldet';
+        window.location.href = 'index.html?msg=Du hast dich erfolgreich abgemeldet';
     }
 }
 
