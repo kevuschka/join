@@ -5,8 +5,6 @@ let users = [{}];
 let user;
 
 
-
-
 /**
  * This function loads users data from the server
  * 
@@ -74,7 +72,7 @@ pushUser(userName, email, password, initials);
  * 
  */async function pushUser(userName, email, password, initials) {
 
-    
+    let color = giveColor();
 
 
     let newUser = {
@@ -85,7 +83,7 @@ pushUser(userName, email, password, initials);
         'email'   :email.value,
         'password':password.value,
         'phone'   :'',
-        'color'   :''
+        'color'   : color
     }
 
 
@@ -101,7 +99,15 @@ pushUser(userName, email, password, initials);
     window.location.href = 'index.html?msg=Du hast dich erfolgreich registriert';
 }
 
-/*let currentUser = {};*/
+function giveColor() {
+    let randomNumber1 = Math.floor(Math.random() * 10);
+    let randomNumber2 = Math.floor(Math.random() * 10);
+    let randomNumber3 = Math.floor(Math.random() * 10);
+    let randomNumber4 = Math.floor(Math.random() * 10);
+    let randomNumber5 = Math.floor(Math.random() * 10);
+    let randomNumber6 = Math.floor(Math.random() * 10);
+    return color =  '#' + randomNumber1 + randomNumber2 + randomNumber3 + randomNumber4 + randomNumber5 + randomNumber6;
+}
 
 function isLoggedIn() {
 
@@ -131,19 +137,7 @@ function isLoggedIn() {
         localStorage.setItem('usersEmail', usersEmail.value);
         localStorage.setItem('currentUser', JSON.stringify(user));
         console.log('user saved in key');
-
-        
-        /*for (let u = 0; u < users.length; u++) {
-            const userArray = users[u];
-            
-            if (users[u].email == email.value) {
-            
-                currentUser.push(users[u]);
-                console.log('Der User wurde in currentUser gespeichert')
-             }
-        }*/
        
-
         window.location.href = 'summary.html?msg=Du hast dich erfolgreich angemeldet';
 
     
@@ -155,9 +149,6 @@ function isLoggedIn() {
 }
 
 let usersEmail;
-let usersArray;
-
-
 
 
 /**
@@ -240,7 +231,7 @@ function sendData() {
  * - Making sure the passwords from reset_password.html got matched together to create the new password
  * - filtering the exact object in the array where the typed email from forgot_password.html is located at to change the password of the user
  * - Saving the new password in the backend
- * - Redirecting user to the login page page
+ * - Redirecting user to the login page
  * - If the passwords are not matching, an error message will show up under the input field
  * 
  * */async function newPassword() {
@@ -271,8 +262,6 @@ function sendData() {
           }, 1500);
 
 }
-
-
            
         }
     }
