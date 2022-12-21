@@ -136,6 +136,7 @@ function isLoggedIn() {
 
         localStorage.setItem('usersEmail', usersEmail.value);
         localStorage.setItem('currentUser', JSON.stringify(user));
+        setCurrentUserHeaderData(user);
         console.log('user saved in key');
        
         window.location.href = 'summary.html?msg=Du hast dich erfolgreich angemeldet';
@@ -146,6 +147,16 @@ function isLoggedIn() {
         document.getElementById('indexError').classList.remove('d-none');
         document.getElementById('password').classList.add('border-color');
     }
+}
+
+/**
+ * Data to load on every page the header-profile if registered user
+ * @param {JSON} user - json object/user info, that is registered.
+ */
+function setCurrentUserHeaderData(user) {
+    currentUserHeaderData['abbreviation'] = user['shortLetter'];
+    currentUserHeaderData['color'] = user['color'];
+    localStorage.setItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData));
 }
 
 let usersEmail;
