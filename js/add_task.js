@@ -67,6 +67,14 @@ async function renderAddTask() {
     renderCategoryColorSelection();
     renderContactsDropdown();
     renderPrioritySelection();
+    changeClearToCancel();
+}
+
+
+function changeClearToCancel() {
+    if (!URLequalsAddTaskHtml()) {
+        document.getElementById('clear-btn-string').innerHTML = 'Cancel';
+    }
 }
 
 
@@ -765,7 +773,7 @@ function pushTaskToTodo() {
 
 
 function switchToBoard() {
-    if (URLequalsNotBoardHtml()) {
+    if (URLequalsAddTaskHtml()) {
         setTimeout(function (){
             window.location.href = '/board.html';     
           }, 500);
@@ -773,7 +781,7 @@ function switchToBoard() {
 }
 
 
-function URLequalsNotBoardHtml() {
+function URLequalsAddTaskHtml() {
     if ('/add_task.html' == window.location.pathname) {
         return true
     }
