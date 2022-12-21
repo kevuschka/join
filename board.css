@@ -381,7 +381,6 @@
     background-color: transparent;
     border: 2px dotted #d9d8d8;
     border-radius: 30px;
-    /* transition: all 225ms ease-in-out; */
 }
 
 .no-highlight-area {
@@ -587,7 +586,7 @@
 }
 
 .showBackgroundAnimation {
-    animation: showBackground 110ms ease-in;
+    animation: showBackground 125ms ease-in;
 }
 
 .hideBackgroundAnimation {

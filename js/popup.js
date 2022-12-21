@@ -38,7 +38,7 @@ function renderHeaderMenuPopup() {
                     <div class="header-menu flex column cursor-p" onclick="closeHeaderMenuPopup()">
                         <a href="help.html" class="header-menu-item header-menu-resp">Help</a>
                         <a href="legal_notice.html" class="header-menu-item header-menu-resp">Legal notice</a>
-                        <a href="javascipt:logout()" class="header-menu-item">Log out</a>
+                        <a href="javascript:logout()" class="header-menu-item">Log out</a>
                     </div>
                 </div>
             </div>`;
@@ -375,7 +375,7 @@ function closeBoardAddtaskPopup() {
 }
 
 
-function closeBoardAddtaskPopupFilled() {
+async function closeBoardAddtaskPopupFilled() {
     setTimeout(() => {
         removeClasslist(`board-addtask-popup`,'board-addtask-popup-slideIn');
         removeClasslist(`board-addtask-popup-full`,'showBackgroundAnimation');
@@ -383,17 +383,15 @@ function closeBoardAddtaskPopupFilled() {
     setTimeout(() => {
         addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
         removeClasslist(`board-addtask-popup-full`,`opa-1`);
-    }, 1102);
+    }, 1130);
     setTimeout(() => {
         addClasslist(`board-addtask-popup-full`, `d-none`);
-    }, 1230);
-    setTimeout(() => {
         document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
-    }, 1250);
+    }, 1260);
     if (window.location.pathname == '/contacts.html') {
         setTimeout(() => {
             window.location.href = './board.html';
-        }, 1250);
+        }, 1390);
     }
 }
 
