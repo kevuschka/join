@@ -176,6 +176,7 @@ function renderTicketInfoEditting(column, ticket) {
     renderContactsDropdown(); //in add_task.js
     selectPrioInEditContainer(column, ticket); //in edit_task.js
     renderAlreadyAssignedContacts(column, ticket); //in edit_task.js
+    renderSubtasksInEditContainer(column, ticket);
 
     // content.innerHTML += renderTicketInfoEditBtn(column, ticket);
 }
@@ -220,6 +221,10 @@ function templateTicketEditing(column, ticket) {
                     </div>
                 </div>
                 <div id="contacts-icon-section" class="flex"></div>
+            </div>
+            <div class="w-100 flex column">
+                <span>Subtasks</span>
+                <ul class="flex column" id="subtask-list-container"></ul>
             </div>
         </div>
         <div class="create-task-btn-container-edit">
