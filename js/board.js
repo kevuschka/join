@@ -137,6 +137,7 @@ function renderTicketContent(n, j) {
     renderTemplateTicketCategory(n,j);
     renderTemplateTicketDescription(n,j);
     renderTemplateTicketProgressbar(n,j);
+    setProgressBar(n,j);
     renderTemplateTicketFooter(n,j);
     renderTicketTeam(n,j);
 }
@@ -165,13 +166,21 @@ function renderTemplateTicketDescription(n,j) {
 
 ////////////////// PROGRESSBAR
 function renderTemplateTicketProgressbar(n,j) {
-    if(boardColumns[n][j]['subtasks'] > 1) { 
+    if(boardColumns[n][j]['subtasks'] > 0) { 
         let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
         ticketContent.innerHTML += `
             <div class="process-bar-container flex" id="process-bar-container-${n}-${j}">
-                <div class="process-bar"></div>
+                <progress class="process-bar" id="process-bar-${n}-${j}" value="" max="1"></progress>
                 <div class="process-state">${boardColumns[n][j]['process']}/${boardColumns[n][j]['subtasks']}</div>
             </div>`;
+    }
+}
+
+
+function setProgressBar(n,j) {
+    if(boardColumns[n][j]['process'] > 0) {
+        let progressValue = (boardColumns[n][j]['process']/boardColumns[n][j]['subtasks']);
+        document.getElementById(`process-bar-${n}-${j}`).value = progressValue;
     }
 }
 

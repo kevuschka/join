@@ -326,8 +326,7 @@
 .process-bar {
     width: 100%;
     max-width: 600px;
-    background-color: rgb(246, 246, 246);
-    height: 8px;
+    height: 20px;
 }
 
 .process-state {
