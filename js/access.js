@@ -1,19 +1,19 @@
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 
-let users = [{}];
+/*let users = [{}];*/
 let user;
 
 
 /**
  * This function loads users data from the server
  * 
- * */ async function init() { 
+ * */ /*async function init() { 
        
         await downloadFromServer();
         users = JSON.parse(backend.getItem('users')) || [];
         user = JSON.parse(backend.getItem('currentUser'));
-    }
+    }*/
 
 
 /**

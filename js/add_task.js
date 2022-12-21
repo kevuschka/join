@@ -1,5 +1,5 @@
 let categoryObject;
-let contactIconArray = []; //safes the indexes of the seleceted Contacts
+let contactIconArray = []; //safes the indexes/positions of the seleceted Contacts in the contacts array
 let currentUser = {
     'name': 'Max Mustermann',
     'color': '#0190E0',
@@ -10,17 +10,21 @@ let currentUser = {
 
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
+
+/**
+ * This function is used to initialize the AddTask page and the AddTask form in the board page
+ */
 async function initAddTask() {
     renderResponsiveHeaderTitle(); //in script.js
     await includeHTML();
     clearTask();
-    setTimeout(function(){
-        renderAddTask();
-    }, 500);
+    renderAddTask();
 }
 
 
-//basic task structure
+/**
+ * This function create/clears the template task which gets filled during the creation of a task
+ */
 function clearTask() {
     task = { 
         'category': [],
@@ -37,6 +41,9 @@ function clearTask() {
 }
 
 
+/**
+ * This function is used to include the AddTask template form
+ */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -52,6 +59,9 @@ async function includeHTML() {
 }
 
 
+/**
+ * This function renders the elements in the add task form
+ */
 async function renderAddTask() {
     renderCategoryDropdown();
     renderCategoryColorSelection();
@@ -62,6 +72,9 @@ async function renderAddTask() {
 
 ///////////////////////// CATEGORY DROPDOWN FUNCTIONS ////////////////////////////////////
 
+/**
+ * This function renders the dropdown container for the categories 
+ */
 function renderCategoryDropdown() {
     let id = 'category-dropdown';
     let dropdown = document.getElementById(id);
@@ -72,13 +85,24 @@ function renderCategoryDropdown() {
 }
 
 
+/**
+ * This function generates the html code for the dropdown field, which is used to create a new category
+ * 
+ * @returns a html temlate of a row in the dropdown for the user to select to create a new category
+ */
 function templateDropdownNewCategory() {
     return /*html*/ `
-        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); changeVisibilityCategory(); focusOnInput('new-category-input'); createNewCategoryObject()">New category</span>
+        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); changeVisibilityNewCategory(); focusOnInput('new-category-input'); createNewCategoryObject()">New category</span>
     `;
 }
 
 
+/**
+ * This function generates the html code which is used to display and select the categories in the dropdown container
+ * 
+ * @param {int} i -  is the indexes of the category that will be displayed (in this iteration)
+ * @returns a html template of a row in the dropdown which displays the category with the current index
+ */
 function templateDropdownCategories(i) {
     return /*html*/ `
         <div class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); selectCategory('${i}')">
@@ -89,6 +113,10 @@ function templateDropdownCategories(i) {
 }
 
 
+/**
+ * This function is used to render the color selection, when a new category should be created
+ * Every category needs to be assigned to a color
+ */
 function renderCategoryColorSelection() {
     let container = document.getElementById('category-color-selection-ctn');
     container.innerHTML = '';
@@ -98,30 +126,53 @@ function renderCategoryColorSelection() {
 }
 
 
+/**
+ * This function is used to generate the html code for the color selection when a new category should be created
+ * 
+ * @param {int} i - is the indexes of the color that will be displayed (in this iteration)
+ * @returns a html template which displays the color with the current index
+ */
 function templateCategoryColors(i) {
     return /*html*/ `
         <div onclick="changeColorSelected(${i})" id="category-color-${i}" class="category-colors category-colors-selection-section" style="background-color: ${categoryColors[i]}"></div>
     `;
 }
 
-
+/**
+ * This function is executed to change the selected color for the new category and
+ * to visually signal which color is selected
+ * 
+ * @param {int} i - index of the color that has been selected for the category 
+ */
 function changeColorSelected(i) {
     changeClassOfClickedElem(i);
     changeColorInCategoryObject(i);
     removeClassOfPriorClickedElem(i);
 }
 
-
+/**
+ * This function changes the way the clicked element is displayed to communicate if it is selected or not
+ * This is done by checking if the element already contains the class 'category-colors-selected'
+ * If YES the class is removed
+ * If NO the class is added
+ * 
+ * @param {int} i - index of the color clicked at creating a new category 
+ */
 function changeClassOfClickedElem(i) {
-    let elem = document.getElementById('category-color-' + i)
-    if (elem.classList.contains('category-colors-selected')) {
-        elem.classList.remove('category-colors-selected');
+    let elemID = document.getElementById('category-color-' + i)
+    if (elemID.classList.contains('category-colors-selected')) {
+        elemID.classList.remove('category-colors-selected');
     } else {
-        elem.classList.add('category-colors-selected');
+        elemID.classList.add('category-colors-selected');
     }
 }
 
-//if color is already in the categoryObject, the click should remove the color; else add the color
+/**
+ * This function is used to correctly save the selected color in the new categoryObject
+ * If color is already in the categoryObject, the click should remove the color; else add the color
+ * 
+ * @param {int} i - index of the color which is either added to the categoryObject or removed
+ */
 function changeColorInCategoryObject(i) {
     if (categoryObject['color'] == categoryColors[i]) {
         categoryObject['color'] = '';
@@ -130,19 +181,28 @@ function changeColorInCategoryObject(i) {
     }
 }
 
-//if before there was another color selected before selecting this one; the prior one should loose its class
+/**
+ * This function removes the class 'category-colors-seleceted' from the earlier selected color
+ * Necessary for the case that the user is changing which color the new category should have
+ *  
+ * @param {int} i - index of the color clicked at creating a new category 
+ */
 function removeClassOfPriorClickedElem(i) {
     for (let j = 0; j < categoryColors.length; j++) {
         let color = document.getElementById('category-color-' + j)
         // i!=j because otherwise you would instantly remove the class from the element you just selected
-        //is only true for the element which was clicked before the current selection
-        if (i != j && color.classList.contains('category-colors-selected')) { 
+        //true for the elem which was clicked before the current selection
+        if (i != j && color.classList.contains('category-colors-selected')) {
             color.classList.remove('category-colors-selected');
         }
     } 
 }
 
 
+/**
+ * This function is used to remove the class which signals which color has been selected at creating a new category
+ * Gets executed when the creation of a new category is cancelled
+ */
 function removeClassFromSelectedColor() {
     for (let j = 0; j < categoryColors.length; j++) {
         let color = document.getElementById('category-color-' + j)
@@ -153,7 +213,10 @@ function removeClassFromSelectedColor() {
 }
 
 
-function changeVisibilityCategory() {
+/**
+ * This function is used to open or close the new category input and corresponding color selection
+ */
+function changeVisibilityNewCategory() {
     clearInput('new-category-input');
     changeVisibility('category-dropdown-field');
     changeVisibility('new-category-input-ctn');
@@ -161,19 +224,26 @@ function changeVisibilityCategory() {
 }
 
 
+/**
+ * This function adds the newly created category to the category array and saves it in the database
+ */
 function addNewCategory() {
     if (BothValuesAreEntered()) {
         addCategoryNameToCategoryObject()
         pushCategoryObjectToCategoryArray()
         renderCategoryDropdown();
-        changeVisibilityCategory();
+        changeVisibilityNewCategory();
         selectCategory(category.length - 1);
     } else {
         alert("Please select a color and type in a category name!")
     }
 }
 
-//checks if both values of the categoryObject are filled
+
+/**
+ * This function checks if both values of the categoryObject are entered when creating a new category
+ * @returns either true or nothing
+ */
 function BothValuesAreEntered() {
     let categoryInput = document.getElementById('new-category-input').value;
     if (categoryInput != '' && categoryObject['color'] != '') {
@@ -182,22 +252,34 @@ function BothValuesAreEntered() {
 }
 
 
+/**
+ * This function adds the value entered in the new category input field to the categoryObject
+ */
 function addCategoryNameToCategoryObject() {
     categoryObject['name'] = document.getElementById('new-category-input').value;
 }
 
 
+/**
+ * This function adds the newly created category to the category array
+ */
 function pushCategoryObjectToCategoryArray() {
     category.push(categoryObject);
     saveCategoriesOnServer();
 }
 
 
+/**
+ * This function saves the category array in the database on the server
+ */
 function saveCategoriesOnServer() {
     backend.setItem('category', JSON.stringify(category));
 }
 
 
+/**
+ * This function creates/resets the category object as an empty template which can then be filled with the entered data
+ */
 function createNewCategoryObject() {
     categoryObject = {
         'name': '',
@@ -206,17 +288,35 @@ function createNewCategoryObject() {
 }
 
 
+/**
+ * This function is used when a user selects a category
+ * It changes the text which is shown in the dropdown field and adds the category to the task which gets currently created
+ * 
+ * @param {int} i - index of the selected categoryObject in the category array
+ */
 function selectCategory(i) {
     changeCategoryDropdownText(i)
     addCategoryToTask(i)
 }
 
+
+/**
+ * This function is changing the text in the dropdown box (normally: Select a category) into the name of the selected category
+ * 
+ * @param {int} i - index of the selected categoryObject in the category array  
+ */
 function changeCategoryDropdownText(i) {
     let dropdown = document.getElementById('dropdown-text-category');
     dropdown.innerHTML = templateSelectedCategoryinDropdownField(i);
 }
 
 
+/**
+ * This function generates the html code which is replacing the name of the dropdown field 
+ * 
+ * @param {int} i - index of the selected categoryObject in the category array 
+ * @returns a html template which displays the name and color of the category 
+ */
 function templateSelectedCategoryinDropdownField(i) {
     return /*html*/ `
             ${category[i]['name']}
@@ -224,6 +324,12 @@ function templateSelectedCategoryinDropdownField(i) {
     `;
 }
 
+
+/**
+ * This function is used to add the selected category to the task in creation
+ * 
+ * @param {int} i - index of the selected categoryObject in the category array 
+ */
 function addCategoryToTask(i) {
     task['category'] = category[i];
 }
@@ -231,6 +337,9 @@ function addCategoryToTask(i) {
 
 ///////////////////////// CONTACTS DROPDOWN FUNCTIONS ////////////////////////////////////
 
+/**
+ * This function renders the dropdown container for the contacts selection
+ */
 function renderContactsDropdown() {
     let dropdown = document.getElementById('contacts-dropdown');
     dropdown.innerHTML = templateContactsYou();
@@ -241,6 +350,10 @@ function renderContactsDropdown() {
 }
 
 
+/**
+ * This function generates the html code to display and be able to select the currently logged in user
+ * @returns a html template which display 'YOU' and a checkbox
+ */
 function templateContactsYou() {
     return /*html*/ `
         <label for="checkbox-you" class="dropdown-content-child space-between">    
@@ -251,6 +364,12 @@ function templateContactsYou() {
 }
 
 
+/**
+ * This function generates the html code to display and be able to select the contact (of the current itteration)
+ * 
+ * @param {int} i - index of the contact in the contacts array 
+ * @returns a html tmeplate which displays the name of the contact and checkbox
+ */
 function templateDropdownContacts(i) {
     return /*html*/ `
         <label for="checkbox${i}" class="dropdown-content-child space-between">    
@@ -261,7 +380,12 @@ function templateDropdownContacts(i) {
 }
 
 
-//Changes if a Contacts Initials are displayed in the section below the Contact Dropdown
+/**
+ * This function displays the initials of a contact below the contacts dropdown when the contact is selected
+ * Or it removes the initials from being displayed if the selection of the contact is removed
+ * 
+ * @param {int} i - index of the clicked contact 
+ */
 function changeDisplayInContactIconSection(i) {
     let index = contactIconArray.indexOf(i);
     if (ContactIsAlreadyInArray(index)) {
@@ -273,31 +397,55 @@ function changeDisplayInContactIconSection(i) {
 }
 
 
+/**
+ * This function checks if the Contact is already in the ContactsIconArray by checking if the index is greater -1
+ * 
+ * @param {int} index - index of the contact in the contactIconArray \ -1 if the contact is not in the array  
+ * @returns true if index > -1
+ */
 function ContactIsAlreadyInArray(index) {
     return index > -1;
 }
 
-
+/**
+ * This function removes the value at the position index from the contactIconArray
+ * 
+ * @param {int} index - position of the value that should be removed from contactsIconArray 
+ */
 function removeFromContactsIconArray(index) {
     contactIconArray.splice(index, 1); 
 }
 
 
+/**
+ * This function adds i to the contactsIconArray
+ * 
+ * @param {*} i - is the index/position of the selected contactObject in the contactsArray
+ */
 function addToContactsIconArray(i) {
     contactIconArray.push(i);
 }
 
 
+/**
+ * This function renders the section where the initials of the selected contacts are displayed
+ */
 function renderContactIconSection() {
     let container = document.getElementById('contacts-icon-section');
     container.innerHTML = '';
     for (let i = 0; i < contactIconArray.length; i++) {
-        let contactIndex = contactIconArray[i] //in the contactIonArray are the indexes of the selected contacts
+        let contactIndex = contactIconArray[i] //the contactIonArray holds the indexes of the selected contacts
         container.innerHTML += templateContactIconSection(contactIndex);
     }
 }
 
 
+/**
+ * This function generates the html code to display the selected contact (current itteration)
+ * 
+ * @param {int} index -  
+ * @returns 
+ */
 function templateContactIconSection(index) {
     return /*html*/ `
         <div class="contact-icon" style="background-color: ${contacts[index]['color']}">${contacts[index]['abbreviation']}</div>
@@ -305,6 +453,11 @@ function templateContactIconSection(index) {
 }
 
 
+/**
+ * This function generates the dropdown row to select invite a new contact
+ * 
+ * @returns a html template with the text Invite new Contact and a img of a contact symbol
+ */
 function templateDropwdownInviteNewContact() {
     return /*html*/ `
         <div onclick="changeVisibilityContactSection(), focusOnInput('input-invite-contact')" class="dropdown-content-child space-between">
@@ -315,6 +468,11 @@ function templateDropwdownInviteNewContact() {
 }
 
 
+/**
+ * This function changes the visibility of the elements in the contact section when:
+ *      - invite new contact is selected
+ *      - the invitation of a contact was fulfilled or canceled
+ */
 function changeVisibilityContactSection() {
     clearInput('input-invite-contact')
     changeVisibility('invite-contact-ctn');
@@ -322,12 +480,6 @@ function changeVisibilityContactSection() {
     changeVisibility('contacts-dropdown');
 }
 
-
-function inviteContact() {
-    //TODO
-}
-
-///SHOW FIRST LETTERS PICTURE TODO
 
 ///////////////////////// PIORITY SELECTION FUNCTIONS ////////////////////////////////////
 
@@ -395,9 +547,6 @@ function removeStyleAttributesBtn(button) {
     button.removeAttribute('style');
     button.lastElementChild.removeAttribute('style');
 }
-
-
-
 
 
 ///////////////////////// SUBTASK FUNCTIONS ////////////////////////////////////
@@ -468,7 +617,7 @@ function clearAddTask() {
     if (window.location.pathname == '/add_task.html') {
         initAddTask();
     } else {
-        //will be close nontheless
+        closeBoardAddtaskPopup()
     }
 }
 
@@ -482,6 +631,7 @@ async function createTask() {
      addPriotityToTask();
      pushAssignedContactsToTask();
      pushTaskToTodo();
+     saveboardColumnsOnServer();
      clearAddTask();
      switchToBoard();
 }
@@ -544,6 +694,10 @@ function URLequalsBoardHtml() {
     }
 }
 
+
+function saveboardColumnsOnServer() {
+    backend.setItem('boardColumns', JSON.stringify(boardColumns));
+}
 
 ///////////////////////// GENERAL FUNCTIONS////////////////////////////////////
 

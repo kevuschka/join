@@ -5,10 +5,13 @@ let feedback = [];
 let done = [];
 let boardColumns = [todo, inProgress, feedback, done];
 let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
-let contacts_add = false;
 let edittingNewContact = false;
 let choosedContactToEdit;
 let users = [];
+let currentUserHeaderData = {
+    'abbreviation': '',
+    'color': '',
+};
 
 let priorities = [
     {
@@ -35,7 +38,7 @@ let category = [];
 let categoryColors = ['#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF']
 let colors = ['#0190e0','#ee00d6', '#02cf2f', '#ffa800', '#9327ff', '#ff5c00', '#4e963d', '#32daff', '#007cee', '#cb02cf']
 
-let contacts = [
+
 //{
 //     'name': 'Simon Meyer',
 //     'color': '#0190E0',
@@ -75,8 +78,7 @@ let contacts = [
 //     'phone': '+49 0123 456 78 9',
 //     'abbreviation': 'KV'
 //}
-];
-
+let contacts = [];
 let newContact = {
     'name': '',
     'color': '',
@@ -85,12 +87,13 @@ let newContact = {
     'abbreviation': '',
 }
 
-
 let contactValues = {
     'index' : '',
     'letter' : '',
     'number' : '',
 }
+
+let createdContact;
 
 // let createdTask = {
 //     'category': {'name': 'Design','color': '#FF7A00'},
@@ -138,37 +141,79 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 async function init() {
     await downloadFromServer();
     users =  await JSON.parse(backend.getItem('users')) || [];
+    user = await JSON.parse(backend.getItem('currentUser')) || [];
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [todo, inProgress, feedback, done]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
-    renderNav();
-    renderHeader();
-    if(window.location.pathname.includes('contacts.html')) initContacts();
-    else if(window.location.pathname.includes('add_task.html')) initAddtaks();
+    getCurrentUserHeaderData();
+    renderSiteRelatedTemplate();
 }
 
 
-function initAddtaks() {
-    markNavItem(3);
+function renderSiteRelatedTemplate() {
+    if(navAndHeaderNeeded()) renderNavAndHeader();
+    if(window.location.pathname.includes('summary.html')) initSummary(1);
+    else if(window.location.pathname.includes('board.html')) initBoard(2);
+    else if(window.location.pathname.includes('add_task.html')) initAddtask(3);
+    else if(window.location.pathname.includes('contacts.html')) initContacts(4);
+    
+}
+
+
+function navAndHeaderNeeded() {
+    if(window.location.pathname.includes('index.html' || 'sign_up.html' || 'reset_password.html' || 'forgot_password.html')) return false;
+    else return true;
+}
+
+
+function renderNavAndHeader() {
+    renderNav();
+    renderHeader();
+}
+
+
+function initSummary(value) {
+    greet();
+    markNavItem(value);
+    renderPopups();
+    renderSummary();
+}
+
+
+function initBoard(value) {
+    markNavItem(value);
+    renderPopupsInBoard();
+    addTest();
+    test()
+}
+
+
+function initAddtask(value) {
+    markNavItem(value);
     renderPopups();
     initAddTask();
 }
 
 
-function initContacts() {
-    markNavItem(4);
+function initContacts(value) {
+    markNavItem(value);
     renderPopupsInContacts();
     renderContactsList();
 }
 
-
-// ADD
-
-async function addContact() {
-    await backend.setItem('contacts', JSON.stringify(contacts));
+// LOGIN 
+function isLoggedIn() {
+    let itemSet = localStorage.getItem('usersEmail');
+    if(!itemSet) {
+        window.location.href = 'index.html?msg=Du hast dich erfolgreich angemeldet';
+    }
 }
 
 
+// ADD
+async function addContact() {
+    await backend.setItem('contacts', JSON.stringify(contacts));
+}
 
 // async function addUser() {
 //     users.push('John);
@@ -237,6 +282,15 @@ function getNameLetters(name) {
 //Using this function to get a random color out of the array 'colors'
 function getRandomNumberFromZeroToNine() {
     return Math.floor(Math.random() * 10);
+}
+
+
+function getCurrentUserHeaderData() {
+    let currentUserHeaderDataAsText = localStorage.getItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData)) || '';
+    if(currentUserHeaderDataAsText) {
+        currentUserHeaderData['abbreviation'] = JSON.parse(currentUserHeaderDataAsText).abbreviation;
+        currentUserHeaderData['color'] = JSON.parse(currentUserHeaderDataAsText).color;
+    }
 }
 
 
