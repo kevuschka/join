@@ -377,22 +377,24 @@ function closeBoardAddtaskPopup() {
 
 
 async function closeBoardAddtaskPopupFilled() {
-    setTimeout(() => {
-        removeClasslist(`board-addtask-popup`,'board-addtask-popup-slideIn');
-        removeClasslist(`board-addtask-popup-full`,'showBackgroundAnimation');
-    }, 1000);
-    setTimeout(() => {
-        addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
-        removeClasslist(`board-addtask-popup-full`,`opa-1`);
-    }, 1130);
-    setTimeout(() => {
-        addClasslist(`board-addtask-popup-full`, `d-none`);
-        document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
-    }, 1260);
-    if (window.location.pathname == '/contacts.html') {
+    if (!URLequalsAddTaskHtml()) {
         setTimeout(() => {
-            window.location.href = './board.html';
-        }, 1390);
+            removeClasslist(`board-addtask-popup`,'board-addtask-popup-slideIn');
+            removeClasslist(`board-addtask-popup-full`,'showBackgroundAnimation');
+        }, 1000);
+        setTimeout(() => {
+            addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
+            removeClasslist(`board-addtask-popup-full`,`opa-1`);
+        }, 1130);
+        setTimeout(() => {
+            addClasslist(`board-addtask-popup-full`, `d-none`);
+            document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
+        }, 1260);
+        if (window.location.pathname == '/contacts.html') {
+            setTimeout(() => {
+                window.location.href = './board.html';
+            }, 1390);
+        }
     }
 }
 

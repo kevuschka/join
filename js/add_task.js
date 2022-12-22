@@ -812,13 +812,6 @@ function switchToBoard() {
     }
 }
 
-
-function URLequalsAddTaskHtml() {
-    if ('/add_task.html' == window.location.pathname) {
-        return true
-    }
-}
-
 ///////////////////////// GENERAL FUNCTIONS////////////////////////////////////
 
 function changeVisibility(id) {
