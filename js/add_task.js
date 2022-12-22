@@ -32,6 +32,8 @@ function clearTask() {
         'description': '',
         'process': 0,
         'subtasks': 0,
+        'finished-subtasks': 0,
+        'status-subtasks': [],
         'subtasksArray': [],
         'team': [],
         'prior': '',
@@ -630,10 +632,11 @@ function clearSubtaskInput() {
 function addSubtask() {
     let input = document.getElementById('subtask-input');
     let subtask = input.value;
+    let currentTask = task; //necessary because in edit the subtasks are also displayed but from another task 
     if (!inputFieldIsEmpty(subtask)) {
         changeVisibilitySubtask();
-        addTaskToSubtaskList(subtask);
         addSubtaskToTask(subtask);
+        addTaskToSubtaskList(subtask, currentTask);
         clearInput('subtask-input')
     }
 }
@@ -650,37 +653,42 @@ function inputFieldIsEmpty(input) {
 
 
 /**
- * This function adds the currently entered subtask to the container which displays all subtasks below the input field
- * 
- * @param {string} task - the value which has been entered in the subtask input field
- */
-function addTaskToSubtaskList(task) {
-    let container = document.getElementById('subtask-list-container');
-    container.innerHTML += templateSubtaskList(task);
-}
-
-/**
- * This function generates the html code used to display the newly entered subtask in the subtask list
- * 
- * @param {string} task - the value entered in the subtask input field 
- * @returns a html template with a list item consisting of the name of the subtask and a checkbox
- */
-function templateSubtaskList(task) {
-    return /*html*/ `
-        <li class="subtask-list-entry flex"><input class="subtask-checkbox" type="checkbox">${task}</li>
-    `;
-}
-
-
-/**
  * This function adds the new subtask to the task in creation and increases the counter (which counts how many subtasks there are) by one
+ * And adds the Status false for the created subtask
  * 
  * @param {string} subtask - the value entered in the subtask input field (the name of the subtask)
  */
 function addSubtaskToTask(subtask) {
     task['subtasksArray'].push(subtask);
     task['subtasks']++;
+    task['status-subtasks'].push(false);
 }
+
+
+/**
+ * This function adds the currently entered subtask to the container which displays all subtasks below the input field
+ * 
+ * @param {string} subtask - the value which has been entered in the subtask input field
+ */
+function addTaskToSubtaskList(subtask) {
+    let container = document.getElementById('subtask-list-container');
+    container.innerHTML += templateSubtaskList(subtask);
+}
+
+/**
+ * This function generates the html code used to display the newly entered subtask in the subtask list
+ * 
+ * @param {string} subtask - the value entered in the subtask input field 
+ * @returns a html template with a list item consisting of the name of the subtask and a checkbox
+ */
+function templateSubtaskList(subtask) {
+    return /*html*/ `
+        <li class="subtask-list-entry flex"><input id="cb-subtask-${task['subtasks']-1}" class="subtask-checkbox" type="checkbox">${subtask}</li>
+    `;
+}
+
+
+
 
 
 ///////////////////////// BOTTOM BUTTONS SECTION ////////////////////////////////////
@@ -723,6 +731,7 @@ async function createTask() {
      addInputValuesToTask('title');
      addInputValuesToTask('description');
      addInputValuesToTask('due-date');
+     changeSubtasksStatus();
      addPriotityToTask();
      pushAssignedContactsToTask();
      pushTaskToTodo();
@@ -767,6 +776,17 @@ function currentUserIsSelected(checkbox) {
 
 function addCurrentUserToTeam() {
     //TODO
+}
+
+
+function changeSubtasksStatus() {
+    for (let i = 0; i < task['subtasksArray'].length; i++) {
+        let checkbox = document.getElementById('cb-subtask-' + i);
+        if (checkbox.checked == true) {
+            task['status-subtasks'][i] = true;
+            task['finished-subtasks']++;
+        }
+    }
 }
 
 

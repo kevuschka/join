@@ -47,9 +47,10 @@ function displayAssignedContactsAsChecked(j) {
 function renderSubtasksInEditContainer(column, ticket) {
     let subtasks = getSubtasksFromTask(column, ticket);
     for (let i = 0; i < subtasks.length; i++) {
-        addTaskToSubtaskList(subtasks[i]);
+        addTaskToSubtaskListInEdit(subtasks[i], i);
     }
-   addDisplayNoneToSubtaskIfEmpty(subtasks);
+    displayCheckBoxesCorrectlyIfChecked(column, ticket);
+    addDisplayNoneToSubtaskIfEmpty(subtasks);
 }
 
 
@@ -59,6 +60,34 @@ function getSubtasksFromTask(column, ticket) {
         subtasks.push(boardColumns[column][ticket]['subtasksArray'][i]);
     }
     return subtasks;
+}
+
+
+function addTaskToSubtaskListInEdit(subtask, i) {
+    let container = document.getElementById('subtask-list-container');
+    container.innerHTML += templateSubtaskListInEdit(subtask, i);
+}
+
+
+function templateSubtaskListInEdit(subtask, i) {
+    return /*html*/ `
+        <li class="subtask-list-entry flex"><input id="cb-subtask-${i}" class="subtask-checkbox" type="checkbox">${subtask}</li>
+    `;
+}
+
+
+function displayCheckBoxesCorrectlyIfChecked(column, ticket) {
+    for (let i = 0; i < boardColumns[column][ticket]['subtasksArray'].length; i++) {
+        if (subtaskStatusIsTrue(i, column, ticket)) {
+            let checkbox = document.getElementById('cb-subtask-' + i);
+            checkbox.checked = true;
+        }
+    }
+}
+
+
+function subtaskStatusIsTrue(i, column, ticket) {
+    return boardColumns[column][ticket]['status-subtasks'][i];
 }
 
 
