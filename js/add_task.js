@@ -729,12 +729,12 @@ function clearAddTask() {
 
 async function createTask() {
     let currentTask = task; //to be able to reuse functions in edit task
-    addInputValuesToTask('title');
-    addInputValuesToTask('description');
-    addInputValuesToTask('due-date');
+    addInputValuesToTask(currentTask, 'title');
+    addInputValuesToTask(currentTask, 'description');
+    addInputValuesToTask(currentTask, 'due-date');
     changeSubtasksStatus(currentTask);
-    addPriotityToTask();
-    pushAssignedContactsToTask();
+    addPriotityToTask(currentTask);
+    pushAssignedContactsToTask(currentTask);
     pushTaskToTodo();
     await addBoard();
     clearAddTask();
@@ -743,28 +743,29 @@ async function createTask() {
 }
 
 
-function addPriotityToTask() {
+function addInputValuesToTask(currentTask, identifier) {
+    currentTask[identifier] = document.getElementById(identifier).value;
+}
+
+
+function addPriotityToTask(currentTask) {
     for (let i = 0; i < priorities.length; i++) {
         let btn = document.getElementById(priorities[i]['name']); //id of the btns equals name of the priority
         if (btn.hasAttribute('style')) {
-            task['prior'] = priorities[i];
+            currentTask['prior'] = priorities[i];
         }
     }
 }
 
 
-function addInputValuesToTask(identifier) {
-    task[identifier] = document.getElementById(identifier).value;
-}
-
-
-function pushAssignedContactsToTask() {
+function pushAssignedContactsToTask(currentTask) {
+    currentTask['team'] = []; //to make sure contacts are removed in edit when they are not anymore selected
     let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
     for (let i = 0; i < checkboxes.length; i++) {
         if (currentUserIsSelected(checkboxes[i])) {
             addCurrentUserToTeam()
         } else {
-            task['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
+            currentTask['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
         }
     }
 }

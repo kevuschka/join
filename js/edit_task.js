@@ -102,51 +102,13 @@ function addDisplayNoneToSubtaskIfEmpty(subtasks) {
 
 function saveChanges(columm, ticket) {
     let currentTask = boardColumns[columm][ticket];
-    changeValuesForEditedTask(columm, ticket, 'title');
-    changeValuesForEditedTask(columm, ticket, 'description');
-    changeValuesForEditedTask(columm, ticket, 'due-date');
-    changePriorityOfEditedTask(columm, ticket);
-    changeAssignedContactsForEditedTask(columm, ticket);
+    addInputValuesToTask(currentTask, 'title'); //in add_task.js
+    addInputValuesToTask(currentTask, 'description'); //in add_task.js
+    addInputValuesToTask(currentTask, 'due-date'); //in add_task.js
+    addPriotityToTask(currentTask);
+    pushAssignedContactsToTask(currentTask);
     changeSubtasksStatus(currentTask);
     addBoard();
-}
-
-
-function changeValuesForEditedTask(column, ticket, identifier) {
-    boardColumns[column][ticket][identifier] = document.getElementById(identifier).value; //input field id is equal to name of the attribute in the task
-}
-
-
-function changePriorityOfEditedTask(column, ticket) {
-    for (let i = 0; i < priorities.length; i++) {
-        let btn = document.getElementById(priorities[i]['name']); //id of the btns equals name of the priority
-        if (btn.hasAttribute('style')) {
-            boardColumns[column][ticket]['prior'] = priorities[i];
-        }
-    }
-}
-
-
-function changeAssignedContactsForEditedTask(column, ticket) {
-    boardColumns[column][ticket]['team'] = [];
-    let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
-    for (let i = 0; i < checkboxes.length; i++) {
-        if (currentUserIsSelected(checkboxes[i])) {
-            addCurrentUserToTeamEdit()
-        } else {
-            boardColumns[column][ticket]['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
-        }
-    }
-}
-
-
-function currentUserIsSelected(checkbox) {
-    return checkbox.value == 'you';
-}
-
-
-function addCurrentUserToTeamEdit() {
-    //TODO
 }
 
 
