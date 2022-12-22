@@ -101,11 +101,13 @@ function addDisplayNoneToSubtaskIfEmpty(subtasks) {
 /////////////////// FINISH EDIT ////////////////////
 
 function saveChanges(columm, ticket) {
+    let currentTask = boardColumns[columm][ticket];
     changeValuesForEditedTask(columm, ticket, 'title');
     changeValuesForEditedTask(columm, ticket, 'description');
     changeValuesForEditedTask(columm, ticket, 'due-date');
     changePriorityOfEditedTask(columm, ticket);
     changeAssignedContactsForEditedTask(columm, ticket);
+    changeSubtasksStatus(currentTask);
     addBoard();
 }
 

@@ -728,17 +728,18 @@ function clearAddTask() {
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
 async function createTask() {
-     addInputValuesToTask('title');
-     addInputValuesToTask('description');
-     addInputValuesToTask('due-date');
-     changeSubtasksStatus();
-     addPriotityToTask();
-     pushAssignedContactsToTask();
-     pushTaskToTodo();
-     await addBoard();
-     clearAddTask();
-     switchToBoard();
-     await init();
+    let currentTask = task; //to be able to reuse functions in edit task
+    addInputValuesToTask('title');
+    addInputValuesToTask('description');
+    addInputValuesToTask('due-date');
+    changeSubtasksStatus(currentTask);
+    addPriotityToTask();
+    pushAssignedContactsToTask();
+    pushTaskToTodo();
+    await addBoard();
+    clearAddTask();
+    switchToBoard();
+    await init();
 }
 
 
@@ -779,14 +780,21 @@ function addCurrentUserToTeam() {
 }
 
 
-function changeSubtasksStatus() {
-    for (let i = 0; i < task['subtasksArray'].length; i++) {
+function changeSubtasksStatus(currentTask) {
+    for (let i = 0; i < currentTask['subtasksArray'].length; i++) {
+        resetSubtaskStatusAndFinishCounter(currentTask, i); //to make sure if a subtask is not anymore ticked it gets reset
         let checkbox = document.getElementById('cb-subtask-' + i);
         if (checkbox.checked == true) {
-            task['status-subtasks'][i] = true;
-            task['finished-subtasks']++;
+            currentTask['status-subtasks'][i] = true;
+            currentTask['finished-subtasks']++;
         }
     }
+}
+
+
+function resetSubtaskStatusAndFinishCounter(currentTask, i) {
+    currentTask['status-subtasks'][i] = false;
+    currentTask['finished-subtasks']--;
 }
 
 
