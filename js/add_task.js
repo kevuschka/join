@@ -839,26 +839,27 @@ function clearInput(id) {
 
 ///////////////////////// SEND INVITE EMAIL ////////////////////////////////////
 
-async function sendInviteMail(event) {
-    event.preventDefault();
-    giveID(); 
-    let formData = new FormData(event.target);
-    let response = await action(formData);
-    if(response.ok) 
-    console.log('email was send!');
-    else
-    alert('Email not send!');
+async function sendInviteMail() {
+    //event.preventDefault();
+    //giveID(); 
+    let formData = document.getElementById('input-invite-contact').value;
+    let response = await actionInvite(formData);
+    if(response.ok) { 
+        console.log('email was send!');
+    } else {
+        alert('Email not send!');
+    }
 }
 
-function action(formData) {
-    const input = 'https://gruppe-348.developerakademie.net/join/send_invite_mail.php';
-    const requestInit = {
-        method: 'post',
-        body: formData
-    };
+function actionInvite(formData) {
+     const input = 'https://gruppe-348.developerakademie.net/join/send_invite_mail.php';
+     const requestInit = {
+         method: 'post',
+         body: formData
+     };
 
-    return fetch(
-        input,
-        requestInit
-        );
+     return fetch(
+         input,
+         requestInit
+         );
 }
