@@ -837,6 +837,28 @@ function clearInput(id) {
 }
 
 
-function waitOneSecond() {
-    
+///////////////////////// SEND INVITE EMAIL ////////////////////////////////////
+
+async function sendInviteMail(event) {
+    event.preventDefault();
+    giveID(); 
+    let formData = new FormData(event.target);
+    let response = await action(formData);
+    if(response.ok) 
+    console.log('email was send!');
+    else
+    alert('Email not send!');
+}
+
+function action(formData) {
+    const input = 'https://gruppe-348.developerakademie.net/join/send_invite_mail.php';
+    const requestInit = {
+        method: 'post',
+        body: formData
+    };
+
+    return fetch(
+        input,
+        requestInit
+        );
 }
