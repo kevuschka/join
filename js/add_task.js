@@ -727,6 +727,9 @@ function clearAddTask() {
 
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
+/**
+ * This function calls the functions necessary in regard of creating a new task 
+ */
 async function createTask() {
     let currentTask = task; //to be able to reuse functions in edit task
     addInputValuesToTask(currentTask, 'title');
@@ -743,11 +746,22 @@ async function createTask() {
 }
 
 
+/**
+ * This function adds the value of the forwarded inputfield to the task currently in creation
+ * 
+ * @param {Element} currentTask - the task currently in creation 
+ * @param {*} identifier - the identifier(id) of the input field whichs value is added to the task in creation
+ */
 function addInputValuesToTask(currentTask, identifier) {
     currentTask[identifier] = document.getElementById(identifier).value;
 }
 
 
+/**
+ * This function adds the selected priority to the task in creation
+ * 
+ * @param {*} currentTask 
+ */
 function addPriotityToTask(currentTask) {
     for (let i = 0; i < priorities.length; i++) {
         let btn = document.getElementById(priorities[i]['name']); //id of the btns equals name of the priority
@@ -758,6 +772,11 @@ function addPriotityToTask(currentTask) {
 }
 
 
+/**
+ * This function adds the selected contacts to task in creation
+ * 
+ * @param {Element} currentTask - the task currently in creation
+ */
 function pushAssignedContactsToTask(currentTask) {
     currentTask['team'] = []; //to make sure contacts are removed in edit when they are not anymore selected
     let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
@@ -771,6 +790,12 @@ function pushAssignedContactsToTask(currentTask) {
 }
 
 
+/**
+ * This function checks if currently logged in user is also selected
+ * 
+ * @param {Element} checkbox - checked checkbox (current iteration)
+ * @returns true if the value of the checkbox is true
+ */
 function currentUserIsSelected(checkbox) {
     return checkbox.value == 'you';
 }
@@ -781,6 +806,11 @@ function addCurrentUserToTeam() {
 }
 
 
+/**
+ * This function checks if a subtask is already ticked (completed) and safes the status of each subtask in the current task
+ * 
+ * @param {Element} currentTask - the task currently in creation 
+ */
 function changeSubtasksStatus(currentTask) {
     for (let i = 0; i < currentTask['subtasksArray'].length; i++) {
         resetSubtaskStatusAndFinishCounter(currentTask, i); //to make sure if a subtask is not anymore ticked it gets reset
@@ -793,17 +823,30 @@ function changeSubtasksStatus(currentTask) {
 }
 
 
+/**
+ * This function resets every status of the subtasks to false and reduces the subtask counter
+ * Important for the case a subtask is not anymore checked
+ * 
+ * @param {Element} currentTask - the task currently in creation
+ * @param {int} i - the position/index of the current task, to now on which position the subtask status needs to be reseted 
+ */
 function resetSubtaskStatusAndFinishCounter(currentTask, i) {
     currentTask['status-subtasks'][i] = false;
     currentTask['finished-subtasks']--;
 }
 
 
+/**
+ * This function adds the current task to todo/boardcolumns[0]
+ */
 function pushTaskToTodo() {
     boardColumns[0].push(task);
 }
 
 
+/**
+ * This function switches to the board.html page if the current page is add task 
+ */
 function switchToBoard() {
     if (URLequalsAddTaskHtml()) {
         setTimeout(function (){
@@ -814,6 +857,11 @@ function switchToBoard() {
 
 ///////////////////////// GENERAL FUNCTIONS////////////////////////////////////
 
+/**
+ * This function changes the visibility of an element
+ * 
+ * @param {string} id - the id of the element which visibility should be changed 
+ */
 function changeVisibility(id) {
     let dropdown = document.getElementById(id);
     if (dropdown.classList.contains('d-none')) {
@@ -824,11 +872,21 @@ function changeVisibility(id) {
 }
 
 
+/**
+ * This function sets the focus on the input field
+ * 
+ * @param {string} id - the id of the input field which should be focused 
+ */
 function focusOnInput(id) {
     document.getElementById(id).focus();
 }
 
 
+/**
+ * This function clears the value in an input field
+ * 
+ * @param {string} id - the id of the input which should be cleared 
+ */
 function clearInput(id) {
     let elem = document.getElementById(id);
     if (elem.value != '') {
@@ -838,6 +896,7 @@ function clearInput(id) {
 
 
 ///////////////////////// SEND INVITE EMAIL ////////////////////////////////////
+///////////////////////// NOT FUNCTIONING ////////////////////////////////////
 
 async function sendInviteMail() {
     //event.preventDefault();
