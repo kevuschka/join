@@ -47,9 +47,10 @@ function displayAssignedContactsAsChecked(j) {
 function renderSubtasksInEditContainer(column, ticket) {
     let subtasks = getSubtasksFromTask(column, ticket);
     for (let i = 0; i < subtasks.length; i++) {
-        addTaskToSubtaskList(subtasks[i]);
+        addTaskToSubtaskListInEdit(subtasks[i], i);
     }
-   addDisplayNoneToSubtaskIfEmpty(subtasks);
+    displayCheckBoxesCorrectlyIfChecked(column, ticket);
+    addDisplayNoneToSubtaskIfEmpty(subtasks);
 }
 
 
@@ -59,6 +60,34 @@ function getSubtasksFromTask(column, ticket) {
         subtasks.push(boardColumns[column][ticket]['subtasksArray'][i]);
     }
     return subtasks;
+}
+
+
+function addTaskToSubtaskListInEdit(subtask, i) {
+    let container = document.getElementById('subtask-list-container');
+    container.innerHTML += templateSubtaskListInEdit(subtask, i);
+}
+
+
+function templateSubtaskListInEdit(subtask, i) {
+    return /*html*/ `
+        <li class="subtask-list-entry flex"><input id="cb-subtask-${i}" class="subtask-checkbox" type="checkbox">${subtask}</li>
+    `;
+}
+
+
+function displayCheckBoxesCorrectlyIfChecked(column, ticket) {
+    for (let i = 0; i < boardColumns[column][ticket]['subtasksArray'].length; i++) {
+        if (subtaskStatusIsTrue(i, column, ticket)) {
+            let checkbox = document.getElementById('cb-subtask-' + i);
+            checkbox.checked = true;
+        }
+    }
+}
+
+
+function subtaskStatusIsTrue(i, column, ticket) {
+    return boardColumns[column][ticket]['status-subtasks'][i];
 }
 
 
@@ -72,50 +101,14 @@ function addDisplayNoneToSubtaskIfEmpty(subtasks) {
 /////////////////// FINISH EDIT ////////////////////
 
 function saveChanges(columm, ticket) {
-    changeValuesForEditedTask(columm, ticket, 'title');
-    changeValuesForEditedTask(columm, ticket, 'description');
-    changeValuesForEditedTask(columm, ticket, 'due-date');
-    changePriorityOfEditedTask(columm, ticket);
-    changeAssignedContactsForEditedTask(columm, ticket);
+    let currentTask = boardColumns[columm][ticket];
+    addInputValuesToTask(currentTask, 'title'); //in add_task.js
+    addInputValuesToTask(currentTask, 'description'); //in add_task.js
+    addInputValuesToTask(currentTask, 'due-date'); //in add_task.js
+    addPriotityToTask(currentTask);
+    pushAssignedContactsToTask(currentTask);
+    changeSubtasksStatus(currentTask);
     addBoard();
-}
-
-
-function changeValuesForEditedTask(column, ticket, identifier) {
-    boardColumns[column][ticket][identifier] = document.getElementById(identifier).value; //input field id is equal to name of the attribute in the task
-}
-
-
-function changePriorityOfEditedTask(column, ticket) {
-    for (let i = 0; i < priorities.length; i++) {
-        let btn = document.getElementById(priorities[i]['name']); //id of the btns equals name of the priority
-        if (btn.hasAttribute('style')) {
-            boardColumns[column][ticket]['prior'] = priorities[i];
-        }
-    }
-}
-
-
-function changeAssignedContactsForEditedTask(column, ticket) {
-    boardColumns[column][ticket]['team'] = [];
-    let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
-    for (let i = 0; i < checkboxes.length; i++) {
-        if (currentUserIsSelected(checkboxes[i])) {
-            addCurrentUserToTeamEdit()
-        } else {
-            boardColumns[column][ticket]['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
-        }
-    }
-}
-
-
-function currentUserIsSelected(checkbox) {
-    return checkbox.value == 'you';
-}
-
-
-function addCurrentUserToTeamEdit() {
-    //TODO
 }
 
 

@@ -32,6 +32,8 @@ function clearTask() {
         'description': '',
         'process': 0,
         'subtasks': 0,
+        'finished-subtasks': 0,
+        'status-subtasks': [],
         'subtasksArray': [],
         'team': [],
         'prior': '',
@@ -97,34 +99,6 @@ function renderCategoryDropdown() {
 
 
 /**
- * This function generates the html code for the dropdown field, which is used to create a new category
- * 
- * @returns a html temlate of a row in the dropdown for the user to select to create a new category
- */
-function templateDropdownNewCategory() {
-    return /*html*/ `
-        <span class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); changeVisibilityNewCategory(); focusOnInput('new-category-input'); createNewCategoryObject()">New category</span>
-    `;
-}
-
-
-/**
- * This function generates the html code which is used to display and select the categories in the dropdown container
- * 
- * @param {int} i -  is the indexes of the category that will be displayed (in this iteration)
- * @returns a html template of a row in the dropdown which displays the category with the current index
- */
-function templateDropdownCategories(i) {
-    return /*html*/ `
-        <div class="dropdown-content-child" onclick="changeVisibility('category-dropdown'); selectCategory('${i}')">
-            ${category[i]['name']}
-            <div class="category-colors" style="background-color: ${category[i]['color']}"></div>
-        </div>
-    `;
-}
-
-
-/**
  * This function is used to render the color selection, when a new category should be created
  * Every category needs to be assigned to a color
  */
@@ -134,19 +108,6 @@ function renderCategoryColorSelection() {
     for (let i = 0; i < categoryColors.length; i++) {
         container.innerHTML += templateCategoryColors(i);
     }
-}
-
-
-/**
- * This function is used to generate the html code for the color selection when a new category should be created
- * 
- * @param {int} i - is the indexes of the color that will be displayed (in this iteration)
- * @returns a html template which displays the color with the current index
- */
-function templateCategoryColors(i) {
-    return /*html*/ `
-        <div onclick="changeColorSelected(${i})" id="category-color-${i}" class="category-colors category-colors-selection-section" style="background-color: ${categoryColors[i]}"></div>
-    `;
 }
 
 /**
@@ -323,20 +284,6 @@ function changeCategoryDropdownText(i) {
 
 
 /**
- * This function generates the html code which is replacing the name of the dropdown field 
- * 
- * @param {int} i - index of the selected categoryObject in the category array 
- * @returns a html template which displays the name and color of the category 
- */
-function templateSelectedCategoryinDropdownField(i) {
-    return /*html*/ `
-            ${category[i]['name']}
-            <div class="category-colors" style="background-color: ${category[i]['color']}"></div>
-    `;
-}
-
-
-/**
  * This function is used to add the selected category to the task in creation
  * 
  * @param {int} i - index of the selected categoryObject in the category array 
@@ -358,36 +305,6 @@ function renderContactsDropdown() {
         dropdown.innerHTML += templateDropdownContacts(i);
     }
     dropdown.innerHTML += templateDropwdownInviteNewContact();  
-}
-
-
-/**
- * This function generates the html code to display and be able to select the currently logged in user
- * @returns a html template which display 'YOU' and a checkbox
- */
-function templateContactsYou() {
-    return /*html*/ `
-        <label for="checkbox-you" class="dropdown-content-child space-between">    
-                <span>You</span>
-                <input value="you" name="checkbox" class="contacts-cb" id="checkbox-you" type="checkbox">
-        </label>
-    `;
-}
-
-
-/**
- * This function generates the html code to display and be able to select the contact (of the current itteration)
- * 
- * @param {int} i - index of the contact in the contacts array 
- * @returns a html tmeplate which displays the name of the contact and checkbox
- */
-function templateDropdownContacts(i) {
-    return /*html*/ `
-        <label for="checkbox${i}" class="dropdown-content-child space-between">    
-                <span>${contacts[i]['name']}</span>
-                <input value="${i}" name="checkbox" class="contacts-cb" id="checkbox${i}" type="checkbox" onclick="changeDisplayInContactIconSection(${i})">
-        </label>
-    `;
 }
 
 
@@ -452,34 +369,6 @@ function renderContactIconSection() {
 
 
 /**
- * This function generates the html code to display the selected contact (current itteration)
- * 
- * @param {int} index -  
- * @returns 
- */
-function templateContactIconSection(index) {
-    return /*html*/ `
-        <div class="contact-icon" style="background-color: ${contacts[index]['color']}">${contacts[index]['abbreviation']}</div>
-    `;
-}
-
-
-/**
- * This function generates the dropdown row to select invite a new contact
- * 
- * @returns a html template with the text Invite new Contact and a img of a contact symbol
- */
-function templateDropwdownInviteNewContact() {
-    return /*html*/ `
-        <div onclick="changeVisibilityContactSection(), focusOnInput('input-invite-contact')" class="dropdown-content-child space-between">
-            <span>Invite new Contact</span>
-            <img src="./assets/img/add-task-invite-icon.svg">
-        </div>
-    `;
-}
-
-
-/**
  * This function changes the visibility of the elements in the contact section when:
  *      - invite new contact is selected
  *      - the invitation of a contact was fulfilled or canceled
@@ -502,22 +391,6 @@ function renderPrioritySelection() {
     for (let i = 0; i < priorities.length; i++) {
         container.innerHTML += templatePrioritySelection(i);
     }
-}
-
-
-/**
- * This function generates the html code to display and be able to select the priotity (current iteration)
- * 
- * @param {int} i - index of the current priority in the priorities array 
- * @returns a html template which displays the name of the priority with index i and the image assigned to this priority
- */
-function templatePrioritySelection(i) {
-    return /*html*/ `
-         <button type="button" class="prio-btn" id="${priorities[i]['name']}" onclick="selectPrio(${i})">
-            ${priorities[i]['name']}
-            <img src="${priorities[i]['image']}">
-        </button>
-    `;
 }
 
 
@@ -630,10 +503,11 @@ function clearSubtaskInput() {
 function addSubtask() {
     let input = document.getElementById('subtask-input');
     let subtask = input.value;
+    let currentTask = task; //necessary because in edit the subtasks are also displayed but from another task 
     if (!inputFieldIsEmpty(subtask)) {
         changeVisibilitySubtask();
-        addTaskToSubtaskList(subtask);
         addSubtaskToTask(subtask);
+        addTaskToSubtaskList(subtask, currentTask);
         clearInput('subtask-input')
     }
 }
@@ -650,36 +524,26 @@ function inputFieldIsEmpty(input) {
 
 
 /**
- * This function adds the currently entered subtask to the container which displays all subtasks below the input field
- * 
- * @param {string} task - the value which has been entered in the subtask input field
- */
-function addTaskToSubtaskList(task) {
-    let container = document.getElementById('subtask-list-container');
-    container.innerHTML += templateSubtaskList(task);
-}
-
-/**
- * This function generates the html code used to display the newly entered subtask in the subtask list
- * 
- * @param {string} task - the value entered in the subtask input field 
- * @returns a html template with a list item consisting of the name of the subtask and a checkbox
- */
-function templateSubtaskList(task) {
-    return /*html*/ `
-        <li class="subtask-list-entry flex"><input class="subtask-checkbox" type="checkbox">${task}</li>
-    `;
-}
-
-
-/**
  * This function adds the new subtask to the task in creation and increases the counter (which counts how many subtasks there are) by one
+ * And adds the Status false for the created subtask
  * 
  * @param {string} subtask - the value entered in the subtask input field (the name of the subtask)
  */
 function addSubtaskToTask(subtask) {
     task['subtasksArray'].push(subtask);
     task['subtasks']++;
+    task['status-subtasks'].push(false);
+}
+
+
+/**
+ * This function adds the currently entered subtask to the container which displays all subtasks below the input field
+ * 
+ * @param {string} subtask - the value which has been entered in the subtask input field
+ */
+function addTaskToSubtaskList(subtask) {
+    let container = document.getElementById('subtask-list-container');
+    container.innerHTML += templateSubtaskList(subtask);
 }
 
 
@@ -719,47 +583,75 @@ function clearAddTask() {
 
 ///////////////////////// CREATE TASK ////////////////////////////////////
 
+/**
+ * This function calls the functions necessary in regard of creating a new task 
+ */
 async function createTask() {
-     addInputValuesToTask('title');
-     addInputValuesToTask('description');
-     addInputValuesToTask('due-date');
-     addPriotityToTask();
-     pushAssignedContactsToTask();
-     pushTaskToTodo();
-     await addBoard();
-     clearAddTask();
-     switchToBoard();
-     await init();
+    let currentTask = task; //to be able to reuse functions in edit task
+    addInputValuesToTask(currentTask, 'title');
+    addInputValuesToTask(currentTask, 'description');
+    addInputValuesToTask(currentTask, 'due-date');
+    changeSubtasksStatus(currentTask);
+    addPriotityToTask(currentTask);
+    pushAssignedContactsToTask(currentTask);
+    pushTaskToTodo();
+    await addBoard();
+    clearAddTask();
+    switchToBoard();
+    await init();
 }
 
 
-function addPriotityToTask() {
+/**
+ * This function adds the value of the forwarded inputfield to the task currently in creation
+ * 
+ * @param {Element} currentTask - the task currently in creation 
+ * @param {*} identifier - the identifier(id) of the input field whichs value is added to the task in creation
+ */
+function addInputValuesToTask(currentTask, identifier) {
+    currentTask[identifier] = document.getElementById(identifier).value;
+}
+
+
+/**
+ * This function adds the selected priority to the task in creation
+ * 
+ * @param {*} currentTask 
+ */
+function addPriotityToTask(currentTask) {
     for (let i = 0; i < priorities.length; i++) {
         let btn = document.getElementById(priorities[i]['name']); //id of the btns equals name of the priority
         if (btn.hasAttribute('style')) {
-            task['prior'] = priorities[i];
+            currentTask['prior'] = priorities[i];
         }
     }
 }
 
 
-function addInputValuesToTask(identifier) {
-    task[identifier] = document.getElementById(identifier).value;
-}
-
-
-function pushAssignedContactsToTask() {
+/**
+ * This function adds the selected contacts to task in creation
+ * 
+ * @param {Element} currentTask - the task currently in creation
+ */
+function pushAssignedContactsToTask(currentTask) {
+    currentTask['team'] = []; //to make sure contacts are removed in edit when they are not anymore selected
     let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
     for (let i = 0; i < checkboxes.length; i++) {
         if (currentUserIsSelected(checkboxes[i])) {
             addCurrentUserToTeam()
         } else {
-            task['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
+            currentTask['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
         }
     }
 }
 
 
+/**
+ * This function checks if currently logged in user is also selected
+ * 
+ * @param {Element} checkbox - checked checkbox (current iteration)
+ * @returns true if the value of the checkbox is true
+ */
 function currentUserIsSelected(checkbox) {
     return checkbox.value == 'you';
 }
@@ -770,11 +662,47 @@ function addCurrentUserToTeam() {
 }
 
 
+/**
+ * This function checks if a subtask is already ticked (completed) and safes the status of each subtask in the current task
+ * 
+ * @param {Element} currentTask - the task currently in creation 
+ */
+function changeSubtasksStatus(currentTask) {
+    for (let i = 0; i < currentTask['subtasksArray'].length; i++) {
+        resetSubtaskStatusAndFinishCounter(currentTask, i); //to make sure if a subtask is not anymore ticked it gets reset
+        let checkbox = document.getElementById('cb-subtask-' + i);
+        if (checkbox.checked == true) {
+            currentTask['status-subtasks'][i] = true;
+            currentTask['finished-subtasks']++;
+        }
+    }
+}
+
+
+/**
+ * This function resets every status of the subtasks to false and reduces the subtask counter
+ * Important for the case a subtask is not anymore checked
+ * 
+ * @param {Element} currentTask - the task currently in creation
+ * @param {int} i - the position/index of the current task, to now on which position the subtask status needs to be reseted 
+ */
+function resetSubtaskStatusAndFinishCounter(currentTask, i) {
+    currentTask['status-subtasks'][i] = false;
+    currentTask['finished-subtasks']--;
+}
+
+
+/**
+ * This function adds the current task to todo/boardcolumns[0]
+ */
 function pushTaskToTodo() {
     boardColumns[0].push(task);
 }
 
 
+/**
+ * This function switches to the board.html page if the current page is add task 
+ */
 function switchToBoard() {
     if (URLequalsAddTaskHtml()) {
         setTimeout(function (){
@@ -783,15 +711,13 @@ function switchToBoard() {
     }
 }
 
-
-function URLequalsAddTaskHtml() {
-    if ('/add_task.html' == window.location.pathname) {
-        return true
-    }
-}
-
 ///////////////////////// GENERAL FUNCTIONS////////////////////////////////////
 
+/**
+ * This function changes the visibility of an element
+ * 
+ * @param {string} id - the id of the element which visibility should be changed 
+ */
 function changeVisibility(id) {
     let dropdown = document.getElementById(id);
     if (dropdown.classList.contains('d-none')) {
@@ -802,11 +728,21 @@ function changeVisibility(id) {
 }
 
 
+/**
+ * This function sets the focus on the input field
+ * 
+ * @param {string} id - the id of the input field which should be focused 
+ */
 function focusOnInput(id) {
     document.getElementById(id).focus();
 }
 
 
+/**
+ * This function clears the value in an input field
+ * 
+ * @param {string} id - the id of the input which should be cleared 
+ */
 function clearInput(id) {
     let elem = document.getElementById(id);
     if (elem.value != '') {
@@ -815,6 +751,30 @@ function clearInput(id) {
 }
 
 
-function waitOneSecond() {
-    
+///////////////////////// SEND INVITE EMAIL ////////////////////////////////////
+///////////////////////// NOT FUNCTIONING ////////////////////////////////////
+
+async function sendInviteMail() {
+    //event.preventDefault();
+    //giveID(); 
+    let formData = document.getElementById('input-invite-contact').value;
+    let response = await actionInvite(formData);
+    if(response.ok) { 
+        console.log('email was send!');
+    } else {
+        alert('Email not send!');
+    }
+}
+
+function actionInvite(formData) {
+     const input = 'https://gruppe-348.developerakademie.net/join/send_invite_mail.php';
+     const requestInit = {
+         method: 'post',
+         body: formData
+     };
+
+     return fetch(
+         input,
+         requestInit
+         );
 }

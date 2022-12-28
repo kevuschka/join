@@ -237,6 +237,12 @@ function getRandomNumberFromZeroToNine() {
 }
 
 
+function URLequalsAddTaskHtml() {
+    if ('/add_task.html' == window.location.pathname) {
+        return true
+    }
+}
+
 
 
 
