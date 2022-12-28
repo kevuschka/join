@@ -43,11 +43,11 @@
                                 </div>
                                 <div class="board-header-right flex">
                                     <div class="board-header-search-wrapper relative flex">
-                                        <div class="board-header-search-container flex" id="board-header-search-container" onclick="showInput()">
-                                            <div class="board-header-search-input-container flex">
-                                                <div class="board-header-search-input w-100"></div>
+                                        <div class="board-header-search-container flex" id="board-header-search-container">
+                                            <div class="board-header-search-input-container flex" id="board-header-search-input-container">
+                                                <input class="board-header-search-input w-100 h-100" id="board-header-search-input" placeholder="Find Task" onblur="narrowInputField()" onfocus="widerInputField()" onkeydown=""></input>
                                             </div>
-                                            <img class="board-search-icon cursor-p" src="assets/img/search-icon.png">
+                                            <img class="board-search-icon cursor-p" id="board-search-icon" src="assets/img/search-icon.png">
                                         </div>
                                         <div class="board-header-search-input-and-results-popup w-100 h-100 flex column d-none" id="board-header-search-input-and-results-popup">
                                             <input class="board-header-search-input-popup h-100 w-100" id="board-header-search-input-popup" type="text" placeholder="Find Task" onkeyup="taskFilter()" focus autofocus onclick="doNotClose(event)">

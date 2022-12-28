@@ -89,23 +89,7 @@ function headerMenuPopupSlideOut() {
 }
 
 //////////////////// BOARD: SEARCHBAR - FULLSCREEN POPUP AND CLOSING /////////////////////
-/**
- *  That is a fullscreen transparent popup for the searchbar in section "Board", to close the searchbar-input, when clicking on the screen area
- * @returns - a fullscreen transparent (absolute) div
- */
-function renderBoardSearchbarPopup() {
-    return `<div class="board-header-search-popup-full absolute w-100 d-none" id="board-header-search-input-popup-full" onclick="closeBoardSearchbarPopup()"></div>`;
-}
 
-
-function closeBoardSearchbarPopup() {
-    document.getElementById('board-header-search-input-popup').value = '';
-    document.getElementById('board-header-search-input-and-results-popup').classList.add('d-none');
-    document.getElementById('board-header-search-results-popup').innerHTML = '';
-    document.getElementById('board-header-search-results-popup').classList.add('d-none');
-    document.getElementById(`board-header-search-input-popup-full`).classList.add('d-none');
-    document.getElementById(`board-header-search-container`).classList.remove('d-none');
-}
 
 
 //////////////////// BOARD: TICKET ONCLICK POPUP /////////////////////

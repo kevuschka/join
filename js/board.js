@@ -302,20 +302,26 @@ function unshiftNewElement(column) {
 
 
 ////////////////// SEARCHBAR INPUT /////////////////////
-function showInput() {
-    document.getElementById(`board-header-search-container`).classList.add('d-none');
-    document.getElementById('board-header-search-input-and-results-popup').classList.remove('d-none');
-    document.getElementById(`board-header-search-input-popup-full`).classList.remove('d-none');
+
+
+
+function widerInputField() {
+    addClasslist('board-search-icon', 'd-none');
+    addClasslist(`board-header-search-input-container`, `border-none`);
 }
 
 
-function taskFilter() {
-    let resultsContainer = document.getElementById('board-header-search-results-popup');
-    resultsContainer.innerHTML = '';
-    let input = document.getElementById('board-header-search-input-popup');
+function narrowInputField() {
+    removeClasslist('board-search-icon', 'd-none');
+    removeClasslist(`board-header-search-input-container`, `border-none`);
+}
+
+
+function searchTasks() {
+    let input = document.getElementById('board-header-search-input');
     let inputComparison = input.value.toLowerCase();
-    document.getElementById('board-header-search-results-popup').classList.add('d-none');
-    if(input.value.length > 0) filterTicketTitles(inputComparison, resultsContainer, 0);
+    if(input.value.length > 0) filterTasks(inputComparison, ;
+    else renderBoard();
 }
 
 
@@ -334,15 +340,6 @@ function filterTicketTitles(inputComparison, resultsContainer, n) {
     }
 }
 
-
-function isTeamMemberHere(i,j, inputComparison) {
-    let member;
-    for (let m = 0; m < boardColumns[i][j]['team'].length; m++) {
-        member = (boardColumns[i][j]['team'][m]['name'].toLowerCase());
-        if(member.includes(inputComparison)) return true;
-    }
-    return false;
-}
 
 
 function renderSearchResult(i, j, n, resultsContainer) {
