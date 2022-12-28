@@ -178,8 +178,8 @@ function renderTemplateTicketProgressbar(n,j) {
 
 
 function setProgressBar(n,j) {
-    if(boardColumns[n][j]['process'] > 0) {
-        let progressValue = (boardColumns[n][j]['process']/boardColumns[n][j]['subtasks']);
+    if(boardColumns[n][j]['finished-subtasks'] > 0) {
+        let progressValue = (boardColumns[n][j]['finished-subtasks']/boardColumns[n][j]['subtasks']);
         document.getElementById(`process-bar-${n}-${j}`).value = progressValue;
     }
 }
