@@ -171,7 +171,7 @@ function renderTemplateTicketProgressbar(n,j) {
         ticketContent.innerHTML += `
             <div class="process-bar-container flex" id="process-bar-container-${n}-${j}">
                 <progress class="process-bar" id="process-bar-${n}-${j}" value="" max="1"></progress>
-                <div class="process-state">${boardColumns[n][j]['process']}/${boardColumns[n][j]['subtasks']}</div>
+                <div class="process-state">${boardColumns[n][j]['finished-subtasks']}/${boardColumns[n][j]['subtasks']}</div>
             </div>`;
     }
 }
