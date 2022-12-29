@@ -28,7 +28,7 @@ let priorities = [
 
 // ##### BOARD #####
 let boardColumnsCopy = [[], [], [], []];
-let boardElement = [];
+let hiddenTickets = [];
 
 
 // ##### CONTACTS #####

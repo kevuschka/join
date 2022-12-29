@@ -81,7 +81,6 @@ let currentElement;
 
 function renderBoard() {
     renderBoardContent();
-    makeBoardColumnsCopy();
 }
 
 
@@ -308,11 +307,11 @@ function widerInputField() {
 }
 
 
-function makeBoardColumnsCopy() {
-    for (let k = 0; k < boardColumns.length; k++) {
-        boardColumnsCopy[k] = boardColumns[k];
-    }
-}
+// function makeBoardColumnsCopy() {
+//     for (let k = 0; k < boardColumns.length; k++) {
+//         boardColumnsCopy[k] = boardColumns[k];
+//     }
+// }
 
 
 function narrowInputField() {
@@ -324,37 +323,49 @@ function narrowInputField() {
 function searchTasks() {
     let input = document.getElementById('board-header-search-input');
     let inputComparison = input.value.toLowerCase();
-    boardColumns = [[], [], [], []];
     if(input.value.length > 0) filterTasks(inputComparison);
-    else renderStandardBoard();
+    else showAllTickets();
 }
 
 
 function filterTasks(inputComparison) {
-    for (let i = 0; i < boardColumnsCopy.length; i++) {
-        if(boardColumnsCopy[i].length > 0) {
-            for (let j = 0; j < boardColumnsCopy[i].length; j++) {
-                let ticketTitle = boardColumnsCopy[i][j]['title'].toLowerCase();
-                let ticketDescription = boardColumnsCopy[i][j]['description'].toLowerCase();
-                if(ticketTitle.includes(inputComparison) || ticketDescription.includes(inputComparison)) renderSearchResults(i, j);
+    showAllTickets();
+    for (let i = 0; i < boardColumns.length; i++) {
+        if(boardColumns[i].length > 0) {
+            for (let j = 0; j < boardColumns[i].length; j++) {
+                let ticketTitle = boardColumns[i][j]['title'].toLowerCase();
+                let ticketDescription = boardColumns[i][j]['description'].toLowerCase();
+                if(!(ticketTitle.includes(inputComparison) || ticketDescription.includes(inputComparison))) hideTicket(i,j);
             }
         }
     }
-    renderBoardContent();
 }
 
 
-function renderSearchResults(i, j) {
-    boardColumns[i].push(boardColumnsCopy[i][j]);
-}
-
-
-function renderStandardBoard() {
-    for (let k = 0; k < boardColumnsCopy.length; k++) {
-        boardColumns[k] = boardColumnsCopy[k];
+function showAllTickets() {
+    hiddenTickets = [];
+    for (let i = 0; i < boardColumns.length; i++) {
+        if(boardColumns[i].length > 0) {
+            for (let j = 0; j < boardColumns[i].length; j++) {
+                removeClasslist(`ticket-container-${i}-${j}`, 'd-none');
+            }
+        }
     }
-    renderBoardContent();
 }
+
+
+function hideTicket(column, ticket) {
+    addClasslist(`ticket-container-${column}-${ticket}`, 'd-none');
+    hiddenTickets.push([column, ticket]);
+}
+
+
+function hideAllTickets() {
+    for (let i = 0; i < hiddenTickets.length; i++) {
+        addClasslist(`ticket-container-${hiddenTickets[i][0]}-${hiddenTickets[i][1]}`, 'd-none');
+    }
+}
+
 
 ////////////////// AREA & TICKET - HIGHLIGHTING //////////////////////////
 function highlightAllAreas(i,column,ticket) {
