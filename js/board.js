@@ -1,83 +1,7 @@
-// let createdTask = {
-//     'category': {'name': 'Design','color': '#FF7A00'},
-//     'title': 'Website redesign',
-//     'description': "Modify the contents of the main website. Adjust the UI to the company's brand design.",
-//     'progress': 0,
-//     'subtasks': 1,
-//     'team': [
-//         {
-//             'name': 'Simon Meyer',
-//             'color': '#0190E0',
-//             'email': 'simon.meyer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Maximilian Vogel',
-//             'color': '#EE00D6',
-//             'email': 'maximilian.vogel@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         }
-//     ],
-//     'prior': {
-//         'name': 'Low',
-//         'prio-index': 2,
-//         'image': 'assets/img/green.png',
-//         'color': '#7AE229'
-//     },
-//     'board': 0,
-//     'due-date': '2022-11-26'
-// };
-
-
-// let createdTask2 = {
-//     'category': {'name': 'Media','color': '#29ABE2'},
-//     'title': 'New Interview',
-//     'description': "Making an interview with someone on the planet earth.",
-//     'progress': 0,
-//     'subtasks': 2,
-//     'team': [
-//         {
-//             'name': 'Simon Meyer',
-//             'color': '#0190E0',
-//             'email': 'simon.meyer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Maximilian Vogel',
-//             'color': '#EE00D6',
-//             'email': 'maximilian.vogel@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Eva Fischer',
-//             'color': '#02CF2F',
-//             'email': 'Eva.Fischer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Kevin Schumilo',
-//             'color': '#02CF2F',
-//             'email': 'kevin.schumilo@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         }
-//     ],
-//     'prior': {
-//         'name': 'Urgent',
-//         'prio-index': 0,
-//         'image': './assets/img/red-prio.svg',
-//         'color': '#FF3D00'
-//     },
-//     'board': 0,
-//     'due-date': '2022-11-26'
-// };
-
-
 let boardColumnTitle = ['To do', 'In progress', 'Awaiting Feedback', 'Done'];
 let emptyBoardColumn = ['No task to do', 'Nothing in progess', 'No Feedback awaiting', 'Nothing here'];
 let currentElementTicket;
-// let currentElementColumn;
 let currentElement;
-
-// function addTest() {
-//     todo.push(createdTask); // beide JSON dürfen vom Namen nicht gleich sein! sonst haben sie den selben Pointer
-//     todo.push(createdTask2);
-// }
 
 function renderBoard() {
     renderBoardContent();
@@ -94,17 +18,6 @@ function renderBoardContent() {
         renderBoardColumnContent(i);
     }
     renderOnholdTicketTarget();
-}
-
-
-function renderTemplateBoardColumn(i) {
-    return `<div class="board-column flex column">
-                <div class="board-column-header flex cursor-p">
-                    <p>${boardColumnTitle[i]}</p>
-                    <div class="board-column-header-plus flex" onclick="openBoardAddtaskPopup()">+</div>
-                </div>
-                <div class="board-tickets w-100 flex column" id="board-column-${i}" ondrop="drop(${i})" ondragover="allowDrop(event);highlightAreas(${i})" ondragleave="removeHighlightAreas(${i})"></div>
-            </div>`;
 }
 
 
@@ -227,7 +140,7 @@ function getRestNumberOfMembers(column, ticket) {
 
 
 function removeEmptyBoardColumnProperties(n) {
-    document.getElementById(`board-column-${n}`).classList.remove('emptyColumn');
+    removeClasslist(`board-column-${n}`, `emptyColumn`);
 }
 
 
@@ -244,7 +157,7 @@ function renderBoardColumnIsEmptySign(n) {
 
 
 function emptyBoardColumnProperties(n) {
-    document.getElementById(`board-column-${n}`).classList.add('emptyColumn');
+    addClasslist(`board-column-${n}` ,`emptyColumn`);
 }
 
 
@@ -307,13 +220,6 @@ function widerInputField() {
 }
 
 
-// function makeBoardColumnsCopy() {
-//     for (let k = 0; k < boardColumns.length; k++) {
-//         boardColumnsCopy[k] = boardColumns[k];
-//     }
-// }
-
-
 function narrowInputField() {
     removeClasslist('board-search-icon', 'd-none');
     removeClasslist(`board-header-search-input-container`, `border-none`);
@@ -360,7 +266,7 @@ function hideTicket(column, ticket) {
 }
 
 
-function hideAllTickets() {
+function hideSomeTickets() {
     for (let i = 0; i < hiddenTickets.length; i++) {
         addClasslist(`ticket-container-${hiddenTickets[i][0]}-${hiddenTickets[i][1]}`, 'd-none');
     }
@@ -370,9 +276,9 @@ function hideAllTickets() {
 ////////////////// AREA & TICKET - HIGHLIGHTING //////////////////////////
 function highlightAllAreas(i,column,ticket) {
     if(i != currentElement['board']) {
-        document.getElementById(`onhold-container-column-${i}-last`).classList.add('highlight-area');
+        addClasslist(`onhold-container-column-${i}-last`, `highlight-area`);
         if(window.innerWidth > 800 || boardColumns[i].length > 0)
-            document.getElementById(`onhold-container-column-${i}-first`).classList.add('highlight-area');
+            addClasslist(`onhold-container-column-${i}-first`, `highlight-area`);
         let myDiv = document.getElementById(`ticket-container-${column}-${ticket}`);
         let getHeight = myDiv.offsetHeight;
         document.getElementById(`onhold-container-column-${i}-last`).style.height = `${getHeight}px`;
@@ -383,36 +289,37 @@ function highlightAllAreas(i,column,ticket) {
 function removeAllHighlightAreas(i) {
     setTimeout( () => {
         if(i != currentElement['board']) {
-            document.getElementById(`onhold-container-column-${i}-last`).classList.add('no-highlight-area');
+            addClasslist(`onhold-container-column-${i}-last`, `no-highlight-area`);
             if(window.innerWidth > 800 || boardColumns[i].length > 0)
-                document.getElementById(`onhold-container-column-${i}-first`).classList.add('no-highlight-area');
+                addClasslist(`onhold-container-column-${i}-first`, `no-highlight-area`);
         }
     }, 600)
 }
 
+
 function highlightAreas(i) {
     if(i != currentElement['board']) {
-        document.getElementById(`onhold-container-column-${i}-last`).classList.add('highlight-area-more');
+        addClasslist(`onhold-container-column-${i}-last`, `highlight-area-more`);
         if(window.innerWidth > 800 || boardColumns[i].length > 0)
-            document.getElementById(`onhold-container-column-${i}-first`).classList.add('highlight-area-more');
+            addClasslist(`onhold-container-column-${i}-first`, `highlight-area-more`);
     }
 }
 
 
 function removeHighlightAreas(i) {
-    document.getElementById(`onhold-container-column-${i}-last`).classList.remove('highlight-area-more');
+    removeClasslist(`onhold-container-column-${i}-last`, `highlight-area-more`);
     if(window.innerWidth > 800 || boardColumns[i].length > 0)
-        document.getElementById(`onhold-container-column-${i}-first`).classList.remove('highlight-area-more');
+        removeClasslist(`onhold-container-column-${i}-first`, `highlight-area-more`);
 }
 
 
 function highlightTicket(column, ticket) {
-    document.getElementById(`ticket-container-${column}-${ticket}`).classList.add('ticket-highlight');
+    addClasslist(`ticket-container-${column}-${ticket}`, `ticket-highlight`);
 }
 
 
 function removeHighlightTicket(column, ticket) {
-    document.getElementById(`ticket-container-${column}-${ticket}`).classList.remove('ticket-highlight');
+    removeClasslist(`ticket-container-${column}-${ticket}`, `ticket-highlight`);
 }
 
 

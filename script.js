@@ -1,6 +1,5 @@
 // ##### TASK #####
 let task;
-let taskEditted = false;
 
 /** That object is used in AddTask when creating a new task. 
  * Familiar functions: templatePrioritySelection(i), changeSelectedPrioBtn(i), resetOtherPrioBtns(i) */
@@ -27,8 +26,8 @@ let priorities = [
 
 
 // ##### BOARD #####
-let boardColumnsCopy = [[], [], [], []];
 let hiddenTickets = [];
+let taskEditted = false;
 
 
 // ##### CONTACTS #####

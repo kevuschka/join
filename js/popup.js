@@ -265,11 +265,9 @@ function closeTicketInfoPopup() {
     document.getElementById('board-ticket-info-popup-full').classList.add('d-none');
     document.getElementById('board-ticket-info-popup-full').innerHTML = '';
     if(taskEditted) {
-        // taskEditted = false;
-        // showAllTickets();
+        taskEditted = false;
         renderBoard();
-        // init();
-        hideAllTickets();
+        hideSomeTickets();
     }
 }
 
