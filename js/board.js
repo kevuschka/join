@@ -1,14 +1,13 @@
 let boardColumnTitle = ['To do', 'In progress', 'Awaiting Feedback', 'Done'];
 let emptyBoardColumn = ['No task to do', 'Nothing in progess', 'No Feedback awaiting', 'Nothing here'];
+/** This variable is for storing the current ticket index when drag&drop. Familiar functions: startDragging(column, ticket), drop(column) */
 let currentElementTicket;
+/** This variable is for storing the current ticket object when drag&drop. 
+ * Familiar functions: startDragging(column, ticket), drop(column), pushNewElement(column), unshiftNewElement(column), removeAllHighlightAreas(i), highlightAreas(i) */
 let currentElement;
 
+/** Render the board content with its tickets */
 function renderBoard() {
-    renderBoardContent();
-}
-
-
-function renderBoardContent() {
     let content = document.getElementById('board-content');
     content.innerHTML = '';
     for (let i = 0; i < boardColumns.length; i++) {
@@ -20,7 +19,8 @@ function renderBoardContent() {
     renderOnholdTicketTarget();
 }
 
-
+/** Render the board content of a column with its tickets
+ * @param {number} n - n is the board column number starting at 0 */
 function renderBoardColumnContent(n) {
     let content = document.getElementById(`board-column-${n}`);
     if(boardColumns[n].length > 0) {
@@ -34,17 +34,17 @@ function renderBoardColumnContent(n) {
 
 ////////////////// TICKET /////////////////////
 // >>===============================> =======================================> ==============================================> =======================================>
-/**
- * That is a template function which returns the ticket-container, where the ticket details will be rendered inside
+/** That is a template function which returns the ticket-container, where the ticket details will be rendered inside
  * @param {number} n - n is the column number starting at 0
  * @param {number} j - j is the row or the ticket-number in that column
- * @returns the ticket template
- */
+ * @returns the ticket template */
 function renderTemplateTicket(n,j) {
     return `<div class="ticket-container flex column cursor-p" id="ticket-container-${n}-${j}" draggable="true" ondragstart="startDragging(${n}, ${j})" onmousedown="highlightTicket(${n},${j})" onmouseup="removeHighlightTicket(${n},${j})" onclick="renderTicketInfoPopupContainer(${n}, ${j})"></div>`;
 }
 
-
+/** That function renders a ticket with its content
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column */
 function renderTicketContent(n, j) {
     renderTemplateTicketCategory(n,j);
     renderTemplateTicketDescription(n,j);
@@ -55,40 +55,38 @@ function renderTicketContent(n, j) {
 }
 
 ////////////////// CATEGORY
+/** That function renders the ticket category in the ticket
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column */
 function renderTemplateTicketCategory(n,j) {
     let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
-    ticketContent.innerHTML += `
-        <div class="ticket-category-container flex">
-            <p class="ticket-category" id="ticket-category-${n}-${j}">${boardColumns[n][j]['category']['name']}</p>
-        </div>`;
+    ticketContent.innerHTML += templateTicketCategory(n,j);
     document.getElementById(`ticket-category-${n}-${j}`).style.backgroundColor = `${boardColumns[n][j]['category']['color']}`;
 }
 
 ////////////////// DESCRIPTION
+/** That function renders the ticket description in the ticket
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column */
 function renderTemplateTicketDescription(n,j) {
     let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
-    ticketContent.innerHTML += `
-        <div class="ticket-description-container flex column">
-            <p class="ticket-description-title">${boardColumns[n][j]['title']}</p>
-                <div class="ticket-description" id="ticket-description-${n}-${j}">
-                    ${boardColumns[n][j]['description']}
-                </div>
-        </div>`;
+    ticketContent.innerHTML += templateTicketDescription(n,j);
 }
 
 ////////////////// PROGRESSBAR
+/** That function renders the ticket progressbar in the ticket
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column */
 function renderTemplateTicketProgressbar(n,j) {
     if(boardColumns[n][j]['subtasks'] > 0) { 
         let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
-        ticketContent.innerHTML += `
-            <div class="process-bar-container flex" id="process-bar-container-${n}-${j}">
-                <progress class="process-bar" id="process-bar-${n}-${j}" value="" max="1"></progress>
-                <div class="process-state">${boardColumns[n][j]['finished-subtasks']}/${boardColumns[n][j]['subtasks']}</div>
-            </div>`;
+        ticketContent.innerHTML += templateTicketProgressbar(n,j);
     }
 }
 
-
+/** That function sets the value of the progressbar
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column */
 function setProgressBar(n,j) {
     if(boardColumns[n][j]['finished-subtasks'] > 0) {
         let progressValue = (boardColumns[n][j]['finished-subtasks']/boardColumns[n][j]['subtasks']);
@@ -96,17 +94,18 @@ function setProgressBar(n,j) {
     }
 }
 
-
+/** That function renders the ticket footer in the ticket
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column */
 function renderTemplateTicketFooter(n,j) {
     let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
-    ticketContent.innerHTML += `
-        <div class="ticket-footer-container flex">
-            <div class="ticket-contacts-container flex" id="ticket-contacts-container-${n}-${j}"></div>
-            <img class="state-img" src="${boardColumns[n][j]['prior']['image']}">
-        </div>`;
+    ticketContent.innerHTML += templateTicketFooter(n,j);
 }
 
 ////////////////// TEAM
+/** That function renders the ticket team in the ticket
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column */
 function renderTicketTeam(n,j) {
     let name;
     let k = boardColumns[n][j]['team'].length;
@@ -120,67 +119,52 @@ function renderTicketTeam(n,j) {
     if(k < boardColumns[n][j]['team'].length) renderContactPlaceholder(k,n,j,content);
 }
 
-
+/** That function colors the ticket team members in the ticket
+ * @param {number} column - column is the column number starting at 0
+ * @param {number} ticket - ticket is the row or the ticket-number in that column 
+ * @param {number} teamMember - teamMember is the team-member-index in the team-array of that ticket-element*/
 function coloringTicketMembers(column, ticket, teamMember) {
     document.getElementById(`board-contact-${column}-${ticket}-${teamMember}`).style.backgroundColor = `${boardColumns[column][ticket]['team'][teamMember]['color']}`;
 }
 
-
-function renderContactPlaceholder(k,column,ticket,content) {
-    if (k < boardColumns[column][ticket]['team'].length) {
-        content.innerHTML += `<div class="ticket-contact contact-placeholder">+${getRestNumberOfMembers(column, ticket)}</div>`;
-    }
-}
-
-
+/** That function returns the rest number of team members, when there are more than 3 team members in that ticket
+ * @param {number} column - column is the column number starting at 0
+ * @param {number} ticket - ticket is the row or the ticket-number in that column */
 function getRestNumberOfMembers(column, ticket) {
     return boardColumns[column][ticket]['team'].length - 2;
 }
 // <<=============================== <======================================= <============================================== <=======================================
 
+// /** That function removes the class 'emptyColumn' of an column
+//  * @param {number} n - n is the column number starting at 0 */
+// function removeEmptyBoardColumnProperties(n) {
+//     removeClasslist(`board-column-${n}`, `emptyColumn`);
+// }
 
-function removeEmptyBoardColumnProperties(n) {
-    removeClasslist(`board-column-${n}`, `emptyColumn`);
-}
-
-
-function renderTemplateOnholdTicketResponsive(content, column) {
-    content.innerHTML += `<div class="onhold-container-first w-100" id="onhold-container-column-${column}-first"></div>`;
-}
-
-
+/** That function renders an empty-sign in reponsive view, when the column is empty.
+ * @param {number} n - n is the column number starting at 0 */
 function renderBoardColumnIsEmptySign(n) {
     content = document.getElementById(`board-column-${n}`);
     content.innerHTML = `<p class="noTask cursor-d w-100">${emptyBoardColumn[n]}</p>`;
     emptyBoardColumnProperties(n);
 }
 
-
+/** That function adds the class 'emptyColumn' to that board column.
+ * @param {number} n - n is the column number starting at 0 */
 function emptyBoardColumnProperties(n) {
     addClasslist(`board-column-${n}` ,`emptyColumn`);
 }
 
 
-function renderOnholdTicketTarget() {
-    let content;
-        for (let i = 0; i < boardColumns.length; i++) {   
-                content = document.getElementById(`board-column-${i}`);
-                content.innerHTML += `<div class="onhold-container-last w-100" id="onhold-container-column-${i}-last"></div>`;
-        }
-}
-
-function renderOnholdTicketTargetResponsive(i) {
-    let content;  
-    content = document.getElementById(`board-column-${i}`);
-    content.innerHTML = `<div class="onhold-container-first w-100" id="onhold-container-column-${i}-first"></div>`;
-}
-
 ////////////////// DRAGGING AND DROP /////////////////////
+/** That function will be executed when start dragging a ticket in board. It highlights all drop-areas for few seconds.
+ * @param {number} column - column is the column number starting at 0
+ * @param {number} ticket - ticket is the row or the ticket-number in that column */
 function startDragging(column, ticket) {
     currentElement = boardColumns[column][ticket];
+    currentElementTicket = ticket;
     for (let i = 0; i < boardColumns.length; i++) highlightAllAreas(i,column,ticket);
     for (let i = 0; i < boardColumns.length; i++) removeAllHighlightAreas(i);
-    currentElementTicket = ticket;
 }
 
 
@@ -274,6 +258,10 @@ function hideSomeTickets() {
 
 
 ////////////////// AREA & TICKET - HIGHLIGHTING //////////////////////////
+/** That function highlights all areas where its possible to drop the dragged ticket.
+ * @param {number} i - i is the column index in a for-loop
+ * @param {number} column - column is the column number starting at 0
+ * @param {number} ticket - ticket is the row or the ticket-number in that column */
 function highlightAllAreas(i,column,ticket) {
     if(i != currentElement['board']) {
         addClasslist(`onhold-container-column-${i}-last`, `highlight-area`);
@@ -285,7 +273,8 @@ function highlightAllAreas(i,column,ticket) {
     }
 }
 
-
+/** That function removes all highlight areas where its possible to drop the dragged ticket, after 600ms.
+ * @param {number} i - i is the column index in a for-loop */
 function removeAllHighlightAreas(i) {
     setTimeout( () => {
         if(i != currentElement['board']) {
@@ -296,7 +285,8 @@ function removeAllHighlightAreas(i) {
     }, 600)
 }
 
-
+/** That function will be executed ondragover an dropping area and highlights that area where its possible to drop the dragged ticket.
+ * @param {number} i - i is the column index in a for-loop */
 function highlightAreas(i) {
     if(i != currentElement['board']) {
         addClasslist(`onhold-container-column-${i}-last`, `highlight-area-more`);
@@ -305,19 +295,22 @@ function highlightAreas(i) {
     }
 }
 
-
+/** That function will be executed ondragleave an dropping area and removes the highlighting of that area.
+ * @param {number} i - i is the column index in a for-loop */
 function removeHighlightAreas(i) {
     removeClasslist(`onhold-container-column-${i}-last`, `highlight-area-more`);
     if(window.innerWidth > 800 || boardColumns[i].length > 0)
         removeClasslist(`onhold-container-column-${i}-first`, `highlight-area-more`);
 }
 
-
+/** That function will be executed onmousedown on a ticket area and adds the class 'ticket-highlight' to that ticket.
+ * @param {number} i - i is the column index in a for-loop */
 function highlightTicket(column, ticket) {
     addClasslist(`ticket-container-${column}-${ticket}`, `ticket-highlight`);
 }
 
-
+/** That function will be executed onmouseup on a ticket area and removes the class 'ticket-highlight' from that ticket.
+ * @param {number} i - i is the column index in a for-loop */
 function removeHighlightTicket(column, ticket) {
     removeClasslist(`ticket-container-${column}-${ticket}`, `ticket-highlight`);
 }
