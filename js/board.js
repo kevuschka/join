@@ -81,7 +81,7 @@ let currentElement;
 
 function renderBoard() {
     renderBoardContent();
-    document.getElementById('content-container').innerHTML += renderBoardSearchbarPopup();
+    makeBoardColumnsCopy();
 }
 
 
@@ -302,12 +302,16 @@ function unshiftNewElement(column) {
 
 
 ////////////////// SEARCHBAR INPUT /////////////////////
-
-
-
 function widerInputField() {
     addClasslist('board-search-icon', 'd-none');
     addClasslist(`board-header-search-input-container`, `border-none`);
+}
+
+
+function makeBoardColumnsCopy() {
+    for (let k = 0; k < boardColumns.length; k++) {
+        boardColumnsCopy[k] = boardColumns[k];
+    }
 }
 
 
@@ -320,56 +324,37 @@ function narrowInputField() {
 function searchTasks() {
     let input = document.getElementById('board-header-search-input');
     let inputComparison = input.value.toLowerCase();
-    if(input.value.length > 0) filterTasks(inputComparison, ;
-    else renderBoard();
+    boardColumns = [[], [], [], []];
+    if(input.value.length > 0) filterTasks(inputComparison);
+    else renderStandardBoard();
 }
 
 
-function filterTicketTitles(inputComparison, resultsContainer, n) {
-    let TeamMemberHere = false;
-    for (let i = 0; i < boardColumns.length; i++) {
-        if(boardColumns[i].length > 0) {
-            for (let j = 0; j < boardColumns[i].length; j++) {
-                let ticketCategory = boardColumns[i][j]['category']['name'].toLowerCase();
-                let ticketTitle = boardColumns[i][j]['title'].toLowerCase();
-                let ticketDescription = boardColumns[i][j]['description'].toLowerCase();
-                TeamMemberHere = isTeamMemberHere(i, j, inputComparison);
-                if(ticketCategory.includes(inputComparison) || ticketTitle.includes(inputComparison) || ticketDescription.includes(inputComparison) || TeamMemberHere) renderSearchResult(i, j, n, resultsContainer)
+function filterTasks(inputComparison) {
+    for (let i = 0; i < boardColumnsCopy.length; i++) {
+        if(boardColumnsCopy[i].length > 0) {
+            for (let j = 0; j < boardColumnsCopy[i].length; j++) {
+                let ticketTitle = boardColumnsCopy[i][j]['title'].toLowerCase();
+                let ticketDescription = boardColumnsCopy[i][j]['description'].toLowerCase();
+                if(ticketTitle.includes(inputComparison) || ticketDescription.includes(inputComparison)) renderSearchResults(i, j);
             }
         }
     }
+    renderBoardContent();
 }
 
 
-
-function renderSearchResult(i, j, n, resultsContainer) {
-    resultsContainer.innerHTML += returnTemplateSearchResult(i, j, n);
-    searchResultTeamNames(i, j);
-    document.getElementById(`search-result-ticket-category-${i}-${j}-${n}`).style.backgroundColor = `${boardColumns[i][j]['category']['color']}`;
-    document.getElementById('board-header-search-results-popup').classList.remove('d-none');
-    document.getElementById(`search-result-${i}-${j}-${n}`).classList.add('bold');
+function renderSearchResults(i, j) {
+    boardColumns[i].push(boardColumnsCopy[i][j]);
 }
 
 
-function returnTemplateSearchResult(i, j, n) {
-    return `<a class="search-result flex w-100" href="#ticket-container-${i}-${j}" onclick="closeBoardSearchbarPopup()">
-                <div class="search-result-p-container w-100 flex column">
-                    <p class="search-result-p w-100 bold" id="search-result-${i}-${j}-0">${boardColumns[i][j]['title']}</p>
-                    <p class="search-result-p" id="search-result-${i}-${j}-1">${boardColumns[i][j]['description']}</p>
-                    <div class="ticket-contacts-container flex" id="search-result-contacts-container-${i}-${j}-2"></div>
-                </div>
-                <div class="search-result-ticket-category-point" id="search-result-ticket-category-${i}-${j}-${n}"></div>
-            </a>`;
-}
-
-
-function searchResultTeamNames(i,j) {
-    let content = document.getElementById(`search-result-contacts-container-${i}-${j}-2`);
-    for (let k = 0; k < boardColumns[i][j]['team'].length; k++) {
-        content.innerHTML += `<div class="search-result-ticket-contact" id="board-contact-${i}-${j}-${k}-2">${getNameLetters(i, j, k)}</div>`;
+function renderStandardBoard() {
+    for (let k = 0; k < boardColumnsCopy.length; k++) {
+        boardColumns[k] = boardColumnsCopy[k];
     }
+    renderBoardContent();
 }
-
 
 ////////////////// AREA & TICKET - HIGHLIGHTING //////////////////////////
 function highlightAllAreas(i,column,ticket) {

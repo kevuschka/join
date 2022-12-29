@@ -1,5 +1,6 @@
 // ##### TASK #####
 let task;
+let taskEditted = false;
 
 /** That object is used in AddTask when creating a new task. 
  * Familiar functions: templatePrioritySelection(i), changeSelectedPrioBtn(i), resetOtherPrioBtns(i) */
@@ -23,6 +24,11 @@ let priorities = [
         'color': '#7AE229'
     }
 ]
+
+
+// ##### BOARD #####
+let boardColumnsCopy = [[], [], [], []];
+let boardElement = [];
 
 
 // ##### CONTACTS #####
@@ -70,6 +76,7 @@ let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
 // ##### USERS #####
 let users = [];
+
 
 // ##### CATEGORY #####
 let category = [];
