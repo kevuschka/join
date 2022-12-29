@@ -123,7 +123,7 @@ async function init() {
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [[], [], [], []]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
-    getCurrentUserHeaderData();
+    isLoggedInn();
     renderSiteRelatedTemplate();
 }
 
@@ -179,9 +179,9 @@ function initContacts(value) {
 }
 
 // LOGIN 
-function isLoggedIn() {
+function isLoggedInn() {
     let itemSet = localStorage.getItem('usersEmail');
-    if(!itemSet) {
+    if(!(itemSet || getCurrentUserHeaderData() || getGuestUser())) {
         window.location.href = 'index.html?msg=Du hast dich erfolgreich abgemeldet';
     }
 }
