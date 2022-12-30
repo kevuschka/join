@@ -75,7 +75,7 @@ let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
 // ##### USERS #####
 let users = [];
-
+let usersContact = [];
 
 // ##### CATEGORY #####
 let category = [];
@@ -119,6 +119,7 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 async function init() {
     await downloadFromServer();
     users =  await JSON.parse(backend.getItem('users')) || [];
+    usersContact = await JSON.parse(backend.getItem('usersContact')) || [];
     user = await JSON.parse(backend.getItem('currentUser')) || [];
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [[], [], [], []]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
