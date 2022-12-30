@@ -107,10 +107,9 @@ pushUser(userName, email, password, initials);
 
     let allUsersAsString = JSON.stringify(users);
     await backend.setItem('users', allUsersAsString);
-
     let allUsersContactAsString = JSON.stringify(usersContact);
     await backend.setItem('usersContact', allUsersContactAsString);
-    
+
     window.location.href = 'index.html?msg=Du hast dich erfolgreich registriert';
 }
 
