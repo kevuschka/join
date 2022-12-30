@@ -50,7 +50,7 @@ function logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentUserHeaderData');
     localStorage.removeItem('guestUser');
-    isLoggedIn();
+    isLoggedInn();
 }
 
 /**
@@ -626,15 +626,15 @@ function fillInputFieldsOfEditContactPopupWithExistingData(index) {
 
 function contactsNewContactSlideIn() {
     setTimeout(() => {
-        if(window.innerWidth > 800) openWhenContactCreated();
-        if(window.innerWidth < 801) openWhenContactEditted();
+        if(window.innerWidth > 800) openContactPopupSlideIn();
+        if(window.innerWidth < 801) openContactPopupSlideUp();
     }, 10);
 }
 
 
 function closeContactsNewContactPopup() {
-    if(window.innerWidth > 800) closeWhenContactCreated();
-    if(window.innerWidth < 801) closeWhenContactEditted();
+    if(window.innerWidth > 800) closeContactPopupSlideIn();
+    if(window.innerWidth < 801) closeContactPopupSlideUp();
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     contactsNewContactsPopupSlideOut();
     cleanValuesForEdittingContact();
@@ -663,9 +663,7 @@ function contactsNewContactsPopupSlideOut() {
 
 
 function closeContactsNewContactPopupFilled() {
-    document.getElementById(`contacts-new-contact-popup-container`).style.transition = `unset`;
-    closeWhenContactCreated();
-    closeWhenContactEditted();
+    closeContactsNewContactPopupFilledDnone();
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
     removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
@@ -675,6 +673,15 @@ function closeContactsNewContactPopupFilled() {
         document.getElementById(`contacts-new-contact-popup-container`).style = ``;
     }, 100);
     cleanValuesForEdittingContact();
+}
+
+
+function closeContactsNewContactPopupFilledDnone() {
+    document.getElementById(`contacts-new-contact-popup-container`).style.transition = `unset`;
+    addContactPopupDnone();
+    closeContactPopupSlideIn();
+    closeContactPopupSlideUp();
+    removeContactPopupDnone();
 }
 
 
@@ -690,23 +697,31 @@ function changeColorOfContactsNewContactBtnCancelToBlack() {
 }
 
 
-function openWhenContactCreated() {
+function openContactPopupSlideIn() {
     addClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
 }
 
 
-function closeWhenContactCreated() {
+function closeContactPopupSlideIn() {
     removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
 }
 
 
-function openWhenContactEditted() {
+function openContactPopupSlideUp() {
     addClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
 }
 
 
-function closeWhenContactEditted() {
+function closeContactPopupSlideUp() {
     removeClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
 }
 
 
+function addContactPopupDnone() {
+    addClasslist(`contacts-new-contact-popup-container`,'d-none');
+}
+
+
+function removeContactPopupDnone() {
+    removeClasslist(`contacts-new-contact-popup-container`,'d-none');
+}

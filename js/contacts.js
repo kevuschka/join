@@ -14,7 +14,7 @@ function filterContacts(list) {
                 contactNumberAtThisLetter++;
                 if(contactNumberAtThisLetter == 1) renderTemplateListLetter(alphabet[i].toUpperCase(), list);
                 renderListLetterContacts(alphabet[i].toUpperCase(), contactNumberAtThisLetter, j);
-                if(createdContact == contacts[j]['name'].toLowerCase()) settingContactValuesGlobaly(j, alphabet[i].toUpperCase(), contactNumberAtThisLetter);
+                if(createdContactName == contacts[j]['name'].toLowerCase()) setContactValuesForLinking(j, alphabet[i].toUpperCase(), contactNumberAtThisLetter);
             }
             if(contactNumber == contacts.length) break;
         }
@@ -60,13 +60,13 @@ function contactAbbreviationColoring(letter, number, j) {
 
 
 function openContactInfoPopup(index, letter, number) {
-    settingContactValuesGlobaly(index, letter, number);
+    setContactValuesForLinking(index, letter, number); // used for moving to contact after editting (not necessary in responsive) (l. 170)
     if(window.innerWidth > 800) showContactInfoPopup(index, letter, number);
     else showContactInfoPopupResponsive(index);
 }
 
 
-function settingContactValuesGlobaly(index, letter, number) {
+function setContactValuesForLinking(index, letter, number) {
     cleanContactValues();
     contactValues['index'] = index;
     contactValues['letter'] = `${letter}`;
@@ -129,7 +129,7 @@ function renderTemplateContactInfoPopupAbbreviationAndName(i) {
 function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
     return `<div class="contact-info-popup-title-and-editContactBtn flex">
                 <p>Contact Information</p>
-                <div class="contact-info-popup-editContact-btn cursor-p" onclick="settingValuesForEdittingContact(${i});openContactsNewContactPopup(${i})">
+                <div class="contact-info-popup-editContact-btn cursor-p" onclick="setContactValuesForEditting(${i});openContactsNewContactPopup(${i})">
                     <img src="assets/img/profil-edit-contact-icon.png">
                     <p>Edit Contact</p>
                 </div>
@@ -167,12 +167,12 @@ async function creatingOrSavingContact() {
 
 
 async function createContact() {
+    setContactNameForLinking(); // used for moving to contact after creating (not necessary in responsive) (l. 63)
     addAllInputValuesToContact();
-    getCreatedContactValue();
-    if(!edittingNewContact) contacts.push(newContact);
-    else saveAllInputValuesToContact();
+    if(edittingNewContact) saveAllInputValuesToContact();
+    else contacts.push(newContact);
     await addContact();
-    clearNewContact();
+    // clearNewContact();
 }
 
 
@@ -204,9 +204,10 @@ function addColorToContact(identifier) {
 }
 
 
-function getCreatedContactValue() {
-    createdContact = document.getElementById('name').value.toLowerCase();
+function setContactNameForLinking() {
+    createdContactName = document.getElementById('name').value.toLowerCase();
 }
+
 
 // SAVE
 function saveAllInputValuesToContact() {
@@ -218,18 +219,13 @@ function saveAllInputValuesToContact() {
 
 
 function saveInputValuesToContact(identifier) {
-    contacts[indexOfChoosedContactToEdit][identifier] = newContact[identifier];
+    contacts[indexOfChoosedContactToEdit][identifier] = newContact[identifier]; // because newContact is already created and for less code
 }
 
-
-
-
-/**
- * That function will be started, if the user chooses to edit an existing contact. The function changes the variable
- * 'edittingNewContact' to true and changes the undefinded variable 'chossedContactToEdit' to the index.
- * @param {*number} index - Thats the index of the contact-object in the array 'contacts' which is to edit
- */
-function settingValuesForEdittingContact(index) {
+/** That function will be started, if the user chooses to edit an existing contact. The function changes the variable
+ * 'edittingNewContact' to true and gives the undefined variable 'choosedContactToEdit' the right index.
+ * @param {number} index - Thats the index of the contact-object in the array 'contacts' which will be editted */
+function setContactValuesForEditting(index) {
     edittingNewContact = true;
     indexOfChoosedContactToEdit = index;
 }
@@ -255,13 +251,13 @@ function clearNewContact() {
 
 
 function MoveToContact() {
-    if(window.innerWidth > 800) document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click(); 
-    else {
+    // if(window.innerWidth > 800) document.getElementById(`contact-link-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click(); 
+    /*else*/ 
         setTimeout(() => {
             document.getElementById(`contact-link-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
-            document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
+            // document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
         }, 150);
-    }   
+     
 }
 
 

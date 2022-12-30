@@ -54,7 +54,7 @@ let contactValues = {
 /** That variable is important to scroll to the new contact after creating it.
  *  Find it in contacts.js. Familiar functions: filerContacts() 
  */
-let createdContact;
+let createdContactName;
 
 /** This two variables are important for loading the right templates and buttons, if a contact will be editted or not (creating new contact).
  *  Familiar functions: settingValuesForEdittingContact(index), cleanValuesForEdittingContact()

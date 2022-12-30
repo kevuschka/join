@@ -80,6 +80,14 @@ a {
     overflow: auto;
 }
 
+.opa-1 {
+    opacity: 1;
+}
+
+.opa-0 {
+    opacity: 0;
+}
+
 /* colors:
     blue/gray nav-background: #2A3647
     nav-background selected:  #091931
