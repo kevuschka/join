@@ -756,7 +756,8 @@ function clearInput(id) {
 
 async function sendInviteMail() {
     //event.preventDefault();
-    //giveID(); 
+    //giveID();
+    alert('Email not sent, Problems with Backend') 
     let formData = document.getElementById('input-invite-contact').value;
     let response = await actionInvite(formData);
     if(response.ok) { 

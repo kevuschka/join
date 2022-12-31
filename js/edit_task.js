@@ -1,5 +1,11 @@
 /////////////////// PRIORITY SECTION ////////////////////
-//colors the priority which is chosen in the task opened to edit
+
+/**
+ * This functions purpose is to highlight the chosen priority in the task currently edited
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
+ */
 function selectPrioInEditContainer(column, ticket) {
     let id = boardColumns[column][ticket]['prior']['name'];
     let button = document.getElementById(id);
@@ -12,6 +18,12 @@ function selectPrioInEditContainer(column, ticket) {
 /////////////////// CONTACTS SECTION ////////////////////
 
 //Display the Assigned contacts with a check and display them in their Initials below the Dropdown
+/**
+ * 
+ * 
+ * @param {*} column 
+ * @param {*} ticket 
+ */
 function renderAlreadyAssignedContacts(column, ticket) {
     let assignedContacts = getAssignedContacts(column, ticket);
     for (let i = 0; i < assignedContacts.length; i++) { 
