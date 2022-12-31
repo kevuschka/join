@@ -1,5 +1,8 @@
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
+let users;
+let usersContact;
+
 async function inits() {
     await downloadFromServer();
     users =  await JSON.parse(backend.getItem('users')) || [];
@@ -96,7 +99,6 @@ pushUser(userName, email, password, initials);
         'phone'   :'',
         'color'   : color
     }
-
 
     userName.value ='';
     email.value ='';

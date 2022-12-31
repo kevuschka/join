@@ -17,12 +17,11 @@ function selectPrioInEditContainer(column, ticket) {
 
 /////////////////// CONTACTS SECTION ////////////////////
 
-//Display the Assigned contacts with a check and display them in their Initials below the Dropdown
 /**
+ * This function is here to render the assigned contacts when editing a task
  * 
- * 
- * @param {*} column 
- * @param {*} ticket 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
  */
 function renderAlreadyAssignedContacts(column, ticket) {
     let assignedContacts = getAssignedContacts(column, ticket);
@@ -39,7 +38,14 @@ function renderAlreadyAssignedContacts(column, ticket) {
 }
 
 
-//without that we cannot use .length  (Does not work on a Json Object)
+/**
+ * This function adds the tasks in the JSON object one for one to a new array
+ * without that we cannot use .length  (Does not work on a Json Object)
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
+ * @returns 
+ */
 function getAssignedContacts(column, ticket) {
     let assignedContacts = [];
     for (let i = 0; i < Object.keys(boardColumns[column][ticket]['team']).length; i++) {
@@ -49,6 +55,11 @@ function getAssignedContacts(column, ticket) {
 }
 
 
+/**
+ * This function displays the contacts which are assigned to a task as checked in the contacts list in edit task
+ * 
+ * @param {int} j - index of the checkbox that needs to get checked
+ */
 function displayAssignedContactsAsChecked(j) {
     document.getElementById('checkbox' + j).checked = true;
 }
@@ -56,6 +67,12 @@ function displayAssignedContactsAsChecked(j) {
 
 /////////////////// SUBTASK SECTION ////////////////////
 
+/**
+ * This function renders and manages everything regarding the subtask section when editing a task
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
+ */
 function renderSubtasksInEditContainer(column, ticket) {
     let subtasks = getSubtasksFromTask(column, ticket);
     for (let i = 0; i < subtasks.length; i++) {
@@ -66,6 +83,13 @@ function renderSubtasksInEditContainer(column, ticket) {
 }
 
 
+/**
+ * This function pushes all subtasks from a JSON object into an array
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
+ * @returns - an array consisting of all subtasks assigned to a task
+ */
 function getSubtasksFromTask(column, ticket) {
     let subtasks = [];
     for (let i = 0; i < Object.keys(boardColumns[column][ticket]['subtasksArray']).length; i++) {
@@ -75,12 +99,25 @@ function getSubtasksFromTask(column, ticket) {
 }
 
 
+/**
+ * This function get the container adds the subtasks to the subtask list
+ * 
+ * @param {string} subtask - the subtask of the current iteration (current position/i)
+ * @param {int} i - the index of the subtask currently added (needed for the id of the checkbox) 
+ */
 function addTaskToSubtaskListInEdit(subtask, i) {
     let container = document.getElementById('subtask-list-container');
     container.innerHTML += templateSubtaskListInEdit(subtask, i);
 }
 
 
+/**
+ * This function generates a HTML template of a list entry in the subtask list
+ * 
+ * @param {string} subtask - the subtask of the current iteration (current position/i)
+ * @param {int} i - the index of the subtask currently added (needed for the id of the checkbox) 
+ * @returns html code consisting of a list entry with a checkbox and the current subtask (string)
+ */
 function templateSubtaskListInEdit(subtask, i) {
     return /*html*/ `
         <li class="subtask-list-entry flex"><input id="cb-subtask-${i}" class="subtask-checkbox" type="checkbox">${subtask}</li>
@@ -88,6 +125,12 @@ function templateSubtaskListInEdit(subtask, i) {
 }
 
 
+/**
+ * This function marks the checkboxes of the finished subtasks as checked
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
+ */
 function displayCheckBoxesCorrectlyIfChecked(column, ticket) {
     for (let i = 0; i < boardColumns[column][ticket]['subtasksArray'].length; i++) {
         if (subtaskStatusIsTrue(i, column, ticket)) {
@@ -98,11 +141,23 @@ function displayCheckBoxesCorrectlyIfChecked(column, ticket) {
 }
 
 
+/**
+ * This function checks if a subtask is already finished 
+ * @param {int} i - the index of the subtask within the subtasks array 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
+ * @returns a boolean value, true if the subtask is already finished
+ */
 function subtaskStatusIsTrue(i, column, ticket) {
     return boardColumns[column][ticket]['status-subtasks'][i];
 }
 
 
+/**
+ * This function adds display none to the whole subtask section if there are no subtask assigned to a task
+ * 
+ * @param {Array} subtasks - the array holding all subtasks of a task
+ */
 function addDisplayNoneToSubtaskIfEmpty(subtasks) {
     if (subtasks == '') {
         document.getElementById('subtask-edit-container').classList.add('d-none');
@@ -112,6 +167,12 @@ function addDisplayNoneToSubtaskIfEmpty(subtasks) {
 
 /////////////////// FINISH EDIT ////////////////////
 
+/**
+ * This function manages (makes the necessary function calls) to save the changes of the task editing
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
+ */
 async function saveChanges(columm, ticket) {
     let currentTask = boardColumns[columm][ticket];
     addInputValuesToTask(currentTask, 'title'); //in add_task.js
@@ -125,7 +186,10 @@ async function saveChanges(columm, ticket) {
 }
 
 
-//clears the contacts array which is needed to know which contacts abbreviations should be displayed
+//
+/**
+ * This function clears the contacts icon array which is needed to display the contacts abbreviations correctly
+ */
 function clearContactIconArray() {
     contactIconArray = [];
 }

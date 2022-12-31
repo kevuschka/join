@@ -153,21 +153,32 @@ function renderTemplateTicketInfoPopupContainer(column, ticket) {
 }
 
 
+/**
+ * This function renders the container where tasks can be edited
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
+ */
 function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
     content.innerHTML = `<div class="ticket-info-popup-inner-container flex column h-100 w-100" id="ticket-info-popup-inner-container-${column}-${ticket}"></div>`;
     document.getElementById(`ticket-info-popup-inner-container-${column}-${ticket}`).innerHTML = templateTicketEditing(column, ticket);
-    clearContactIconArray();
+    clearContactIconArray(); //in edit_task.js
     renderPrioritySelection(); //in add_task.js
     renderContactsDropdown(); //in add_task.js
     selectPrioInEditContainer(column, ticket); //in edit_task.js
     renderAlreadyAssignedContacts(column, ticket); //in edit_task.js
     renderSubtasksInEditContainer(column, ticket);
-
-    // content.innerHTML += renderTicketInfoEditBtn(column, ticket);
 }
 
 
+/**
+ * This function generates the HTML for the container to edit a task
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
+ * @returns a html template for the edit container (in board.js to edit a task)
+ */
 function templateTicketEditing(column, ticket) {
     return /*html*/ `
     <form class="add-task-form-style-board-wrapper column flex" onsubmit="saveChanges(${column}, ${ticket}), renderTicketInfoPopupContainer(${column}, ${ticket}); return false">      
@@ -224,17 +235,6 @@ function templateTicketEditing(column, ticket) {
 }
 
 
-function renderTicketInfoEditBtn(column, ticket) {
-    return `
-        <div class="ticket-info-popup-editting-ok-btn-container w-100 flex">
-            <div class="ticket-info-popup-editting-ok-btn cursor-p flex" onclick="renderTicketInfoPopupContainer(${column}, ${ticket})">
-                <p>Ok</p>
-                <img src="assets/img/check-small.png">
-            </div>
-        </div>`;
-}
-
-
 function renderTicketInfoPopupTeammembers(column, ticket) {
     let name;
     let content = document.getElementById(`ticket-info-popup-assignedTo-${column}-${ticket}`);
@@ -275,6 +275,11 @@ function closeTicketInfoPopup() {
 
 //////////////////// CREATED TASK ANIMATION ///////////////////////////////
 
+/**
+ * This function generate the HTML code for the pop up when a task is created
+ * 
+ * @returns a html template for the pop up that the Task was added to the board 
+ */
 function templateCreatedTaskPopUp() {
     return /*html*/ `
         <div class="pop-up-created-task absolute-centered flex" id="pop-up-created-task">
@@ -285,6 +290,9 @@ function templateCreatedTaskPopUp() {
 }
 
 
+/**
+ * This function is responsible for the animation of several pop ups sliding in from the bottom 
+ */
 function startSlideUPAnimation() {
     if((window.location.pathname == '/board.html') || (window.location.pathname == '/contacts.html')) {
         document.getElementById('pop-up-created-task').classList.add('create-task-animation');
@@ -297,6 +305,9 @@ function startSlideUPAnimation() {
 }
 
 
+/**
+ * This function ends the slide up animation
+ */
 function endSlideUPAnimation() {
     document.getElementById('pop-up-created-task').classList.remove('create-task-animation');
 }
