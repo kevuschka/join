@@ -49,7 +49,8 @@ function logout() {
     localStorage.removeItem('usersEmail');
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentUserHeaderData');
-    isLoggedIn();
+    localStorage.removeItem('guestUser');
+    isLoggedInn();
 }
 
 /**
@@ -89,23 +90,7 @@ function headerMenuPopupSlideOut() {
 }
 
 //////////////////// BOARD: SEARCHBAR - FULLSCREEN POPUP AND CLOSING /////////////////////
-/**
- *  That is a fullscreen transparent popup for the searchbar in section "Board", to close the searchbar-input, when clicking on the screen area
- * @returns - a fullscreen transparent (absolute) div
- */
-function renderBoardSearchbarPopup() {
-    return `<div class="board-header-search-popup-full absolute w-100 d-none" id="board-header-search-input-popup-full" onclick="closeBoardSearchbarPopup()"></div>`;
-}
 
-
-function closeBoardSearchbarPopup() {
-    document.getElementById('board-header-search-input-popup').value = '';
-    document.getElementById('board-header-search-input-and-results-popup').classList.add('d-none');
-    document.getElementById('board-header-search-results-popup').innerHTML = '';
-    document.getElementById('board-header-search-results-popup').classList.add('d-none');
-    document.getElementById(`board-header-search-input-popup-full`).classList.add('d-none');
-    document.getElementById(`board-header-search-container`).classList.remove('d-none');
-}
 
 
 //////////////////// BOARD: TICKET ONCLICK POPUP /////////////////////
@@ -280,7 +265,11 @@ function coloringTicketInfoPopupMembers(column, ticket, teamMember) {
 function closeTicketInfoPopup() {
     document.getElementById('board-ticket-info-popup-full').classList.add('d-none');
     document.getElementById('board-ticket-info-popup-full').innerHTML = '';
-    init();
+    if(taskEditted) {
+        taskEditted = false;
+        renderBoard();
+        hideSomeTickets();
+    }
 }
 
 
@@ -381,19 +370,19 @@ async function closeBoardAddtaskPopupFilled() {
         setTimeout(() => {
             removeClasslist(`board-addtask-popup`,'board-addtask-popup-slideIn');
             removeClasslist(`board-addtask-popup-full`,'showBackgroundAnimation');
-        }, 1000);
+        }, 3000);
         setTimeout(() => {
             addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
             removeClasslist(`board-addtask-popup-full`,`opa-1`);
-        }, 1130);
+        }, 3130);
         setTimeout(() => {
             addClasslist(`board-addtask-popup-full`, `d-none`);
             document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
-        }, 1260);
+        }, 3260);
         if (window.location.pathname == '/contacts.html') {
             setTimeout(() => {
                 window.location.href = './board.html';
-            }, 1390);
+            }, 3290);
         }
     }
 }
@@ -637,15 +626,15 @@ function fillInputFieldsOfEditContactPopupWithExistingData(index) {
 
 function contactsNewContactSlideIn() {
     setTimeout(() => {
-        if(window.innerWidth > 800) openWhenContactCreated();
-        if(window.innerWidth < 801) openWhenContactEditted();
+        if(window.innerWidth > 800) openContactPopupSlideIn();
+        if(window.innerWidth < 801) openContactPopupSlideUp();
     }, 10);
 }
 
 
 function closeContactsNewContactPopup() {
-    if(window.innerWidth > 800) closeWhenContactCreated();
-    if(window.innerWidth < 801) closeWhenContactEditted();
+    if(window.innerWidth > 800) closeContactPopupSlideIn();
+    if(window.innerWidth < 801) closeContactPopupSlideUp();
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     contactsNewContactsPopupSlideOut();
     cleanValuesForEdittingContact();
@@ -674,9 +663,7 @@ function contactsNewContactsPopupSlideOut() {
 
 
 function closeContactsNewContactPopupFilled() {
-    document.getElementById(`contacts-new-contact-popup-container`).style.transition = `unset`;
-    closeWhenContactCreated();
-    closeWhenContactEditted();
+    closeContactsNewContactPopupFilledDnone();
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
     addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
     removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
@@ -686,6 +673,15 @@ function closeContactsNewContactPopupFilled() {
         document.getElementById(`contacts-new-contact-popup-container`).style = ``;
     }, 100);
     cleanValuesForEdittingContact();
+}
+
+
+function closeContactsNewContactPopupFilledDnone() {
+    document.getElementById(`contacts-new-contact-popup-container`).style.transition = `unset`;
+    addContactPopupDnone();
+    closeContactPopupSlideIn();
+    closeContactPopupSlideUp();
+    removeContactPopupDnone();
 }
 
 
@@ -701,23 +697,31 @@ function changeColorOfContactsNewContactBtnCancelToBlack() {
 }
 
 
-function openWhenContactCreated() {
+function openContactPopupSlideIn() {
     addClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
 }
 
 
-function closeWhenContactCreated() {
+function closeContactPopupSlideIn() {
     removeClasslist(`contacts-new-contact-popup-container`,'board-addtask-popup-slideIn');
 }
 
 
-function openWhenContactEditted() {
+function openContactPopupSlideUp() {
     addClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
 }
 
 
-function closeWhenContactEditted() {
+function closeContactPopupSlideUp() {
     removeClasslist(`contacts-new-contact-popup-container`,'contacts-popup-slideIn-responsive');
 }
 
 
+function addContactPopupDnone() {
+    addClasslist(`contacts-new-contact-popup-container`,'d-none');
+}
+
+
+function removeContactPopupDnone() {
+    removeClasslist(`contacts-new-contact-popup-container`,'d-none');
+}

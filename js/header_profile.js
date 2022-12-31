@@ -7,6 +7,9 @@ let currentUserHeaderData = {
 };
 
 
+let guestUser = false;
+
+
 /**
  * Data to load on every page the header-profile, if user is registered
  * @param {JSON} user - json object/user info, that is registered.
@@ -23,5 +26,21 @@ function getCurrentUserHeaderData() {
     if(currentUserHeaderDataAsText) {
         currentUserHeaderData['abbreviation'] = JSON.parse(currentUserHeaderDataAsText).abbreviation;
         currentUserHeaderData['color'] = JSON.parse(currentUserHeaderDataAsText).color;
-    }
+        return true;
+    } else return false;
+}
+
+
+function setGuestUser() {
+    guestUser = true;
+    localStorage.setItem('guestUser', JSON.stringify(guestUser));
+}
+
+
+function getGuestUser() {
+    let guestUserAsText = localStorage.getItem('guestUser', JSON.stringify(guestUser)) || '';
+    if(guestUserAsText) {
+        guestUser = JSON.parse(guestUserAsText);
+        return true;
+    } else return false;
 }

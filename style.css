@@ -48,6 +48,10 @@ html, body {
     display: none !important;
 }
 
+.border-none {
+    border: none;
+}
+
 .relative {
     position: relative;
 }
@@ -74,6 +78,14 @@ a {
 
 .auto {
     overflow: auto;
+}
+
+.opa-1 {
+    opacity: 1;
+}
+
+.opa-0 {
+    opacity: 0;
 }
 
 /* colors:
@@ -444,7 +456,7 @@ a {
         left: 0;
         width: 100%;
         justify-content: flex-end;
-        padding: 5px 30px;
+        padding: 5px 22px 5px 30px;
     }
 
     .header-title, .help-img {
@@ -465,6 +477,10 @@ a {
         top: 17px;
         left: 23px;
         width: 30px;
+    }
+
+    .header-right-corner {
+        justify-content: flex-end;
     }
 
     /* HEADER MENU POPUP*/

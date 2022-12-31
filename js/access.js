@@ -87,15 +87,29 @@ pushUser(userName, email, password, initials);
     }
 
 
+    let newUserContact = {
+        'userName':userName.value,
+        'valid'   : false,
+        'loggedIn': false,
+        'shortLetter':initials,
+        'email'   :email.value,
+        'phone'   :'',
+        'color'   : color
+    }
+
 
     userName.value ='';
     email.value ='';
     password.value ='';
     
     users.push(newUser);
+    usersContact.push(newUserContact);
 
     let allUsersAsString = JSON.stringify(users);
     await backend.setItem('users', allUsersAsString);
+    let allUsersContactAsString = JSON.stringify(usersContact);
+    await backend.setItem('usersContact', allUsersContactAsString);
+
     window.location.href = 'index.html?msg=Du hast dich erfolgreich registriert';
 }
 
@@ -151,7 +165,10 @@ function isLoggedIn() {
 
 
 let usersEmail;
-
+function guestLogin() {
+    setGuestUser();
+    window.location.href = 'summary.html';
+}
 
 /**
  * This function manages following:

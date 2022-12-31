@@ -25,6 +25,11 @@ let priorities = [
 ]
 
 
+// ##### BOARD #####
+let hiddenTickets = [];
+let taskEditted = false;
+
+
 // ##### CONTACTS #####
 let contacts = [];
 
@@ -49,7 +54,7 @@ let contactValues = {
 /** That variable is important to scroll to the new contact after creating it.
  *  Find it in contacts.js. Familiar functions: filerContacts() 
  */
-let createdContact;
+let createdContactName;
 
 /** This two variables are important for loading the right templates and buttons, if a contact will be editted or not (creating new contact).
  *  Familiar functions: settingValuesForEdittingContact(index), cleanValuesForEdittingContact()
@@ -70,6 +75,7 @@ let alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
 // ##### USERS #####
 let users = [];
+let usersContact = [];
 
 // ##### CATEGORY #####
 let category = [];
@@ -113,11 +119,12 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 async function init() {
     await downloadFromServer();
     users =  await JSON.parse(backend.getItem('users')) || [];
+    usersContact = await JSON.parse(backend.getItem('usersContact')) || [];
     user = await JSON.parse(backend.getItem('currentUser')) || [];
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [[], [], [], []]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
-    getCurrentUserHeaderData();
+    isLoggedInn();
     renderSiteRelatedTemplate();
 }
 
@@ -173,9 +180,9 @@ function initContacts(value) {
 }
 
 // LOGIN 
-function isLoggedIn() {
+function isLoggedInn() {
     let itemSet = localStorage.getItem('usersEmail');
-    if(!itemSet) {
+    if(!(itemSet || getCurrentUserHeaderData() || getGuestUser())) {
         window.location.href = 'index.html?msg=Du hast dich erfolgreich abgemeldet';
     }
 }

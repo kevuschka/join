@@ -668,10 +668,11 @@ function addCurrentUserToTeam() {
  * @param {Element} currentTask - the task currently in creation 
  */
 function changeSubtasksStatus(currentTask) {
+    currentTask['finished-subtasks'] = 0;
     for (let i = 0; i < currentTask['subtasksArray'].length; i++) {
         resetSubtaskStatusAndFinishCounter(currentTask, i); //to make sure if a subtask is not anymore ticked it gets reset
         let checkbox = document.getElementById('cb-subtask-' + i);
-        if (checkbox.checked == true) {
+        if (checkbox.checked) {
             currentTask['status-subtasks'][i] = true;
             currentTask['finished-subtasks']++;
         }
@@ -688,7 +689,6 @@ function changeSubtasksStatus(currentTask) {
  */
 function resetSubtaskStatusAndFinishCounter(currentTask, i) {
     currentTask['status-subtasks'][i] = false;
-    currentTask['finished-subtasks']--;
 }
 
 
