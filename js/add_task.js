@@ -1,12 +1,6 @@
 let categoryObject;
 let contactIconArray = []; //safes the indexes/positions of the seleceted Contacts in the contacts array
-let currentUser = {
-    'name': 'Max Mustermann',
-    'color': '#0190E0',
-    'email': 'max.mustermann@gmail.com',
-    'phone': '+490123456789',
-    'abbreviation': 'MM'
-}
+
 
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
