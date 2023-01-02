@@ -7,7 +7,7 @@ let currentUserHeaderData = {
 };
 
 
-let guestUser = false;
+let guestUser = true;
 
 
 /**
@@ -22,7 +22,7 @@ function setCurrentUserHeaderData(user) {
 
 
 function getCurrentUserHeaderData() {
-    let currentUserHeaderDataAsText = localStorage.getItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData)) || '';
+    let currentUserHeaderDataAsText = localStorage.getItem('currentUserHeaderData') || '';
     if(currentUserHeaderDataAsText) {
         currentUserHeaderData['abbreviation'] = JSON.parse(currentUserHeaderDataAsText).abbreviation;
         currentUserHeaderData['color'] = JSON.parse(currentUserHeaderDataAsText).color;
@@ -32,15 +32,22 @@ function getCurrentUserHeaderData() {
 
 
 function setGuestUser() {
-    guestUser = true;
     localStorage.setItem('guestUser', JSON.stringify(guestUser));
+    window.location.href = 'summary.html';
 }
 
 
-function getGuestUser() {
-    let guestUserAsText = localStorage.getItem('guestUser', JSON.stringify(guestUser)) || '';
-    if(guestUserAsText) {
-        guestUser = JSON.parse(guestUserAsText);
-        return true;
-    } else return false;
+// function getGuestUser() {
+//     let guestUserAsText = localStorage.getItem('guestUser', JSON.stringify(guestUser)) || '';
+//     if(guestUserAsText) {
+//         guestUser = JSON.parse(guestUserAsText);
+//         return true;
+//     } else return false;
+// }
+
+
+function isGuestUser() {
+    let guest = localStorage.getItem('guestUser') || '';
+    if(guest) return true;
+    else return false;
 }

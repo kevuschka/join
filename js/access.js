@@ -2,7 +2,7 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 //Delete local Storage items
 localStorage.removeItem('usersEmail');
-localStorage.removeItem('currentUser');
+// localStorage.removeItem('currentUser');
 localStorage.removeItem('currentUserHeaderData');
 localStorage.removeItem('guestUser');
 
@@ -158,7 +158,7 @@ function isLoggedIn() {
         console.log('user gefunden');
 
         localStorage.setItem('usersEmail', usersEmail.value);
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        // localStorage.setItem('currentUser', JSON.stringify(user));
         setCurrentUserHeaderData(user);
         console.log('user saved in key');
        
@@ -174,10 +174,10 @@ function isLoggedIn() {
 
 
 let usersEmail;
-function guestLogin() {
-    setGuestUser();
-    window.location.href = 'summary.html';
-}
+// function guestLogin() {
+//     setGuestUser();
+//     window.location.href = 'summary.html';
+// }
 
 /**
  * This function manages following:
