@@ -51,7 +51,7 @@ let user;
  * - Checking typed email if user was already registered
  * - If email is unused checkmail() will redirect users typed information to pushuser()
  * 
- */function checkMail(userName, email, password) {
+ */function checkMail(userName, email, password, initials) {
 if (users.find(o => o.email == email.value)) {
 alert('Diese E-Mail ist bereits registriert!');
 } else {
