@@ -2,6 +2,7 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 let users;
 let usersContact;
+let user;
 
 async function inits() {
     await downloadFromServer();
@@ -10,7 +11,7 @@ async function inits() {
     user = await JSON.parse(backend.getItem('currentUser')) || [];
 }
 
-let user;
+
 
 /**
  * This function loads users data from the server
