@@ -214,6 +214,10 @@
     height: 12px;
 }
 
+.board-header-addTask-button-resp {
+    display: none;
+}
+
 .board-content {
     justify-content: space-between;
     padding-top: 60px;

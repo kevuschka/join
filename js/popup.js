@@ -376,25 +376,23 @@ function closeBoardAddtaskPopup() {
 }
 
 
-async function closeBoardAddtaskPopupFilled() {
+function closeBoardAddtaskPopupFilled() {
     if (!URLequalsAddTaskHtml()) {
         setTimeout(() => {
             removeClasslist(`board-addtask-popup`,'board-addtask-popup-slideIn');
             removeClasslist(`board-addtask-popup-full`,'showBackgroundAnimation');
-        }, 3000);
+        }, 700);
         setTimeout(() => {
             addClasslist(`board-addtask-popup-full`, `hideBackgroundAnimation`);
             removeClasslist(`board-addtask-popup-full`,`opa-1`);
-        }, 3130);
+        }, 830);
         setTimeout(() => {
             addClasslist(`board-addtask-popup-full`, `d-none`);
             document.getElementById('board-addtask-popup-content').innerHTML = ''; //wait until the window is not visible
-        }, 3260);
-        if (window.location.pathname == '/contacts.html') {
-            setTimeout(() => {
-                window.location.href = './board.html';
-            }, 3290);
-        }
+        }, 960);
+        setTimeout(() => {
+            window.location.href = './board.html';
+        }, 990);
     }
 }
 
