@@ -120,7 +120,7 @@ async function init() {
     await downloadFromServer();
     users =  await JSON.parse(backend.getItem('users')) || [];
     usersContact = await JSON.parse(backend.getItem('usersContact')) || [];
-    user = await JSON.parse(backend.getItem('currentUser')) || [];
+    // user = await JSON.parse(backend.getItem('currentUser')) || [];
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [[], [], [], []]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];

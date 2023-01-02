@@ -596,9 +596,7 @@ async function createTask() {
     pushAssignedContactsToTask(currentTask);
     pushTaskToTodo();
     await addBoard();
-    clearAddTask();
     switchToBoard();
-    await init();
 }
 
 
@@ -707,7 +705,7 @@ function switchToBoard() {
     if (URLequalsAddTaskHtml()) {
         setTimeout(function (){
             window.location.href = '/board.html';     
-          }, 500);
+          }, 700);
     }
 }
 

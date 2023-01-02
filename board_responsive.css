@@ -160,7 +160,7 @@
     }
 
     .board-header-left .board-header-addTask-button-resp {
-        display: block;
+        display: unset;
         width: 34px;
         height: 34px;
         background-color:#2A3647;

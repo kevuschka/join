@@ -1,7 +1,7 @@
 function renderHeader() {
     let content = document.getElementById('header');
     content.innerHTML = templateHeader();
-    if(currentUserHeaderData['abbreviation']) showUserInHeader();
+    if(getCurrentUserHeaderData()) showUserInHeader();
     else showGuestUserInHeader();
 }
 
@@ -21,7 +21,6 @@ function showGuestUserInHeader() {
     let header = document.getElementById(`header-right-corner`);
     header.innerHTML += `<div class="header-profil-container flex cursor-p" id="header-profil-container" onclick="openHeaderMenuPopup()"><img class="header-profil" src="assets/img/add-contact-icon.png"></div>`;
 }
-
 
 
 function templateHeader() {
