@@ -153,10 +153,10 @@ function renderNavAndHeader() {
 
 
 function initSummary(value) {
-    greet();
     markNavItem(value);
     renderPopups();
     renderSummary();
+    greet();
 }
 
 

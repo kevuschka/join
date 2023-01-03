@@ -148,11 +148,14 @@ function greet() {
     
     
     if (hour < 11 && hour >= 07) {
-        document.getElementById('greet').innerHTML = `Guten Morgen`;
+        document.getElementById('greet').innerHTML = `Good morning,`;
+        document.getElementById('greet2').innerHTML = `Good morning,`;
     } else if (hour >= 11 && hour < 18) {
-        document.getElementById('greet').innerHTML = `Guten Mittag`;
+        document.getElementById('greet').innerHTML = `Good day,`;
+        document.getElementById('greet2').innerHTML = `Good day,`;
     } else if(hour >= 18) {
-        document.getElementById('greet').innerHTML = `Guten Abend`;
+        document.getElementById('greet').innerHTML = `Good evening,`;
+        document.getElementById('greet2').innerHTML = `Good evening,`;
     }
 }
 
@@ -178,31 +181,87 @@ function renderSummary() {
 
 filterPriorities();
 
-   
+
 }
 
     let urgent = 0;
     let mid = 0;
     let low = 0;
-   
+    let upcomingDeadline = 0;
+
+
 function filterPriorities() {
+    if(filterUrgent()) filterDate('Urgent');
+    else if(filterMid() > filterLow()) filterDate('Medium');
+    else filterDate('Low');
+    renderPriorityContainer(j);
+}
 
-    for (let j = 0; j < todo2.length; j++) {
-        const element2 = todo2[j];
-        
-        if(element2.prior.name == 'Urgent') {
-                urgent++;
-            } else if(element2.prior.name == 'Mid') {
-                mid++;
-            } else if(element2.prior.name == 'Low') {
-                low++;
+
+function filterUrgent() {
+    let urgent = 0;
+    for (let i = 0; i < boardColumns.length; i++) {
+        if(boardColumns[i].length > 0) {
+            for (let j = 0; j < boardColumns[i].length; j++) {
+                if(boardColumns[i][j]['prior']['name'] == 'Urgent') urgent++;
             }
-
-            renderPriorityContainer(j);
-
+        }
+    }
+    return urgent;
 }
+
+
+function filterMid() {
+    let mid = 0;
+    for (let i = 0; i < boardColumns.length; i++) {
+        if(boardColumns[i].length > 0) {
+            for (let j = 0; j < boardColumns[i].length; j++) {
+                if(boardColumns[i][j]['prior']['name'] == 'Medium') mid++;
+            }
+        }
+    }
+    return mid;
 }
- 
+
+
+function filterLow() {
+    let low = 0;
+    for (let i = 0; i < boardColumns.length; i++) {
+        if(boardColumns[i].length > 0) {
+            for (let j = 0; j < boardColumns[i].length; j++) {
+                if(boardColumns[i][j]['prior']['name'] == 'Low') low++;
+            }
+        }
+    }
+    return mid;
+}
+
+
+function filterDate(prio) {
+    let dates = [];
+    for (let i = 0; i < boardColumns.length; i++) {
+        if(boardColumns[i].length > 0) {
+            for (let j = 0; j < boardColumns[i].length; j++) {
+                if(boardColumns[i][j]['prior']['name'] == prio)
+                    dates.push(boardColumns[i][j]['due-date'].toString());
+            }
+        }
+    }
+    orderDates(dates);
+    return mid;
+}
+
+
+function orderDates(dates) {
+    let upcomingDate;
+    for (let i = 0; i < (dates.length)-1; i++) {
+        let date1 =  dates[i].split('-');
+        upcomingDate = dates[i+1].split('-');
+        upcomingDate = date1
+        
+    }
+}
+
 
 function renderPriorityContainer(j) {
     if(urgent >= 1) {
@@ -215,7 +274,7 @@ function renderPriorityContainer(j) {
         document.getElementById('priority-text').innerHTML = `Urgent`;
 
         if(todo2[j].prior.name == 'Urgent') {
-            document.getElementById('date').innerHTML = `${todo2[j]['due-date']}`;
+            document.getElementById('date').innerHTML = `${upcomingDeadline}`;
         }
     }
         
