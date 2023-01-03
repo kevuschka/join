@@ -126,6 +126,7 @@ async function init() {
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
     isLoggedInn();
     renderSiteRelatedTemplate();
+    getIndexOfCurrentUser();
 }
 
 
@@ -252,5 +253,16 @@ function URLequalsAddTaskHtml() {
 }
 
 
+//// To get the index of the current user in usersContact
 
+let indexOfCurrentUser;
+
+function getIndexOfCurrentUser() {
+    for (let i = 0; i < usersContact.length; i++) {
+        if (usersContact[i]['email'] == localStorage.getItem('usersEmail')) {
+            indexOfCurrentUser = i;
+            console.log(indexOfCurrentUser);
+        }
+    }
+}
 

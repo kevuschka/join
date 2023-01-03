@@ -1,6 +1,6 @@
 let categoryObject;
 let contactIconArray = []; //safes the indexes/positions of the seleceted Contacts in the contacts array
-
+let usersContactIconArray = [];
 
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
@@ -298,7 +298,17 @@ function renderContactsDropdown() {
     for (let i = 0; i < contacts.length; i++) {
         dropdown.innerHTML += templateDropdownContacts(i);
     }
+    for (let i = 0; i < usersContact.length; i++) {
+        if (!userContactIsLoggedIn(i)) {
+            dropdown.innerHTML += templateDropdownUsersContacts(i);
+        }
+    }
     dropdown.innerHTML += templateDropwdownInviteNewContact();  
+}
+
+
+function userContactIsLoggedIn(i) {
+    return i == indexOfCurrentUser;
 }
 
 
@@ -308,15 +318,18 @@ function renderContactsDropdown() {
  * 
  * @param {int} i - index of the clicked contact 
  */
-function changeDisplayInContactIconSection(i) {
-    let index = contactIconArray.indexOf(i);
+function changeDisplayInContactIconSection(iconArray, i) {
+    let index = iconArray.indexOf(i);
     if (ContactIsAlreadyInArray(index)) {
-        removeFromContactsIconArray(index);
+        removeFromIconArray(iconArray, index);
     } else {
-        addToContactsIconArray(i);
+        addToContactsIconArray(iconArray, i);
     }
     renderContactIconSection();
 }
+
+
+
 
 
 /**
@@ -334,8 +347,8 @@ function ContactIsAlreadyInArray(index) {
  * 
  * @param {int} index - position of the value that should be removed from contactsIconArray 
  */
-function removeFromContactsIconArray(index) {
-    contactIconArray.splice(index, 1); 
+function removeFromIconArray(iconArray, index) {
+    iconArray.splice(index, 1); 
 }
 
 
@@ -344,8 +357,8 @@ function removeFromContactsIconArray(index) {
  * 
  * @param {*} i - is the index/position of the selected contactObject in the contactsArray
  */
-function addToContactsIconArray(i) {
-    contactIconArray.push(i);
+function addToContactsIconArray(iconArray, i) {
+    iconArray.push(i);
 }
 
 
@@ -357,7 +370,11 @@ function renderContactIconSection() {
     container.innerHTML = '';
     for (let i = 0; i < contactIconArray.length; i++) {
         let contactIndex = contactIconArray[i] //the contactIonArray holds the indexes of the selected contacts
-        container.innerHTML += templateContactIconSection(contactIndex);
+        container.innerHTML += templateContactIconSection(contacts, contactIndex, 'abbreviation');
+    }
+    for (let i = 0; i < usersContactIconArray.length; i++) {
+        let contactIndex = usersContactIconArray[i] //the contactIonArray holds the indexes of the selected contacts
+        container.innerHTML += templateContactIconSection(usersContact, contactIndex, 'shortLetter');
     }
 }
 
