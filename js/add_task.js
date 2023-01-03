@@ -306,7 +306,12 @@ function renderContactsDropdown() {
     dropdown.innerHTML += templateDropwdownInviteNewContact();  
 }
 
-
+/**
+ * This function checks if the user of the current iteration is logged in
+ * 
+ * @param {int} i - index of the current iteration of usersContact 
+ * @returns boolean value (True if the usersContact on the position i is the logged in user)
+ */
 function userContactIsLoggedIn(i) {
     return i == indexOfCurrentUser;
 }
@@ -329,9 +334,6 @@ function changeDisplayInContactIconSection(iconArray, i) {
 }
 
 
-
-
-
 /**
  * This function checks if the Contact is already in the ContactsIconArray by checking if the index is greater -1
  * 
@@ -352,10 +354,14 @@ function removeFromIconArray(iconArray, index) {
 }
 
 
+
+
+
 /**
- * This function adds i to the contactsIconArray
+ * This function adds i to the iconArray (either usersContactIconArray or contactIconArray)
  * 
- * @param {*} i - is the index/position of the selected contactObject in the contactsArray
+ * @param {Array} iconArray - the Array in which the index is pushed (either usersContactIconArray or contactIconArray)
+ * @param {int} i - is the index/position of the selected contactObject in the contactsArray
  */
 function addToContactsIconArray(iconArray, i) {
     iconArray.push(i);
