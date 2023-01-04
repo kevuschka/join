@@ -107,16 +107,29 @@ function renderTemplateTicketFooter(n,j) {
  * @param {number} n - n is the column number starting at 0
  * @param {number} j - j is the row or the ticket-number in that column */
 function renderTicketTeam(n,j) {
-    let name;
-    let k = boardColumns[n][j]['team'].length;
-    let content = document.getElementById(`ticket-contacts-container-${n}-${j}`);
-    if(boardColumns[n][j]['team'].length > 3) k = 2;
+    if(boardColumns[n][j]['team']) {
+        let k = boardColumns[n][j]['team'].length;
+        console.log('k', k);
+        let content = document.getElementById(`ticket-contacts-container-${n}-${j}`);
+        if(boardColumns[n][j]['team'].length > 3) k = 2;
+        templateTicketMember(n,j,k,content);
+        if(k < boardColumns[n][j]['team'].length) renderContactPlaceholder(k,n,j,content);
+    }
+}
+
+
+// function existingTeamMember() {
+//     if(boardColumns[n][j]['team'] == null) return false;
+//     else return true;
+// }
+
+
+function templateTicketMember(n,j,k, content) {
     for (let i = 0; i < k ; i++) {
-        name = boardColumns[n][j]['team'][i]['name'];
+        let name = boardColumns[n][j]['team'][i]['name'];
         content.innerHTML += `<div class="ticket-contact" id="board-contact-${n}-${j}-${i}">${getNameLetters(name)}</div>`;
         coloringTicketMembers(n,j,i);
     }
-    if(k < boardColumns[n][j]['team'].length) renderContactPlaceholder(k,n,j,content);
 }
 
 /** That function colors the ticket team members in the ticket
