@@ -36,7 +36,7 @@ function getUserName() {
 /**
  * This function renders informations about the number of tasks in the categories */
 function renderSummary() {
-    document.getElementById('task-count1').innerHTML = `${boardColumns[0].length}`;
+    document.getElementById('task-count1').innerHTML = `${getNumberOfAllTasks()}`;
     document.getElementById('task-count2').innerHTML = `${boardColumns[1].length}`;
     document.getElementById('task-count3').innerHTML = `${boardColumns[2].length}`;
 
@@ -51,6 +51,13 @@ function renderSummary() {
 filterPriorities();
 
 
+}
+
+
+function getNumberOfAllTasks() {
+    let tasks = 0;
+    for (let i = 0; i < boardColumns.length; i++) tasks += (boardColumns[i].length);
+    return tasks;
 }
 
 
