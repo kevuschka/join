@@ -112,7 +112,7 @@ function templateContactIconSection(contactArray, index) {
 
 function templateGuestContactIconSection() {
     return /*html*/ `
-        <img class="contact-icon-img" src="/assets/img/add-contact-icon.png">
+        <img class="contact-icon-img" src="./assets/img/add-contact-icon.png">
     `;
 }
 
