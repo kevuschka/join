@@ -1,144 +1,5 @@
-
-// let todo2 = [{
-//     'category': {'name': 'Design','color': '#FF7A00'},
-//     'title': 'Website redesign',
-//     'description': "Modify the contents of the main website. Adjust the UI to the company's brand design.",
-//     'progress': 0,
-//     'subtasks': 1,
-//     'team': [
-//         {
-//             'name': 'Simon Meyer',
-//             'color': '#0190E0',
-//             'email': 'simon.meyer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Maximilian Vogel',
-//             'color': '#EE00D6',
-//             'email': 'maximilian.vogel@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         }
-//     ],
-//     'prior': {
-//         'name': 'Mid',
-//         'image': 'assets/img/green.png',
-//         'color': '#7AE229'
-//     },
-//     'board': 0,
-//     'due-date': 'December 21, 2022'
-// },
-// {
-//     'category': {'name': 'Media','color': '#29ABE2'},
-//     'title': 'New Interview',
-//     'description': "Making an interview with someone on the planet earth.",
-//     'progress': 0,
-//     'subtasks': 2,
-//     'team': [
-//         {
-//             'name': 'Simon Meyer',
-//             'color': '#0190E0',
-//             'email': 'simon.meyer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Maximilian Vogel',
-//             'color': '#EE00D6',
-//             'email': 'maximilian.vogel@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Eva Fischer',
-//             'color': '#02CF2F',
-//             'email': 'Eva.Fischer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Kevin Schumilo',
-//             'color': '#02CF2F',
-//             'email': 'Eva.Fischer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         }
-//     ],
-//     'prior': {
-//         'name': 'Mid',
-//         'image': './assets/img/red-prio.svg',
-//         'color': '#FF3D00'
-//     },
-//     'board': 0,
-//     'due-date': '29.12.22'
-// },
-// {
-//     'category': {'name': 'Media','color': '#29ABE2'},
-//     'title': 'New Interview',
-//     'description': "Making an interview with someone on the planet earth.",
-//     'progress': 0,
-//     'subtasks': 2,
-//     'team': [
-//         {
-//             'name': 'Simon Meyer',
-//             'color': '#0190E0',
-//             'email': 'simon.meyer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Maximilian Vogel',
-//             'color': '#EE00D6',
-//             'email': 'maximilian.vogel@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Eva Fischer',
-//             'color': '#02CF2F',
-//             'email': 'Eva.Fischer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Kevin Schumilo',
-//             'color': '#02CF2F',
-//             'email': 'Eva.Fischer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         }
-//     ],
-//     'prior': {
-//         'name': 'Mid',
-//         'image': './assets/img/red-prio.svg',
-//         'color': '#FF3D00'
-//     },
-//     'board': 0,
-//     'due-date': '23.1.22'
-// },
-// {
-//     'category': {'name': 'Media','color': '#29ABE2'},
-//     'title': 'New Interview',
-//     'description': "Making an interview with someone on the planet earth.",
-//     'progress': 0,
-//     'subtasks': 2,
-//     'team': [
-//         {
-//             'name': 'Simon Meyer',
-//             'color': '#0190E0',
-//             'email': 'simon.meyer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Maximilian Vogel',
-//             'color': '#EE00D6',
-//             'email': 'maximilian.vogel@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Eva Fischer',
-//             'color': '#02CF2F',
-//             'email': 'Eva.Fischer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         },{
-//             'name': 'Kevin Schumilo',
-//             'color': '#02CF2F',
-//             'email': 'Eva.Fischer@gmail.com',
-//             'phone': '+49 0123 456 78 9'
-//         }
-//     ],
-//     'prior': {
-//         'name': 'Mid',
-//         'image': './assets/img/red-prio.svg',
-//         'color': '#FF3D00'
-//     },
-//     'board': 0,
-//     'due-date': '16.12.22'
-// }];
-
-
+// #### SUMMARY ####
+let months = ['January','February','March','April','May','Jun','Jul','August','September','October','November','December'];
 
 
 function greet() {
@@ -173,10 +34,7 @@ function getUserName() {
 
 
 /**
- * This function renders informations about the number of tasks in the categories
- * 
- * 
- */
+ * This function renders informations about the number of tasks in the categories */
 function renderSummary() {
     document.getElementById('task-count1').innerHTML = `${boardColumns[0].length}`;
     document.getElementById('task-count2').innerHTML = `${boardColumns[1].length}`;
@@ -195,57 +53,63 @@ filterPriorities();
 
 }
 
-    let urgent = 0;
-    let mid = 0;
-    let low = 0;
-    let upcomingDeadline = 0;
+
+let urgent = 0;
+let mid = 0;
+let low = 0;
+let upcomingDeadline = 0;
 
 
 function filterPriorities() {
-    if(filterUrgent()) filterDate('Urgent');
-    else if(filterMid() > filterLow()) filterDate('Medium');
+    if(filterPrios('Urgent')) filterDate('Urgent');
+    else if(filterPrios('Medium') > filterPrios('Low')) filterDate('Medium');
     else filterDate('Low');
-    renderPriorityContainer(j);
+    renderPriorityContainer(upcomingDeadline);
 }
 
 
-function filterUrgent() {
-    let urgent = 0;
+function filterPrios(prio) {
     for (let i = 0; i < boardColumns.length; i++) {
         if(boardColumns[i].length > 0) {
             for (let j = 0; j < boardColumns[i].length; j++) {
-                if(boardColumns[i][j]['prior']['name'] == 'Urgent') urgent++;
+                if(boardColumns[i][j]['prior']['name'] == prio) {
+                    if(prio == 'Urgent') urgent++;
+                    else if(prio == 'Medium') mid++;
+                    else if(prio == 'Low') low++;
+                }
             }
         }
     }
-    return urgent;
+    if(prio == 'Urgent') return urgent;
+    else if(prio == 'Medium') return mid;
+    else if(prio == 'Low') return low;
 }
 
 
-function filterMid() {
-    let mid = 0;
-    for (let i = 0; i < boardColumns.length; i++) {
-        if(boardColumns[i].length > 0) {
-            for (let j = 0; j < boardColumns[i].length; j++) {
-                if(boardColumns[i][j]['prior']['name'] == 'Medium') mid++;
-            }
-        }
-    }
-    return mid;
-}
+// function filterMid() {
+//     let mid = 0;
+//     for (let i = 0; i < boardColumns.length; i++) {
+//         if(boardColumns[i].length > 0) {
+//             for (let j = 0; j < boardColumns[i].length; j++) {
+//                 if(boardColumns[i][j]['prior']['name'] == 'Medium') mid++;
+//             }
+//         }
+//     }
+//     return mid;
+// }
 
 
-function filterLow() {
-    let low = 0;
-    for (let i = 0; i < boardColumns.length; i++) {
-        if(boardColumns[i].length > 0) {
-            for (let j = 0; j < boardColumns[i].length; j++) {
-                if(boardColumns[i][j]['prior']['name'] == 'Low') low++;
-            }
-        }
-    }
-    return mid;
-}
+// function filterLow() {
+//     let low = 0;
+//     for (let i = 0; i < boardColumns.length; i++) {
+//         if(boardColumns[i].length > 0) {
+//             for (let j = 0; j < boardColumns[i].length; j++) {
+//                 if(boardColumns[i][j]['prior']['name'] == 'Low') low++;
+//             }
+//         }
+//     }
+//     return mid;
+// }
 
 
 function filterDate(prio) {
@@ -253,24 +117,42 @@ function filterDate(prio) {
     for (let i = 0; i < boardColumns.length; i++) {
         if(boardColumns[i].length > 0) {
             for (let j = 0; j < boardColumns[i].length; j++) {
-                if(boardColumns[i][j]['prior']['name'] == prio)
-                    dates.push(boardColumns[i][j]['due-date'].toString());
+                if(boardColumns[i][j]['prior']['name'] == prio) dates.push(boardColumns[i][j]['due-date'].toString());
             }
         }
     }
-    orderDates(dates);
-    return mid;
+    if(dates.length > 1) upcomingDeadline = getUpcomingDate(dates);
+    else upcomingDeadline = dates[0];
+}
+
+
+function getUpcomingDate(dates) {
+    let splittedDates = [];
+    for (let i = 0; i < dates.length; i++) splittedDates.push(dates[i].split('-'));
+    return orderDates(splittedDates);
 }
 
 
 function orderDates(dates) {
-    let upcomingDate;
-    for (let i = 0; i < (dates.length)-1; i++) {
-        let date1 =  dates[i].split('-');
-        upcomingDate = dates[i+1].split('-');
-        upcomingDate = date1
-        
+    let currentDate = dates[0];
+    for (let i = 1; i < dates.length; i++) {
+        if(currentDate[0] > dates[i][0]) currentDate = dates[i];
+        else if(currentDate[0] == dates[i][0]) currentDate = checkMonth(i, dates, currentDate);
     }
+    return currentDate;
+}
+
+
+function checkMonth(i, dates, currentDate) {
+    if(currentDate[1] > dates[i][1]) currentDate = dates[i];
+    else if(currentDate[1] == dates[i][1]) currentDate = checkDay(i, dates, currentDate);
+    return currentDate;
+}
+
+
+function checkDay(i, dates, currentDate) {
+    if(currentDate[2] > dates[i][2]) currentDate = dates[i];
+    return currentDate;
 }
 
 
@@ -283,13 +165,10 @@ function renderPriorityContainer(j) {
         document.getElementById('priorities-radius').classList.add('priorities-radius-urgent');
         document.getElementById('priority-count').innerHTML = `${urgent}`;
         document.getElementById('priority-text').innerHTML = `Urgent`;
-
-        if(todo2[j].prior.name == 'Urgent') {
-            document.getElementById('date').innerHTML = `${upcomingDeadline}`;
-        }
+        document.getElementById('date').innerHTML = `${months[parseInt(j[1])-1]} ${j[2]}, ${j[0]}`;
     }
         
-     else if(mid > low) {
+    else if(mid > low) {
         document.getElementById('priority-Icon').src = 'assets/img/orange.png';
         document.getElementById('priority-Icon').classList.add('priority-Icon');
         document.getElementById('priorities-radius').classList.remove('priorities-radius-urgent');

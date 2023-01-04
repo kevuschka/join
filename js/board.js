@@ -103,7 +103,9 @@ function renderTemplateTicketFooter(n,j) {
     if(boardColumns[n][j]['prior']) renderPrioFooter(n,j);
 }
 
-
+/** That function render the ticket priority in footer (if its existing)
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column */
 function renderPrioFooter(n,j) {
     let content = document.getElementById(`ticket-footer-container-${n}-${j}`);
     content.innerHTML += templatePrioFooter(n,j);
@@ -123,8 +125,12 @@ function renderTicketTeam(n,j) {
     }
 }
 
-
-function templateTicketMember(n,j,k, content) {
+/** That function gets the template 'ticket-contact' and renders the ticket members in a loop.
+ * @param {number} n - n is the column number starting at 0
+ * @param {number} j - j is the row or the ticket-number in that column 
+ * @param {div} content - content of the 'ticket-contacts-container'
+ * @param {number} k - k is the number of shown ticket team member*/
+function templateTicketMember(n, j, k, content) {
     for (let i = 0; i < k ; i++) {
         let name = boardColumns[n][j]['team'][i]['name'];
         content.innerHTML += `<div class="ticket-contact" id="board-contact-${n}-${j}-${i}">${getNameLetters(name)}</div>`;

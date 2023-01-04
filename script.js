@@ -118,9 +118,7 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 async function init() {
     await downloadFromServer();
-    // users =  await JSON.parse(backend.getItem('users')) || [];
     usersContact = await JSON.parse(backend.getItem('usersContact')) || [];
-    // user = await JSON.parse(backend.getItem('currentUser')) || [];
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [[], [], [], []]; // compare with line 6
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
@@ -131,7 +129,6 @@ async function init() {
 
 
 function renderSiteRelatedTemplate() {
-    /*if(navAndHeaderNeeded())*/
     renderNavAndHeader();
     if(window.location.pathname.includes('summary.html')) initSummary(1);
     else if(window.location.pathname.includes('board.html')) initBoard(2);
@@ -139,12 +136,6 @@ function renderSiteRelatedTemplate() {
     else if(window.location.pathname.includes('contacts.html')) initContacts(4);
     
 }
-
-
-// function navAndHeaderNeeded() {
-//     if(window.location.pathname.includes('index.html' || 'sign_up.html' || 'reset_password.html' || 'forgot_password.html')) return false;
-//     else return true;
-// }
 
 
 function renderNavAndHeader() {
@@ -267,4 +258,3 @@ function getIndexOfCurrentUser() {
         }
     }
 }
-

@@ -14,7 +14,6 @@ async function inits() {
     await downloadFromServer();
     users =  await JSON.parse(backend.getItem('users')) || [];
     usersContact =  await JSON.parse(backend.getItem('usersContact')) || [];
-    // user = await JSON.parse(backend.getItem('currentUser')) || [];
 }
 
 
@@ -158,7 +157,6 @@ function isLoggedIn() {
         console.log('user gefunden');
 
         localStorage.setItem('usersEmail', usersEmail.value);
-        // localStorage.setItem('currentUser', JSON.stringify(user));
         setCurrentUserHeaderData(user);
         console.log('user saved in key');
        
