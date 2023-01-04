@@ -143,9 +143,16 @@
 
 function greet() {
     
-    let today = new Date()
-    let hour = today.getHours()
-    
+    let today = new Date();
+    let hour = today.getHours();
+
+    if(guestUser) {
+        document.getElementById('user').innerHTML = `Guest`;
+        document.getElementById('user2').innerHTML = `Guest`;
+    } else {
+        document.getElementById('user').innerHTML = getUserName();
+        document.getElementById('user2').innerHTML = getUserName();
+    }
     
     if (hour < 11 && hour >= 07) {
         document.getElementById('greet').innerHTML = `Good morning,`;
@@ -159,6 +166,10 @@ function greet() {
     }
 }
 
+
+function getUserName() {
+    return usersContact[indexOfCurrentUser]['userName'];
+}
 
 
 /**

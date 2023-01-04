@@ -86,10 +86,10 @@ pushUser(userName, email, password, initials);
 
 
     let newUser = {
-        'userName':userName.value,
+        'name':userName.value,
         'valid'   : false,
         'loggedIn': false,
-        'shortLetter':initials,
+        'abbreviation':initials,
         'email'   :email.value,
         'password':password.value,
         'phone'   :'',
@@ -98,10 +98,10 @@ pushUser(userName, email, password, initials);
 
 
     let newUserContact = {
-        'userName':userName.value,
+        'name':userName.value,
         'valid'   : false,
         'loggedIn': false,
-        'shortLetter':initials,
+        'abbreviation':initials,
         'email'   :email.value,
         'phone'   :'',
         'color'   : color
