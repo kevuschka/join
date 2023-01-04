@@ -703,7 +703,9 @@ function currentUserIsSelected(checkbox) {
 
 
 function addCurrentUserToTeam(currentTask) {
-    currentTask['team'].push(usersContact[indexOfCurrentUser]);
+    if (indexOfCurrentUser >= 0) {
+        currentTask['team'].push(usersContact[indexOfCurrentUser]);
+    }
 }
 
 
