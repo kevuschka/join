@@ -448,7 +448,7 @@ function templateContactInfoPopupResp(member) {
             <div class="contact-info-popup-resp-wrapper">
                 <div class="contact-info-popup-resp-inner-wrapper column flex" id="contact-info-popup-resp-inner-wrapper"></div>
                 <div class="contact-info-popup-resp-pencil-wrapper flex">
-                    <img class="cursor-p" src="assets/img/pencil-white.png" onclick="settingValuesForEdittingContact(${member});openContactsNewContactPopup(${member})">
+                    <img class="cursor-p" src="assets/img/pencil-white.png" onclick="setContactValuesForEditting(${member});openContactsNewContactPopup(${member})">
                 </div>
             </div>`;
 }
@@ -466,7 +466,7 @@ function templateContactInfoPopupRespInnerWrapper() {
             <div class="contact-info-popup-resp-title-without-line column flex">
                 <div class="contact-info-popup-resp-title-head flex">
                     <p>Contacts</p>
-                    <img src="assets/img/back-arraw.png" onclick="closeContactInfoPopupResponsive()">
+                    <img class="cursor-p" src="assets/img/back-arraw.png" onclick="closeContactInfoPopupResponsive()">
                 </div>
                 <p>Better with a team</p>
             </div>
