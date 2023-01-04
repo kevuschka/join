@@ -116,7 +116,6 @@ function renderPrioFooter(n,j) {
 function renderTicketTeam(n,j) {
     if(boardColumns[n][j]['team']) {
         let k = boardColumns[n][j]['team'].length;
-        console.log('k', k);
         let content = document.getElementById(`ticket-contacts-container-${n}-${j}`);
         if(boardColumns[n][j]['team'].length > 3) k = 2;
         templateTicketMember(n,j,k,content);
