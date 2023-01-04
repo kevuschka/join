@@ -35,10 +35,14 @@ function templateTicketProgressbar(n,j) {
 
 
 function templateTicketFooter(n,j) {
-    return `<div class="ticket-footer-container flex">
+    return `<div class="ticket-footer-container flex" id="ticket-footer-container-${n}-${j}">
                 <div class="ticket-contacts-container flex" id="ticket-contacts-container-${n}-${j}"></div>
-                <img class="state-img" src="${boardColumns[n][j]['prior']['image']}">
             </div>`
+}
+
+
+function templatePrioFooter(n,j) {
+    return ` <img class="state-img" src="${boardColumns[n][j]['prior']['image']}">`
 }
 
 ////////////////// TEAM

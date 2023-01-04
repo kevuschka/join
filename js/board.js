@@ -100,6 +100,13 @@ function setProgressBar(n,j) {
 function renderTemplateTicketFooter(n,j) {
     let ticketContent = document.getElementById(`ticket-container-${n}-${j}`);
     ticketContent.innerHTML += templateTicketFooter(n,j);
+    if(boardColumns[n][j]['prior']) renderPrioFooter(n,j);
+}
+
+
+function renderPrioFooter(n,j) {
+    let content = document.getElementById(`ticket-footer-container-${n}-${j}`);
+    content.innerHTML += templatePrioFooter(n,j);
 }
 
 ////////////////// TEAM
@@ -116,12 +123,6 @@ function renderTicketTeam(n,j) {
         if(k < boardColumns[n][j]['team'].length) renderContactPlaceholder(k,n,j,content);
     }
 }
-
-
-// function existingTeamMember() {
-//     if(boardColumns[n][j]['team'] == null) return false;
-//     else return true;
-// }
 
 
 function templateTicketMember(n,j,k, content) {
