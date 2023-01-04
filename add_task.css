@@ -161,6 +161,15 @@ form {
     border: 1px solid #FFFFFF;
 }
 
+.contact-icon-img {
+    margin-top: 15px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 39px;
+}
+
 .prio-btn {
     margin-right: 8px;
     border-radius: 9px;

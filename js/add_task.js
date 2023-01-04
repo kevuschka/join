@@ -1,6 +1,7 @@
 let categoryObject;
 let contactIconArray = []; //safes the indexes/positions of the seleceted Contacts in the contacts array
 let usersContactIconArray = [];
+let guestInIconArray = false;
 
 setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
@@ -324,13 +325,24 @@ function userContactIsLoggedIn(i) {
  * @param {int} i - index of the clicked contact 
  */
 function changeDisplayInContactIconSection(iconArray, i) {
-    let index = iconArray.indexOf(i);
-    if (ContactIsAlreadyInArray(index)) {
-        removeFromIconArray(iconArray, index);
+    if (!(i >= 0)) {
+        changeGuestUserInIconArray();
+        console.log('Guest is not save in the task')
     } else {
-        addToContactsIconArray(iconArray, i);
+        let index = iconArray.indexOf(i);
+        if (ContactIsAlreadyInArray(index)) {
+            removeFromIconArray(iconArray, index);
+        } else {
+            addToContactsIconArray(iconArray, i);
+        }
     }
     renderContactIconSection();
+}    
+
+
+function changeGuestUserInIconArray() {
+    if (guestInIconArray == false) guestInIconArray = true;
+    else guestInIconArray = false;
 }
 
 
@@ -374,6 +386,7 @@ function addToContactsIconArray(iconArray, i) {
 function renderContactIconSection() {
     let container = document.getElementById('contacts-icon-section');
     container.innerHTML = '';
+    renderGuestUserInIconSection(container);
     for (let i = 0; i < contactIconArray.length; i++) {
         let contactIndex = contactIconArray[i] //the contactIonArray holds the indexes of the selected contacts
         container.innerHTML += templateContactIconSection(contacts, contactIndex, 'abbreviation');
@@ -381,6 +394,13 @@ function renderContactIconSection() {
     for (let i = 0; i < usersContactIconArray.length; i++) {
         let contactIndex = usersContactIconArray[i] //the contactIonArray holds the indexes of the selected contacts
         container.innerHTML += templateContactIconSection(usersContact, contactIndex, 'shortLetter');
+    }
+}
+
+
+function renderGuestUserInIconSection(container) {
+    if (guestInIconArray) {
+        container.innerHTML += templateGuestContactIconSection();
     }
 }
 
@@ -611,6 +631,7 @@ async function createTask() {
     changeSubtasksStatus(currentTask);
     addPriotityToTask(currentTask);
     pushAssignedContactsToTask(currentTask);
+    pushAssignedUserContactsToTask(currentTask);
     pushTaskToTodo();
     await addBoard();
     switchToBoard();
@@ -652,10 +673,19 @@ function pushAssignedContactsToTask(currentTask) {
     currentTask['team'] = []; //to make sure contacts are removed in edit when they are not anymore selected
     let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
     for (let i = 0; i < checkboxes.length; i++) {
+        currentTask['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
+
+    }
+}
+
+
+function pushAssignedUserContactsToTask(currentTask) {
+    let checkboxes = document.querySelectorAll('.users-contacts-cb:checked'); //get all selected contacts checkboxes
+    for (let i = 0; i < checkboxes.length; i++) {
         if (currentUserIsSelected(checkboxes[i])) {
-            addCurrentUserToTeam()
+            addCurrentUserToTeam(currentTask)
         } else {
-            currentTask['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
+            currentTask['team'].push(usersContact[checkboxes[i].value]); //value contains and index of the contact in the object contacts
         }
     }
 }
@@ -672,8 +702,8 @@ function currentUserIsSelected(checkbox) {
 }
 
 
-function addCurrentUserToTeam() {
-    //TODO
+function addCurrentUserToTeam(currentTask) {
+    currentTask['team'].push(usersContact[indexOfCurrentUser]);
 }
 
 
