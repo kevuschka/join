@@ -1,5 +1,5 @@
 // #### SUMMARY ####
-let months = ['January','February','March','April','May','Jun','Jul','August','September','October','November','December'];
+let months = ['January','February','March','April','May','Jun','Jul','August','September','October','November','December', 'Nothing here'];
 
 
 function greet() {
@@ -122,7 +122,8 @@ function filterDate(prio) {
         }
     }
     if(dates.length > 1) upcomingDeadline = getUpcomingDate(dates);
-    else upcomingDeadline = dates[0].split('-');
+    else if(dates) upcomingDeadline = dates[0].split('-');
+    else upcomintDeadline = [[''],[13],['']];
 }
 
 
@@ -165,7 +166,6 @@ function renderPriorityContainer(j) {
         document.getElementById('priorities-radius').classList.add('priorities-radius-urgent');
         document.getElementById('priority-count').innerHTML = `${urgent}`;
         document.getElementById('priority-text').innerHTML = `Urgent`;
-        document.getElementById('date').innerHTML = `${months[parseInt(j[1])-1]} ${j[2]}, ${j[0]}`;
     }
         
     else if(mid > low) {
@@ -185,4 +185,5 @@ function renderPriorityContainer(j) {
         document.getElementById('priority-count').innerHTML = `${low}`;
         document.getElementById('priority-text').innerHTML = 'Low';
     }
+    document.getElementById('date').innerHTML = `${months[parseInt(j[1])-1]} ${j[2]}, ${j[0]}`;
 }
