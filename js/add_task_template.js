@@ -90,7 +90,7 @@ function templateDropdownContacts(i) {
 function templateDropdownUsersContacts(i) {
     return /*html*/ `
         <label for="checkboxUsers${i}" class="dropdown-content-child space-between">    
-                <span>${usersContact[i]['userName']}</span>
+                <span>${usersContact[i]['name']}</span>
                 <input value="${i}" name="checkbox" class="users-contacts-cb" id="checkboxUsers${i}" type="checkbox" onclick="changeDisplayInContactIconSection(${'usersContactIconArray'}, ${i})">
         </label>
     `;
@@ -103,9 +103,9 @@ function templateDropdownUsersContacts(i) {
  * @param {int} index -  
  * @returns 
  */
-function templateContactIconSection(contactArray, index, initialName) {
+function templateContactIconSection(contactArray, index) {
     return /*html*/ `
-        <div class="contact-icon" style="background-color: ${contactArray[index]['color']}">${contactArray[index][initialName]}</div>
+        <div class="contact-icon" style="background-color: ${contactArray[index]['color']}">${contactArray[index]['abbreviation']}</div>
     `;
 }
 

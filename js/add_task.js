@@ -389,11 +389,11 @@ function renderContactIconSection() {
     renderGuestUserInIconSection(container);
     for (let i = 0; i < contactIconArray.length; i++) {
         let contactIndex = contactIconArray[i] //the contactIonArray holds the indexes of the selected contacts
-        container.innerHTML += templateContactIconSection(contacts, contactIndex, 'abbreviation');
+        container.innerHTML += templateContactIconSection(contacts, contactIndex);
     }
     for (let i = 0; i < usersContactIconArray.length; i++) {
         let contactIndex = usersContactIconArray[i] //the contactIonArray holds the indexes of the selected contacts
-        container.innerHTML += templateContactIconSection(usersContact, contactIndex, 'shortLetter');
+        container.innerHTML += templateContactIconSection(usersContact, contactIndex);
     }
 }
 
