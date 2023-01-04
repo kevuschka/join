@@ -117,7 +117,7 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 
 async function init() {
-    //await deleteServerData()
+    // await deleteServerData()
     await downloadFromServer();
     usersContact = await JSON.parse(backend.getItem('usersContact')) || [];
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [[], [], [], []]; // compare with line 6
