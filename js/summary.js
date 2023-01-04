@@ -41,12 +41,7 @@ function renderSummary() {
     document.getElementById('task-count3').innerHTML = `${boardColumns[2].length}`;
 
     document.getElementById('task-info-count').innerHTML = `${boardColumns[0].length}`;
-    document.getElementById('task-info-count2').innerHTML = `${boardColumns[3].length}`;
-    
-
-    // if (task[0]['prior']=='assets/img/green.png') {
-    //     document.getElementById('priority-Icon').src = 'assets/img/summary-arrow-up-icon.png';
-    // }      
+    document.getElementById('task-info-count2').innerHTML = `${boardColumns[3].length}`;   
 
 filterPriorities();
 
@@ -93,32 +88,6 @@ function filterPrios(prio) {
 }
 
 
-// function filterMid() {
-//     let mid = 0;
-//     for (let i = 0; i < boardColumns.length; i++) {
-//         if(boardColumns[i].length > 0) {
-//             for (let j = 0; j < boardColumns[i].length; j++) {
-//                 if(boardColumns[i][j]['prior']['name'] == 'Medium') mid++;
-//             }
-//         }
-//     }
-//     return mid;
-// }
-
-
-// function filterLow() {
-//     let low = 0;
-//     for (let i = 0; i < boardColumns.length; i++) {
-//         if(boardColumns[i].length > 0) {
-//             for (let j = 0; j < boardColumns[i].length; j++) {
-//                 if(boardColumns[i][j]['prior']['name'] == 'Low') low++;
-//             }
-//         }
-//     }
-//     return mid;
-// }
-
-
 function filterDate(prio) {
     let dates = [];
     for (let i = 0; i < boardColumns.length; i++) {
@@ -129,8 +98,8 @@ function filterDate(prio) {
         }
     }
     if(dates.length > 1) upcomingDeadline = getUpcomingDate(dates);
-    else if(dates.length==1) upcomingDeadline = dates[0].split('-');
-    else upcomingDeadline = [[''],[13],['']];
+    else if(dates.length == 1) upcomingDeadline = dates[0].split('-');
+    else upcomingDeadline = [[''],['13'],['']];
 }
 
 
