@@ -64,6 +64,10 @@ html, body {
     justify-content: center;
 }
 
+.align-center {
+    align-items: center;
+}
+
 .fixed {
     position: fixed;
 }
@@ -86,6 +90,10 @@ a {
 
 .opa-0 {
     opacity: 0;
+}
+
+.legal-notice-wapper {
+    padding: 9px;
 }
 
 /* colors:
