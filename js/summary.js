@@ -168,7 +168,7 @@ function greet() {
 
 
 function getUserName() {
-    return usersContact[indexOfCurrentUser]['userName'];
+    return usersContact[indexOfCurrentUser]['name'];
 }
 
 
