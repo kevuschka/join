@@ -2,7 +2,6 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 //Delete local Storage items
 localStorage.removeItem('usersEmail');
-// localStorage.removeItem('currentUser');
 localStorage.removeItem('currentUserHeaderData');
 localStorage.removeItem('guestUser');
 
