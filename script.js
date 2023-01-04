@@ -125,8 +125,8 @@ async function init() {
     category =  await JSON.parse(backend.getItem('category')) || [];
     contacts =  await JSON.parse(backend.getItem('contacts')) || [];
     isLoggedInn();
-    renderSiteRelatedTemplate();
     getIndexOfCurrentUser();
+    renderSiteRelatedTemplate();
 }
 
 
@@ -154,10 +154,11 @@ function renderNavAndHeader() {
 
 
 function initSummary(value) {
+    greet();
     markNavItem(value);
     renderPopups();
     renderSummary();
-    greet();
+    
 }
 
 
@@ -248,7 +249,7 @@ function getRandomNumberFromZeroToNine() {
 
 function URLequalsAddTaskHtml() {
     if ('/add_task.html' == window.location.pathname) {
-        return true
+        return true;
     }
 }
 
@@ -262,6 +263,7 @@ function getIndexOfCurrentUser() {
         if (usersContact[i]['email'] == localStorage.getItem('usersEmail')) {
             indexOfCurrentUser = i;
             console.log(indexOfCurrentUser);
+            break;
         }
     }
 }

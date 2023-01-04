@@ -7,7 +7,7 @@ let currentUserHeaderData = {
 };
 
 
-let guestUser = true;
+let guestUser = false;
 
 
 /**
@@ -15,7 +15,7 @@ let guestUser = true;
  * @param {JSON} user - json object/user info, that is registered.
  */
 function setCurrentUserHeaderData(user) {
-    currentUserHeaderData['abbreviation'] = user['shortLetter'];
+    currentUserHeaderData['abbreviation'] = user['abbreviation'];
     currentUserHeaderData['color'] = user['color'];
     localStorage.setItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData));
 }
@@ -32,6 +32,7 @@ function getCurrentUserHeaderData() {
 
 
 function setGuestUser() {
+    guestUser = true;
     localStorage.setItem('guestUser', JSON.stringify(guestUser));
     window.location.href = 'summary.html';
 }
@@ -47,7 +48,7 @@ function setGuestUser() {
 
 
 function isGuestUser() {
-    let guest = localStorage.getItem('guestUser') || '';
-    if(guest) return true;
+    guestUser = localStorage.getItem('guestUser') || '';
+    if(guestUser) return true;
     else return false;
 }
