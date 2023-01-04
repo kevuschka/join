@@ -129,13 +129,8 @@ function filterDate(prio) {
         }
     }
     if(dates.length > 1) upcomingDeadline = getUpcomingDate(dates);
-<<<<<<< HEAD
-    else if(dates.length == 1) upcomingDeadline = dates[0].split('-');
-    else upcomingDeadline = [[''],['13'],['']];
-=======
     else if(dates.length==1) upcomingDeadline = dates[0].split('-');
     else upcomingDeadline = [[''],[13],['']];
->>>>>>> 399f05d22894d66bc42c86ee182abbc3e22b0fab
 }
 
 
