@@ -212,8 +212,6 @@ async function addBoard() {
 
 
 
-
-
 // HELPFULL FUNCTIONS
 function addClasslist(id, classe) {
     document.getElementById(id).classList.add(classe);

@@ -163,6 +163,7 @@ async function creatingOrSavingContact() {
     closeContactsNewContactPopupFilled(); 
     renderContactsList();
     MoveToContact();
+    showPopupWhenCreated();
 }
 
 
@@ -257,7 +258,30 @@ function MoveToContact() {
             document.getElementById(`contact-link-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
             // document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
         }, 150);
-     
+}
+
+
+function showPopupWhenCreated() {
+    if(!edittingNewContact) showPopupCreatedContact();
+}
+
+
+function showPopupCreatedContact() {
+    removeClasslist(`pop-up-created-contact-full`, `d-none`);
+    setTimeout(() => {
+        addClasslist(`pop-up-created-contact`,`contacts-created-popup-slideUp`);
+    }, 400);
+    hidePopupCreatedContact();
+}
+
+
+function hidePopupCreatedContact() {
+    setTimeout(() => {
+        removeClasslist(`pop-up-created-contact`,`contacts-created-popup-slideUp`);
+    }, 1300);
+    setTimeout(() => {
+        addClasslist(`pop-up-created-contact-full`, `d-none`);
+    }, 1430);
 }
 
 

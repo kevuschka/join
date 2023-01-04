@@ -419,3 +419,37 @@
     width: 100%;
     height: 100%;
 }
+
+
+/* POPUP-RESPONSIVE */ 
+/* .popUp-responsive {
+    overflow: hidden;
+} */
+
+.pop-up-created-contact-full {
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 999;
+    /* transition: transform 125ms ease-in-out; */
+}
+
+.pop-up-created-contact {
+    font-weight: normal;
+    font-size: 16px;
+    padding: 21px 18px;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 12px;
+    
+    transform: translateY(100vh);
+    transition: transform 125ms ease-in-out;
+}
+
+.contacts-created-popup-slideUp {
+    transform: translateY(30vh);
+}

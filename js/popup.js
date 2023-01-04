@@ -27,6 +27,8 @@ function renderPopupsInContacts() {
     renderPopupCreatedAddtask();
     let containerResp = document.getElementById('content-container');
     containerResp.innerHTML += renderContactsInfoPopupResponsive();
+    let popupResp = document.getElementById(`popUp-responsive`);
+    popupResp.innerHTML += templateCreatedContactPopup();
 }
 
 
@@ -288,7 +290,6 @@ function templateCreatedTaskPopUp() {
         </div>
     `;
 }
-
 
 /**
  * This function is responsible for the animation of several pop ups sliding in from the bottom 
@@ -662,15 +663,6 @@ function contactsNewContactsPopupSlideOut() {
 }
 
 
-// function contactsNewContactPopupNoSlide() {
-//     addClasslist(`contacts-new-contact-popup-full`, `hideBackgroundAnimation`);
-//     removeClasslist(`contacts-new-contact-popup-full`,`opa-1`);
-//     setTimeout(() => {
-//         addClasslist(`contacts-new-contact-popup-full`, `d-none`);
-//     }, 1);
-// }
-
-
 function closeContactsNewContactPopupFilled() {
     closeContactsNewContactPopupFilledDnone();
     removeClasslist(`contacts-new-contact-popup-full`,'showBackgroundAnimation');
@@ -733,4 +725,22 @@ function addContactPopupDnone() {
 
 function removeContactPopupDnone() {
     removeClasslist(`contacts-new-contact-popup-container`,'d-none');
+}
+
+
+
+//////////////////// CONTACT: CONTACT CREATED POPUP ///////////////////////////////
+
+
+/**
+ * This function generate the HTML code for the pop up when a contact is created
+ * 
+ * @returns a html template for the pop up that the contact was added to contacts 
+ */
+function templateCreatedContactPopup() {
+    return `<div class="pop-up-created-contact-full absolute flex d-none" id="pop-up-created-contact-full">
+                <div class="pop-up-created-contact flex" id="pop-up-created-contact">
+                    <span>Contact succesfully created</span>
+                </div>
+            </div>`;
 }

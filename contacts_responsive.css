@@ -677,6 +677,11 @@
         filter: brightness(0%) invert(1);
     }
 
+    /* CONTACT CREATED POPUP */
+    .contacts-created-popup-slideUp {
+        transform: translateY(25vh);
+    }
+
     @media screen and (max-height: 825px) {
         .contacts-new-contact-popup-form-container {
             gap: 70px

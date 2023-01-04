@@ -726,21 +726,17 @@ function changeSubtasksStatus(currentTask) {
 }
 
 
-/**
- * This function resets every status of the subtasks to false and reduces the subtask counter
+/**This function resets every status of the subtasks to false and reduces the subtask counter
  * Important for the case a subtask is not anymore checked
  * 
  * @param {Element} currentTask - the task currently in creation
- * @param {int} i - the position/index of the current task, to now on which position the subtask status needs to be reseted 
- */
+ * @param {int} i - the position/index of the current task, to now on which position the subtask status needs to be reseted */
 function resetSubtaskStatusAndFinishCounter(currentTask, i) {
     currentTask['status-subtasks'][i] = false;
 }
 
 
-/**
- * This function adds the current task to todo/boardcolumns[0]
- */
+/** This function adds the current task to todo/boardcolumns[0] */
 function pushTaskToTodo() {
     boardColumns[0].push(task);
 }

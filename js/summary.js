@@ -48,7 +48,7 @@ filterPriorities();
 
 }
 
-
+/** This function returnthe number of all tasks in board */
 function getNumberOfAllTasks() {
     let tasks = 0;
     for (let i = 0; i < boardColumns.length; i++) tasks += (boardColumns[i].length);
@@ -61,7 +61,7 @@ let mid = 0;
 let low = 0;
 let upcomingDeadline = 0;
 
-
+/** That function checks if a priority is existing and filters the right date after that. */
 function filterPriorities() {
     if(filterPrios('Urgent')) filterDate('Urgent');
     else if(filterPrios('Medium') > filterPrios('Low')) filterDate('Medium');
