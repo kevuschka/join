@@ -163,7 +163,7 @@ function renderTicketInfoEditting(column, ticket) {
     let content = document.getElementById(`ticket-info-popup-container-${column}-${ticket}`);
     content.innerHTML = `<div class="ticket-info-popup-inner-container flex column h-100 w-100" id="ticket-info-popup-inner-container-${column}-${ticket}"></div>`;
     document.getElementById(`ticket-info-popup-inner-container-${column}-${ticket}`).innerHTML = templateTicketEditing(column, ticket);
-    clearContactIconArray(); //in edit_task.js
+    clearIconArray(); //in edit_task.js
     renderPrioritySelection(); //in add_task.js
     renderContactsDropdown(); //in add_task.js
     selectPrioInEditContainer(column, ticket); //in edit_task.js
@@ -320,7 +320,7 @@ async function renderAddTaskInBoard() {
     document.getElementById('board-addtask-popup-content').innerHTML = '';
     await includeHTML();
     clearTask();
-    clearContactIconArray();
+    clearIconArray();
     renderAddTask();  //in add_task.js
 }
 

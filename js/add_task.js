@@ -674,7 +674,6 @@ function pushAssignedContactsToTask(currentTask) {
     let checkboxes = document.querySelectorAll('.contacts-cb:checked'); //get all selected contacts checkboxes
     for (let i = 0; i < checkboxes.length; i++) {
         currentTask['team'].push(contacts[checkboxes[i].value]); //value contains and index of the contact in the object contacts
-
     }
 }
 

@@ -20,7 +20,7 @@ function selectPrioInEditContainer(column, ticket) {
 /////////////////// CONTACTS SECTION ////////////////////
 
 /**
- * This function is here to render the assigned contacts when editing a task
+ * This function is here to render the assigned contacts & userContacts when editing a task
  * 
  * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
  * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
@@ -32,8 +32,14 @@ function renderAlreadyAssignedContacts(column, ticket) {
             //compare email of all contacts with them assigned to the task 
             if (boardColumns[column][ticket]['team'][i]['email'] == contacts[j]['email']) { 
                 displayAssignedContactsAsChecked(j);
-                changeDisplayInContactIconSection(j); //in add_task.js -> same as if contact would have been clicked
+                changeDisplayInContactIconSection(contactIconArray, j); //in add_task.js -> same as if contact would have been clicked
                 break
+            }
+        }
+        for (let j = 0; j < usersContact.length; j++) {   
+            if (boardColumns[column][ticket]['team'][i]['email'] == usersContact[j]['email']) {
+                displayAssignedUsersContactsAsChecked(j);
+                changeDisplayInContactIconSection(usersContactIconArray, j); //in add_task.js -> same as if contact would have been clicked
             }
         }
     }
@@ -66,6 +72,18 @@ function displayAssignedContactsAsChecked(j) {
     document.getElementById('checkbox' + j).checked = true;
 }
 
+/**
+ * This function displays the userContacts which are assigned to a task as checked in the contacts list in edit task
+ * 
+ * @param {int} j - index of the checkbox that needs to get checked
+ */
+function displayAssignedUsersContactsAsChecked(j) {
+    if (userContactIsLoggedIn(j)) {
+        document.getElementById('checkbox-you').checked = true;
+    } else {
+        document.getElementById('checkboxUsers' + j).checked = true;
+    }
+}
 
 /////////////////// SUBTASK SECTION ////////////////////
 
@@ -182,6 +200,7 @@ async function saveChanges(columm, ticket) {
     addInputValuesToTask(currentTask, 'due-date'); //in add_task.js
     addPriotityToTask(currentTask);
     pushAssignedContactsToTask(currentTask);
+    pushAssignedUserContactsToTask(currentTask);
     changeSubtasksStatus(currentTask);
     await addBoard();
     taskEditted = true;
@@ -192,8 +211,10 @@ async function saveChanges(columm, ticket) {
 /**
  * This function clears the contacts icon array which is needed to display the contacts abbreviations correctly
  */
-function clearContactIconArray() {
+function clearIconArray() {
+    usersContactIconArray = [];
     contactIconArray = [];
+    guestInIconArray = false;
 }
 
 
