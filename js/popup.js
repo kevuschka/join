@@ -213,7 +213,7 @@ function templateTicketEditing(column, ticket) {
                         <div class="flex">
                             <img src="./assets/img/add_task_cancel.png" class="icon-subtask" onclick="changeVisibilityContactSection()">
                             |
-                            <img src="./assets/img/add_task_check.png" class="icon-subtask" onclick="changeVisibilityContactSection(), inviteContact()">
+                            <img src="./assets/img/add_task_check.png" class="icon-subtask" onclick="changeVisibilityContactSection(), sendInviteMail(event)">
                         </div>
                     </div>
                 </div>
