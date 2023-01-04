@@ -117,6 +117,7 @@ setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
 
 
 async function init() {
+    // deleteServerData()
     await downloadFromServer();
     usersContact = await JSON.parse(backend.getItem('usersContact')) || [];
     boardColumns =  await JSON.parse(backend.getItem('boardColumns')) || [[], [], [], []]; // compare with line 6
@@ -125,6 +126,15 @@ async function init() {
     isLoggedInn();
     getIndexOfCurrentUser();
     renderSiteRelatedTemplate();
+}
+
+
+async function deleteServerData() {
+    await backend.deleteItem('usersContact');
+    await backend.deleteItem('boardColumns');
+    await backend.deleteItem('category');
+    await backend.deleteItem('contacts');
+    await backend.deleteItem('users');
 }
 
 
@@ -199,6 +209,9 @@ async function addBoard() {
 // function deleteUser(name) {
 //     await backend.deleteItem('users');
 // }
+
+
+
 
 
 // HELPFULL FUNCTIONS
