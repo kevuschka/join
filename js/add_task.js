@@ -341,6 +341,9 @@ function changeDisplayInContactIconSection(iconArray, i) {
 }    
 
 
+/**
+ * This function changes if the guest warning is displayed or not 
+ */
 function displayGuestWarning() {
     let warning = document.getElementById('guest-warning'); 
     if (warning.classList.contains('d-none')) {
