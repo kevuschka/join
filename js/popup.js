@@ -169,7 +169,7 @@ function renderTicketInfoEditting(column, ticket) {
     renderPrioritySelection(); //in add_task.js
     renderContactsDropdown(); //in add_task.js
     selectPrioInEditContainer(column, ticket); //in edit_task.js
-    renderAlreadyAssignedContacts(column, ticket); //in edit_task.js
+    renderAlreadyAssignedContactsAndUsers(column, ticket); //in edit_task.js
     renderSubtasksInEditContainer(column, ticket);
 }
 

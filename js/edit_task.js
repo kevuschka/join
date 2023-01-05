@@ -25,22 +25,48 @@ function selectPrioInEditContainer(column, ticket) {
  * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
  * @param {int} ticket - position/index of the task inside the column that is selected to be edited 
  */
-function renderAlreadyAssignedContacts(column, ticket) {
+function renderAlreadyAssignedContactsAndUsers(column, ticket) {
     let assignedContacts = getAssignedContacts(column, ticket);
     for (let i = 0; i < assignedContacts.length; i++) { 
-        for (let j = 0; j < contacts.length; j++) {
-            //compare email of all contacts with them assigned to the task 
-            if (boardColumns[column][ticket]['team'][i]['email'] == contacts[j]['email']) { 
-                displayAssignedContactsAsChecked(j);
-                changeDisplayInContactIconSection(contactIconArray, j); //in add_task.js -> same as if contact would have been clicked
-                break
-            }
+        renderAlreadyAssignedContacts(column, ticket, i);
+        renderAlreadyAssignedUsers(column, ticket, i)
+    }
+}
+
+
+/**
+ * This function is here to render the assigned contacts when editing a task
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited
+ * @param {int} i - position/index of the contact currently itterated  
+ */
+function renderAlreadyAssignedContacts(column, ticket, i) {
+    for (let j = 0; j < contacts.length; j++) {           
+        //compare email of all contacts with them assigned to the task 
+        if (boardColumns[column][ticket]['team'][i]['email'] == contacts[j]['email']) { 
+            displayAssignedContactsAsChecked(j);
+            changeDisplayInContactIconSection(contactIconArray, j); //in add_task.js -> same as if contact would have been clicked
+            break
         }
-        for (let j = 0; j < usersContact.length; j++) {   
-            if (boardColumns[column][ticket]['team'][i]['email'] == usersContact[j]['email']) {
-                displayAssignedUsersContactsAsChecked(j);
-                changeDisplayInContactIconSection(usersContactIconArray, j); //in add_task.js -> same as if contact would have been clicked
-            }
+    }
+}    
+
+
+/**
+ * This function is here to render the assigned users when editing a task
+ * 
+ * @param {int} column - position/index of the column of the task selected to be edited in boardColumns
+ * @param {int} ticket - position/index of the task inside the column that is selected to be edited
+ * @param {int} i - position/index of the contact currently itterated  
+ */
+function renderAlreadyAssignedUsers(column, ticket, i) {
+    for (let j = 0; j < usersContact.length; j++) {           
+        //compare email of all contacts with them assigned to the task 
+        if (boardColumns[column][ticket]['team'][i]['email'] == usersContact[j]['email']) { 
+            displayAssignedUsersContactsAsChecked(j);
+            changeDisplayInContactIconSection(usersContactIconArray, j); //in add_task.js -> same as if contact would have been clicked
+            break
         }
     }
 }

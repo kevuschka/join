@@ -322,6 +322,7 @@ function userContactIsLoggedIn(i) {
  * This function displays the initials of a contact below the contacts dropdown when the contact is selected
  * Or it removes the initials from being displayed if the selection of the contact is removed
  * 
+ * @param {Array} iconArray - the array in which the indexes of the selected users/contacts are save (can either be contacts or usersContact)
  * @param {int} i - index of the clicked contact 
  */
 function changeDisplayInContactIconSection(iconArray, i) {
@@ -340,6 +341,9 @@ function changeDisplayInContactIconSection(iconArray, i) {
 }    
 
 
+/**
+ * This function changes the boolean value, if the  guestuser should be in the iconArray or not 
+ */
 function changeGuestUserInIconArray() {
     if (guestInIconArray == false) guestInIconArray = true;
     else guestInIconArray = false;
@@ -366,9 +370,6 @@ function removeFromIconArray(iconArray, index) {
 }
 
 
-
-
-
 /**
  * This function adds i to the iconArray (either usersContactIconArray or contactIconArray)
  * 
@@ -387,10 +388,30 @@ function renderContactIconSection() {
     let container = document.getElementById('contacts-icon-section');
     container.innerHTML = '';
     renderGuestUserInIconSection(container);
+    renderContactsInIconSection(container);
+    renderUsersContactsInIconSection(container);
+}
+
+
+/**
+ * This function renders the contacts icons in the icon section, for the selected contacts
+ * 
+ * @param {Element} container - div container which displays the icons of the selected contacts 
+ */
+function renderContactsInIconSection(container) {
     for (let i = 0; i < contactIconArray.length; i++) {
         let contactIndex = contactIconArray[i] //the contactIonArray holds the indexes of the selected contacts
         container.innerHTML += templateContactIconSection(contacts, contactIndex);
     }
+}
+
+
+/**
+ * This function renders the user icons in the icon section, for the selected users
+ * 
+ * @param {Element} container - div container which displays the icons of the selected contacts 
+ */
+function renderUsersContactsInIconSection(container) {
     for (let i = 0; i < usersContactIconArray.length; i++) {
         let contactIndex = usersContactIconArray[i] //the contactIonArray holds the indexes of the selected contacts
         container.innerHTML += templateContactIconSection(usersContact, contactIndex);
@@ -398,6 +419,11 @@ function renderContactIconSection() {
 }
 
 
+/**
+ * This function renders the guest user icon in the icon section, if the variable guestInIconArray is true
+ * 
+ * @param {Element} container - div container which displays the icons of the selected contacts 
+ */
 function renderGuestUserInIconSection(container) {
     if (guestInIconArray) {
         container.innerHTML += templateGuestContactIconSection();
@@ -652,7 +678,7 @@ function addInputValuesToTask(currentTask, identifier) {
 /**
  * This function adds the selected priority to the task in creation
  * 
- * @param {*} currentTask 
+ * @param {Object} currentTask - the task currently in creation
  */
 function addPriotityToTask(currentTask) {
     for (let i = 0; i < priorities.length; i++) {
@@ -667,7 +693,7 @@ function addPriotityToTask(currentTask) {
 /**
  * This function adds the selected contacts to task in creation
  * 
- * @param {Element} currentTask - the task currently in creation
+ * @param {Object} currentTask - the task currently in creation
  */
 function pushAssignedContactsToTask(currentTask) {
     currentTask['team'] = []; //to make sure contacts are removed in edit when they are not anymore selected
@@ -678,6 +704,11 @@ function pushAssignedContactsToTask(currentTask) {
 }
 
 
+/**
+ * This function adds the selected users (either the logged in or others) to task in creation
+ * 
+ * @param {Object} currentTask - the task currently in creation
+ */
 function pushAssignedUserContactsToTask(currentTask) {
     let checkboxes = document.querySelectorAll('.users-contacts-cb:checked'); //get all selected contacts checkboxes
     for (let i = 0; i < checkboxes.length; i++) {
@@ -701,6 +732,11 @@ function currentUserIsSelected(checkbox) {
 }
 
 
+/**
+ * This function adds the current user to the created task, if indexOfCurrentUser >= 0 (thus is not a guest user)
+ * 
+ * @param {Object} currentTask - The task which gets created 
+ */
 function addCurrentUserToTeam(currentTask) {
     if (indexOfCurrentUser >= 0) {
         currentTask['team'].push(usersContact[indexOfCurrentUser]);
