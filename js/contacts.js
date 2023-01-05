@@ -200,11 +200,12 @@ function addAllInputValuesToContact() {
  */
 function addInputValuesToContact(identifier) {
     if(identifier == 'email') {
-        if(emailIsUnique(document.getElementById(identifier).value))
-            newContact[identifier] = document.getElementById(identifier).value; 
+        if(emailIsUnique(document.getElementById(identifier).value)) {
+            newContact[identifier] = document.getElementById(identifier).value;
+            return true; 
+        }
         else return false;
-    }
-    else newContact[identifier] = document.getElementById(identifier).value; 
+    }else newContact[identifier] = document.getElementById(identifier).value; 
 }
 
 
