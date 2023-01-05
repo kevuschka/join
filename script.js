@@ -197,6 +197,7 @@ async function addContact() {
     await backend.setItem('contacts', JSON.stringify(contacts));
 }
 
+
 async function addBoard() {
     await backend.setItem('boardColumns', JSON.stringify(boardColumns));
 }
@@ -211,15 +212,16 @@ async function addBoard() {
 // }
 
 
-
 // HELPFULL FUNCTIONS
 function addClasslist(id, classe) {
     document.getElementById(id).classList.add(classe);
 }
 
+
 function removeClasslist(id, classe) {
     document.getElementById(id).classList.remove(classe);
 }
+
 
 function doNotClose(event) {
     event.stopPropagation();
@@ -255,9 +257,7 @@ function URLequalsAddTaskHtml() {
     }
 }
 
-
 //// To get the index of the current user in usersContact
-
 let indexOfCurrentUser;
 
 function getIndexOfCurrentUser() {
