@@ -264,7 +264,6 @@ function getIndexOfCurrentUser() {
     for (let i = 0; i < usersContact.length; i++) {
         if (usersContact[i]['email'] == localStorage.getItem('usersEmail')) {
             indexOfCurrentUser = i;
-            console.log(indexOfCurrentUser);
             break;
         }
     }
