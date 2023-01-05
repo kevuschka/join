@@ -19,7 +19,7 @@ function filterContacts(list) {
 /** That function filters all contacts saved in the array 'contacts' in a loop and renders, if necessary, the right first letter.
  * @param {div} list - list is the content of a html div with id 'contacts-list'
  * @param {number} contactNumber - contactNumber is the index of the contact in the array 'contacts' 
- * @param {number} contactNumberAtThisLetter - contactNumberAtThisLetter is the number of contacts at this current first letter
+ * @param {number} contactNumberAtThisLetter - contactNumberAtThisLetter is the number of that contact at this current first letter
  * @param {number} i - i is the index of a letter from the array 'alphabet' */
 function filterContactsLoop(list, contactNumber, contactNumberAtThisLetter, i) {
     for (let j = 0; j < contacts.length; j++) {
@@ -47,7 +47,7 @@ function renderTemplateListLetter(letter, list) {
 
 /** That function renders the contact element in the contact list at the right letter.
  * @param {number} j - j is the index of the contact in the array 'contacts' 
- * @param {number} number - number is the number of contacts at this current first letter
+ * @param {number} number - number is the number of that contact at this current first letter
  * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
 function renderListLetterContacts(letter, number, j) {
     let content = document.getElementById(`contacts-with-${letter}`);
@@ -57,7 +57,7 @@ function renderListLetterContacts(letter, number, j) {
 
 /** Return a contact element template for the contact list.
  * @param {number} j - j is the index of the contact in the array 'contacts' 
- * @param {number} number - number is the number of contacts at this current first letter
+ * @param {number} number - number is the number of that contact at this current first letter
  * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
 function renderTemplateListLetterContact(letter, number, j) {
     return `
@@ -81,14 +81,21 @@ function contactAbbreviationColoring(letter, number, j) {
     document.getElementById(`contact-abbreviation-wrapper-${letter}-${number}`).style.backgroundColor = `${contacts[j]['color']}`;
 }
 
-
+/** That function opens the cotnact info.
+ * @param {number} index - index is the index of the contact in the array 'contacts' 
+ * @param {number} number - number is the number of contacts at this current first letter
+ * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
 function openContactInfoPopup(index, letter, number) {
     setContactValuesForLinking(index, letter, number); // used for moving to contact after editting (not necessary in responsive) (l. 170)
     if(window.innerWidth > 800) showContactInfoPopup(index, letter, number);
     else showContactInfoPopupResponsive(index);
 }
 
-
+/** That function creates an object for getting the info of a contact, that has been editted.
+ * So that it will be shown (scrolled to) after editting it.
+ * @param {number} index - index is the index of the contact in the array 'contacts' 
+ * @param {number} number - number is the number of contacts at this current first letter
+ * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
 function setContactValuesForLinking(index, letter, number) {
     cleanContactValues();
     contactValues['index'] = index;
@@ -96,7 +103,11 @@ function setContactValuesForLinking(index, letter, number) {
     contactValues['number'] = number;
 }
 
-
+/** That function opens the cotnact info (in normal view).
+ * So that it will be shown (scrolled to) after editting it.
+ * @param {number} index - index is the index of the contact in the array 'contacts' 
+ * @param {number} number - number is the number of contacts at this current first letter
+ * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
 function showContactInfoPopup(index, letter, number) {
     removeClasslist('contacts-info-popup-container', 'contact-info-popup-visible');
     setTimeout(() => {
@@ -107,7 +118,9 @@ function showContactInfoPopup(index, letter, number) {
     }, 125);
 }
 
-
+/** That function styles the contact element in the contact list, that has been selected.
+ * @param {number} number - number is the number of contacts at this current first letter
+ * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
 function changebackgroundColorOfSelectedContact(letter, number) {
     renderContactsList();
     document.getElementById(`contact-withLetter-${letter}-number-${number}`).style.backgroundColor = "#2A3647";
@@ -115,7 +128,8 @@ function changebackgroundColorOfSelectedContact(letter, number) {
     document.getElementById(`contact-abbreviation-wrapper-${letter}-${number}`).style.border = `1px solid white`;
 }
 
-
+/** That function renders some contact-info-popup relevant template when clicking on a contact (in normal view).
+ * @param {number} i - i is the index of the contact in the array 'contacts' */
 function renderContactInfoPopup(i) {
     let popupContainer = document.getElementById('contacts-info-popup-container');
     popupContainer.innerHTML = renderTemplateContactInfoPopup(i);
@@ -125,12 +139,14 @@ function renderContactInfoPopup(i) {
     content.innerHTML += renderTemplateContactInfoPopupEmailAndPhone(i);
 }
 
-
+/** Returns the contact info popup main template.
+ * @param {number} i - i is the index of the contact in the array 'contacts' */
 function renderTemplateContactInfoPopup(i) {
     return `<div class="contact-info-popup column flex" id="contact-info-popup"></div>`;
 }
 
-
+/** Returns the contact info popup 'abbreviation and name' template.
+ * @param {number} i - i is the index of the contact in the array 'contacts' */
 function renderTemplateContactInfoPopupAbbreviationAndName(i) {
     return `<div class="contact-info-popup-abbreviation-and-name flex">
                 <div class="contact-info-popup-abbreviation-wrapper">
@@ -148,7 +164,8 @@ function renderTemplateContactInfoPopupAbbreviationAndName(i) {
             </div>`;
 }
 
-
+/** Returns the contact info popup 'title and edit-contact-btn' template.
+ * @param {number} i - i is the index of the contact in the array 'contacts' */
 function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
     return `<div class="contact-info-popup-title-and-editContactBtn flex">
                 <p>Contact Information</p>
@@ -159,7 +176,8 @@ function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
             </div>`;
 }
 
-
+/** Returns the contact info popup 'email and phone' template
+ * @param {number} i - i is the index of the contact in the array 'contacts' */
 function renderTemplateContactInfoPopupEmailAndPhone(i) {
     return `<div class="contact-info-popup-email-and-phone column flex">
                 <div class="contact-info-popup-email-wrapper column flex">
@@ -173,10 +191,10 @@ function renderTemplateContactInfoPopupEmailAndPhone(i) {
             </div>`;
 }
 
-
+/** That function 'colors' the contact info popup abbreviation template.
+ * @param {number} index - index is the index of the contact in the array 'contacts' */
 function contactInfoPopupAbbreviationColoring(index) {
     document.getElementById(`contact-info-popup-abbreviation-${index}`).style.backgroundColor = `${contacts[index]['color']}`;
-    // addClasslist(`contact-info-popup-abbreviation-${index}`, `contact-info-popup-abbreviation`);
 }
 
 
@@ -321,11 +339,8 @@ function clearNewContact() {
 
 
 function MoveToContact() {
-    // if(window.innerWidth > 800) document.getElementById(`contact-link-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click(); 
-    /*else*/ 
         setTimeout(() => {
             document.getElementById(`contact-link-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
-            // document.getElementById(`contact-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
         }, 150);
 }
 
