@@ -1,28 +1,42 @@
+/** That function renders the contact list on the contacts.html page. */
 function renderContactsList() { 
     let list = document.getElementById(`contacts-list`);
     list.innerHTML = '';
     if(contacts.length > 0 ) filterContacts(list);
 }
 
+/** That function filters all contacts saved in the array 'contacts' and shows them in a ordered list.
+ * @param {div} list - list is the content of a html div with id 'contacts-list' */
 function filterContacts(list) {
     let contactNumber = 0;
     for (let i = 0; i < alphabet.length; i++) {
         let contactNumberAtThisLetter = 0;
-        for (let j = 0; j < contacts.length; j++) {
-            if(alphabet[i] == contacts[j]['name'].toLowerCase().charAt(0)) {
-                contactNumber++;
-                contactNumberAtThisLetter++;
-                if(contactNumberAtThisLetter == 1) renderTemplateListLetter(alphabet[i].toUpperCase(), list);
-                renderListLetterContacts(alphabet[i].toUpperCase(), contactNumberAtThisLetter, j);
-                if(createdContactName == contacts[j]['name'].toLowerCase()) setContactValuesForLinking(j, alphabet[i].toUpperCase(), contactNumberAtThisLetter);
-            }
-            if(contactNumber == contacts.length) break;
+        filterContactsLoop(list, contactNumber, contactNumberAtThisLetter, i);
+        if(contactNumber == contacts.length) break;
+    }
+}
+
+/** That function filters all contacts saved in the array 'contacts' in a loop and renders, if necessary, the right first letter.
+ * @param {div} list - list is the content of a html div with id 'contacts-list'
+ * @param {number} contactNumber - contactNumber is the index of the contact in the array 'contacts' 
+ * @param {number} contactNumberAtThisLetter - contactNumberAtThisLetter is the number of contacts at this current first letter
+ * @param {number} i - i is the index of a letter from the array 'alphabet' */
+function filterContactsLoop(list, contactNumber, contactNumberAtThisLetter, i) {
+    for (let j = 0; j < contacts.length; j++) {
+        if(alphabet[i] == contacts[j]['name'].toLowerCase().charAt(0)) {
+            contactNumber++;
+            contactNumberAtThisLetter++;
+            if(contactNumberAtThisLetter == 1) renderTemplateListLetter(alphabet[i].toUpperCase(), list);
+            renderListLetterContacts(alphabet[i].toUpperCase(), contactNumberAtThisLetter, j);
+            if(createdContactName == contacts[j]['name'].toLowerCase()) setContactValuesForLinking(j, alphabet[i].toUpperCase(), contactNumberAtThisLetter);
         }
         if(contactNumber == contacts.length) break;
     }
 }
 
-
+/** Return a contact container with a first letter template
+ * @param {div} list - list is the content of a html div with id 'contacts-list'
+ * @param {string} letter - letter is the currrent letter of the array 'alphabet'  */
 function renderTemplateListLetter(letter, list) {
     list.innerHTML += `
         <div class="contacts-container-withLetter column flex">
@@ -31,14 +45,20 @@ function renderTemplateListLetter(letter, list) {
         </div>`
 }
 
-
+/** That function renders the contact element in the contact list at the right letter.
+ * @param {number} j - j is the index of the contact in the array 'contacts' 
+ * @param {number} number - number is the number of contacts at this current first letter
+ * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
 function renderListLetterContacts(letter, number, j) {
     let content = document.getElementById(`contacts-with-${letter}`);
     content.innerHTML +=  renderTemplateListLetterContact(letter, number, j);
     contactAbbreviationColoring(letter, number, j);
 }
 
-
+/** Return a contact element template for the contact list.
+ * @param {number} j - j is the index of the contact in the array 'contacts' 
+ * @param {number} number - number is the number of contacts at this current first letter
+ * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
 function renderTemplateListLetterContact(letter, number, j) {
     return `
         <div class="contact cursor-p flex" id="contact-withLetter-${letter}-number-${number}" onclick="openContactInfoPopup(${j}, '${letter}', ${number})">
@@ -53,7 +73,10 @@ function renderTemplateListLetterContact(letter, number, j) {
         </div>`
 }
 
-
+/** That function colors the contact abbreviation in the contact list.
+ * @param {number} j - j is the index of the contact in the array 'contacts' 
+ * @param {number} number - number is the number of contacts at this current first letter
+ * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
 function contactAbbreviationColoring(letter, number, j) {
     document.getElementById(`contact-abbreviation-wrapper-${letter}-${number}`).style.backgroundColor = `${contacts[j]['color']}`;
 }

@@ -6,9 +6,8 @@ let currentUserHeaderData = {
     'color': '',
 };
 
-
+/** That variable is important in summary.js to display the greeting.*/
 let guestUser = false;
-
 
 /**
  * Data to load on every page the header-profile, if user is registered
@@ -20,7 +19,7 @@ function setCurrentUserHeaderData(user) {
     localStorage.setItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData));
 }
 
-
+/** That function is for getting user information to display the user profile in the header top right corner. */
 function getCurrentUserHeaderData() {
     let currentUserHeaderDataAsText = localStorage.getItem('currentUserHeaderData') || '';
     if(currentUserHeaderDataAsText) {
@@ -30,23 +29,14 @@ function getCurrentUserHeaderData() {
     } else return false;
 }
 
-
+/** That function will be executed when someone logins as guest on the index.html page. */
 function setGuestUser() {
     guestUser = true;
     localStorage.setItem('guestUser', JSON.stringify(guestUser));
     window.location.href = 'summary.html';
 }
 
-
-// function getGuestUser() {
-//     let guestUserAsText = localStorage.getItem('guestUser', JSON.stringify(guestUser)) || '';
-//     if(guestUserAsText) {
-//         guestUser = JSON.parse(guestUserAsText);
-//         return true;
-//     } else return false;
-// }
-
-
+/** That function is important to check if someone is loggid in as guest. */
 function isGuestUser() {
     guestUser = localStorage.getItem('guestUser') || '';
     if(guestUser) return true;

@@ -171,10 +171,6 @@ function isLoggedIn() {
 
 
 let usersEmail;
-// function guestLogin() {
-//     setGuestUser();
-//     window.location.href = 'summary.html';
-// }
 
 /**
  * This function manages following:

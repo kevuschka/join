@@ -154,11 +154,6 @@ function getRestNumberOfMembers(column, ticket) {
 }
 // <<=============================== <======================================= <============================================== <=======================================
 
-// /** That function removes the class 'emptyColumn' of an column
-//  * @param {number} n - n is the column number starting at 0 */
-// function removeEmptyBoardColumnProperties(n) {
-//     removeClasslist(`board-column-${n}`, `emptyColumn`);
-// }
 
 /** That function renders an empty-sign in reponsive view, when the column is empty.
  * @param {number} n - n is the column number starting at 0 */
@@ -186,7 +181,9 @@ function startDragging(column, ticket) {
     for (let i = 0; i < boardColumns.length; i++) removeAllHighlightAreas(i);
 }
 
-
+/** That function will be startet, when a ticket in board will be dropped (onkeyup mouse) over a droparea. 
+ * Thats for moving and dropping tickets to another column 
+ * @param {number} column -  column is the column number starting at 0 */
 async function drop(column) {
     if (currentElement['board'] != column) {
         boardColumns[currentElement['board']].splice(currentElementTicket,1);
@@ -198,18 +195,23 @@ async function drop(column) {
     await init();
 }
 
-
+/** That function has been given to us from w3schools (API). 
+ * That function is important for allowing elements to be dropped over the area they are draged over. */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
-
+/** That function is for pushing an element to the new column in the array 'boardColumns', if it is dragged and dropped to another column.
+ * Every column element has the key 'board'. It has the current column number of that element.
+ * @param {number} column -  column is the column number starting at 0 */ 
 function pushNewElement(column) {
     boardColumns[column].push(currentElement);
     boardColumns[column][boardColumns[column].length-1]['board'] = column; 
 }
 
-
+/** (Used in responsive) That function is for pushing an element to the new column in the array 'boardColumns', if it is dragged and dropped to another column.
+ * Every column element has the key 'board'. It has the current column number of that element.
+ * @param {number} column -  column is the column number starting at 0 */ 
 function unshiftNewElement(column) {
     boardColumns[column].unshift(currentElement);
     boardColumns[column][0]['board'] = column; 
@@ -217,18 +219,20 @@ function unshiftNewElement(column) {
 
 
 ////////////////// SEARCHBAR INPUT /////////////////////
+/** That function is for widening the searchbar input field. */
 function widerInputField() {
     addClasslist('board-search-icon', 'd-none');
     addClasslist(`board-header-search-input-container`, `border-none`);
 }
 
-
+/** That function is for reset the wide searchbar input field (if widened before). */
 function narrowInputField() {
     removeClasslist('board-search-icon', 'd-none');
     removeClasslist(`board-header-search-input-container`, `border-none`);
 }
 
-
+/** That function will be executed onkeyup when writing into the searchbar input field.
+ * That function checks if there is some input or not.*/
 function searchTasks() {
     let input = document.getElementById('board-header-search-input');
     let inputComparison = input.value.toLowerCase();
@@ -236,7 +240,8 @@ function searchTasks() {
     else showAllTickets();
 }
 
-
+/** That function filters and shows the tickets with the titel or descriptions that includes the searchbar input string.
+ * @param {string} inputComparison - inputComparison in the input of the user */
 function filterTasks(inputComparison) {
     showAllTickets();
     for (let i = 0; i < boardColumns.length; i++) {
@@ -250,7 +255,7 @@ function filterTasks(inputComparison) {
     }
 }
 
-
+/** That function shows all tickets in board (for example if there is no input in the searchbar). */
 function showAllTickets() {
     hiddenTickets = [];
     for (let i = 0; i < boardColumns.length; i++) {
@@ -262,13 +267,17 @@ function showAllTickets() {
     }
 }
 
-
+/** That function hides tickets (depending on the board searchbar input) with display:none and push's their column- and ticket-number
+ * to the array 'hiddenTickets'.
+ * @param {number} column - column is the column number starting at 0
+ * @param {number} ticket - ticket is the row or the ticket-number in that column */
 function hideTicket(column, ticket) {
     addClasslist(`ticket-container-${column}-${ticket}`, 'd-none');
     hiddenTickets.push([column, ticket]);
 }
 
-
+/** That function is important after searching for a ticket, edit it and let the previews search results staying still there 
+ * (after rendering the board again). */
 function hideSomeTickets() {
     for (let i = 0; i < hiddenTickets.length; i++) {
         addClasslist(`ticket-container-${hiddenTickets[i][0]}-${hiddenTickets[i][1]}`, 'd-none');

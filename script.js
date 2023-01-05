@@ -26,7 +26,11 @@ let priorities = [
 
 
 // ##### BOARD #####
+/** That array is important when using the board searchbar for searching a ticket and than editting it. After the board reloads, only the search results are still visible, 
+ *  because the hiden tickets are pushed before to 'hiddenTickets'. */
 let hiddenTickets = [];
+
+/** That variable is important in board.html when closing the ticket info popup. When the ticket was editted, the board needs to be reloaded.  */
 let taskEditted = false;
 
 
