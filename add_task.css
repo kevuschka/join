@@ -315,6 +315,12 @@ ul {
     display: none;
 }
 
+.warning {
+    font-size: 9px;
+    color: red;
+    margin-top: 9px;
+}
+
 @media (max-width: 1600px) {
     form {
         padding: 30px 100px;

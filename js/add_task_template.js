@@ -87,6 +87,12 @@ function templateDropdownContacts(i) {
 }
 
 
+/**
+ * This function generates the html code to display and be able to select the userContact (of the current itteration)
+ * 
+ * @param {int} i - index of the user in the usersContact array 
+ * @returns a html tmeplate which displays the name of the user and checkbox
+ */
 function templateDropdownUsersContacts(i) {
     return /*html*/ `
         <label for="checkboxUsers${i}" class="dropdown-content-child space-between">    
@@ -100,8 +106,8 @@ function templateDropdownUsersContacts(i) {
 /**
  * This function generates the html code to display the selected contact (current itteration)
  * 
- * @param {int} index -  
- * @returns 
+ * @param {int} index - the position of selected contact in the contactArray 
+ * @returns a html template consisting of a div with the abbreviation of the contact in it
  */
 function templateContactIconSection(contactArray, index) {
     return /*html*/ `
@@ -110,6 +116,11 @@ function templateContactIconSection(contactArray, index) {
 }
 
 
+/**
+ * This function generates the html code to display the guest symbol if a guest is assigned to a task
+ * 
+ * @returns a html template consisting of the image of the guest symbol
+ */
 function templateGuestContactIconSection() {
     return /*html*/ `
         <img class="contact-icon-img" src="./assets/img/add-contact-icon.png">

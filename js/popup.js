@@ -169,7 +169,7 @@ function renderTicketInfoEditting(column, ticket) {
     renderPrioritySelection(); //in add_task.js
     renderContactsDropdown(); //in add_task.js
     selectPrioInEditContainer(column, ticket); //in edit_task.js
-    renderAlreadyAssignedContacts(column, ticket); //in edit_task.js
+    renderAlreadyAssignedContactsAndUsers(column, ticket); //in edit_task.js
     renderSubtasksInEditContainer(column, ticket);
 }
 
@@ -220,6 +220,7 @@ function templateTicketEditing(column, ticket) {
                     </div>
                 </div>
                 <div id="contacts-icon-section" class="flex"></div>
+                <span class="d-none warning" id="guest-warning">Guest is not added to the task!</span>
             </div>
             <div class="w-100 flex column" id="subtask-edit-container">
                 <span>Subtasks</span>
