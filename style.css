@@ -351,10 +351,6 @@ a {
     animation-fill-mode: forwards;
 }
 
-.help-wrapper {
-    padding: 60px 100px;
-}
-
 @keyframes display {
     from {opacity: 0;}
     to {opacity: 1;}
@@ -362,20 +358,10 @@ a {
 
 /* ########## RESPONSIVE ########## */
 
-@media (max-width: 1600px) {
-    .help-wrapper {
-        padding: 30px 100px;
-    }
-}
-
 
 @media screen and (max-width: 1010px) {
     .header {
         padding-left: 20px;
-    }
-
-    .help-wrapper {
-        padding: 40px 20px;
     }
 }
 
@@ -577,11 +563,6 @@ a {
         animation-timing-function: ease-in-out;
         animation-duration: 125ms;
     }
-
-    .help-wrapper {
-        padding: 0px 30px 130px;
-        margin-top: 99px;
-    }
 }
 
 @media screen and (max-width: 400px) {
@@ -654,10 +635,5 @@ a {
         padding-bottom: 16px;
         font-size: 14px;
     }
-
-    .help-wrapper {
-        padding: 0 10px;
-    }
-
 }
 
