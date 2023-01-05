@@ -159,30 +159,38 @@ function contactInfoPopupAbbreviationColoring(index) {
 
 ///////////////////////// CREATE  OR  SAVE   NEW CONTACT ////////////////////////////////////
 async function creatingOrSavingContact() {
-    await createContact(); 
-    closeContactsNewContactPopupFilled(); 
-    renderContactsList();
-    MoveToContact();
-    showPopupWhenCreated();
+    if(await createContact()) {
+        closeContactsNewContactPopupFilled(); 
+        renderContactsList();
+        MoveToContact();
+        showPopupWhenCreatedContact();
+    } else {
+        closeContactsNewContactPopupFilled();
+        showPopupWhenNotCreatedContact();
+    }
 }
 
 
 async function createContact() {
     setContactNameForLinking(); // used for moving to contact after creating (not necessary in responsive) (l. 63)
-    addAllInputValuesToContact();
-    if(edittingNewContact) saveAllInputValuesToContact();
-    else contacts.push(newContact);
-    await addContact();
-    // clearNewContact();
+    if(addAllInputValuesToContact()) {
+        if(edittingNewContact) saveAllInputValuesToContact();
+        else contacts.push(newContact);
+        await addContact();
+        clearNewContact();
+        return true;
+    } else return false;
 }
 
 
 function addAllInputValuesToContact() {
-    addInputValuesToContact('name');
-    addInputValuesToContact('email');
-    addInputValuesToContact('phone');
-    addAbbreviationToContact('name');
-    addColorToContact('color');
+    if(addInputValuesToContact('email')){
+        addInputValuesToContact('name');
+        addInputValuesToContact('phone');
+        addAbbreviationToContact('name');
+        addColorToContact('color');
+        return true;
+    } else return false;
 }
 
 /**
@@ -191,7 +199,44 @@ function addAllInputValuesToContact() {
  * @param {string} identifier - ID of the input fields in the popup 'new contact' on the contacts-site.
  */
 function addInputValuesToContact(identifier) {
-    newContact[identifier] = document.getElementById(identifier).value; 
+    if(identifier == 'email') {
+        if(emailIsUnique(document.getElementById(identifier).value))
+            newContact[identifier] = document.getElementById(identifier).value; 
+        else return false;
+    }
+    else newContact[identifier] = document.getElementById(identifier).value; 
+}
+
+
+function emailIsUnique(email) {
+    for (let i = 0; i < contacts.length; i++) {
+        if(!(isEmailUnique(i, email))) return false;
+    }
+    return true;
+}
+
+
+function isEmailUnique(i, email) {
+    if(i < usersContact.length) {
+        if(emailIsInUsersOrContacts(i, email)) return false;
+        else return true;
+    } 
+    else if(emailIsInContacts(i, email)) return false; 
+    else return true;
+}
+
+
+function emailIsInUsersOrContacts(i, email) {
+    if(email == usersContact[i]['email'] || (email == contacts[i]['email'])) {
+        return true; 
+    }
+}
+
+
+function emailIsInContacts(i, email) {
+    if(email == contacts[i]['email'])  {
+        return true; 
+    }
 }
 
 
@@ -261,14 +306,27 @@ function MoveToContact() {
 }
 
 
-function showPopupWhenCreated() {
+function showPopupWhenCreatedContact() {
     if(!edittingNewContact) showPopupCreatedContact();
 }
 
-
+// CONTACT CREATED
 function showPopupCreatedContact() {
     removeClasslist(`pop-up-created-contact-full`, `d-none`);
     setTimeout(() => {
+        removeClasslist(`contact-is-created-popup`,`d-none`);
+        addClasslist(`pop-up-created-contact`,`background-color-blue`);
+        addClasslist(`pop-up-created-contact`,`contacts-created-popup-slideUp`);
+    }, 400);
+    hidePopupCreatedContact();
+}
+
+// CONTACT NOT CREATED
+function showPopupWhenNotCreatedContact() {
+    removeClasslist(`pop-up-created-contact-full`, `d-none`);
+    setTimeout(() => {
+        removeClasslist(`contact-is-not-created-popup`,`d-none`);
+        addClasslist(`pop-up-created-contact`,`background-color-red`);
         addClasslist(`pop-up-created-contact`,`contacts-created-popup-slideUp`);
     }, 400);
     hidePopupCreatedContact();
@@ -280,8 +338,17 @@ function hidePopupCreatedContact() {
         removeClasslist(`pop-up-created-contact`,`contacts-created-popup-slideUp`);
     }, 1300);
     setTimeout(() => {
-        addClasslist(`pop-up-created-contact-full`, `d-none`);
+        cleaningTheCreatedContactPopupClasslists();
     }, 1430);
+}
+
+
+function cleaningTheCreatedContactPopupClasslists() {
+    addClasslist(`contact-is-created-popup`, `d-none`);
+    addClasslist(`contact-is-not-created-popup`, `d-none`);
+    removeClasslist(`pop-up-created-contact`,`background-color-blue`);
+    removeClasslist(`pop-up-created-contact`,`background-color-red`);
+    addClasslist(`pop-up-created-contact-full`, `d-none`);
 }
 
 

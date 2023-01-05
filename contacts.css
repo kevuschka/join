@@ -445,11 +445,18 @@
     background-color: #2A3647;
     color: white;
     border-radius: 12px;
-    
     transform: translateY(100vh);
     transition: transform 125ms ease-in-out;
 }
 
 .contacts-created-popup-slideUp {
     transform: translateY(30vh);
+}
+
+.background-color-blue {
+    background-color: #2A3647;
+}
+
+.background-color-red {
+    background-color: rgb(77, 8, 8);
 }

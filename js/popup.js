@@ -740,7 +740,8 @@ function removeContactPopupDnone() {
 function templateCreatedContactPopup() {
     return `<div class="pop-up-created-contact-full absolute flex d-none" id="pop-up-created-contact-full">
                 <div class="pop-up-created-contact flex" id="pop-up-created-contact">
-                    <span>Contact succesfully created</span>
+                    <span class="contact-is-created-popup d-none" id="contact-is-created-popup">Contact succesfully created</span>
+                    <span class="contact-is-not-created-popup d-none" id="contact-is-not-created-popup">Email is already existing</span>
                 </div>
             </div>`;
 }
