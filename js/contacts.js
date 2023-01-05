@@ -173,7 +173,7 @@ async function createContact() {
     if(edittingNewContact) saveAllInputValuesToContact();
     else contacts.push(newContact);
     await addContact();
-    // clearNewContact();
+    clearNewContact();
 }
 
 

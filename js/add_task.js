@@ -328,7 +328,7 @@ function userContactIsLoggedIn(i) {
 function changeDisplayInContactIconSection(iconArray, i) {
     if (!(i >= 0)) {
         changeGuestUserInIconArray();
-        console.log('Guest is not save in the task')
+        displayGuestWarning();
     } else {
         let index = iconArray.indexOf(i);
         if (ContactIsAlreadyInArray(index)) {
@@ -339,6 +339,16 @@ function changeDisplayInContactIconSection(iconArray, i) {
     }
     renderContactIconSection();
 }    
+
+
+function displayGuestWarning() {
+    let warning = document.getElementById('guest-warning'); 
+    if (warning.classList.contains('d-none')) {
+        warning.classList.remove('d-none');
+    } else {
+        warning.classList.add('d-none');
+    }
+}
 
 
 /**
