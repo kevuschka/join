@@ -65,6 +65,7 @@ async function renderAddTask() {
     renderContactsDropdown();
     renderPrioritySelection();
     changeClearToCancel();
+    changeDateToToday();
 }
 
 
@@ -454,4 +455,14 @@ function changeVisibilityContactSection() {
     changeVisibility('invite-contact-ctn');
     changeVisibility('contacts-dropdown-ctn');
     changeVisibility('contacts-dropdown');
+}
+
+
+/**
+ * This sets the value attribute of the input field to a string in the ISO format (YYYY-MM-DD)
+ */
+function changeDateToToday() {
+    const today = new Date();
+    const inputField = document.getElementById('due-date');
+    inputField.setAttribute('value', today.toISOString().substring(0, 10));
 }
