@@ -224,7 +224,7 @@ function initContacts(value) {
  */
 function isLoggedInn() {
     let itemSet = localStorage.getItem('usersEmail');
-    if(!(itemSet || getCurrentUserHeaderData() || isGuestUser())) {
+    if(!(itemSet || anyCurrentUserHeaderData() || isGuestUser())) {
         window.location.href = 'index.html?msg=Du hast dich erfolgreich abgemeldet';
     }
 }
