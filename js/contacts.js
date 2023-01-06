@@ -199,6 +199,7 @@ function contactInfoPopupAbbreviationColoring(index) {
 
 
 ///////////////////////// CREATE  OR  SAVE   NEW CONTACT ////////////////////////////////////
+/** That function will be executet onsubmit in the 'new contact'/'edit contact' popup form. */
 async function creatingOrSavingContact() {
     if(await createContact()) {
         closeContactsNewContactPopupFilled(); 
@@ -211,7 +212,8 @@ async function creatingOrSavingContact() {
     }
 }
 
-
+/** That function is for creating a new contact and also for editting a contact and will be executed
+ * in the 'new contact'/'edit contact' popup form. */
 async function createContact() {
     setContactNameForLinking(); // used for moving to contact after creating (not necessary in responsive) (l. 63)
     if(addAllInputValuesToContact()) {
@@ -223,7 +225,8 @@ async function createContact() {
     } else return false;
 }
 
-
+/** That function returns a boolean back, it checks if the 'new' or 'editted' email is already there or not.
+*   After that it puts all the inputs, taken by the users input, and assignes them to an object called 'newContact'.  */
 function addAllInputValuesToContact() {
     if(addInputValuesToContact('email')){
         addInputValuesToContact('name');
@@ -249,36 +252,44 @@ function addInputValuesToContact(identifier) {
     }else newContact[identifier] = document.getElementById(identifier).value; 
 }
 
-
+/** That function return a boolean back, it checks whether a given email is  */
 function emailIsUnique(email) {
-    for (let i = 0; i < contacts.length; i++) {
-        if(!(isEmailUnique(i, email))) return false;
-    }
+    if(contacts.length > usersContact.length) for(let i = 0; i < contacts.length; i++) if(!(isEmailUnique(i, email))) return false;
+    else for(let i = 0; i < usersContact.length; i++) if(!(isEmailUnique(i, email))) return false;
     return true;
 }
 
 
 function isEmailUnique(i, email) {
-    if(i < usersContact.length) {
+    if((i < usersContact.length) && (i < contacts.length)) {
         if(emailIsInUsersOrContacts(i, email)) return false;
         else return true;
+    } else if (i < contacts.length) {
+        if(emailIsInContacts(i, email)) return false;
+        else return true;
+    } else if(i < usersContact.length) {
+        if(emailIsInUsersContact(i, email)) return false;
+        else return true;
     } 
-    else if(emailIsInContacts(i, email)) return false; 
     else return true;
 }
 
 
 function emailIsInUsersOrContacts(i, email) {
-    if(email == usersContact[i]['email'] || (email == contacts[i]['email'])) {
-        return true; 
-    }
+    if(email == usersContact[i]['email'] || (email == contacts[i]['email'])) return true;
+    else return false; 
 }
 
 
 function emailIsInContacts(i, email) {
-    if(email == contacts[i]['email'])  {
-        return true; 
-    }
+    if(email == contacts[i]['email'])  return true;
+    else return false;
+}
+
+
+function emailIsInUsersContact(i, email) {
+    if(email == userContact[i]['email']) return true;
+    else return false;
 }
 
 
