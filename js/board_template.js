@@ -1,5 +1,7 @@
-/** Returns the template for a colum in board.
- * @param {number} i - i is the index of the boardColumns array */
+/**
+ *  Returns the template for a colum in board.
+ * @param {number} i - i is the index of the boardColumns array 
+ */
 function renderTemplateBoardColumn(i) {
     return `<div class="board-column flex column">
                 <div class="board-column-header flex cursor-p">
@@ -11,9 +13,11 @@ function renderTemplateBoardColumn(i) {
 }
 
 ////////////////// CATEGORY
-/** Returns the template for the category of a ticket.
+/** 
+ * Returns the template for the category of a ticket.
  * @param {number} j - j is the row or the ticket-number in that column
-* @param {number} n - n is the column number starting at 0 */
+ * @param {number} n - n is the column number starting at 0 
+ */
 function templateTicketCategory(n,j) {
     return `<div class="ticket-category-container flex">
                 <p class="ticket-category" id="ticket-category-${n}-${j}">${boardColumns[n][j]['category']['name']}</p>
@@ -21,9 +25,11 @@ function templateTicketCategory(n,j) {
 }
 
 ////////////////// DESCRIPTION
-/** Returns the template for the description of a ticket.
- *@param {number} j - j is the row or the ticket-number in that column
- *@param {number} n - n is the column number starting at 0  */
+/** 
+ * Returns the template for the description of a ticket.
+ * @param {number} j - j is the row or the ticket-number in that column
+ * @param {number} n - n is the column number starting at 0  
+ */
 function templateTicketDescription(n,j) {
     return `<div class="ticket-description-container flex column">
                 <p class="ticket-description-title">${boardColumns[n][j]['title']}</p>
@@ -34,9 +40,11 @@ function templateTicketDescription(n,j) {
 }
 
 ////////////////// PROGRESSBAR
-/** Returns the template for the progressbar of a ticket.
- *@param {number} j - j is the row or the ticket-number in that column
- *@param {number} n - n is the column number starting at 0  */
+/** 
+ * Returns the template for the progressbar of a ticket.
+ * @param {number} j - j is the row or the ticket-number in that column
+ * @param {number} n - n is the column number starting at 0  
+ */
 function templateTicketProgressbar(n,j) {
     return `<div class="process-bar-container flex" id="process-bar-container-${n}-${j}">
                 <progress class="process-bar" id="process-bar-${n}-${j}" value="" max="1"></progress>
@@ -44,26 +52,32 @@ function templateTicketProgressbar(n,j) {
             </div>`;
 }
 
-/** Returns the template for the footer container of a ticket.
- *@param {number} j - j is the row or the ticket-number in that column
- *@param {number} n - n is the column number starting at 0  */
+/** 
+ * Returns the template for the footer container of a ticket.
+ * @param {number} j - j is the row or the ticket-number in that column
+ * @param {number} n - n is the column number starting at 0  
+ */
 function templateTicketFooter(n,j) {
     return `<div class="ticket-footer-container flex" id="ticket-footer-container-${n}-${j}">
                 <div class="ticket-contacts-container flex" id="ticket-contacts-container-${n}-${j}"></div>
             </div>`
 }
 
-/** Returns the priority template with image in the footer container of a ticket.
- *@param {number} j - j is the row or the ticket-number in that column
- *@param {number} n - n is the column number starting at 0  */
+/** 
+ * Returns the priority template with image in the footer container of a ticket.
+ * @param {number} j - j is the row or the ticket-number in that column
+ * @param {number} n - n is the column number starting at 0  
+ */
 function templatePrioFooter(n,j) {
     return ` <img class="state-img" src="${boardColumns[n][j]['prior']['image']}">`
 }
 
 ////////////////// TEAM
-/** Returns the priority template with image in the footer container of a ticket.
- *@param {number} j - j is the row or the ticket-number in that column
- *@param {number} n - n is the column number starting at 0  */
+/** 
+ * Returns the priority template with image in the footer container of a ticket.
+ * @param {number} j - j is the row or the ticket-number in that column
+ * @param {number} n - n is the column number starting at 0 
+ */
 function renderContactPlaceholder(k,column,ticket,content) {
     if (k < boardColumns[column][ticket]['team'].length) {
         content.innerHTML += `<div class="ticket-contact contact-placeholder">+${getRestNumberOfMembers(column, ticket)}</div>`;
@@ -72,8 +86,10 @@ function renderContactPlaceholder(k,column,ticket,content) {
 
 ////////////////// ONHOLD
 
-/** That function is for rendering an empty div-template in every column in board, after the column content is rendered. 
- * Its used and showed when the user drag-and-drop a ticket. It shows a target area where the ticket can be dropped. */
+/** 
+ * That function is for rendering an empty div-template in every column in board, after the column content is rendered. 
+ * Its used and showed when the user drag-and-drop a ticket. It shows a target area where the ticket can be dropped. 
+ */
 function renderOnholdTicketTarget() {
     let content;
     for (let i = 0; i < boardColumns.length; i++) {   
@@ -82,9 +98,11 @@ function renderOnholdTicketTarget() {
     }
 }
 
-/** That function is for rendering an empty div-template in every column in board, before the column content is rendered.
+/** 
+ * That function is for rendering an empty div-template in every column in board, before the column content is rendered.
  * Its used and showed when the user drag-and-drop a ticket. It shows a target area where the ticket can be dropped (in responsive view).
- *@param {number} i - i is the index of a board column starting at 0 */
+ * @param {number} i - i is the index of a board column starting at 0 
+ */
 function renderOnholdTicketTargetResponsive(i) {
     let content;  
     content = document.getElementById(`board-column-${i}`);

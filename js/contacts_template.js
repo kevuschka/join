@@ -1,7 +1,9 @@
-/** Return a contact element template for the contact list.
+/** 
+ * Return a contact element template for the contact list.
  * @param {number} j - j is the index of the contact in the array 'contacts' 
  * @param {number} number - number is the number of that contact at this current first letter
- * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
+ * @param {string} letter - letter is the currrent letter of the array 'alphabet' 
+ */
 function renderTemplateListLetterContact(letter, number, j) {
     return `
         <div class="contact cursor-p flex" id="contact-withLetter-${letter}-number-${number}" onclick="openContactInfoPopup(${j}, '${letter}', ${number})">
@@ -19,14 +21,18 @@ function renderTemplateListLetterContact(letter, number, j) {
 
 // #### CONTACT INFO POPUP ####
 
-/** Returns the contact info popup main template.
- * @param {number} i - i is the index of the contact in the array 'contacts' */
+/** 
+ * Returns the contact info popup main template.
+ * @param {number} i - i is the index of the contact in the array 'contacts' 
+ */
 function renderTemplateContactInfoPopup(i) {
     return `<div class="contact-info-popup column flex" id="contact-info-popup"></div>`;
 }
 
-/** Returns the contact info popup 'abbreviation and name' template.
- * @param {number} i - i is the index of the contact in the array 'contacts' */
+/** 
+ * Returns the contact info popup 'abbreviation and name' template.
+ * @param {number} i - i is the index of the contact in the array 'contacts' 
+ */
 function renderTemplateContactInfoPopupAbbreviationAndName(i) {
     return `<div class="contact-info-popup-abbreviation-and-name flex" id="contact-info-popup-abbreviation-and-name">
                 <div class="contact-info-popup-abbreviation-wrapper">
@@ -37,8 +43,10 @@ function renderTemplateContactInfoPopupAbbreviationAndName(i) {
             </div>`;
 }
 
-/** Returns the contact info popup section 'name and addtask-btn'.
- * @param {number} i - i is the index of the contact in the array 'contacts' */
+/** 
+ * Returns the contact info popup section 'name and addtask-btn'.
+ * @param {number} i - i is the index of the contact in the array 'contacts' 
+ */
 function renderTemplateContactInfoPopupName(i) {
     let wrapper = document.getElementById(`contact-info-popup-abbreviation-and-name`);
     wrapper.innerHTML += `
@@ -51,8 +59,10 @@ function renderTemplateContactInfoPopupName(i) {
         </div>`;
 }
 
-/** Returns the contact info popup 'title and edit-contact-btn' template.
- * @param {number} i - i is the index of the contact in the array 'contacts' */
+/** 
+ * Returns the contact info popup 'title and edit-contact-btn' template.
+ * @param {number} i - i is the index of the contact in the array 'contacts' 
+ */
 function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
     return `<div class="contact-info-popup-title-and-editContactBtn flex">
                 <p>Contact Information</p>
@@ -63,8 +73,10 @@ function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
             </div>`;
 }
 
-/** Returns the contact info popup 'email and phone' template
- * @param {number} i - i is the index of the contact in the array 'contacts' */
+/** 
+ * Returns the contact info popup 'email and phone' template
+ * @param {number} i - i is the index of the contact in the array 'contacts' 
+ */
 function renderTemplateContactInfoPopupEmailAndPhone(i) {
     return `<div class="contact-info-popup-email-and-phone column flex">
                 <div class="contact-info-popup-email-wrapper column flex">

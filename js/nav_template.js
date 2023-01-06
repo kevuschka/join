@@ -1,13 +1,17 @@
-/** That function renders the navbar. */
+/** 
+ * That function renders the navbar. 
+ */
 function renderNav() {
     let navbar = document.getElementById('nav');
     navbar.innerHTML = renderNavContent();  
     renderMainNavItems();
 }
 
-/** Returns the navbar template. */
+/** 
+ * Returns the navbar template. 
+ */
 function renderNavContent() {
-    return `<img class="logo-img absolute" src="assets/img/logo-big.png">
+    return `<a class="logo-img absolute" href="summary.html"><img class="logo-img" src="assets/img/logo-big.png"></a>
             <div class="nav-selection flex column" id="nav-selection">
                 <div class="nav-main-selection flex column" id="nav-main-selection"></div>
                 <a href="legal_notice.html" class="nav-item nav-legal-notice flex">
@@ -17,7 +21,9 @@ function renderNavContent() {
             </div>`;
 }
 
-/** That function renders the navbar element templates. */
+/** 
+ * That function renders the navbar element templates. 
+ */
 function renderMainNavItems() {
     let content = document.getElementById('nav-main-selection');
     content.innerHTML = renderNavItemSummary();
@@ -26,7 +32,9 @@ function renderMainNavItems() {
     content.innerHTML += renderNavItemContacts();
 }
 
-/** Returns the navbar element template for summary */
+/** 
+ * Returns the navbar element template for summary 
+ */
 function renderNavItemSummary() {
     return `<a href="summary.html" class="nav-item nav-summary flex" id="1">
                 <img src="assets/img/summary-nav-icon.png">
@@ -34,7 +42,9 @@ function renderNavItemSummary() {
             </a>`;
 }
 
-/** Returns the navbar element template for board */
+/** 
+ * Returns the navbar element template for board 
+ */
 function renderNavItemBoard() {
     return `<a href="board.html" class="nav-item nav-board flex" id="2">
                 <img src="assets/img/board-nav-icon.png">
@@ -42,7 +52,9 @@ function renderNavItemBoard() {
             </a>`;
 }
 
-/** Returns the navbar element template for addtask */
+/** 
+ * Returns the navbar element template for addtask 
+ */
 function renderNavItemAddTask() {
     return `<a href="add_task.html" class="nav-item nav-add-task flex" id="3">
                 <img src="assets/img/add-task-nav-icon.png">
@@ -50,7 +62,9 @@ function renderNavItemAddTask() {
             </a>`;
 }
 
-/** Returns the navbar element template for contacts */
+/** 
+ * Returns the navbar element template for contacts 
+ */
 function renderNavItemContacts() {
     return ` <a href="contacts.html" class="nav-item nav-contacts flex" id="4">
                 <img src="assets/img/contacts-nav-icon.png">

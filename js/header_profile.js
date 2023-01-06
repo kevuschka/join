@@ -1,12 +1,15 @@
-/** That object is important to store data for displaying the user-profil in the top right corner on the header (not important if guest-login used)
+/** 
+ * That object is important to store data for displaying the user-profil in the top right corner on the header (not important if guest-login used)
  * Familiar functions: setCurrentUserHeaderData(user) (access.js), getCurrentUserHeaderData()
-*/
+ */
 let currentUserHeaderData = {
     'abbreviation': '',
     'color': '',
 };
 
-/** That variable is important in summary.js to display the greeting.*/
+/** 
+ * That variable is important in summary.js to display the greeting.
+ */
 let guestUser = false;
 
 /**
@@ -19,7 +22,9 @@ function setCurrentUserHeaderData(user) {
     localStorage.setItem('currentUserHeaderData', JSON.stringify(currentUserHeaderData));
 }
 
-/** That function is for getting user information to display the user profile in the header top right corner. */
+/** 
+ * That function is for getting user information to display the user profile in the header top right corner. 
+ */
 function getCurrentUserHeaderData() {
     let currentUserHeaderDataAsText = localStorage.getItem('currentUserHeaderData') || '';
     if(currentUserHeaderDataAsText) {
@@ -29,14 +34,18 @@ function getCurrentUserHeaderData() {
     } else return false;
 }
 
-/** That function will be executed when someone logins as guest on the index.html page. */
+/** 
+ * That function will be executed when someone logins as guest on the index.html page. 
+ */
 function setGuestUser() {
     guestUser = true;
     localStorage.setItem('guestUser', JSON.stringify(guestUser));
     window.location.href = 'summary.html';
 }
 
-/** That function is important to check if someone is loggid in as guest. */
+/** 
+ * That function is important to check if someone is loggid in as guest. 
+ */
 function isGuestUser() {
     guestUser = localStorage.getItem('guestUser') || '';
     if(guestUser) return true;
