@@ -1,6 +1,6 @@
 /** 
  * That object is important to store data for displaying the user-profil in the top right corner on the header (not important if guest-login used)
- * Familiar functions: setCurrentUserHeaderData(user) (access.js), getCurrentUserHeaderData()
+ * Familiar functions: setCurrentUserHeaderData(user) (access.js), anyCurrentUserHeaderData()
  */
 let currentUserHeaderData = {
     'abbreviation': '',
@@ -25,7 +25,7 @@ function setCurrentUserHeaderData(user) {
 /** 
  * That function is for getting user information to display the user profile in the header top right corner. 
  */
-function getCurrentUserHeaderData() {
+function anyCurrentUserHeaderData() {
     let currentUserHeaderDataAsText = localStorage.getItem('currentUserHeaderData') || '';
     if(currentUserHeaderDataAsText) {
         currentUserHeaderData['abbreviation'] = JSON.parse(currentUserHeaderDataAsText).abbreviation;

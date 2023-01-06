@@ -4,7 +4,7 @@
 function renderHeader() {
     let content = document.getElementById('header');
     content.innerHTML = templateHeader();
-    if(getCurrentUserHeaderData()) showUserInHeader();
+    if(anyCurrentUserHeaderData()) showUserInHeader();
     else showGuestUserInHeader();
 }
 
