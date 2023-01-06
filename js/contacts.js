@@ -55,24 +55,6 @@ function renderListLetterContacts(letter, number, j) {
     contactAbbreviationColoring(letter, number, j);
 }
 
-/** Return a contact element template for the contact list.
- * @param {number} j - j is the index of the contact in the array 'contacts' 
- * @param {number} number - number is the number of that contact at this current first letter
- * @param {string} letter - letter is the currrent letter of the array 'alphabet' */
-function renderTemplateListLetterContact(letter, number, j) {
-    return `
-        <div class="contact cursor-p flex" id="contact-withLetter-${letter}-number-${number}" onclick="openContactInfoPopup(${j}, '${letter}', ${number})">
-            <a class="d-none" href="#contact-withLetter-${letter}-number-${number}" id="contact-link-withLetter-${letter}-number-${number}"></a>
-            <div class="contact-abbreviation-wrapper flex" id="contact-abbreviation-wrapper-${letter}-${number}">
-                <p class="contact-abbreviation">${contacts[j]['abbreviation']}</p>
-            </div>
-            <div class="contact-name-wrapper column flex">
-                <p class="contact-name">${contacts[j]['name']}</p>
-                <p class="contact-email">${contacts[j]['email']}</p>    
-            </div>
-        </div>`
-}
-
 /** That function colors the contact abbreviation in the contact list.
  * @param {number} j - j is the index of the contact in the array 'contacts' 
  * @param {number} number - number is the number of contacts at this current first letter
@@ -135,60 +117,9 @@ function renderContactInfoPopup(i) {
     popupContainer.innerHTML = renderTemplateContactInfoPopup(i);
     let content = document.getElementById(`contact-info-popup`);
     content.innerHTML = renderTemplateContactInfoPopupAbbreviationAndName(i);
+    renderTemplateContactInfoPopupName(i);
     content.innerHTML += renderTemplateContactInfoPopupTitleAndEditContactBtn(i);
     content.innerHTML += renderTemplateContactInfoPopupEmailAndPhone(i);
-}
-
-/** Returns the contact info popup main template.
- * @param {number} i - i is the index of the contact in the array 'contacts' */
-function renderTemplateContactInfoPopup(i) {
-    return `<div class="contact-info-popup column flex" id="contact-info-popup"></div>`;
-}
-
-/** Returns the contact info popup 'abbreviation and name' template.
- * @param {number} i - i is the index of the contact in the array 'contacts' */
-function renderTemplateContactInfoPopupAbbreviationAndName(i) {
-    return `<div class="contact-info-popup-abbreviation-and-name flex">
-                <div class="contact-info-popup-abbreviation-wrapper">
-                    <div class="contact-abbreviation-wrapper contact-info-popup-abbreviation flex" id="contact-info-popup-abbreviation-${i}">
-                        <p class="contact-abbreviation">${contacts[i]['abbreviation']}</p>
-                    </div>
-                </div>
-                <div class="contact-info-popup-name-and-addtask column flex">
-                    <p>${contacts[i]['name']}</p>
-                    <div class="contact-info-popup-addTask-btn flex cursor-p" onclick="openBoardAddtaskPopup()">
-                        <p>+</p>
-                        <p>Add Task</p>
-                    </div>
-                </div>
-            </div>`;
-}
-
-/** Returns the contact info popup 'title and edit-contact-btn' template.
- * @param {number} i - i is the index of the contact in the array 'contacts' */
-function renderTemplateContactInfoPopupTitleAndEditContactBtn(i) {
-    return `<div class="contact-info-popup-title-and-editContactBtn flex">
-                <p>Contact Information</p>
-                <div class="contact-info-popup-editContact-btn cursor-p" onclick="setContactValuesForEditting(${i});openContactsNewContactPopup(${i})">
-                    <img src="assets/img/profil-edit-contact-icon.png">
-                    <p>Edit Contact</p>
-                </div>
-            </div>`;
-}
-
-/** Returns the contact info popup 'email and phone' template
- * @param {number} i - i is the index of the contact in the array 'contacts' */
-function renderTemplateContactInfoPopupEmailAndPhone(i) {
-    return `<div class="contact-info-popup-email-and-phone column flex">
-                <div class="contact-info-popup-email-wrapper column flex">
-                    <p>Email</p>
-                    <p>${contacts[i]['email']}</p>
-                </div>
-                <div class="contact-info-popup-phone-wrapper column flex">
-                    <p>Phone</p>
-                    <p>${contacts[i]['phone']}</p>
-                </div>
-            </div>`;
 }
 
 /** That function 'colors' the contact info popup abbreviation template.
@@ -259,7 +190,10 @@ function emailIsUnique(email) {
     return true;
 }
 
-
+/** That function checks whether an email is unique when 'editting'/'creating' a contact. 
+ * It checks the email of all contacts and of all signed-in user accounts.
+ * @param {number} i - i is the index in the arrays contacts OR usersContact
+ * @param {string} email - email is the given email, we compare other emails with (on uniqueness) */
 function isEmailUnique(i, email) {
     if((i < usersContact.length) && (i < contacts.length)) {
         if(emailIsInUsersOrContacts(i, email)) return false;
@@ -274,41 +208,54 @@ function isEmailUnique(i, email) {
     else return true;
 }
 
-
+/** That function compares the given email to the emails of the arrays 'usersContact AND contacts'.
+ * @param {number} i - i is the index in the arrays contacts OR usersContact
+ * @param {string} email - email is the given email, we compare other emails with (on uniqueness) */
 function emailIsInUsersOrContacts(i, email) {
     if(email == usersContact[i]['email'] || (email == contacts[i]['email'])) return true;
     else return false; 
 }
 
-
+/** That function compares the given email to the emails of the array 'contacts'.
+ * @param {number} i - i is the index in the arrays contacts OR usersContact
+ * @param {string} email - email is the given email, we compare other emails with (on uniqueness) */
 function emailIsInContacts(i, email) {
     if(email == contacts[i]['email'])  return true;
     else return false;
 }
 
-
+/** That function compares the given email to the emails of the array 'usersContact'.
+ * @param {number} i - i is the index in the arrays contacts OR usersContact
+ * @param {string} email - email is the given email, we compare other emails with (on uniqueness) */
 function emailIsInUsersContact(i, email) {
     if(email == userContact[i]['email']) return true;
     else return false;
 }
 
-
+/** That function adds the abbreviation of the current user name, given from the input, to the abbreviation-key
+ * of the object newContact.
+ * @param {string} identifier - identifier is the given id of the input field */
 function addAbbreviationToContact(identifier) {
     newContact['abbreviation'] =  getNameLetters(document.getElementById(identifier).value);
 }
 
-
+/** That function adds a color of the current created user to the 'newContact' object. It uses the function:
+ * 'getRandomNumberFromZeroToNine()'.
+ * @param {string} identifier - identifier is the given id of the input field */
 function addColorToContact(identifier) {
     newContact[identifier] = colors[getRandomNumberFromZeroToNine()];
 }
 
-
+/** That function is important to get the right contact-index data in the rendered contact list. Its for moving and clicking
+ * to that contact, after 'creating'/'editting'.
+ */
 function setContactNameForLinking() {
     createdContactName = document.getElementById('name').value.toLowerCase();
 }
 
 
 // SAVE
+/** That function will be executed, when a contact is 'editted' and the input data needs to be saved. */
 function saveAllInputValuesToContact() {
     saveInputValuesToContact('name');
     saveInputValuesToContact('email');
@@ -316,7 +263,9 @@ function saveAllInputValuesToContact() {
     saveInputValuesToContact('abbreviation');
 }
 
-
+/** That function adds the right input values from the object 'newContact' (given before) to 
+ * the current 'editted' contact in contacts.
+ * @param {string} identifier - identifier is the given id of the input field */
 function saveInputValuesToContact(identifier) {
     contacts[indexOfChoosedContactToEdit][identifier] = newContact[identifier]; // because newContact is already created and for less code
 }
@@ -329,15 +278,15 @@ function setContactValuesForEditting(index) {
     indexOfChoosedContactToEdit = index;
 }
 
-
+/** That function cleans some global variables data, which are needed to know, if a user wants
+ * to 'edit' an existing contact or not.
+  */
 function cleanValuesForEdittingContact() {
     edittingNewContact = false;
     indexOfChoosedContactToEdit = -1;
 }
 
-/**
- * basic contact structure
- */
+/** basic contact structure */
 function clearNewContact() {
     newContact = {
         'name': '',
@@ -348,19 +297,21 @@ function clearNewContact() {
     };
 }
 
-
+/** That function is for the moving-animation to the right contact in the contact-list on the page contacts.html, after 
+ * 'creating' or 'editting' a user. */
 function MoveToContact() {
         setTimeout(() => {
             document.getElementById(`contact-link-withLetter-${contactValues['letter']}-number-${contactValues['number']}`).click();
         }, 150);
 }
 
-
+/** That function executes an popup-animation after succesfully creating a new contact. */
 function showPopupWhenCreatedContact() {
     if(!edittingNewContact) showPopupCreatedContact();
 }
 
 // CONTACT CREATED
+/** That function adds some classes to show an popup-animation after succesfully creating a new contact. */
 function showPopupCreatedContact() {
     removeClasslist(`pop-up-created-contact-full`, `d-none`);
     setTimeout(() => {
@@ -372,6 +323,8 @@ function showPopupCreatedContact() {
 }
 
 // CONTACT NOT CREATED
+/** That function adds some classes to show an popup-animation after NOT succesfully creating a new contact.
+ * (Because of already existing email). */
 function showPopupWhenNotCreatedContact() {
     removeClasslist(`pop-up-created-contact-full`, `d-none`);
     setTimeout(() => {
@@ -382,7 +335,7 @@ function showPopupWhenNotCreatedContact() {
     hidePopupCreatedContact();
 }
 
-
+/** That function ends and hides the before executed popup-animation after 'creating' or 'editting' a contact.  */
 function hidePopupCreatedContact() {
     setTimeout(() => {
         removeClasslist(`pop-up-created-contact`,`contacts-created-popup-slideUp`);
@@ -392,7 +345,8 @@ function hidePopupCreatedContact() {
     }, 1430);
 }
 
-
+/** That function adds some classes (like 'd-none') to the popup-animation 'Contact succesfully creating'/'Email is already existing', 
+ * after hiding it. */
 function cleaningTheCreatedContactPopupClasslists() {
     addClasslist(`contact-is-created-popup`, `d-none`);
     addClasslist(`contact-is-not-created-popup`, `d-none`);
@@ -401,7 +355,8 @@ function cleaningTheCreatedContactPopupClasslists() {
     addClasslist(`pop-up-created-contact-full`, `d-none`);
 }
 
-
+/** That function cleans the object-keys of the object 'contactValues', which is needed
+ * for moving to a contact after rendering the contact-list on contact.html page. */
 function cleanContactValues() {
     contactValues = {
         'index' : '',
