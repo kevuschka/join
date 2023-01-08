@@ -46,12 +46,31 @@ async function addUser() {
     let userName = document.getElementById('username');
     let email = document.getElementById('email');
     let password = document.getElementById('password');
-    let name = userName.value.split(' ');
-    let firstLetter = name.toString().charAt(0).toUpperCase();
-    let secondLetter = name[1].toString().charAt(0).toUpperCase();
-    let initials = firstLetter + secondLetter;
+    let initials = getNameLetters(userName);
+    userName = checkAndGetName(userName);
     if(users.length == 0) await pushUser(userName, email, password, initials);
     else await checkMail(userName, email, password, initials);
+}
+
+/**
+ * That function renders a to digit shortletter, that are seen in the board ticket or when signed in, in the header top right corner.
+ * @returns 
+ */
+function getNameLetters(userName) {
+    let name = userName.value.split(' ');
+    let firstLetter = name.toString().charAt(0).toUpperCase();
+    if(name.length == 1) return firstLetter + firstLetter;
+    else {
+        let secondLetter = name[1].toString().charAt(0).toUpperCase();
+        return firstLetter + secondLetter;
+    }
+}
+
+/** That function checks if the user name inlcudes two or only one name. If its only one name, it defines a shortletter as second name. */
+function checkAndGetName(userName) {
+    let name = userName.value.split(' ');
+    if(name.length == 1) return `${name} ${name[0].charAt(0)}`;
+    else return name;
 }
 
 
@@ -86,7 +105,9 @@ async function pushUser(userName, email, password, initials) {
     window.location.href = 'index.html?msg=Du hast dich erfolgreich registriert';
 }
 
-
+/**
+ * That function adds the input values to the 'newUser' object-keys.
+ */
 function addingValuesToUser(userName, email, password, initials, color) {
     newUser['name'] = userName.value;
     newUser['abbreviation'] = initials;
@@ -95,7 +116,9 @@ function addingValuesToUser(userName, email, password, initials, color) {
     newUser['color'] = color;
 }
 
-
+/**
+ * That function adds the input values to the 'newUserContact' object-keys.
+ */
 function addingValuesToUsersContact(userName, email, initials, color) {
     newUserContact['name'] = userName.value;
     newUserContact['abbreviation'] = initials;
@@ -103,7 +126,11 @@ function addingValuesToUsersContact(userName, email, initials, color) {
     newUserContact['color'] = color;
 }
 
-
+/**
+ * That function pushes the new signed user to an array before adding that array to the backend database.
+ * @param {array} object1 - users array with password info
+ * @param {array} object2 - userContact array (like users) but without password stored
+ */
 async function pushAndAddUsers(object1, object2) {
     users.push(object1);
     usersContact.push(object2);
@@ -113,7 +140,10 @@ async function pushAndAddUsers(object1, object2) {
     await backend.setItem('usersContact', allUsersContactAsString);
 }
 
-
+/**
+ * That function renders a random colorcode using the math.floor(math.random()*10) method.
+ * @returns a color code in hexadecimal
+ */
 function giveColor() {
     let randomNumber1 = Math.floor(Math.random() * 10);
     let randomNumber2 = Math.floor(Math.random() * 10);
