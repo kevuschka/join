@@ -400,7 +400,7 @@ async function sendInviteMail() {
 }
 
 function actionInvite(formData) {
-     const input = 'https://gruppe-348.developerakademie.net/join/send_invite_mail.php';
+     const input = 'https://kevin-schumilo.developerakademie.net/join/send_invite_mail.php';
      const requestInit = {
          method: 'post',
          body: formData

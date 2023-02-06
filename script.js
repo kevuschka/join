@@ -129,7 +129,7 @@ function renderResponsiveHeaderTitle() {
 
 
 // ########## BACKEND ##########
-setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
+setURL('https://kevin-schumilo.developerakademie.net/smallest_backend_ever');
 
 
 async function init() {

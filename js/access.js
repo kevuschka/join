@@ -1,4 +1,4 @@
-setURL('https://gruppe-348.developerakademie.net/smallest_backend_ever');
+setURL('https://kevin-schumilo.developerakademie.net/smallest_backend_ever');
 
 //Delete local Storage items
 localStorage.removeItem('usersEmail');
@@ -212,7 +212,7 @@ async function onSubmit(event) {
 
 
 function action(formData) {
-    const input = 'https://gruppe-348.developerakademie.net/join/send_mail.php';
+    const input = 'https://kevin-schumilo.developerakademie.net/join/send_mail.php';
     const requestInit = {
         method: 'post',
         body: formData
